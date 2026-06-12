@@ -36,6 +36,7 @@ python3 sleep_competition_adapter/surprise_responsibility_toxicity_veto.py
 python3 sleep_competition_adapter/cross_subject_surprise_responsibility_veto.py
 python3 sleep_competition_adapter/world_model_residual_action_decoder.py
 python3 sleep_competition_adapter/subject_invariant_world_model_listener_solver.py
+python3 sleep_competition_adapter/cohort_listener_responsibility_transport.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -74,6 +75,8 @@ python3 sleep_competition_adapter/subject_invariant_world_model_listener_solver.
 
 `subject_invariant_world_model_listener_solver.py`는 위 fragile 결과를 정면으로 검증한다. full OOF gain이 아니라 subject-balanced objective로 target별 world-model listener rule을 고른다. 결과적으로 OOF gain은 더 강해져 `5.027044`에서 `6.442219`가 되었고 제거된 action gain은 `-1.415175`였지만, subject-LOO improvement는 `-3.281044`로 여전히 무너졌다. 판정은 `oof_positive_subject_invariant_negative`다. 이 실험은 HS-JEPA residual이 독성 pocket을 찾는다는 positive evidence와, 아직 subject-general release decoder가 아니라는 negative evidence를 동시에 남긴다. 후보 파일은 `submission_hsjepa_subject_invariant_world_model_listener_solver_1807cfd1_uploadsafe.csv`다.
 
+`cohort_listener_responsibility_transport.py`는 cell-level rule을 더 크게 바꿔, world-model subject fingerprint가 비슷한 peer subject에서 listener responsibility rule을 빌려오는 실험이다. 기대는 subject/cohort-level responsibility가 subject-LOO 붕괴를 줄이는 것이었지만 결과는 반대였다. best k=1에서도 kept gain sum이 `5.027044`에서 `2.681536`으로 떨어졌고, improvement는 `-2.345507`였다. 특히 id05/S3 계열에서 peer rule이 좋은 action을 잘못 제거했다. 판정은 `cohort_transport_negative_or_inconclusive`다. 즉 현재 HS-JEPA subject fingerprint만으로는 action responsibility가 전이되지 않으며, 다음은 subject similarity가 아니라 route/action-context까지 포함한 responsibility transport가 필요하다. 후보 파일은 `submission_hsjepa_cohort_listener_responsibility_transport_50e86104_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -97,6 +100,7 @@ python3 sleep_competition_adapter/subject_invariant_world_model_listener_solver.
 - `sleep_competition_adapter/outputs/cross_subject_surprise_responsibility_veto/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
 - `sleep_competition_adapter/outputs/world_model_residual_action_decoder/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `sleep_competition_adapter/outputs/subject_invariant_world_model_listener_solver/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
+- `sleep_competition_adapter/outputs/cohort_listener_responsibility_transport/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
 
 ## 경계
 

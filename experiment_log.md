@@ -15400,3 +15400,70 @@ Next:
 
 The next big-bet should move one level up from row-target veto to subject/cohort-level
 listener responsibility. The current failure says cell-level residual thresholds are too local.
+
+## 2026-06-13 - HS-JEPA Cohort Listener Responsibility Transport
+
+### Question
+
+Cell-level residual threshold가 subject-LOO에서 무너진다면,
+HS-JEPA world-model subject fingerprint가 비슷한 peer subject의 listener responsibility를
+held-out subject로 전이할 수 있는가?
+
+### Experiment: Cohort Listener Responsibility Transport
+
+- Code: `sleep_competition_adapter/cohort_listener_responsibility_transport.py`
+- Core input: `hsjepa_core/run_masked_context_world_model.py`
+- Adapter input: `sleep_competition_adapter/cross_subject_episode_prototype_transport.py`
+- Doc: `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
+- Candidate: `submission_hsjepa_cohort_listener_responsibility_transport_50e86104_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+HS-JEPA world-model subject fingerprint
+  -> nearest peer subjects
+  -> peer target-listener responsibility rule
+  -> held-out subject row-target action veto
+```
+
+Result:
+
+- release objective: `subject_balanced_listener`
+- selected neighbors: `1`
+- source OOF action cells: `44`
+- original gain sum: `5.027044`
+- kept cells after cohort transport: `36`
+- kept gain sum: `2.681536`
+- removed cells: `8`
+- removed gain sum: `2.345507`
+- transported gain delta: `-2.345507`
+- positive subjects: `0`
+- negative subjects: `3`
+- min subject improvement: `-1.714630`
+- test switched cells: `105 -> 99 kept / 6 vetoed`
+- upload-safe validation passed
+- verdict: `cohort_transport_negative_or_inconclusive`
+
+Interpretation:
+
+Negative evidence:
+
+```text
+Nearest subject/cohort responsibility does not transport.
+The peer rule removed positive-gain actions, especially around id05/S3-like action tails.
+```
+
+Architecture implication:
+
+```text
+The missing layer is not plain subject similarity.
+Listener responsibility must condition on row-target route and action context,
+not only on averaged human-state subject fingerprint.
+```
+
+Next:
+
+The next big-bet should define cohort at the action-episode level:
+similar subject fingerprint + similar route/action expert + similar residual-energy pattern.
+Subject-level averaging is too coarse for HS-JEPA action responsibility.

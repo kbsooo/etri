@@ -11,6 +11,7 @@
 - `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
+- `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
@@ -102,6 +103,30 @@ subject-general release law가 아니라 toxic-pocket diagnostic에 가깝다.
 이 결과는 실패가 아니라 경계 증거다. HS-JEPA core residual이 의미 없는 신호는 아니지만,
 논문에서 `release-grade architecture`로 주장하려면 subject-invariant listener responsibility가
 다음 핵심 병목이다.
+
+`COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`는 그 다음 후보였던 subject/cohort-level transport를 검증한다. world-model subject fingerprint가 비슷한 peer subject에서 target별 listener responsibility rule을 가져와 held-out subject에 적용했다.
+
+현재 핵심 결과:
+
+- selected neighbors: `1`
+- original OOF gain sum: `5.027044`
+- transported kept gain sum: `2.681536`
+- transported gain delta: `-2.345507`
+- positive subjects: `0`
+- negative subjects: `3`
+- test vetoed switched cells: `6`
+- verdict: `cohort_transport_negative_or_inconclusive`
+
+현재 해석:
+
+```text
+subject-level world-model fingerprint만으로는 listener responsibility가 전이되지 않는다.
+현재 병목은 subject similarity가 아니라 row-target route/action-context를 포함한
+responsibility transport다.
+```
+
+이 실험은 cohort 방향을 버리라는 뜻이 아니라, cohort를 `사람 단위 평균 fingerprint`로 정의하면
+HS-JEPA action responsibility를 설명하기에 너무 거칠다는 negative evidence다.
 
 `LIFELOG_CORE_STATE_EVIDENCE_KO.md`는 public LB 없이 OG lifelog-derived context만으로 HS-JEPA core representation이 무엇을 설명하는지 정리한다. 현재 결론은 명확하다.
 
