@@ -4,6 +4,23 @@
 
 episode row-state controller를 full OOF 최저점으로 고르지 않고, subject가 바뀌어도 살아남는 목적함수로 고르는 실험이다.
 
+## HS-JEPA 안에서의 정확한 위치
+
+이 문서는 HS-JEPA core 자체도, positive adapter도 아니다. 정확한 위치는
+**LeJEPA-style diagnostic / anti-shortcut audit**이다.
+
+```text
+HS-JEPA core
+  = visible human-life context -> hidden human-state representation
+
+이 문서의 역할
+  = representation이 만든 action이 subject shortcut/collapse인지 검사
+```
+
+따라서 이 실험은 `새로운 예측기를 만들었다`는 주장이 아니라,
+full OOF에서 좋아 보이는 row-target action controller가 subject-heldout에서도
+살아남는지 확인하는 health check다.
+
 ## 재현 명령
 
 ```bash

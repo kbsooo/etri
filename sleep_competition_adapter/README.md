@@ -34,6 +34,7 @@ python3 sleep_competition_adapter/cross_subject_episode_prototype_transport.py
 python3 sleep_competition_adapter/masked_view_surprise_action_release.py
 python3 sleep_competition_adapter/surprise_responsibility_toxicity_veto.py
 python3 sleep_competition_adapter/cross_subject_surprise_responsibility_veto.py
+python3 sleep_competition_adapter/world_model_residual_action_decoder.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -68,6 +69,8 @@ python3 sleep_competition_adapter/cross_subject_surprise_responsibility_veto.py
 
 `cross_subject_surprise_responsibility_veto.py`는 같은 masked-view surprise responsibility를 더 넓은 cross-subject prototype transport action field에 적용한다. cross-subject release OOF 44 cells 중 3개만 veto했지만, 그 3개가 합산 `-0.524620` negative-gain action이라 kept gain sum이 `5.027044`에서 `5.551664`로 증가했다. active subject coverage는 7명을 유지했다. test에서는 105 switched cells 중 S4 4개만 veto하므로 LB 대박 후보라기보다, `target-specific surprise responsibility can remove toxic actions even on a cross-subject action field`라는 HS-JEPA action-health evidence에 가깝다. 후보 파일은 `submission_hsjepa_cross_subject_surprise_responsibility_veto_aceca94c_uploadsafe.csv`다.
 
+`world_model_residual_action_decoder.py`는 더 core에 가까운 masked-context world model residual energy를 cross-subject prototype transport action field의 listener로 사용한다. OOF에서는 44개 action 중 9개를 veto하여 gain sum을 `5.027044`에서 `6.093459`로 높이고, 제거된 action의 gain sum은 `-1.066415`였다. 하지만 subject-heldout stress에서는 kept gain sum이 `1.557169`로 약해져 판정은 `oof_positive_subjectheldout_fragile`이다. 즉 이 결과는 제출-grade positive claim이라기보다 `HS-JEPA core residual energy가 action toxicity pocket을 감지한다`는 adapter/diagnostic evidence다. 후보 파일은 `submission_hsjepa_world_model_residual_action_decoder_b3361d85_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -89,6 +92,7 @@ python3 sleep_competition_adapter/cross_subject_surprise_responsibility_veto.py
 - `sleep_competition_adapter/outputs/masked_view_surprise_action_release/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
 - `sleep_competition_adapter/outputs/surprise_responsibility_toxicity_veto/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
 - `sleep_competition_adapter/outputs/cross_subject_surprise_responsibility_veto/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
+- `sleep_competition_adapter/outputs/world_model_residual_action_decoder/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 
 ## 경계
 

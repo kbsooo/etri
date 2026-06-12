@@ -9,6 +9,7 @@
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
 - `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
 - `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
+- `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
@@ -48,6 +49,33 @@ Diagnostic = action이 shortcut/collapse/subject-tail/public-luck인지 검사
 - S3/S4 action-health diagnostic에서는 residual energy가 toxic action pocket을 분리한다.
 
 즉 HS-JEPA core는 직접 classifier가 아니라, action-health와 listener responsibility를 위한 hidden human-state geometry라는 주장이 더 강해졌다.
+
+`WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`는 이 core evidence를 adapter로 번역하는 다음 단계다. masked-context world model의 residual energy를 cross-subject prototype transport action field의 target-specific listener로 사용했다.
+
+현재 핵심 결과:
+
+- source cross-subject action cells: `44`
+- source active subjects: `7`
+- original gain sum: `5.027044`
+- world-model listener kept cells: `35`
+- kept gain sum: `6.093459`
+- removed cells: `9`
+- removed gain sum: `-1.066415`
+- kept positive gain rate: `0.771429`
+- subject-heldout original gain sum: `5.027044`
+- subject-heldout kept gain sum: `1.557169`
+- verdict: `oof_positive_subjectheldout_fragile`
+
+현재 해석:
+
+```text
+HS-JEPA core residual energy는 action toxicity pocket을 감지하지만,
+그대로 subject-general release law라고 주장하기에는 아직 fragile하다.
+```
+
+따라서 이 문서는 HS-JEPA core가 아니라 adapter/diagnostic이다. 논문에서는
+`core representation이 action decoder 독성을 줄이는 방향의 증거`와
+`subject-heldout에서 아직 완성되지 않은 한계`를 동시에 말해야 한다.
 
 `LIFELOG_CORE_STATE_EVIDENCE_KO.md`는 public LB 없이 OG lifelog-derived context만으로 HS-JEPA core representation이 무엇을 설명하는지 정리한다. 현재 결론은 명확하다.
 

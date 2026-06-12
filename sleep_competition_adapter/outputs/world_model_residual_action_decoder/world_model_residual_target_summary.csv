@@ -1,0 +1,6 @@
+target,rule,all_cells,kept_cells,all_gain_sum,kept_gain_sum,removed_gain_sum,all_positive_gain_rate,kept_positive_gain_rate
+Q2,all::wm_energy_calendar_rhythm,12,12,1.976823748523643,1.976823748523643,0.0,0.75,0.75
+Q3,all::wm_energy_calendar_rhythm,9,9,1.168314109578631,1.168314109578631,0.0,0.6666666666666666,0.6666666666666666
+S2,all::wm_energy_calendar_rhythm,5,5,1.3614369514910036,1.3614369514910036,0.0,1.0,1.0
+S3,low_energy_listener::wm_energy_app_social_context,13,7,0.9454718451027289,1.4872666440459634,-0.5417947989432346,0.6153846153846154,0.8571428571428571
+S4,high_energy_listener::wm_energy_calendar_rhythm,5,2,-0.42500287012896504,0.09961726343071547,-0.5246201335596805,0.4,0.5

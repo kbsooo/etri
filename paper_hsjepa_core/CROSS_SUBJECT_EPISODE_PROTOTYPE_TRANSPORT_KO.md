@@ -4,6 +4,22 @@
 
 다른 subject에서 성공한 episode-action prototype을 held-out subject의 비슷한 row-target-route로 전이할 수 있는지 검증했다.
 
+## HS-JEPA 안에서의 정확한 위치
+
+이 문서는 HS-JEPA core 자체가 아니다. 정확한 위치는 **HS-JEPA adapter**다.
+
+```text
+HS-JEPA core
+  = visible human-life context -> hidden human-state representation
+
+이 문서의 역할
+  = hidden human-state representation -> cross-subject episode-action prototype transport
+```
+
+따라서 이 실험을 설명할 때 핵심 주장은 `kNN이 좋다`가 아니다.
+핵심 주장은 HS-JEPA가 만든 row/target/route representation이 다른 subject의
+성공 action prototype을 검색/예측할 만큼의 전이 가능한 geometry를 갖는지 검증한다는 것이다.
+
 ## 재현 명령
 
 ```bash

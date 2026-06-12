@@ -15254,3 +15254,74 @@ Diagnostic = LeJEPA-style anti-shortcut and toxicity test.
 Next:
 
 The next high-value step is not another direct classifier from this state. It is to use the world-model residual energy as a listener responsibility feature inside an action decoder with subject-heldout stress.
+
+## 2026-06-13 - HS-JEPA World-Model Residual Action Decoder
+
+### Question
+
+Masked-context HS-JEPA core가 만든 world-model residual energy를 row-target action decoder의 listener로 쓰면,
+cross-subject prototype transport action field의 toxic action을 public LB 없이 줄일 수 있는가?
+
+### Experiment: World-Model Residual Action Decoder
+
+- Code: `sleep_competition_adapter/world_model_residual_action_decoder.py`
+- Core input: `hsjepa_core/run_masked_context_world_model.py`
+- Adapter input: `sleep_competition_adapter/cross_subject_episode_prototype_transport.py`
+- Doc: `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
+- Candidate: `submission_hsjepa_world_model_residual_action_decoder_b3361d85_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+masked-context world-model residual energy
+  -> target-specific listener rule
+  -> cross-subject prototype action veto
+  -> subject-heldout stress
+```
+
+Result:
+
+- source release law: `route_episode_context__target_episode_family__knn13_distance`
+- source OOF action cells: `44`
+- source active subjects: `7`
+- original gain sum: `5.027044`
+- original positive gain rate: `0.681818`
+- kept cells after world-model listener: `35`
+- kept gain sum: `6.093459`
+- removed cells: `9`
+- removed gain sum: `-1.066415`
+- kept positive gain rate: `0.771429`
+- subject-heldout original gain sum: `5.027044`
+- subject-heldout kept gain sum: `1.557169`
+- subject-heldout delta: `-3.469875`
+- test switched cells: `105 -> 88 kept / 17 vetoed`
+- upload-safe validation passed
+- verdict: `oof_positive_subjectheldout_fragile`
+
+Interpretation:
+
+Positive evidence:
+
+```text
+HS-JEPA core residual energy is not random noise.
+It can identify negative-gain action pockets in a broader cross-subject action field.
+```
+
+Negative evidence:
+
+```text
+The same listener does not survive subject-heldout stress as a subject-general release law.
+```
+
+Architecture packaging update:
+
+This experiment should be presented as adapter/diagnostic evidence, not as HS-JEPA core itself.
+The clean core remains `visible lifelog context -> masked hidden human-state representation`.
+The residual action decoder asks whether that core representation can reduce adapter toxicity.
+
+Next:
+
+The next real breakthrough direction is not another narrow veto. It is a subject-invariant
+listener responsibility objective that preserves the OOF toxicity separation while avoiding
+the subject-heldout collapse observed here.
