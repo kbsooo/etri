@@ -10199,3 +10199,48 @@ The publishable thesis strengthens: HS-JEPA is not just OOF action selection; it
 If public LB worsens:
 
 Even subject-balanced OOF route conservation is not public/private safe. The next step should be true subject-heldout route selection or public/private factorization, not additional OOF balance penalties.
+
+## 2026-06-13 - HS-JEPA Subject-Heldout Route Responsibility Diagnostic Candidate
+
+- File: `submission_hsjepa_subject_heldout_route_responsibility_anchor_free_f2a44231_uploadsafe.csv`
+- Code: `sleep_competition_adapter/subject_heldout_route_responsibility_diagnostic.py`
+- Documentation: `paper_hsjepa_core/SUBJECT_HELDOUT_ROUTE_RESPONSIBILITY_DIAGNOSTIC_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is not the highest-upside scoring candidate. It is a high-information diagnostic candidate.
+It tests whether subject-balanced target-route responsibility survives when each subject is removed from route selection.
+
+Local evidence:
+
+- heldout selected cells: `251`
+- heldout gain sum: `-5.128700`
+- heldout positive gain rate: `0.585657`
+- positive heldout subjects: `4`
+- negative heldout subjects: `6`
+- stable targets after heldout filtering: `Q3`, `S4`
+- stable OOF gain sum: `+4.434772`
+- stable OOF selected cells: `64`
+- released test cells: `42`
+- validation: upload-safe
+
+Worldview:
+
+```text
+The previous subject-balanced route signal is not enough to claim a subject-general HS-JEPA law.
+The remaining publishable signal is target-specific listener responsibility:
+Q3 inverse-toxic memory and S4 raw-memory release survive the stricter heldout filter.
+```
+
+If public LB improves:
+
+The useful public/private law is likely narrower than aggregate OOF suggested.
+The next architecture direction should focus on Q3/S4-like subject-heldout listener responsibility instead of broad seven-target route release.
+
+If public LB worsens:
+
+Even the heldout-stable Q3/S4 route responsibility is not public/private safe.
+The next experiment should not tune this candidate; it should learn a cleaner core action-health field or public/private-invariant listener, still without public-score selection.

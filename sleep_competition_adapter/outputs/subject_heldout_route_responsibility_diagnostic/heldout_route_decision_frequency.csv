@@ -1,0 +1,8 @@
+target,heldout_accept_rate,top_decision,top_decision_count,heldout_gain_sum,heldout_positive_subjects,heldout_negative_subjects
+Q1,0.5,hold|none|0.00,5,-1.048452103861072,1,4
+Q2,1.0,release_high_all|raw_memory_release|0.18,5,2.221768643560832,5,5
+Q3,0.9,inverse_low_decisive|inverse_toxic_memory|0.02,5,0.05079364155409316,6,3
+S1,0.2,hold|none|0.00,8,-2.7245675204728452,0,2
+S2,0.3,hold|none|0.00,7,-3.2611919746759,1,2
+S3,1.0,inverse_low_decisive|inverse_toxic_memory|0.10,9,-2.3664411148853297,3,7
+S4,1.0,release_high_all|raw_memory_release|0.18,5,1.999390182712483,5,4

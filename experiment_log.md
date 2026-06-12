@@ -16104,3 +16104,85 @@ The next high-information experiment is a true subject-heldout route selector:
 choose target policies without each subject, then score only that heldout subject.
 If that stays positive, HS-JEPA route responsibility becomes much more publishable as a general architecture.
 ```
+
+## 2026-06-13 - HS-JEPA Subject-Heldout Route Responsibility Diagnostic
+
+### Question
+
+Subject-balanced route conservation kept about 65% of the route-conservation gain and made every subject positive in an OOF audit.
+This experiment asks the stricter question:
+
+```text
+If a subject is completely removed from route-policy selection,
+does the selected route responsibility still improve that held-out subject?
+```
+
+### Method
+
+Code:
+
+```bash
+python3 sleep_competition_adapter/subject_heldout_route_responsibility_diagnostic.py
+```
+
+For each held-out subject:
+
+- remove the subject from the selector cells;
+- choose target-route policies using the remaining subjects only;
+- apply the chosen policies to the held-out subject only;
+- measure realized row-target action gain.
+
+The experiment keeps the public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+### Result
+
+- verdict: `subject_heldout_route_responsibility_negative_or_fragile`
+- heldout selected cells: `251`
+- heldout gain sum: `-5.128700`
+- heldout positive gain rate: `0.585657`
+- positive heldout subjects: `4`
+- negative heldout subjects: `6`
+- listener global gain reference: `+6.192500`
+- subject-balanced gain reference: `+10.122799`
+- route-conservation gain reference: `+15.595885`
+- stable targets after heldout filtering: `Q3`, `S4`
+- stable OOF gain sum: `+4.434772`
+- stable OOF selected cells: `64`
+- released test cells: `42`
+- candidate: `submission_hsjepa_subject_heldout_route_responsibility_anchor_free_f2a44231_uploadsafe.csv`
+
+Target-level heldout signal:
+
+- Q2: gain `+2.221769`, but positive/negative subject split is `5/5`, so not stable enough.
+- Q3: gain `+0.050794`, positive/negative subject split `6/3`, stable but weak.
+- S4: gain `+1.999390`, positive/negative subject split `5/4`, stable but still imperfect.
+- Q1/S1/S2/S3: negative heldout gain, rejected.
+
+### Interpretation
+
+Killed:
+
+```text
+Subject-balanced route conservation is not yet a subject-general HS-JEPA action law.
+```
+
+Strengthened:
+
+```text
+The useful HS-JEPA signal is narrower than the previous adapter implied.
+It survives best as target-specific listener responsibility, especially Q3/S4,
+not as a global route release policy.
+```
+
+Next:
+
+```text
+Stop treating target-route conservation as the core contribution.
+The core contribution must be masked human-state representation plus action-health geometry.
+The next high-information experiment should learn a subject-heldout toxicity/listener field,
+not another all-subject route selector.
+```

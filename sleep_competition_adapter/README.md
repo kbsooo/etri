@@ -41,6 +41,7 @@ python3 sleep_competition_adapter/action_episode_listener_transport.py
 python3 sleep_competition_adapter/target_route_guarded_action_episode_transport.py
 python3 sleep_competition_adapter/target_route_conservation_decoder.py
 python3 sleep_competition_adapter/subject_balanced_route_conservation_decoder.py
+python3 sleep_competition_adapter/subject_heldout_route_responsibility_diagnostic.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -89,6 +90,8 @@ python3 sleep_competition_adapter/subject_balanced_route_conservation_decoder.py
 
 `subject_balanced_route_conservation_decoder.py`는 위 결과가 subject-tail shortcut인지 검사한다. 같은 public-free feature와 action target을 사용하되, subject별 gain exposure가 나쁜 route를 버리고 subject-balanced objective로 다시 고른다. 결과는 OOF gain `+10.122799`, positive gain rate `0.740964`, listener-global reference 대비 `+3.930299`, route-conservation reference 대비 `64.9%` retained gain이다. Q1/S1/S2는 hold로 내려가고, Q2/Q3/S3/S4만 살아남았다. subject별 총 gain은 10명 모두 양수였다. 이 실험은 HS-JEPA core proof가 아니라 LeJEPA-style diagnostic adapter지만, route law가 전부 subject-tail shortcut만은 아니라는 강한 public-free evidence다. 후보 파일은 `submission_hsjepa_subject_balanced_route_conservation_anchor_free_74ca928e_uploadsafe.csv`다.
 
+`subject_heldout_route_responsibility_diagnostic.py`는 subject-balanced 결과를 더 강하게 반증한다. 각 held-out subject를 policy selection에서 완전히 제거하고, 나머지 subject로 고른 target-route policy를 held-out subject에만 적용한다. 결과는 heldout selected cells `251`, heldout gain sum `-5.128700`, positive heldout subjects `4`, negative heldout subjects `6`으로 negative/fragile이다. 즉 subject-balanced route conservation은 강한 adapter evidence였지만, 아직 subject-general HS-JEPA law는 아니다. 다만 Q3/S4만 stable route로 남아, 다음 core 방향은 전체 action release가 아니라 target별 listener responsibility와 subject-heldout toxicity field를 분리하는 쪽이다. 후보 파일은 `submission_hsjepa_subject_heldout_route_responsibility_anchor_free_f2a44231_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -117,6 +120,7 @@ python3 sleep_competition_adapter/subject_balanced_route_conservation_decoder.py
 - `sleep_competition_adapter/outputs/target_route_guarded_action_episode_transport/TARGET_ROUTE_GUARDED_ACTION_EPISODE_TRANSPORT_KO.md`
 - `sleep_competition_adapter/outputs/target_route_conservation_decoder/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `sleep_competition_adapter/outputs/subject_balanced_route_conservation_decoder/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
+- `sleep_competition_adapter/outputs/subject_heldout_route_responsibility_diagnostic/SUBJECT_HELDOUT_ROUTE_RESPONSIBILITY_DIAGNOSTIC_KO.md`
 
 ## 경계
 
