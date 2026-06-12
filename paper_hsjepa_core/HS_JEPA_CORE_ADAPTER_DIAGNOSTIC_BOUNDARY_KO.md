@@ -21,6 +21,7 @@ Diagnostic = 그 action이 shortcut, collapse, subject-tail, public-luck인지 �
 - `Masked Context World Model`: HS-JEPA core evidence
 - `Action Support World Model Core`: HS-JEPA core evidence
 - `Subject-Contrastive Action-Support Core`: HS-JEPA core evidence
+- `Tail-Safe Expected Utility Core`: core geometry를 Log Loss utility / tail risk로 번역하는 decoder-boundary evidence
 - `Masked View Surprise Action Release`: core residual을 action release로 번역한 adapter/probe
 - `Surprise Responsibility Toxicity Veto`: adapter와 diagnostic 사이의 action-health gate
 
@@ -81,6 +82,7 @@ Core의 좋은 증거:
 - `ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
 - `SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
+- `TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`
 - `HS_JEPA_JEPA_CONTRACT_KO.md`
 
 Core evidence ladder:
@@ -100,10 +102,17 @@ Core evidence ladder:
 
 5. subject-contrastive support
    same-subject/same-target action pair -> episode-level action-health ordering
+
+6. tail-safe expected utility
+   action-health geometry -> expected Log Loss gain / negative-tail risk
 ```
 
 이 ladder가 HS-JEPA의 JEPA성을 만든다. 즉 HS-JEPA는 label probability를 바로 맞히는 classifier가 아니라,
 보이는 인간 생활 context에서 보이지 않는 human-state/action-support representation을 예측하는 모델이다.
+
+주의할 점은 6번이 pure core라기보다 core-decoder boundary라는 것이다. 여기서부터는 representation을 실제
+row-target action으로 번역하는 문제가 들어오므로, 논문에서는 `HS-JEPA core가 action-health geometry를 제공하고,
+tail-safe utility decoder가 이를 Log Loss action으로 해석한다`고 써야 한다.
 
 ## HS-JEPA Adapter
 

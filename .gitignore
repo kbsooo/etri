@@ -4,6 +4,13 @@ __pycache__/
 .ipynb_checkpoints/
 .omx/
 
+# HS-JEPA deep cell-level audit tables are reproducible from the semantic
+# experiment scripts and are too large to keep in git by default.
+hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_full_oof_action_audit.csv
+hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_train_action_modes.csv
+hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_test_action_modes.csv
+hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_test_release_audit.csv
+
 # Keep the analysis code, reports, summaries, and key submissions in git.
 # Large generated scan tables stay local because this workspace is ~7GB.
 analysis_outputs/*

@@ -10377,3 +10377,53 @@ If public LB worsens:
 The local core evidence remains useful, but the candidate's broad 175-cell
 release is not public/private safe.  The next step should keep this as a
 representation proof and build a stricter tail-risk decoder before release.
+
+## 2026-06-13 - HS-JEPA Tail-Safe Expected Utility Core Candidate
+
+- File: `submission_hsjepa_tail_safe_expected_utility_core_anchor_free_06ca3b66_uploadsafe.csv`
+- Code: `hsjepa_core/run_tail_safe_expected_utility_core.py`
+- Documentation: `paper_hsjepa_core/TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is a core-decoder boundary sensor.  It tests whether HS-JEPA hidden
+action-health geometry becomes safer when the decoder predicts expected Log Loss
+gain and negative-tail risk directly.
+
+It is not a broad leaderboard-anchor candidate.  The strict heldout gate leaves
+only Q1 and releases only 7 test cells, because the subject-heldout stress shows
+that S-target tail damage is still not controlled.
+
+Local evidence:
+
+- full OOF selected gain sum: `+10.396344`
+- full OOF selected cells: `106`
+- toxic-tail AUC/AP: `0.692999` / `0.539363`
+- nested subject-heldout gain sum: `-8.823949`
+- stable target: `Q1`
+- stable OOF gain sum: `+2.143778`
+- released test cells: `7`
+- validation: upload-safe
+
+Worldview:
+
+```text
+HS-JEPA core does contain utility/tail-risk information,
+but release-grade action safety requires target-specific subject-heldout control.
+Q1 appears safe under this stress; S targets remain toxic-tail fragile.
+```
+
+If public LB improves:
+
+The useful public/private-safe part of the tail-safe decoder is likely narrow Q1
+expected utility, not broad full-OOF action utility.  The next architecture step
+should learn target-specific tail-risk constraints before touching S targets.
+
+If public LB worsens:
+
+The Q1 stable gate is not public/private safe.  The local lesson still stands:
+expected utility increases full OOF gain, but subject-heldout tail stress is the
+right diagnostic to prevent over-release.

@@ -16480,3 +16480,94 @@ HS-JEPA core should be presented as a hidden action-health geometry.
 The paper contribution needs a tail-safe decoder, because ranking health
 and improving Log Loss are not the same problem.
 ```
+
+## 2026-06-13 - HS-JEPA Tail-Safe Expected Utility Core
+
+### Question
+
+The subject-contrastive experiment showed a core-level signal, but also exposed a
+critical mismatch:
+
+```text
+A score can rank action-health better than shortcut baselines and still be unsafe for Log Loss.
+```
+
+This experiment asks whether HS-JEPA core geometry becomes more useful if the
+decoder predicts expected Log Loss gain and negative-tail risk directly, rather
+than treating action-health as a binary classification problem.
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_tail_safe_expected_utility_core.py
+```
+
+The experiment preserves the core/public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+It combines:
+
+- masked world-state residual/energy features;
+- listener/family context;
+- subject-contrastive support scores;
+- expected gain regression;
+- tail loss regression;
+- toxic-tail classification;
+- nested subject-heldout filtering.
+
+### Result
+
+- verdict: `tail_safe_expected_utility_oof_positive_subjectheldout_fragile`
+- full OOF selected gain sum: `+10.396344`
+- full OOF selected cells: `106`
+- toxic-tail AUC/AP: `0.692999` / `0.539363`
+- health AUC/AP: `0.594411` / `0.566594`
+- nested subject-heldout gain sum: `-8.823949`
+- nested subject-heldout selected cells: `187`
+- stable target after heldout filtering: `Q1`
+- stable OOF selected cells: `13`
+- stable OOF gain sum: `+2.143778`
+- released test cells: `7`
+- candidate: `submission_hsjepa_tail_safe_expected_utility_core_anchor_free_06ca3b66_uploadsafe.csv`
+
+Target-level heldout result:
+
+- Q1/Q2/Q3 remain slightly positive in aggregate heldout gain.
+- S1/S2/S3/S4 are negative, with S1 and S3 carrying the largest tail damage.
+- Only Q1 survives the strict stable policy gate.
+
+### Interpretation
+
+Strengthened:
+
+```text
+HS-JEPA core geometry contains a signal for expected utility and toxic-tail risk.
+The toxic-tail AUC is substantially stronger than the previous pairwise support AUC,
+so the model is seeing something about action magnitude, not only action sign.
+```
+
+Constrained:
+
+```text
+Full OOF utility is still not subject-general release safety.
+The S-target tail can turn a strong OOF utility board into negative nested heldout gain.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA should not be claimed as a direct label predictor or a direct correction solver.
+The publishable structure is:
+
+visible human context
+  -> hidden action-health / utility representation
+  -> tail-safe utility decoder
+  -> LeJEPA-style subject-heldout stress
+
+The remaining bottleneck is subject-general tail-risk control, especially for S targets.
+```

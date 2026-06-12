@@ -14,6 +14,7 @@
 - `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
 - `paper_hsjepa_core/SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
+- `paper_hsjepa_core/TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
@@ -155,6 +156,28 @@ action-health ordering을 갖는다.
 하지만 높은 AUC가 Log Loss utility를 보장하지 않는다.
 따라서 논문 주장은 "core representation + tail-safe action-health decoder"로
 정리해야 한다.
+```
+
+`TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`는 이 결론을 바로 이어받는다. action-health를 `좋은 action 확률`로 분류하지 않고, Log Loss 관점의 expected gain과 negative-tail risk를 직접 예측한다.
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+10.396344`
+- full OOF selected cells: `106`
+- nested subject-heldout gain sum: `-8.823949`
+- stable target after heldout filtering: `Q1`
+- stable OOF gain sum: `+2.143778`
+- toxic-tail AUC/AP: `0.692999` / `0.539363`
+- released test cells: `7`
+- verdict: `tail_safe_expected_utility_oof_positive_subjectheldout_fragile`
+
+현재 해석:
+
+```text
+HS-JEPA residual/energy geometry는 utility와 toxic-tail magnitude를 읽는 신호를 갖는다.
+하지만 full OOF expected utility는 subject-heldout release safety로 바로 전이되지 않는다.
+따라서 현재 논문 contribution은 "core representation alone"이 아니라
+"HS-JEPA core representation + tail-safe utility decoder + LeJEPA-style heldout stress"로 정리해야 한다.
 ```
 
 `TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.

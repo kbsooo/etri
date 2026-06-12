@@ -1,0 +1,10 @@
+metric,value
+gain_mae,0.17426112346350045
+tail_loss_mae,0.10031155108104055
+health_auc,0.5944114386495338
+health_ap,0.5665939199875285
+toxic_tail_auc,0.6929986947762468
+toxic_tail_ap,0.5393632824713886
+realized_gain_sum_all_modes,-141.43979720040875
+positive_action_rate,0.5
+toxic_tail_rate,0.4033333333333333

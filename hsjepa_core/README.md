@@ -44,6 +44,7 @@ python3 hsjepa_core/run_action_support_world_model_core.py
 python3 hsjepa_core/run_action_support_view_invariance_core.py
 python3 hsjepa_core/run_listener_conditioned_action_support_core.py
 python3 hsjepa_core/run_subject_contrastive_action_support_core.py
+python3 hsjepa_core/run_tail_safe_expected_utility_core.py
 ```
 
 ## 산출물
@@ -75,6 +76,9 @@ python3 hsjepa_core/run_subject_contrastive_action_support_core.py
 - `hsjepa_core/outputs/subject_contrastive_action_support_core/subject_contrastive_action_support_core_summary.json`
 - `hsjepa_core/outputs/subject_contrastive_action_support_core/SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
 - `hsjepa_core/outputs/subject_contrastive_action_support_core/*_metrics.csv`
+- `hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_expected_utility_core_summary.json`
+- `hsjepa_core/outputs/tail_safe_expected_utility_core/TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`
+- `hsjepa_core/outputs/tail_safe_expected_utility_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -87,6 +91,7 @@ python3 hsjepa_core/run_subject_contrastive_action_support_core.py
 - `hsjepa_core/run_action_support_view_invariance_core.py`: action-support 신호가 target/action shortcut인지, single-view artifact인지, masked world-state residual/energy 신호인지 stress한다.
 - `hsjepa_core/run_listener_conditioned_action_support_core.py`: target-blind world state가 부족한지 확인하기 위해 target/family listener-conditioned residual/energy support predictor를 검증한다.
 - `hsjepa_core/run_subject_contrastive_action_support_core.py`: 같은 subject-target 내부 pairwise ordering으로 subject/target shortcut을 제거하고, masked world residual energy가 episode-level action-health ordering을 복원하는지 검증한다.
+- `hsjepa_core/run_tail_safe_expected_utility_core.py`: action-health를 AUC 문제가 아니라 Log Loss expected gain과 negative-tail risk 문제로 바꾸어, HS-JEPA core geometry가 release-grade utility로 번역되는지 subject-heldout stress까지 검증한다.
 
 ## 팀 공유 시 주의점
 
@@ -289,6 +294,39 @@ action-health ordering을 갖는다.
 하지만 AUC가 높은 score가 Log Loss utility를 보장하지 않는다.
 따라서 HS-JEPA core 주장은 "ranking classifier"가 아니라
 tail-safe action-health geometry와 decoder 분리까지 포함해야 한다.
+```
+
+## Tail-Safe Expected Utility Core
+
+`run_tail_safe_expected_utility_core.py`는 subject-contrastive 실험의 가장 중요한 모순을 직접 다룬다.
+action-health AUC가 좋아도 Log Loss utility가 망가질 수 있으므로,
+HS-JEPA core score를 건강한 action 확률로 쓰지 않고 expected gain과 negative-tail risk로 다시 예측한다.
+
+```text
+masked world-state residual/energy
+  -> listener + subject-contrastive support context
+  -> expected gain / tail loss / toxic-tail probability
+  -> tail-safe row-target-action assignment
+```
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+10.396344`
+- full OOF selected cells: `106`
+- nested subject-heldout gain sum: `-8.823949`
+- stable target after heldout filtering: `Q1`
+- stable OOF gain sum: `+2.143778`
+- released test cells: `7`
+- toxic-tail AUC/AP: `0.692999` / `0.539363`
+- anchor-free candidate: `submission_hsjepa_tail_safe_expected_utility_core_anchor_free_06ca3b66_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA core geometry는 expected utility와 toxic-tail signal을 읽을 수 있다.
+하지만 full OOF utility가 subject-heldout release safety를 보장하지 않는다.
+따라서 논문 주장은 "HS-JEPA core + tail-safe decoder가 필요하다"이지,
+"core alone이 바로 submission solver다"가 아니다.
 ```
 
 ## Core가 아닌 것
