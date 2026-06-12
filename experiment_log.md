@@ -16760,3 +16760,113 @@ This keeps the JEPA structure clear: visible human episode context predicts a
 hidden action-health/tail representation before any competition-specific sparse
 row-target release.
 ```
+
+## 2026-06-13 - HS-JEPA Masked-View Consensus Tail Core
+
+### Question
+
+The episode-conditioned tail field reduced subject-heldout damage, but it was
+still negative.  The next suspicion was not simply `more episode features`.
+The sharper JEPA/LeJEPA question was:
+
+```text
+If a hidden tail/action representation is real, should multiple meaningful
+context masks predict the same representation?
+```
+
+If yes, view agreement should reduce action toxicity.  If no, the previous
+positive OOF signals were likely single-view shortcut or adapter-specific
+sensors.
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_masked_view_consensus_tail_core.py
+```
+
+The experiment preserves the public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+It predicts the same episode-conditioned relative tail representation from
+four context views:
+
+- `full_context`
+- `mask_world_residual`
+- `mask_episode_context`
+- `mask_listener_support`
+
+Then it builds a consensus score:
+
+```text
+mean predicted hidden tail/action representation
+  - view disagreement penalty
+  -> row-target action assignment
+```
+
+### Result
+
+- verdict: `masked_view_consensus_tail_subjectheldout_positive`
+- full OOF selected gain sum: `+2.779623`
+- full OOF selected cells: `184`
+- nested subject-heldout gain sum: `+0.578637`
+- nested subject-heldout selected cells: `211`
+- stable targets: `S2`, `S4`
+- stable OOF gain sum: `+2.018205`
+- stable OOF selected cells: `134`
+- released test cells: `74`
+- candidate: `submission_hsjepa_masked_view_consensus_tail_anchor_free_375886b3_uploadsafe.csv`
+
+Tail ladder comparison:
+
+- tail-safe expected utility nested gain: `-8.823949`
+- subject-normalized tail field nested gain: `-3.812519`
+- episode-conditioned relative tail nested gain: `-3.230895`
+- masked-view consensus tail nested gain: `+0.578637`
+
+View metrics:
+
+- `full_context` toxic AUC/AP: `0.710248` / `0.299470`
+- `mask_world_residual` toxic AUC/AP: `0.714868` / `0.303832`
+- `mask_episode_context` toxic AUC/AP: `0.707113` / `0.298386`
+- `mask_listener_support` toxic AUC/AP: `0.716770` / `0.306492`
+- consensus toxic AUC/AP: `0.714272` / `0.304596`
+
+Nested target result:
+
+- S2: `+2.657036`, positive/negative subjects `8/2`
+- S4: `+0.310957`, positive/negative subjects `7/3`
+- Q1/Q2/Q3/S1/S3 did not survive stable release.
+
+### Interpretation
+
+Strengthened:
+
+```text
+HS-JEPA core is not only a single full-context action sensor.
+The safer hidden target appears to be a masked-view invariant,
+episode-conditioned, human-relative tail field.
+```
+
+This is the strongest paper-grade result in the tail-core ladder because it is
+the first one with positive nested subject-heldout gain.
+
+Constrained:
+
+```text
+The effect is route-specific.  It mainly survives on S2/S4.
+So this is not a universal label predictor or universal correction solver.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA should be framed as a masked-view invariant hidden-state model.
+Its core contribution is not "better tabular predictions" but a representation
+whose action-tail estimate survives context masking and therefore reduces
+row-target decoder toxicity under subject-heldout stress.
+```

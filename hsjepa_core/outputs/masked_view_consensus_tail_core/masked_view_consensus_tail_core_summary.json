@@ -1,0 +1,34 @@
+{
+  "package": "masked_view_consensus_tail_core",
+  "status": "masked_view_consensus_tail_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "view_names": [
+    "full_context",
+    "mask_world_residual",
+    "mask_episode_context",
+    "mask_listener_support"
+  ],
+  "verdict": "masked_view_consensus_tail_subjectheldout_positive",
+  "full_oof_gain_sum": 2.7796233415265017,
+  "full_oof_selected_cells": 184,
+  "nested_heldout_gain_sum": 0.578637140533734,
+  "nested_heldout_selected_cells": 211,
+  "stable_targets": [
+    "S2",
+    "S4"
+  ],
+  "stable_oof_gain_sum": 2.0182052915615083,
+  "stable_oof_selected_cells": 134,
+  "candidate_policy_source": "stable_subjectheldout",
+  "released_test_cells": 74,
+  "candidate_file": "submission_hsjepa_masked_view_consensus_tail_anchor_free_375886b3_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.42869444444444427,
+    "probability_max": 0.791861784308804
+  }
+}

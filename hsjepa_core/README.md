@@ -47,6 +47,7 @@ python3 hsjepa_core/run_subject_contrastive_action_support_core.py
 python3 hsjepa_core/run_tail_safe_expected_utility_core.py
 python3 hsjepa_core/run_subject_normalized_tail_field_core.py
 python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
+python3 hsjepa_core/run_masked_view_consensus_tail_core.py
 ```
 
 ## 산출물
@@ -87,6 +88,9 @@ python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
 - `hsjepa_core/outputs/episode_conditioned_relative_tail_core/episode_conditioned_relative_tail_core_summary.json`
 - `hsjepa_core/outputs/episode_conditioned_relative_tail_core/EPISODE_CONDITIONED_RELATIVE_TAIL_CORE_KO.md`
 - `hsjepa_core/outputs/episode_conditioned_relative_tail_core/*_metrics.csv`
+- `hsjepa_core/outputs/masked_view_consensus_tail_core/masked_view_consensus_tail_core_summary.json`
+- `hsjepa_core/outputs/masked_view_consensus_tail_core/MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`
+- `hsjepa_core/outputs/masked_view_consensus_tail_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -102,6 +106,7 @@ python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
 - `hsjepa_core/run_tail_safe_expected_utility_core.py`: action-health를 AUC 문제가 아니라 Log Loss expected gain과 negative-tail risk 문제로 바꾸어, HS-JEPA core geometry가 release-grade utility로 번역되는지 subject-heldout stress까지 검증한다.
 - `hsjepa_core/run_subject_normalized_tail_field_core.py`: absolute action utility 대신 subject-target-action route 내부 tail scale로 정규화한 relative badness를 예측해, subject shift에서 S-tail 독성이 줄어드는지 검증한다.
 - `hsjepa_core/run_episode_conditioned_relative_tail_core.py`: subject-relative badness가 아직 거칠다는 가설을 검사하기 위해 row episode context를 추가하고, 보이는 episode context로 보이지 않는 episode-conditioned tail representation을 예측한다.
+- `hsjepa_core/run_masked_view_consensus_tail_core.py`: full/세계잔차마스크/episode마스크/listener마스크 view가 같은 episode-conditioned tail representation에 동의하는 cell만 release해, hidden tail field가 single-view shortcut인지 검사한다.
 
 ## 팀 공유 시 주의점
 
@@ -403,6 +408,44 @@ HS-JEPA가 맞혀야 할 것은 global utility가 아니라
 이 사람의 이 episode 상태에서 어떤 action이 relative tail인지에 가까워지고 있다.
 다만 nested gain은 아직 음수이므로, 완성된 release solver가 아니라
 core-decoder boundary를 좁힌 positive direction으로 읽어야 한다.
+```
+
+## Masked-View Consensus Tail Core
+
+`run_masked_view_consensus_tail_core.py`는 episode-conditioned tail field의 다음 질문을 다룬다.
+좋아 보이는 tail score가 single-view shortcut이면 subject-heldout에서 깨질 수 있으므로,
+여러 의미 있는 context mask가 같은 hidden tail representation을 예측하는지 검사한다.
+
+```text
+full / no-world-residual / no-episode / no-listener views
+  -> same hidden episode-conditioned tail representation
+  -> view-disagreement penalty
+  -> row-target action assignment
+```
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+2.779623`
+- nested subject-heldout gain sum: `+0.578637`
+- 이전 ladder 대비 nested gain 변화:
+  - tail-safe expected utility: `-8.823949`
+  - subject-normalized tail field: `-3.812519`
+  - episode-conditioned relative tail: `-3.230895`
+  - masked-view consensus tail: `+0.578637`
+- stable targets after heldout filtering: `S2`, `S4`
+- stable OOF gain sum: `+2.018205`
+- released test cells: `74`
+- anchor-free candidate: `submission_hsjepa_masked_view_consensus_tail_anchor_free_375886b3_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA core의 hidden tail representation은 single full-context score보다
+masked-view consensus로 읽을 때 subject-heldout action toxicity가 줄어든다.
+처음으로 nested subject-heldout gain이 양수가 되었으므로,
+paper thesis는 "human-relative tail field"에서
+"masked-view invariant human-relative tail field"로 올라갈 수 있다.
+단, 살아남은 route가 S2/S4에 집중되어 있으므로 universal solver라고 과장하면 안 된다.
 ```
 
 ## Core가 아닌 것

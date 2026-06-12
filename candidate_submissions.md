@@ -10529,3 +10529,57 @@ The local improvement in nested damage is still a useful diagnostic, but the
 50-cell release is not public/private safe.  The next architecture step should
 use episode-conditioned tail only as a veto or listener responsibility term,
 not as a direct release policy.
+
+## 2026-06-13 - HS-JEPA Masked-View Consensus Tail Core Candidate
+
+- File: `submission_hsjepa_masked_view_consensus_tail_anchor_free_375886b3_uploadsafe.csv`
+- Code: `hsjepa_core/run_masked_view_consensus_tail_core.py`
+- Documentation: `paper_hsjepa_core/MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is currently the strongest HS-JEPA core-boundary candidate.  It is the
+first tail-core experiment where nested subject-heldout gain is positive.
+
+It does not rely on a single full-context score.  It releases only where
+multiple masked context views predict a compatible hidden
+episode-conditioned tail representation.
+
+Local evidence:
+
+- full OOF selected gain sum: `+2.779623`
+- nested subject-heldout gain sum: `+0.578637`
+- previous episode-conditioned nested heldout gain: `-3.230895`
+- previous subject-normalized nested heldout gain: `-3.812519`
+- previous tail-safe nested heldout gain: `-8.823949`
+- stable targets: `S2`, `S4`
+- stable OOF gain sum: `+2.018205`
+- released test cells: `74`
+- validation: upload-safe
+
+Worldview:
+
+```text
+The hidden action-tail field is not trustworthy when a single context view
+predicts it.  It becomes safer when full, masked-world, masked-episode, and
+masked-listener views agree.  This is exactly the kind of JEPA/LeJEPA
+distinction HS-JEPA needs: context-to-hidden representation prediction plus
+anti-shortcut view agreement.
+```
+
+If public LB improves:
+
+This becomes the clearest paper-grade evidence that HS-JEPA is not merely a
+competition adapter.  The architecture should emphasize masked-view invariant
+human-state tail prediction as the core contribution, with S2/S4 as the first
+validated action routes.
+
+If public LB worsens:
+
+The subject-heldout positive signal is not public/private safe.  The core
+lesson still remains: masked-view consensus identifies S2/S4 action-tail
+structure locally, but it should be used as a diagnostic/veto layer rather
+than direct release until public/private factorization is solved.

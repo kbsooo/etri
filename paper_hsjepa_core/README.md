@@ -17,6 +17,7 @@
 - `paper_hsjepa_core/TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`
 - `paper_hsjepa_core/SUBJECT_NORMALIZED_TAIL_FIELD_CORE_KO.md`
 - `paper_hsjepa_core/EPISODE_CONDITIONED_RELATIVE_TAIL_CORE_KO.md`
+- `paper_hsjepa_core/MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
@@ -226,6 +227,29 @@ episode-conditioned relative tail field 순서로 구체화되고 있다.
 tail/action representation을 예측하기 때문이다.
 하지만 nested gain이 여전히 음수라서, 논문에서는 release-grade solver가 아니라
 core-decoder boundary를 좁힌 evidence로 설명해야 한다.
+```
+
+`MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`는 위 실험의 가장 중요한 반대 실험이다. episode-conditioned tail score가 특정 feature view shortcut이면 subject-heldout에서 깨질 수 있으므로, full context / world residual 제거 / episode context 제거 / listener-support 제거 view가 같은 hidden tail representation에 동의할 때만 release한다.
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+2.779623`
+- nested subject-heldout gain sum: `+0.578637`
+- stable targets: `S2`, `S4`
+- stable OOF gain sum: `+2.018205`
+- released test cells: `74`
+- view consensus toxic AUC/AP: `0.714272` / `0.304596`
+- no-listener/support view도 toxic AUC `0.716770`으로 살아남았다.
+
+현재 해석:
+
+```text
+처음으로 tail core ladder에서 nested subject-heldout gain이 양수가 됐다.
+즉 HS-JEPA의 hidden tail/action representation은 single-view score보다
+masked-view invariant consensus로 읽을 때 더 안전하다.
+이것은 논문에서 core representation의 일반성 증거로 가장 강하게 쓸 수 있다.
+다만 stable route는 S2/S4에 집중되어 있으므로, universal correction solver가 아니라
+S-route action toxicity를 줄이는 masked-view invariant human-state core로 주장해야 한다.
 ```
 
 `TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.
