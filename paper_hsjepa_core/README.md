@@ -46,6 +46,7 @@
 - `paper_hsjepa_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`
+- `paper_hsjepa_core/SIGNED_LISTENER_RESPONSIBILITY_DIRECTION_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
 - `paper_hsjepa_core/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
@@ -1839,3 +1840,47 @@ action decoder는 그 뒤에만 붙인다.
 자세한 설명:
 
 - `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`
+
+### 27. Signed Listener Responsibility Direction Core
+
+```bash
+python3 hsjepa_core/run_signed_listener_responsibility_direction_core.py
+```
+
+이 스크립트는 responsibility field가 찾은 row-target cell 안에서 raw 방향과 inverse 방향 중
+어느 action이 안전한지 예측한다. hidden target은 label probability가 아니라 signed action-health다.
+
+비교한 feature family:
+
+- `direction_listener_only`
+- `action_geometry_direction`
+- `human_signed_direction`
+- `masked_pretext_signed_direction`
+- `responsibility_weighted_pretext_direction`
+- `human_plus_pretext_signed_direction`
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- masked-tail teacher score 사용: `False`
+- label-informed peer margin 사용: `False`
+- verdict: `signed_direction_core_positive_action_translation_repaired`
+- responsibility source: `masked_pretext_listener_responsibility`
+- best direction family: `action_geometry_direction`
+- best direction AP lift: `+0.114069`
+- previous responsibility decoder OOF gain: `-0.565668`
+- signed direction responsibility-gated OOF gain: `+1.640820`
+- generated candidate: `submission_hsjepa_signed_listener_responsibility_direction_3a0fba1d_uploadsafe.csv`
+
+해석:
+
+- HS-JEPA core가 responsibility field로 action 후보 공간을 줄인 것은 positive evidence다.
+- signed direction 단계에서 최고 성능은 action-geometry family가 냈다.
+- 따라서 이것을 pure HS-JEPA core breakthrough라고 말하면 안 된다.
+- 정확한 논문 표현은 `HS-JEPA responsibility core + signed action-direction adapter`가 action translation toxicity를 줄였다는 것이다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SIGNED_LISTENER_RESPONSIBILITY_DIRECTION_CORE_KO.md`

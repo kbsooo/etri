@@ -10929,3 +10929,58 @@ HS-JEPA human/pretext representation은 listener-only보다 subject-invariant re
 
 - local OOF 해석과 일치한다. core는 어디를 봐야 하는지 알지만, 기존 action decoder가 방향을 안전하게 번역하지 못한다.
 - 다음 후보는 같은 responsibility score를 더 크게 쓰는 것이 아니라, responsibility-high cell 내부에서 signed action direction을 다시 배워야 한다.
+
+## Signed Listener Responsibility Direction Core
+
+- file: `submission_hsjepa_signed_listener_responsibility_direction_3a0fba1d_uploadsafe.csv`
+- code: `hsjepa_core/run_signed_listener_responsibility_direction_core.py`
+- doc: `paper_hsjepa_core/SIGNED_LISTENER_RESPONSIBILITY_DIRECTION_CORE_KO.md`
+- status: upload-safe diagnostic candidate
+- public LB: not submitted
+- semantic purpose: HS-JEPA responsibility field가 고른 row-target cell 안에서 raw/inverse direction을 다시 선택해 action translation toxicity가 줄어드는지 검증한다.
+
+### Why This Candidate Exists
+
+이 후보는 직전 responsibility field 후보의 실패 모드를 직접 겨냥한다.
+
+```text
+core가 "어디를 볼지"를 맞혔는데 action decoder가 "어느 방향으로 움직일지"를 틀린다면,
+responsibility-high cell 내부에서 signed direction field를 따로 배워야 한다.
+```
+
+이 후보는 pure HS-JEPA core candidate가 아니다.
+정확한 구조는 다음이다.
+
+```text
+HS-JEPA masked-pretext responsibility core
+  -> row-target cell selection
+  -> signed raw/inverse action-direction adapter
+  -> sparse anchor-free correction
+```
+
+### Local Evidence
+
+- verdict: `signed_direction_core_positive_action_translation_repaired`
+- responsibility source: `masked_pretext_listener_responsibility`
+- best direction family: `action_geometry_direction`
+- best direction AP lift: `+0.114069`
+- previous responsibility decoder OOF gain sum: `-0.565668`
+- signed direction responsibility-gated OOF gain sum: `+1.640820`
+- action-geometry direction responsibility-gated OOF gain sum: `+1.640820`
+- `responsibility_weighted_pretext_direction` OOF gain sum: `+0.283546`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- validation: valid, rows `250`, probability range `[0.495556, 0.916509]`
+
+### Expected Public Meaning
+
+좋아지면:
+
+- HSP responsibility field가 고른 public-relevant cells 안에서 raw/inverse direction choice가 중요했다는 뜻이다.
+- 논문에서는 `HS-JEPA core + signed action adapter`가 action toxicity를 줄인 case study로 쓸 수 있다.
+
+나빠지면:
+
+- local OOF의 signed direction gain이 public subset으로 전이되지 않았다는 뜻이다.
+- 특히 best direction이 action geometry였기 때문에, 실패 시 pure core보다는 adapter generalization이 죽는다.
+- 다음 실험은 action geometry를 더 키우는 것이 아니라, direction target을 core pretext representation으로 끌어올리는 쪽이어야 한다.

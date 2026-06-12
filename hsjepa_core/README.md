@@ -56,6 +56,7 @@ python3 hsjepa_core/run_subject_invariant_listener_manifold_core.py
 python3 hsjepa_core/run_open_loop_human_state_listener_core.py
 python3 hsjepa_core/run_masked_human_state_pretext_listener_core.py
 python3 hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py
+python3 hsjepa_core/run_signed_listener_responsibility_direction_core.py
 ```
 
 ## 산출물
@@ -123,6 +124,9 @@ python3 hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py
 - `hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/subject_invariant_listener_responsibility_field_core_summary.json`
 - `hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`
 - `hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/*.csv`
+- `hsjepa_core/outputs/signed_listener_responsibility_direction_core/signed_listener_responsibility_direction_core_summary.json`
+- `hsjepa_core/outputs/signed_listener_responsibility_direction_core/SIGNED_LISTENER_RESPONSIBILITY_DIRECTION_CORE_KO.md`
+- `hsjepa_core/outputs/signed_listener_responsibility_direction_core/*.csv`
 
 ## 실행 가능한 core
 
@@ -147,6 +151,7 @@ python3 hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py
 - `hsjepa_core/run_open_loop_human_state_listener_core.py`: masked-tail teacher와 action probability/magnitude를 제외하고, OG human-state + minimal listener만으로 subject-invariant action-health support를 복원할 수 있는지 검사한다. 현재 결과는 mixed boundary다.
 - `hsjepa_core/run_masked_human_state_pretext_listener_core.py`: raw OG human-state를 바로 decoder에 넣지 않고 masked-view pretext state로 바꾼 뒤, subject-invariant action-health support가 더 잘 분리되는지 검사한다. 현재 결과는 raw open-loop 대비 소폭 positive / listener-only 대비 negative다.
 - `hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py`: action을 직접 예측하기 전에 row-target listener responsibility field를 복원할 수 있는지 검사한다. 현재 결과는 core responsibility positive / action translation fragile이다.
+- `hsjepa_core/run_signed_listener_responsibility_direction_core.py`: responsibility-high cell 내부에서 raw/inverse signed action direction을 예측해 action translation toxicity를 줄일 수 있는지 검사한다. 현재 결과는 responsibility core + action-geometry direction adapter positive다.
 
 ## 팀 공유 시 주의점
 
@@ -765,6 +770,41 @@ listener-only보다 잘 복원한다.  이것은 core representation evidence로
 다만 기존 action decoder로 번역하면 gain은 아직 음수다.
 따라서 다음 병목은 responsibility field 발견이 아니라,
 responsibility -> safe action direction 번역이다.
+```
+
+## Signed Listener Responsibility Direction Core
+
+`run_signed_listener_responsibility_direction_core.py`는 직전 responsibility field의 병목을 직접 겨냥한다.
+먼저 HS-JEPA responsibility field로 row-target cell을 고른 뒤, 그 cell에서 raw 방향과 inverse 방향 중
+어느 action이 Log Loss gain을 만드는지 signed action-health field로 예측한다.
+
+```text
+visible human-state context
+  + target listener
+  + raw/inverse direction listener
+  -> hidden signed action-health field
+  -> responsibility-high cell에서 direction-safe action release
+```
+
+현재 핵심 결과:
+
+- verdict: `signed_direction_core_positive_action_translation_repaired`
+- responsibility source: `masked_pretext_listener_responsibility`
+- best direction family: `action_geometry_direction`
+- best direction AP lift: `+0.114069`
+- previous responsibility decoder OOF gain: `-0.565668`
+- signed direction responsibility-gated OOF gain: `+1.640820`
+- action-geometry direction responsibility-gated OOF gain: `+1.640820`
+- released test cells: `67`
+- anchor-free candidate: `submission_hsjepa_signed_listener_responsibility_direction_3a0fba1d_uploadsafe.csv`
+
+해석:
+
+```text
+이 결과는 "HS-JEPA core만으로 direction까지 해결했다"가 아니다.
+정확한 결론은 HS-JEPA masked-pretext responsibility field가 action 후보 공간을 좁히고,
+그 위에서 signed direction adapter가 기존 action decoder의 독성을 양수 OOF gain으로 수리했다는 것이다.
+Core evidence는 responsibility field이고, direction 선택은 core-decoder boundary / competition adapter다.
 ```
 
 ## Core가 아닌 것

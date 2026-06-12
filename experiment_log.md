@@ -17484,3 +17484,88 @@ but the competition adapter still needs a safer responsibility-to-action decoder
 다음 실험은 responsibility field 위에서 action 방향을 고르는 문제로 좁혀야 한다.
 단순히 더 많은 cell을 release하지 말고, responsibility-high cell 내부에서 positive/negative action
 direction을 분리하는 `safe action direction field` 또는 `signed listener responsibility`를 hidden target으로 둔다.
+
+## Signed Listener Responsibility Direction Core
+
+- date: 2026-06-13
+- task: HS-JEPA core-decoder boundary / signed raw-vs-inverse action-health direction
+- code: `hsjepa_core/run_signed_listener_responsibility_direction_core.py`
+- paper doc: `paper_hsjepa_core/SIGNED_LISTENER_RESPONSIBILITY_DIRECTION_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/signed_listener_responsibility_direction_core/signed_listener_responsibility_direction_core_summary.json`
+- candidate: `submission_hsjepa_signed_listener_responsibility_direction_3a0fba1d_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses masked-tail teacher score as feature: `False`
+- uses label-informed peer margin: `False`
+
+### Hypothesis
+
+직전 실험의 음수 gain은 responsibility field가 틀려서가 아니라,
+responsibility-high cell에서 raw/inverse action direction을 잘못 고르는 decoder 독성 때문일 수 있다.
+
+```text
+visible human-state context + target listener + raw/inverse direction listener
+  -> hidden signed action-health field
+  -> responsibility-high cell에서 안전한 direction만 release
+```
+
+이 가설이 맞다면, 같은 responsibility-selected cell 집합에서 기존 health-score decoder보다
+signed direction decoder가 subject-heldout OOF gain을 크게 개선해야 한다.
+
+### Method
+
+각 row-target cell에는 raw action과 inverse action 두 후보가 있다.
+train에서는 둘 중 하나가 실제 Log Loss gain을 만들므로, action row 단위로
+`positive_action = effective_gain > 0`을 hidden signed target으로 정의했다.
+
+Responsibility cell selection은 public-free로 재계산한
+`masked_pretext_listener_responsibility` score를 사용했다.
+그 뒤 다음 family가 raw/inverse direction을 골랐다.
+
+- `direction_listener_only`
+- `action_geometry_direction`
+- `human_signed_direction`
+- `masked_pretext_signed_direction`
+- `responsibility_weighted_pretext_direction`
+- `human_plus_pretext_signed_direction`
+
+### Result
+
+- verdict: `signed_direction_core_positive_action_translation_repaired`
+- responsibility source: `masked_pretext_listener_responsibility`
+- best direction family: `action_geometry_direction`
+- best direction AP lift: `+0.114069`
+- previous responsibility decoder OOF gain sum: `-0.565668`
+- signed direction responsibility-gated OOF gain sum: `+1.640820`
+- action-geometry direction responsibility-gated OOF gain sum: `+1.640820`
+- `responsibility_weighted_pretext_direction` OOF gain sum: `+0.283546`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- upload validation: valid, rows `250`, probability range `[0.495556, 0.916509]`
+
+### Interpretation
+
+이 실험은 action translation 병목을 실제로 수리했다.
+같은 responsibility-high cell을 쓰는데 기존 decoder는 `-0.565668`, signed direction decoder는 `+1.640820`이다.
+
+하지만 최고 방향 모델은 `action_geometry_direction`이다. 따라서 이것을
+“HS-JEPA core가 direction까지 해결했다”라고 쓰면 안 된다.
+
+정확한 결론:
+
+```text
+HS-JEPA masked-pretext responsibility core는 어디를 볼지 줄이고,
+signed action-direction adapter는 그 안에서 raw/inverse 방향 독성을 수리한다.
+```
+
+Core-only direction signal은 약했다. `responsibility_weighted_pretext_direction`은
+`+0.283546`으로 양수지만 action-geometry보다 훨씬 작다.
+이는 다음 논문/실험 방향을 분명히 한다.
+
+### Next
+
+다음 big-bet은 두 갈래다.
+
+1. direction adapter를 논문에서 competition adapter로 분리하고, HS-JEPA contribution을 responsibility field에 둔다.
+2. pure core direction을 강화하려면 action probability가 아니라 counterfactual direction representation 자체를 pretext target으로 만들어야 한다.
