@@ -15,6 +15,7 @@
 - `paper_hsjepa_core/RAW_KNN_OVERRIDE_SAFETY_JURY_KO.md`
 - `paper_hsjepa_core/CONTRASTIVE_FAILURE_ATLAS_KO.md`
 - `paper_hsjepa_core/FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`
+- `paper_hsjepa_core/ROW_RESET_EPISODE_DETECTOR_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -160,6 +161,27 @@ row-target assignment/release decoder가 별도로 필요하다.
 raw-KNN failure boundary는 완전한 black-box가 아니며,
 core geometry와 route-average probability만으로 거의 GBDT 수준까지 증류된다.
 HS-JEPA core는 label predictor가 아니라 prior-reset/action-toxicity를 판단하는 listener agreement 기준점으로 작동한다.
+```
+
+`ROW_RESET_EPISODE_DETECTOR_KO.md`는 그 다음 일반화 질문을 다룬다. failure-boundary law가 고른 action이 실제로는 독립 cell이 아니라 특정 row 전체 reset처럼 보였기 때문에, 이를 hidden episode detector로 재정의했다.
+
+현재 핵심 결과:
+
+- public score ledger, 기존 submission probability, action teacher, frontier file을 쓰지 않는다.
+- raw KNN OOF: `0.636997`
+- best row reset detector OOF: `0.634030`
+- delta vs raw KNN: `-0.002967`
+- selected OOF rows: `6`
+- row-null p-value: `0.005833`
+- generated candidate: `submission_hsjepa_row_reset_episode_detector_9054c5d1_uploadsafe.csv`
+
+현재 해석:
+
+```text
+raw lifelog memory가 row 전체 차원에서 실패하는 hidden episode가 있고,
+HS-JEPA context는 이를 public/LB teacher 없이 일부 탐지한다.
+하지만 row reset만으로는 release-grade solver가 아니며,
+target/listener assignment decoder와 결합해야 한다.
 ```
 
 ## 핵심 질문

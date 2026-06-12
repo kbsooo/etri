@@ -1,0 +1,137 @@
+{
+  "package": "row_reset_episode_detector",
+  "status": "anchor_free_row_reset_episode_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "uses_frontier_file": false,
+  "raw_knn_oof_logloss": 0.6369970821509948,
+  "best_law_name": "full_row_context__elasticnet_sparse",
+  "best_feature_view": "full_row_context",
+  "best_model_name": "elasticnet_sparse",
+  "best_policy": "topfrac",
+  "best_policy_param": 0.06,
+  "best_oof_logloss": 0.6340299447904069,
+  "best_delta_vs_raw_knn": -0.002967137360587957,
+  "best_selected_rows": 6,
+  "best_switched_cells": 42,
+  "best_mean_realized_gain_all_rows": 0.0029671373605880506,
+  "best_mean_realized_gain_selected_rows": 0.051924903810290884,
+  "best_positive_row_gain_rate": 0.8333333333333334,
+  "best_row_null_p_ge_observed": 0.005833333333333334,
+  "best_row_null_z": 2.2410162885973577,
+  "best_law_nonzero_feature_count": 30,
+  "best_law_top_features": [
+    {
+      "feature": "route_confidence_mean",
+      "coef": 0.042102443548874574,
+      "abs_coef": 0.042102443548874574
+    },
+    {
+      "feature": "route_is_global_prior",
+      "coef": 0.02762138924186714,
+      "abs_coef": 0.02762138924186714
+    },
+    {
+      "feature": "global_prior__pred_std",
+      "coef": 0.024489729826246396,
+      "abs_coef": 0.024489729826246396
+    },
+    {
+      "feature": "expert_prob_range__std",
+      "coef": -0.017457500330473365,
+      "abs_coef": 0.017457500330473365
+    },
+    {
+      "feature": "route_abs_vs_raw_max",
+      "coef": -0.017306643248642405,
+      "abs_coef": 0.017306643248642405
+    },
+    {
+      "feature": "raw_knn_blend__pred_min",
+      "coef": 0.016168196029337997,
+      "abs_coef": 0.016168196029337997
+    },
+    {
+      "feature": "core_knn_blend__pred_mean",
+      "coef": -0.015745504302622823,
+      "abs_coef": 0.015745504302622823
+    },
+    {
+      "feature": "raw_knn_blend__pred_max",
+      "coef": 0.013443158938844745,
+      "abs_coef": 0.013443158938844745
+    },
+    {
+      "feature": "raw_action_core_health__high_margin_listener_health__pred_min",
+      "coef": -0.012203850241425973,
+      "abs_coef": 0.012203850241425973
+    },
+    {
+      "feature": "route_abs_vs_core_mean",
+      "coef": -0.008984593537011767,
+      "abs_coef": 0.008984593537011767
+    },
+    {
+      "feature": "row_mod_28",
+      "coef": 0.00823362202902108,
+      "abs_coef": 0.00823362202902108
+    },
+    {
+      "feature": "subject_row_index_norm",
+      "coef": 0.007583840079791245,
+      "abs_coef": 0.007583840079791245
+    },
+    {
+      "feature": "route_is_subject_prior",
+      "coef": -0.006844535262861513,
+      "abs_coef": 0.006844535262861513
+    },
+    {
+      "feature": "subject_global_gap__mean",
+      "coef": -0.0061505423765847705,
+      "abs_coef": 0.0061505423765847705
+    },
+    {
+      "feature": "peer_outlier_rank",
+      "coef": 0.005855026845875421,
+      "abs_coef": 0.005855026845875421
+    },
+    {
+      "feature": "subject_minus_peer_dist",
+      "coef": -0.004396722550625321,
+      "abs_coef": 0.004396722550625321
+    },
+    {
+      "feature": "month_end",
+      "coef": -0.004338255125450244,
+      "abs_coef": 0.004338255125450244
+    },
+    {
+      "feature": "subject_prior__confidence_mean",
+      "coef": -0.004224314845572069,
+      "abs_coef": 0.004224314845572069
+    },
+    {
+      "feature": "core_knn_blend__abs_vs_raw_mean",
+      "coef": 0.004116377625622497,
+      "abs_coef": 0.004116377625622497
+    },
+    {
+      "feature": "is_weekend",
+      "coef": -0.0038690999850645585,
+      "abs_coef": 0.0038690999850645585
+    }
+  ],
+  "candidate_file": "submission_hsjepa_row_reset_episode_detector_9054c5d1_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_row_reset_episode_detector_9054c5d1_uploadsafe.csv",
+  "test_switched_rows": 15,
+  "test_switched_cells": 105,
+  "test_route_counts": {
+    "subject_prior": 49,
+    "global_prior": 35,
+    "core_knn_blend": 21
+  },
+  "submission_priority": "high_information_sensor_row_episode_reset",
+  "interpretation": "Tests whether prior-reset actions are row-level hidden episodes rather than independent row-target corrections."
+}
