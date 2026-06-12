@@ -10800,3 +10800,43 @@ HS-JEPA hidden listener manifold 위에서 subject를 넘어 분리된다.
 
 - representation separability는 있지만, test release translation이 아직 toxic하다는 뜻이다.
 - 논문 주장은 여전히 강하지만, competition adapter는 jury vote count처럼 더 보수적인 release law가 필요하다.
+
+## Open-Loop Human-State Listener Core
+
+- file: `submission_hsjepa_open_loop_human_state_listener_anchor_free_adfadd58_uploadsafe.csv`
+- code: `hsjepa_core/run_open_loop_human_state_listener_core.py`
+- doc: `paper_hsjepa_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
+- status: upload-safe diagnostic candidate
+- public LB: not submitted
+- semantic purpose: masked-tail teacher와 action probability/magnitude 없이 OG human-state + minimal listener만으로 action-health support가 살아나는지 검사한다.
+
+### Why This Candidate Exists
+
+이 후보는 HS-JEPA core-only 독립성에 대한 강한 반대 실험이다.
+
+```text
+보이는 human-state context만으로 보이지 않는 action-health support를 복원할 수 있다면,
+HS-JEPA는 teacher-derived hidden-tail 없이도 open-loop human-state model로 주장할 수 있다.
+```
+
+### Local Evidence
+
+- best strict jury family: `listener_only`
+- listener-only AP lift: `+0.079972`
+- open-loop human-state listener AP lift: `+0.062217`
+- action-only AP lift: `+0.038054`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- validation: valid, rows `250`, probability range `[0.369726, 0.919150]`
+
+### Expected Public Meaning
+
+좋아지면:
+
+- public subset에서는 open-loop human-state listener가 subject-invariant jury보다 더 잘 맞는다는 뜻이다.
+- teacher-derived tail field 없이도 OG human-state context가 public action-health를 일부 잡는다는 신호다.
+
+나빠지면:
+
+- local 결과와 일치한다. open-loop core는 action-only보다 낫지만 release-grade는 아니다.
+- 논문 주장은 “HS-JEPA core-only classifier”가 아니라 “teacher-derived hidden-tail/listener manifold + anti-shortcut decoder”로 유지해야 한다.

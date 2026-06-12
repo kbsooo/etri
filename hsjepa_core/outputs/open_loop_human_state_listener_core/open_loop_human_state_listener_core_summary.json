@@ -1,0 +1,30 @@
+{
+  "package": "open_loop_human_state_listener_core",
+  "status": "open_loop_human_state_listener_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_masked_tail_teacher_score": false,
+  "uses_label_informed_peer_margin": false,
+  "verdict": "open_loop_human_state_beats_action_but_not_listener_only",
+  "best_strict_jury_family": "listener_only",
+  "best_strict_jury_ap_lift": 0.07997165267644224,
+  "open_loop_ap_lift": 0.06221688058120501,
+  "listener_only_ap_lift": 0.07997165267644224,
+  "action_only_ap_lift": 0.03805415698710312,
+  "released_test_cells": 67,
+  "release_targets": [
+    "Q2",
+    "S1",
+    "S2",
+    "S4"
+  ],
+  "candidate_file": "submission_hsjepa_open_loop_human_state_listener_anchor_free_adfadd58_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.3697258716458601,
+    "probability_max": 0.9191502336691928
+  }
+}

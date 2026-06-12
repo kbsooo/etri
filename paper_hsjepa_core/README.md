@@ -43,6 +43,7 @@
 - `paper_hsjepa_core/EPISODE_CONTROLLER_STRESS_AUDIT_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
+- `paper_hsjepa_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
 - `paper_hsjepa_core/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
@@ -1696,3 +1697,49 @@ listener/action-health manifold인지 검사한다.
 자세한 설명:
 
 - `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_MANIFOLD_CORE_KO.md`
+
+### 24. Open-Loop Human-State Listener Core
+
+```bash
+python3 hsjepa_core/run_open_loop_human_state_listener_core.py
+```
+
+이 스크립트는 HS-JEPA core의 독립성을 더 엄격하게 묻는다.
+masked-tail teacher score, action probability, action magnitude를 feature에서 제외하고,
+OG lifelog/social/cohort human-state와 최소 listener만으로 subject-invariant action-health
+support를 복원할 수 있는지 검사한다.
+
+비교한 feature family:
+
+- `listener_only`: target/family/listener만 사용
+- `action_geometry_only`: raw/inverse action 방향과 거리만 사용
+- `calendar_social_listener`: calendar/social human-state와 listener 사용
+- `latent_cohort_listener`: latent/cohort human-state와 listener 사용
+- `open_loop_human_state_listener`: OG human-state 전체와 minimal listener 사용
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- masked-tail teacher score 사용: `False`
+- label-informed peer margin 사용: `False`
+- verdict: `open_loop_human_state_beats_action_but_not_listener_only`
+- best strict-jury family: `listener_only`
+- listener-only AP lift: `+0.079972`
+- open-loop human-state listener AP lift: `+0.062217`
+- action-only AP lift: `+0.038054`
+- released test cells: `67`
+- generated candidate: `submission_hsjepa_open_loop_human_state_listener_anchor_free_adfadd58_uploadsafe.csv`
+
+해석:
+
+- open-loop human-state는 action geometry only보다 strict-jury support를 더 잘 읽었다.
+- 하지만 listener-only baseline보다 약했고, 특히 S2에서 약했다.
+- 따라서 “OG human-state core만으로 release-grade action-health를 복원한다”는 강한 주장은 아직 죽었다.
+- 현재 논문 주장은 “HS-JEPA hidden-tail/listener manifold가 subject-invariant action-health를 만든다”가 더 정확하다.
+- 이 실험은 positive result가 아니라, core-only 독립성을 과장하지 않기 위한 boundary/negative sensor다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
