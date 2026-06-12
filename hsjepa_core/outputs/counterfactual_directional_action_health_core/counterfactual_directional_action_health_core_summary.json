@@ -1,0 +1,35 @@
+{
+  "package": "counterfactual_directional_action_health_core",
+  "status": "counterfactual_directional_action_health_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_action_probability_as_feature": false,
+  "uses_action_magnitude_as_feature": false,
+  "action_listener": "counterfactual_direction_sign_only",
+  "view_names": [
+    "full_directional_context",
+    "mask_world_state",
+    "mask_episode_context",
+    "mask_listener_interaction",
+    "mask_direction_listener"
+  ],
+  "verdict": "counterfactual_directional_action_health_oof_positive_subjectheldout_fragile",
+  "full_oof_gain_sum": 3.0263314098881153,
+  "full_oof_selected_cells": 69,
+  "nested_heldout_gain_sum": -3.515634994346962,
+  "nested_heldout_selected_cells": 106,
+  "stable_targets": [],
+  "stable_oof_gain_sum": 0.0,
+  "stable_oof_selected_cells": 0,
+  "candidate_policy_source": "full_oof_sensor",
+  "released_test_cells": 36,
+  "candidate_file": "submission_hsjepa_counterfactual_directional_action_health_anchor_free_83d20117_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.25578930072387673,
+    "probability_max": 0.829480335107557
+  }
+}

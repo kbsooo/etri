@@ -19,6 +19,7 @@
 - `paper_hsjepa_core/EPISODE_CONDITIONED_RELATIVE_TAIL_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_FREE_VULNERABILITY_GATE_CORE_KO.md`
+- `paper_hsjepa_core/COUNTERFACTUAL_DIRECTIONAL_ACTION_HEALTH_CORE_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
@@ -273,6 +274,30 @@ safe action assignment를 만들기에는 부족하다.
 따라서 HS-JEPA core-only 주장을 "action-free vulnerability가 decoder를 해결한다"로 쓰면 안 된다.
 논문 주장은 masked-view invariant action-tail representation까지 포함한
 core-decoder boundary architecture로 제한해야 한다.
+```
+
+`COUNTERFACTUAL_DIRECTIONAL_ACTION_HEALTH_CORE_KO.md`는 action-free vulnerability의 실패를 한 단계 더 분해한다.
+vulnerability만으로는 방향을 못 고르므로, action probability와 magnitude를 숨긴 채
+`올릴까/내릴까`라는 counterfactual direction listener만 주고 hidden action-health를 예측했다.
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+3.026331`
+- nested subject-heldout gain sum: `-3.515635`
+- stable targets: none
+- released test cells: `36`
+- directional consensus health AUC/AP: `0.539598` / `0.528134`
+- directional consensus toxic AUC/AP: `0.538226` / `0.428788`
+- action probability as feature: `False`
+- action magnitude as feature: `False`
+
+현재 해석:
+
+```text
+direction listener만으로는 subject-invariant safe action assignment가 되지 않는다.
+따라서 HS-JEPA를 "counterfactual direction만 주면 safe action을 고르는 core"로 쓰면 안 된다.
+현재 필요한 것은 direction보다 더 풍부한 action-tail representation,
+또는 masked-view action-tail consensus다.
 ```
 
 `TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.

@@ -16979,3 +16979,97 @@ This negative result makes the previous positive result more precise:
 Masked-view consensus works because it preserves action-tail structure,
 not because a row-target vulnerability gate alone is enough.
 ```
+
+## 2026-06-13 - HS-JEPA Counterfactual Directional Action-Health Core
+
+### Question
+
+Action-free vulnerability can read broad toxic row-target states, but it cannot
+choose a safe action direction.  The next stronger JEPA question:
+
+```text
+Can visible human-state context plus only an up/down counterfactual direction
+listener predict hidden directional action-health?
+```
+
+If yes, HS-JEPA can be framed as a general counterfactual action-health model.
+If no, safe assignment needs richer action-tail magnitude/probability/support
+geometry and the paper thesis must stay at the action-aware core-decoder
+boundary.
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_counterfactual_directional_action_health_core.py
+```
+
+The encoder excludes:
+
+- public LB ledger;
+- prior submission probabilities;
+- proprietary embedding API;
+- prior/candidate/inverse/action probabilities as features;
+- action magnitude / action delta as features;
+- support score and mode-alignment score.
+
+It includes:
+
+- target listener context;
+- masked world residual/energy context;
+- episode context;
+- route family context;
+- counterfactual direction sign only: up / down / no-op.
+
+### Result
+
+- verdict: `counterfactual_directional_action_health_oof_positive_subjectheldout_fragile`
+- full OOF selected gain sum: `+3.026331`
+- full OOF selected cells: `69`
+- nested subject-heldout gain sum: `-3.515635`
+- nested subject-heldout selected cells: `106`
+- stable targets: none
+- stable OOF gain sum: `0.000000`
+- released test cells: `36`
+- candidate: `submission_hsjepa_counterfactual_directional_action_health_anchor_free_83d20117_uploadsafe.csv`
+
+Directional consensus metrics:
+
+- health AUC/AP: `0.539598` / `0.528134`
+- toxic AUC/AP: `0.538226` / `0.428788`
+
+Important nested target result:
+
+- Q1: `-0.137288`
+- Q2: `-1.229831`
+- Q3: `-0.184179`
+- S1: `-1.065167`
+- S2: `-0.673420`
+- S4: `-0.225750`
+- no target survived the stable subject-heldout filter.
+
+### Interpretation
+
+Strengthened:
+
+```text
+Direction-aware hidden action-health is locally learnable enough to produce
+positive full OOF gain without seeing action probability or magnitude.
+```
+
+Killed:
+
+```text
+Counterfactual direction sign alone is not a subject-invariant safe action
+decoder.  It overfits OOF route pockets and collapses under heldout subject
+stress.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA should not be presented as "core + up/down listener solves correction".
+The current best paper-grade claim remains masked-view invariant action-tail
+representation at the core-decoder boundary.
+```

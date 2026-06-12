@@ -10630,3 +10630,48 @@ If public LB worsens:
 This confirms the local subject-heldout warning.  The architecture should keep
 action-free vulnerability as a diagnostic feature and rely on masked-view
 action-tail consensus for release-grade decisions.
+
+## 2026-06-13 - HS-JEPA Counterfactual Directional Action-Health Core Candidate
+
+- File: `submission_hsjepa_counterfactual_directional_action_health_anchor_free_83d20117_uploadsafe.csv`
+- Code: `hsjepa_core/run_counterfactual_directional_action_health_core.py`
+- Documentation: `paper_hsjepa_core/COUNTERFACTUAL_DIRECTIONAL_ACTION_HEALTH_CORE_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+- Action probability as feature: none
+- Action magnitude as feature: none
+
+Why this candidate matters:
+
+This is a negative sensor, not a preferred submission.  It tests whether
+HS-JEPA can become a general counterfactual action-health core by using only
+an up/down direction listener instead of action probability/magnitude.
+
+Local evidence:
+
+- full OOF selected gain sum: `+3.026331`
+- nested subject-heldout gain sum: `-3.515635`
+- stable targets: none
+- directional consensus health AUC/AP: `0.539598` / `0.528134`
+- directional consensus toxic AUC/AP: `0.538226` / `0.428788`
+- released test cells: `36`
+- validation: upload-safe
+
+Worldview:
+
+```text
+Counterfactual direction is a meaningful listener, but it is too weak to make
+safe subject-invariant row-target actions.  Safe release needs richer
+action-tail representation or masked-view consensus over action-aware geometry.
+```
+
+If public LB improves:
+
+There may be a public-specific direction-only pocket, but it would not yet be
+a strong general HS-JEPA claim because every nested target failed.
+
+If public LB worsens:
+
+This confirms the subject-heldout warning and strengthens the boundary:
+direction-only core is a diagnostic/probe, not a release-grade decoder.

@@ -49,6 +49,7 @@ python3 hsjepa_core/run_subject_normalized_tail_field_core.py
 python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
 python3 hsjepa_core/run_masked_view_consensus_tail_core.py
 python3 hsjepa_core/run_action_free_vulnerability_gate_core.py
+python3 hsjepa_core/run_counterfactual_directional_action_health_core.py
 ```
 
 ## 산출물
@@ -95,6 +96,9 @@ python3 hsjepa_core/run_action_free_vulnerability_gate_core.py
 - `hsjepa_core/outputs/action_free_vulnerability_gate_core/action_free_vulnerability_gate_core_summary.json`
 - `hsjepa_core/outputs/action_free_vulnerability_gate_core/ACTION_FREE_VULNERABILITY_GATE_CORE_KO.md`
 - `hsjepa_core/outputs/action_free_vulnerability_gate_core/*_metrics.csv`
+- `hsjepa_core/outputs/counterfactual_directional_action_health_core/counterfactual_directional_action_health_core_summary.json`
+- `hsjepa_core/outputs/counterfactual_directional_action_health_core/COUNTERFACTUAL_DIRECTIONAL_ACTION_HEALTH_CORE_KO.md`
+- `hsjepa_core/outputs/counterfactual_directional_action_health_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -112,6 +116,7 @@ python3 hsjepa_core/run_action_free_vulnerability_gate_core.py
 - `hsjepa_core/run_episode_conditioned_relative_tail_core.py`: subject-relative badness가 아직 거칠다는 가설을 검사하기 위해 row episode context를 추가하고, 보이는 episode context로 보이지 않는 episode-conditioned tail representation을 예측한다.
 - `hsjepa_core/run_masked_view_consensus_tail_core.py`: full/세계잔차마스크/episode마스크/listener마스크 view가 같은 episode-conditioned tail representation에 동의하는 cell만 release해, hidden tail field가 single-view shortcut인지 검사한다.
 - `hsjepa_core/run_action_free_vulnerability_gate_core.py`: action/probability/support 입력 없이 row-target vulnerability를 예측해 masked-view action decoder를 gate할 수 있는지 검사한다. 현재 결과는 negative sensor다.
+- `hsjepa_core/run_counterfactual_directional_action_health_core.py`: action probability/magnitude 없이 counterfactual up/down direction listener만으로 hidden action-health를 예측할 수 있는지 검사한다. 현재 결과는 negative sensor다.
 
 ## 팀 공유 시 주의점
 
@@ -487,6 +492,40 @@ The successful masked-view consensus result should not be overstated as
 The current strongest claim remains:
 masked-view invariant, action-aware tail representation reduces decoder toxicity,
 especially on S2/S4.
+```
+
+## Counterfactual Directional Action-Health Core
+
+`run_counterfactual_directional_action_health_core.py`는 action-free vulnerability의 실패를 더 날카롭게 분해한다.
+vulnerability만으로는 어떤 action 방향이 안전한지 고를 수 없으므로, 확률값과 action magnitude는 숨기고
+`올릴까/내릴까`라는 counterfactual direction listener만 준다.
+
+```text
+human-state context + counterfactual direction listener
+  -> hidden directional action-health representation
+  -> masked-view consensus
+  -> row-target action assignment
+```
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+3.026331`
+- nested subject-heldout gain sum: `-3.515635`
+- stable targets after heldout filtering: none
+- released test cells: `36`
+- directional consensus health AUC/AP: `0.539598` / `0.528134`
+- directional consensus toxic AUC/AP: `0.538226` / `0.428788`
+- action probability as feature: `False`
+- action magnitude as feature: `False`
+- anchor-free candidate: `submission_hsjepa_counterfactual_directional_action_health_anchor_free_83d20117_uploadsafe.csv`
+
+해석:
+
+```text
+Counterfactual direction listener alone is not enough for subject-invariant
+safe assignment.  HS-JEPA can be framed as a counterfactual action-health model,
+but release-grade decoding still needs richer action-tail representation:
+probability/magnitude/support geometry or masked-view action-tail consensus.
 ```
 
 ## Core가 아닌 것
