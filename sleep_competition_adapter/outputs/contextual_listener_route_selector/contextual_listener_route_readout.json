@@ -1,0 +1,293 @@
+{
+  "package": "contextual_listener_route_selector",
+  "status": "anchor_free_contextual_router_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "uses_frontier_file": false,
+  "best_oof_model": "raw_knn_blend",
+  "best_oof_logloss": 0.6369970821509948,
+  "fixed_target_route_oof_logloss": 0.6571057130358509,
+  "contextual_hard_oof_logloss": 0.6501101156147443,
+  "contextual_soft_oof_logloss": 0.64376851107503,
+  "best_contextual_or_fallback_model": "contextual_raw_fallback_margin_0.014",
+  "best_contextual_or_fallback_oof_logloss": 0.6384440458739576,
+  "contextual_hard_delta_vs_fixed": -0.006995597421106559,
+  "contextual_soft_delta_vs_fixed": -0.013337201960820888,
+  "best_contextual_or_fallback_delta_vs_raw_knn": 0.001446963722962824,
+  "selected_submission_mode": "raw_fallback_margin_0.014",
+  "candidate_file": "submission_hsjepa_contextual_listener_router_3cbcbe6e_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_contextual_listener_router_3cbcbe6e_uploadsafe.csv",
+  "test_selected_expert_counts": {
+    "raw_knn_blend": 1185,
+    "global_prior": 192,
+    "subject_prior": 159,
+    "hsjepa_action_health__strict_listener_health": 74,
+    "core_knn_blend": 57,
+    "raw_action_core_health__strict_listener_health": 55,
+    "hsjepa_action_health__high_margin_listener_health": 11,
+    "hsjepa_action_health__wide_listener_health": 6,
+    "hsjepa_action_health__balanced_listener_health": 4,
+    "raw_action_core_health__high_margin_listener_health": 3,
+    "raw_action_core_health__balanced_listener_health": 2,
+    "raw_action_core_health__wide_listener_health": 2
+  },
+  "test_selected_target_expert_counts": [
+    {
+      "target": "Q1",
+      "final_selected_expert": "core_knn_blend",
+      "count": 3
+    },
+    {
+      "target": "Q1",
+      "final_selected_expert": "global_prior",
+      "count": 42
+    },
+    {
+      "target": "Q1",
+      "final_selected_expert": "hsjepa_action_health__strict_listener_health",
+      "count": 4
+    },
+    {
+      "target": "Q1",
+      "final_selected_expert": "raw_action_core_health__strict_listener_health",
+      "count": 2
+    },
+    {
+      "target": "Q1",
+      "final_selected_expert": "raw_knn_blend",
+      "count": 183
+    },
+    {
+      "target": "Q1",
+      "final_selected_expert": "subject_prior",
+      "count": 16
+    },
+    {
+      "target": "Q2",
+      "final_selected_expert": "core_knn_blend",
+      "count": 8
+    },
+    {
+      "target": "Q2",
+      "final_selected_expert": "global_prior",
+      "count": 36
+    },
+    {
+      "target": "Q2",
+      "final_selected_expert": "hsjepa_action_health__strict_listener_health",
+      "count": 7
+    },
+    {
+      "target": "Q2",
+      "final_selected_expert": "hsjepa_action_health__wide_listener_health",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "final_selected_expert": "raw_action_core_health__wide_listener_health",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "final_selected_expert": "raw_knn_blend",
+      "count": 187
+    },
+    {
+      "target": "Q2",
+      "final_selected_expert": "subject_prior",
+      "count": 10
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "core_knn_blend",
+      "count": 4
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "global_prior",
+      "count": 18
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "hsjepa_action_health__high_margin_listener_health",
+      "count": 6
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "hsjepa_action_health__strict_listener_health",
+      "count": 2
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "raw_action_core_health__balanced_listener_health",
+      "count": 2
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "raw_action_core_health__high_margin_listener_health",
+      "count": 3
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "raw_knn_blend",
+      "count": 196
+    },
+    {
+      "target": "Q3",
+      "final_selected_expert": "subject_prior",
+      "count": 19
+    },
+    {
+      "target": "S1",
+      "final_selected_expert": "core_knn_blend",
+      "count": 12
+    },
+    {
+      "target": "S1",
+      "final_selected_expert": "global_prior",
+      "count": 19
+    },
+    {
+      "target": "S1",
+      "final_selected_expert": "hsjepa_action_health__strict_listener_health",
+      "count": 23
+    },
+    {
+      "target": "S1",
+      "final_selected_expert": "hsjepa_action_health__wide_listener_health",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "final_selected_expert": "raw_action_core_health__strict_listener_health",
+      "count": 9
+    },
+    {
+      "target": "S1",
+      "final_selected_expert": "raw_knn_blend",
+      "count": 155
+    },
+    {
+      "target": "S1",
+      "final_selected_expert": "subject_prior",
+      "count": 31
+    },
+    {
+      "target": "S2",
+      "final_selected_expert": "core_knn_blend",
+      "count": 13
+    },
+    {
+      "target": "S2",
+      "final_selected_expert": "global_prior",
+      "count": 6
+    },
+    {
+      "target": "S2",
+      "final_selected_expert": "hsjepa_action_health__high_margin_listener_health",
+      "count": 5
+    },
+    {
+      "target": "S2",
+      "final_selected_expert": "hsjepa_action_health__strict_listener_health",
+      "count": 23
+    },
+    {
+      "target": "S2",
+      "final_selected_expert": "raw_action_core_health__strict_listener_health",
+      "count": 17
+    },
+    {
+      "target": "S2",
+      "final_selected_expert": "raw_knn_blend",
+      "count": 158
+    },
+    {
+      "target": "S2",
+      "final_selected_expert": "subject_prior",
+      "count": 28
+    },
+    {
+      "target": "S3",
+      "final_selected_expert": "core_knn_blend",
+      "count": 7
+    },
+    {
+      "target": "S3",
+      "final_selected_expert": "global_prior",
+      "count": 36
+    },
+    {
+      "target": "S3",
+      "final_selected_expert": "hsjepa_action_health__strict_listener_health",
+      "count": 14
+    },
+    {
+      "target": "S3",
+      "final_selected_expert": "hsjepa_action_health__wide_listener_health",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "final_selected_expert": "raw_action_core_health__strict_listener_health",
+      "count": 19
+    },
+    {
+      "target": "S3",
+      "final_selected_expert": "raw_knn_blend",
+      "count": 144
+    },
+    {
+      "target": "S3",
+      "final_selected_expert": "subject_prior",
+      "count": 29
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "core_knn_blend",
+      "count": 10
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "global_prior",
+      "count": 35
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "hsjepa_action_health__balanced_listener_health",
+      "count": 4
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "hsjepa_action_health__strict_listener_health",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "hsjepa_action_health__wide_listener_health",
+      "count": 3
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "raw_action_core_health__strict_listener_health",
+      "count": 8
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "raw_action_core_health__wide_listener_health",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "raw_knn_blend",
+      "count": 162
+    },
+    {
+      "target": "S4",
+      "final_selected_expert": "subject_prior",
+      "count": 26
+    }
+  ],
+  "interpretation": "Tests whether HS-JEPA can move from fixed target listener routes to sample-level contextual route responsibility."
+}

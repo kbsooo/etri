@@ -28,6 +28,7 @@
 | action-health separation | public LB 없이 계산한 HS-JEPA health score가 기존 positive/stress action field를 구분하는지 본 probe | `sleep_competition_adapter/action_health_separation_probe.py` |
 | teacher-free core support | 기존 성공 action teacher 없이 HS-JEPA core geometry만으로 row-state frontier 일부를 재발견할 수 있는지 본 probe | `sleep_competition_adapter/teacher_free_core_support_release.py` |
 | target listener route selector | OG train future split에서 target마다 어떤 representation을 들어야 하는지 고르는 HS-JEPA route benchmark | `sleep_competition_adapter/core_oof_action_health_benchmark.py` |
+| contextual listener route selector | target route를 row-target별 contextual routing으로 확장할 수 있는지 검증한 boundary probe | `sleep_competition_adapter/contextual_listener_route_selector.py` |
 
 ## 현재 public best 해석
 
@@ -60,6 +61,8 @@ teacher-free core support는 public score와 action teacher 없이도 row-state 
 core가 단순 대회용 조정값이 아니라 downstream listener가 사용할 support geometry임을 보여준다.
 target listener route selector는 HS-JEPA가 단일 latent classifier가 아니라,
 target/listener별로 core geometry, raw lifelog proximity, safe prior, action-health release 중 무엇을 들을지 고르는 구조임을 보여준다.
+contextual listener route selector는 sample-level router가 fixed target route는 이기지만 raw KNN은 못 넘어,
+다음 과제가 full router가 아니라 raw-KNN failure detector임을 보여준다.
 ```
 
 ## 앞으로 금지할 표현

@@ -43,6 +43,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 - action-health separation에서는 public score를 feature로 쓰지 않은 health score가 nonzero action field 6개에서 `-public LB`와 Spearman `0.8407`로 정렬됐다.
 - teacher-free core support에서는 public score와 action teacher 없이 row-state frontier 45개 row 중 16개를 top 28% support에서 회수했다.
 - core OOF action-health benchmark에서는 target/listener route selector가 temporal future split에서 subject prior `0.650566`, raw KNN `0.636997`보다 낮은 `0.629398`을 기록했다.
+- contextual listener route selector에서는 sample-level router가 fixed target route `0.657106`보다 낮은 `0.643769`를 기록했지만, raw KNN `0.636997`은 넘지 못했다.
 
 따라서 논문 주장은 다음으로 고정한다.
 
@@ -67,6 +68,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 python3 sleep_competition_adapter/action_health_separation_probe.py
 python3 sleep_competition_adapter/teacher_free_core_support_release.py
 python3 sleep_competition_adapter/core_oof_action_health_benchmark.py
+python3 sleep_competition_adapter/contextual_listener_route_selector.py
 ```
 
 ## JEPA에서 가져온 것
@@ -170,6 +172,35 @@ HS-JEPA is not one hidden-state classifier.
 It is a listener-specific routing architecture over
 human-state geometry, raw-lifelog proximity, safe priors, and action-health release.
 ```
+
+### Contribution 4d. Contextual Listener Route Boundary
+
+target-level route selection이 강하다고 해서 sample-level routing까지 바로 되는 것은 아니다.
+
+수면 대회 adapter에서는 다음 실험으로 그 경계를 검증했다.
+
+```bash
+python3 sleep_competition_adapter/contextual_listener_route_selector.py
+```
+
+결과:
+
+```text
+raw KNN baseline: 0.636997
+fixed target route: 0.657106
+contextual soft router: 0.643769
+best raw-fallback router: 0.638444
+```
+
+해석:
+
+```text
+HS-JEPA context carries sample-level route-risk signal,
+but the current data scale is not enough for a full contextual listener router
+to beat robust raw-lifelog nearest-neighbor prediction.
+```
+
+따라서 다음 contribution 후보는 full router가 아니라 `raw-KNN failure detector`다.
 
 ### Contribution 5. Counterfactual Listener-Dropout
 

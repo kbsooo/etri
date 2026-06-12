@@ -10,6 +10,7 @@
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
 - `paper_hsjepa_core/CORE_OOF_ACTION_HEALTH_BENCHMARK_KO.md`
+- `paper_hsjepa_core/CONTEXTUAL_LISTENER_ROUTE_SELECTOR_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -58,6 +59,22 @@ listener/assignment solver가 사용할 수 있는 row-support geometry다.
 
 ```text
 HS-JEPA의 성능은 단일 decoder가 아니라 target/listener별 route selection에서 나온다.
+```
+
+`CONTEXTUAL_LISTENER_ROUTE_SELECTOR_KO.md`는 그 다음 질문을 다룬다. target-level route가 아니라 row-target sample-level route를 HS-JEPA context가 고를 수 있는지 검증한다.
+
+현재 핵심 결과:
+
+- raw lifelog KNN blend: `0.636997`
+- fixed target listener route OOF: `0.657106`
+- contextual soft router: `0.643769`
+- best raw-fallback router: `0.638444`
+
+현재 해석:
+
+```text
+sample-level router는 fixed route를 이기지만, raw KNN을 안정적으로 넘지는 못한다.
+따라서 다음은 full router가 아니라 raw-KNN failure detector다.
 ```
 
 ## 핵심 질문
@@ -155,6 +172,26 @@ python3 sleep_competition_adapter/core_oof_action_health_benchmark.py
 논문 해석:
 
 > HS-JEPA should be framed as listener-specific route selection over human-state, raw-lifelog, prior, and action-health routes, not as a monolithic latent classifier.
+
+### 0e. Contextual Listener Route Selector
+
+```bash
+python3 sleep_competition_adapter/contextual_listener_route_selector.py
+```
+
+이 스크립트는 target별 route 선택을 row-target별 contextual routing으로 확장할 수 있는지 본다.
+
+현재 결과:
+
+- fixed target route OOF: `0.657106`
+- contextual soft router: `0.643769`
+- best raw-fallback router: `0.638444`
+- raw KNN baseline: `0.636997`
+- generated candidate: `submission_hsjepa_contextual_listener_router_3cbcbe6e_uploadsafe.csv`
+
+논문 해석:
+
+> HS-JEPA context improves over fixed listener routes, but sample-level routing is not yet strong enough to outperform raw-lifelog nearest-neighbor prediction.
 
 ### 1. Human-State Action Distillation
 
