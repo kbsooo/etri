@@ -20,6 +20,7 @@
 - `paper_hsjepa_core/MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_FREE_VULNERABILITY_GATE_CORE_KO.md`
 - `paper_hsjepa_core/COUNTERFACTUAL_DIRECTIONAL_ACTION_HEALTH_CORE_KO.md`
+- `paper_hsjepa_core/CORE_STUDENT_RECOVERS_MASKED_TAIL_TEACHER_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
@@ -298,6 +299,31 @@ direction listener만으로는 subject-invariant safe action assignment가 되�
 따라서 HS-JEPA를 "counterfactual direction만 주면 safe action을 고르는 core"로 쓰면 안 된다.
 현재 필요한 것은 direction보다 더 풍부한 action-tail representation,
 또는 masked-view action-tail consensus다.
+```
+
+`CORE_STUDENT_RECOVERS_MASKED_TAIL_TEACHER_KO.md`는 masked-view teacher의 hidden representation이
+core student로 압축 가능한지 직접 확인한 distillation-style sensor다. student는 minimal action listener만 보고,
+action probability, action magnitude, support score는 보지 않는다.
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+8.078259`
+- nested subject-heldout gain sum: `-3.635973`
+- stable targets: none
+- released test cells: `87`
+- student consensus teacher-top AUC/AP: `0.582875` / `0.134131`
+- student consensus realized-health AUC/AP: `0.592321` / `0.560345`
+- action probability as student feature: `False`
+- action magnitude as student feature: `False`
+- support score as student feature: `False`
+
+현재 해석:
+
+```text
+core student는 full OOF에서는 teacher hidden tail representation을 꽤 그럴듯하게 복원하지만,
+subject-heldout release safety로는 전이되지 않는다.
+따라서 masked-view consensus teacher의 frontier signal은 아직 core-only student로 압축되지 않았다.
+논문 주장은 core-only distillation이 아니라 action-aware masked-view teacher boundary에 머물러야 한다.
 ```
 
 `TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.

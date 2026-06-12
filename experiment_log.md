@@ -17073,3 +17073,103 @@ HS-JEPA should not be presented as "core + up/down listener solves correction".
 The current best paper-grade claim remains masked-view invariant action-tail
 representation at the core-decoder boundary.
 ```
+
+## 2026-06-13 - HS-JEPA Core Student Recovers Masked Tail Teacher
+
+### Question
+
+The current strongest positive local evidence is masked-view consensus tail.
+The next paper-grade question is whether this frontier hidden representation is
+recoverable by a core student:
+
+```text
+Can visible human-state context plus a minimal action listener recover the
+masked-view teacher's hidden action-tail representation without seeing action
+probabilities, action magnitudes, support scores, or public anchors?
+```
+
+If yes, HS-JEPA core itself has rediscovered part of the frontier structure.
+If no, the frontier depends on the action-aware masked-view teacher boundary.
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_core_student_recovers_masked_tail_teacher.py
+```
+
+Teacher:
+
+- masked-view consensus tail core;
+- generated end-to-end from OG data;
+- no public LB ledger;
+- no prior submission probabilities;
+- no proprietary embedding API.
+
+Student excludes:
+
+- action probability;
+- action magnitude / action delta;
+- support score;
+- public LB ledger;
+- prior submission probability.
+
+Student sees:
+
+- target listener context;
+- world residual/energy context;
+- episode context;
+- route family context;
+- minimal action listener: raw/inverse and up/down/no-op direction sign.
+
+### Result
+
+- verdict: `core_student_teacher_recovery_oof_positive_subjectheldout_fragile`
+- full OOF selected gain sum: `+8.078259`
+- full OOF selected cells: `160`
+- nested subject-heldout gain sum: `-3.635973`
+- nested subject-heldout selected cells: `135`
+- stable targets: none
+- stable OOF gain sum: `0.000000`
+- released test cells: `87`
+- candidate: `submission_hsjepa_core_student_recovers_masked_tail_teacher_anchor_free_2648e9b5_uploadsafe.csv`
+
+Student recovery metrics:
+
+- student consensus teacher-top AUC/AP: `0.582875` / `0.134131`
+- student consensus realized-health AUC/AP: `0.592321` / `0.560345`
+
+Nested target result:
+
+- Q1: `-1.076791`
+- Q2: `-0.750073`
+- Q3: `+0.018431`
+- S1: `-1.325147`
+- S2: `+0.244117`, but positive gain rate `0.515152`, below stable threshold
+- S3: `-0.671943`
+- S4: `-0.074567`
+
+### Interpretation
+
+Strengthened:
+
+```text
+The masked-view teacher representation is learnable enough for a core student
+to produce very large full-OOF apparent gain.
+```
+
+Killed:
+
+```text
+Core student distillation does not recover a subject-invariant release-safe
+frontier.  The OOF gain is an illusion under subject-heldout stress.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA's current positive claim is not "core-only student recovers the
+frontier".  It is "action-aware masked-view tail representation is the current
+safe core-decoder boundary; core-only recovery remains unproven".
+```

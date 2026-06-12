@@ -50,6 +50,7 @@ python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
 python3 hsjepa_core/run_masked_view_consensus_tail_core.py
 python3 hsjepa_core/run_action_free_vulnerability_gate_core.py
 python3 hsjepa_core/run_counterfactual_directional_action_health_core.py
+python3 hsjepa_core/run_core_student_recovers_masked_tail_teacher.py
 ```
 
 ## 산출물
@@ -99,6 +100,9 @@ python3 hsjepa_core/run_counterfactual_directional_action_health_core.py
 - `hsjepa_core/outputs/counterfactual_directional_action_health_core/counterfactual_directional_action_health_core_summary.json`
 - `hsjepa_core/outputs/counterfactual_directional_action_health_core/COUNTERFACTUAL_DIRECTIONAL_ACTION_HEALTH_CORE_KO.md`
 - `hsjepa_core/outputs/counterfactual_directional_action_health_core/*_metrics.csv`
+- `hsjepa_core/outputs/core_student_recovers_masked_tail_teacher/core_student_recovers_masked_tail_teacher_summary.json`
+- `hsjepa_core/outputs/core_student_recovers_masked_tail_teacher/CORE_STUDENT_RECOVERS_MASKED_TAIL_TEACHER_KO.md`
+- `hsjepa_core/outputs/core_student_recovers_masked_tail_teacher/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -117,6 +121,7 @@ python3 hsjepa_core/run_counterfactual_directional_action_health_core.py
 - `hsjepa_core/run_masked_view_consensus_tail_core.py`: full/세계잔차마스크/episode마스크/listener마스크 view가 같은 episode-conditioned tail representation에 동의하는 cell만 release해, hidden tail field가 single-view shortcut인지 검사한다.
 - `hsjepa_core/run_action_free_vulnerability_gate_core.py`: action/probability/support 입력 없이 row-target vulnerability를 예측해 masked-view action decoder를 gate할 수 있는지 검사한다. 현재 결과는 negative sensor다.
 - `hsjepa_core/run_counterfactual_directional_action_health_core.py`: action probability/magnitude 없이 counterfactual up/down direction listener만으로 hidden action-health를 예측할 수 있는지 검사한다. 현재 결과는 negative sensor다.
+- `hsjepa_core/run_core_student_recovers_masked_tail_teacher.py`: masked-view consensus tail teacher의 hidden representation을 action probability/magnitude/support 없이 core student가 복원할 수 있는지 검사한다. 현재 결과는 OOF positive / subject-heldout negative sensor다.
 
 ## 팀 공유 시 주의점
 
@@ -526,6 +531,41 @@ Counterfactual direction listener alone is not enough for subject-invariant
 safe assignment.  HS-JEPA can be framed as a counterfactual action-health model,
 but release-grade decoding still needs richer action-tail representation:
 probability/magnitude/support geometry or masked-view action-tail consensus.
+```
+
+## Core Student Recovers Masked Tail Teacher
+
+`run_core_student_recovers_masked_tail_teacher.py`는 현재 가장 강한 positive evidence인
+masked-view consensus tail teacher를 core-only student가 복원할 수 있는지 검사한다.
+student는 minimal action listener(raw/inverse, up/down/no-op direction)만 보고, action probability,
+action magnitude, support score는 보지 않는다.
+
+```text
+human-state context + minimal action listener
+  -> recover masked-view teacher hidden tail representation
+  -> sparse row-target action assignment
+```
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+8.078259`
+- nested subject-heldout gain sum: `-3.635973`
+- stable targets after heldout filtering: none
+- released test cells: `87`
+- student consensus teacher-top AUC/AP: `0.582875` / `0.134131`
+- student consensus realized-health AUC/AP: `0.592321` / `0.560345`
+- action probability as student feature: `False`
+- action magnitude as student feature: `False`
+- support score as student feature: `False`
+- anchor-free candidate: `submission_hsjepa_core_student_recovers_masked_tail_teacher_anchor_free_2648e9b5_uploadsafe.csv`
+
+해석:
+
+```text
+Core student can imitate enough of the teacher to create a large full-OOF gain,
+but this recovery is not subject-invariant.  The current frontier should not be
+claimed as core-only distillation.  The safer claim remains masked-view
+action-tail teacher boundary, with core student recovery as a diagnostic.
 ```
 
 ## Core가 아닌 것

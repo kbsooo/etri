@@ -1,0 +1,36 @@
+{
+  "package": "core_student_recovers_masked_tail_teacher",
+  "status": "core_student_recovers_masked_tail_teacher_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_action_probability_as_student_feature": false,
+  "uses_action_magnitude_as_student_feature": false,
+  "uses_support_score_as_student_feature": false,
+  "teacher": "masked_view_consensus_tail_core",
+  "student_view_names": [
+    "student_full_context",
+    "student_mask_world",
+    "student_mask_episode",
+    "student_mask_listener_interaction",
+    "student_mask_action_listener"
+  ],
+  "verdict": "core_student_teacher_recovery_oof_positive_subjectheldout_fragile",
+  "full_oof_gain_sum": 8.078258892276548,
+  "full_oof_selected_cells": 160,
+  "nested_heldout_gain_sum": -3.6359733547953423,
+  "nested_heldout_selected_cells": 135,
+  "stable_targets": [],
+  "stable_oof_gain_sum": 0.0,
+  "stable_oof_selected_cells": 0,
+  "candidate_policy_source": "full_oof_sensor",
+  "released_test_cells": 87,
+  "candidate_file": "submission_hsjepa_core_student_recovers_masked_tail_teacher_anchor_free_2648e9b5_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.30721483708484554,
+    "probability_max": 0.7048393792579564
+  }
+}

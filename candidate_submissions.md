@@ -10675,3 +10675,51 @@ If public LB worsens:
 
 This confirms the subject-heldout warning and strengthens the boundary:
 direction-only core is a diagnostic/probe, not a release-grade decoder.
+
+## 2026-06-13 - HS-JEPA Core Student Recovers Masked Tail Teacher Candidate
+
+- File: `submission_hsjepa_core_student_recovers_masked_tail_teacher_anchor_free_2648e9b5_uploadsafe.csv`
+- Code: `hsjepa_core/run_core_student_recovers_masked_tail_teacher.py`
+- Documentation: `paper_hsjepa_core/CORE_STUDENT_RECOVERS_MASKED_TAIL_TEACHER_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+- Action probability as student feature: none
+- Action magnitude as student feature: none
+- Support score as student feature: none
+
+Why this candidate matters:
+
+This is an information-rich negative sensor, not a preferred submission.  It
+tests whether the strongest masked-view teacher can be compressed into a core
+student that only sees human-state context and a minimal action listener.
+
+Local evidence:
+
+- full OOF selected gain sum: `+8.078259`
+- nested subject-heldout gain sum: `-3.635973`
+- stable targets: none
+- student consensus teacher-top AUC/AP: `0.582875` / `0.134131`
+- student consensus realized-health AUC/AP: `0.592321` / `0.560345`
+- released test cells: `87`
+- validation: upload-safe
+
+Worldview:
+
+```text
+The teacher's hidden tail representation is partly recoverable, but the
+student recovery is not subject-invariant.  The current frontier lives at the
+action-aware masked-view teacher boundary, not in a core-only compressed
+student.
+```
+
+If public LB improves:
+
+The public subset may align with the student's OOF illusion, especially through
+S2-like pockets.  This would be useful as a sensor but still weaker than a
+paper-grade subject-invariant claim.
+
+If public LB worsens:
+
+This confirms the nested stress result and reinforces that this candidate is a
+diagnostic, not a release-grade decoder.
