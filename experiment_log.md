@@ -15189,3 +15189,68 @@ Architecture packaging update:
 `Cross-Subject Episode Prototype Transport` is an HS-JEPA adapter, not the core.
 `Subject-Invariant Episode Controller` is a LeJEPA-style diagnostic, not the core.
 The core remains the context-to-hidden-human-state representation predictor, with masked-view surprise as the cleanest current probe.
+
+## 2026-06-13 - HS-JEPA Masked Context World Model Core
+
+### Question
+
+HS-JEPA core를 adapter 이전의 진짜 JEPA 형태로 만들면, 즉 `visible lifelog views -> masked target-view representation`을 예측하게 하면, 그 representation이 label/action 구조를 설명하는가?
+
+### Experiment: Masked Context World Model Core
+
+- Code: `hsjepa_core/run_masked_context_world_model.py`
+- Doc: `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
+- Candidate: `submission_hsjepa_masked_context_world_model_core_ff673c9a_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+visible lifelog views
+  -> predict masked target-view PCA representation
+  -> predicted state + residual surprise energy
+  -> label probe / neighbor consistency / action-health diagnostic
+```
+
+Result:
+
+- view count: `5`
+- best masked target view: `app_social_context`
+- app/social component-corr lift vs null: `+0.248882`
+- app/social R2 lift vs null: `+0.215739`
+- masked world predicted-state neighbor target-match lift: `+0.031302`
+- prior mean logloss: `0.677858`
+- masked world full-state mean logloss: `1.122751`
+- world full-state delta vs prior: `+0.444894`
+- calibrated world-model KNN OOF logloss: `0.715135`
+- S3 action-health rule: app/social low-energy listener, gain `0.945472 -> 1.487267`, removed gain `-0.541795`
+- S4 action-health rule: calendar high-energy listener, gain `-0.425003 -> 0.099617`, removed gain `-0.524620`
+- upload-safe validation passed, probability range `0.170904` to `0.952333`
+
+Interpretation:
+
+Positive core evidence:
+
+```text
+The HS-JEPA core can predict masked semantic lifelog target representations above shuffled null,
+and its residual energy separates some target-specific toxic action pockets.
+```
+
+Negative evidence:
+
+```text
+The same representation is a poor direct label predictor under grouped validation.
+HS-JEPA core should not be presented as a standalone classifier.
+```
+
+Architecture implication:
+
+```text
+HS-JEPA core = hidden human-state world model.
+Competition adapter = listener/assignment/action decoder.
+Diagnostic = LeJEPA-style anti-shortcut and toxicity test.
+```
+
+Next:
+
+The next high-value step is not another direct classifier from this state. It is to use the world-model residual energy as a listener responsibility feature inside an action decoder with subject-heldout stress.

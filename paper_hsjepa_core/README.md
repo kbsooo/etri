@@ -8,6 +8,7 @@
 - `paper_hsjepa_core/HS_JEPA_PAPER_THESIS_KO.md`
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
 - `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
+- `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
@@ -38,6 +39,15 @@ Diagnostic = action이 shortcut/collapse/subject-tail/public-luck인지 검사
 ```
 
 이 경계를 유지해야 `Cross-Subject Episode Prototype Transport` 같은 competition adapter를 HS-JEPA core처럼 과장하지 않고, `Subject-Invariant Episode Controller` 같은 stress audit을 LeJEPA-style diagnostic으로 정확히 위치시킬 수 있다.
+
+`MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`는 가장 core에 가까운 최신 실험이다. semantic lifelog view 하나를 가리고 나머지 view로 target-view representation을 예측한다. 결과는 양면적이다.
+
+- app/social target-view는 null 대비 component-correlation lift `+0.248882`로 예측된다.
+- world-model state의 nearest-neighbor target match lift는 `+0.031302`다.
+- 하지만 direct label probe는 prior보다 나쁘다.
+- S3/S4 action-health diagnostic에서는 residual energy가 toxic action pocket을 분리한다.
+
+즉 HS-JEPA core는 직접 classifier가 아니라, action-health와 listener responsibility를 위한 hidden human-state geometry라는 주장이 더 강해졌다.
 
 `LIFELOG_CORE_STATE_EVIDENCE_KO.md`는 public LB 없이 OG lifelog-derived context만으로 HS-JEPA core representation이 무엇을 설명하는지 정리한다. 현재 결론은 명확하다.
 

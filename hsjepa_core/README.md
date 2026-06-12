@@ -38,6 +38,7 @@ python3 hsjepa_core/build_core_architecture_manifest.py
 python3 hsjepa_core/run_core_reference_demo.py
 python3 hsjepa_core/run_core_module_benchmark.py
 python3 hsjepa_core/run_lifelog_core_state_evidence.py
+python3 hsjepa_core/run_masked_context_world_model.py
 ```
 
 ## 산출물
@@ -54,6 +55,9 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 - `hsjepa_core/outputs/lifelog_core_state_evidence/lifelog_core_state_evidence_summary.json`
 - `hsjepa_core/outputs/lifelog_core_state_evidence/lifelog_core_state_evidence_ko.md`
 - `hsjepa_core/outputs/lifelog_core_state_evidence/*_metrics.csv`
+- `hsjepa_core/outputs/masked_context_world_model/masked_context_world_model_summary.json`
+- `hsjepa_core/outputs/masked_context_world_model/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
+- `hsjepa_core/outputs/masked_context_world_model/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -61,6 +65,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 - `hsjepa_core/run_core_reference_demo.py`: synthetic context/listener/action으로 module removal behavior를 보여주는 reference run.
 - `hsjepa_core/run_core_module_benchmark.py`: 여러 generic human-state scenario에서 full core와 module-removal policy를 비교하는 dataset-free benchmark.
 - `hsjepa_core/run_lifelog_core_state_evidence.py`: public LB 없이 OG lifelog-derived feature table만으로 core-state representation의 label manifold, masked-view prediction, nearest-neighbor consistency, external action replay를 검증하는 real-data evidence run.
+- `hsjepa_core/run_masked_context_world_model.py`: semantic lifelog view를 하나씩 mask하고 나머지 view로 target-view PCA representation을 예측해, explicit HS-JEPA world-model state와 residual energy를 만든다.
 
 ## Real-Data Core Evidence
 
@@ -86,6 +91,34 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 HS-JEPA core is not a standalone label predictor.
 It is a human-state geometry that makes row-action support and action-health
 more recoverable before the competition adapter releases a sparse correction.
+```
+
+## Explicit Masked Context World Model
+
+`run_masked_context_world_model.py`는 HS-JEPA core를 더 직접적인 JEPA 형태로 검증한다.
+
+```text
+visible lifelog views
+  -> predict masked target-view representation
+  -> predicted state + residual surprise energy
+  -> label/action structure probe
+```
+
+현재 핵심 결과:
+
+- best masked target view는 `app_social_context`이고, null 대비 component-correlation lift는 `+0.248882`다.
+- masked world-model predicted state의 nearest-neighbor target match lift는 `+0.031302`다.
+- 하지만 grouped label probe에서 world full-state mean logloss는 `1.122751`로 prior `0.677858`보다 나쁘다.
+- anchor-free world-model KNN OOF logloss는 calibration 후 `0.715135`다.
+- action-health diagnostic에서는 S3 app/social low-energy listener가 gain `0.945472 -> 1.487267`, S4 calendar high-energy listener가 gain `-0.425003 -> 0.099617`로 toxic pocket을 분리했다.
+- diagnostic candidate: `submission_hsjepa_masked_context_world_model_core_ff673c9a_uploadsafe.csv`
+
+해석:
+
+```text
+Masked context prediction은 JEPA-style hidden representation으로 의미가 있다.
+하지만 이 representation을 direct label predictor로 쓰면 실패한다.
+따라서 HS-JEPA core는 classifier가 아니라, adapter가 사용할 action-health/surprise geometry다.
 ```
 
 ## Core가 아닌 것

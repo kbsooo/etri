@@ -1,0 +1,6 @@
+target,selected_score_col,selected_mode,selected_cells,selected_gain_sum,all_gain_sum,removed_gain_sum,selected_positive_gain_rate,all_positive_gain_rate
+S3,wm_energy_app_social_context,low_energy_listener,7,1.4872666440459628,0.9454718451027285,-0.5417947989432342,0.8571428571428571,0.6153846153846154
+S4,wm_energy_calendar_rhythm,high_energy_listener,2,0.09961726343071547,-0.4250028701289651,-0.5246201335596805,0.5,0.4
+Q3,wm_energy_mean,low_energy_listener,5,1.176419367574208,1.1683141095786307,-0.008105257995577375,0.8,0.6666666666666666
+Q2,wm_energy_calendar_rhythm,low_energy_listener,6,1.882834570305801,1.9768237485236424,0.09398917821784147,1.0,0.75
+S2,wm_energy_calendar_rhythm,low_energy_listener,3,0.8985573989861357,1.3614369514910036,0.4628795525048679,1.0,1.0
