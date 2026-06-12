@@ -14,6 +14,7 @@
 - `paper_hsjepa_core/RAW_KNN_FAILURE_DETECTOR_KO.md`
 - `paper_hsjepa_core/RAW_KNN_OVERRIDE_SAFETY_JURY_KO.md`
 - `paper_hsjepa_core/CONTRASTIVE_FAILURE_ATLAS_KO.md`
+- `paper_hsjepa_core/FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -135,6 +136,30 @@ consensus guard는 action-health stress diagnostic으로는 유용하지만, rel
 prototype atlas는 raw KNN보다 평균 OOF를 조금 개선하지만 matched-null을 통과하지 못한다.
 따라서 HS-JEPA core representation alone은 release-grade action solver가 아니며,
 row-target assignment/release decoder가 별도로 필요하다.
+```
+
+`FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`는 prototype atlas 실패 이후의 다음 질문을 다룬다. sharp GBDT boundary가 완전한 black-box인지, 아니면 작은 HS-JEPA action law로 증류되는지 확인한다.
+
+현재 핵심 결과:
+
+- raw KNN OOF: `0.636997`
+- depth-2 law OOF: `0.632902`
+- GBDT failure detector OOF: `0.632478`
+- delta vs raw KNN: `-0.004095`
+- delta vs GBDT detector: `+0.000425`
+- OOF switched cells: `59`
+- target+family matched-null p-value: `0.024750`
+- nonzero feature count: `2`
+- selected feature: `expert_prob_mean`, `abs_vs_core`
+- generated candidate: `submission_hsjepa_failure_boundary_law_distillation_65ce2d48_uploadsafe.csv`
+- submission priority: `high_information_sensor_prior_reset_law`
+
+현재 해석:
+
+```text
+raw-KNN failure boundary는 완전한 black-box가 아니며,
+core geometry와 route-average probability만으로 거의 GBDT 수준까지 증류된다.
+HS-JEPA core는 label predictor가 아니라 prior-reset/action-toxicity를 판단하는 listener agreement 기준점으로 작동한다.
 ```
 
 ## 핵심 질문

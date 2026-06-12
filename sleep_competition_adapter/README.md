@@ -24,6 +24,7 @@ python3 sleep_competition_adapter/negative_tangent_invariant_projection_solver.p
 python3 sleep_competition_adapter/counterfactual_listener_dropout_solver.py
 python3 sleep_competition_adapter/raw_knn_override_safety_jury.py
 python3 sleep_competition_adapter/contrastive_failure_atlas.py
+python3 sleep_competition_adapter/failure_boundary_law_distillation.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -36,6 +37,8 @@ python3 sleep_competition_adapter/contrastive_failure_atlas.py
 
 `contrastive_failure_atlas.py`는 같은 질문을 더 architecture-first로 바꾼 ablation이다. 성공 action과 toxic action을 HS-JEPA state 공간의 positive/negative prototype atlas로 만들고, prototype energy만으로 raw-KNN override를 시도한다. OOF는 `0.635425`로 raw KNN보다 조금 좋지만 matched-null p-value가 `0.53` 수준이라 release-grade 증거는 아니다. 이 결과는 HS-JEPA core alone이 action solver가 아니라, 별도 row-target assignment/release decoder가 필요하다는 결론을 강화한다.
 
+`failure_boundary_law_distillation.py`는 sharp failure boundary를 해석 가능한 law로 증류한다. depth-2 tree가 `expert_prob_mean`과 `abs_vs_core` 두 feature만으로 raw KNN OOF `0.636997`을 `0.632902`까지 낮췄고, GBDT detector `0.632478`과 거의 같은 수준이다. test에서는 20개 row의 7개 target 전체를 `global_prior`로 reset하는 high-information sensor candidate를 만든다. 이 결과는 HS-JEPA core가 direct predictor가 아니라 raw memory와 action route가 core geometry에서 벗어나는 정도를 재는 prior-reset/toxicity law로 쓰일 수 있음을 보여준다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -47,6 +50,7 @@ python3 sleep_competition_adapter/contrastive_failure_atlas.py
 - `sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/counterfactual_listener_dropout_readout_ko.md`
 - `sleep_competition_adapter/outputs/raw_knn_override_safety_jury/RAW_KNN_OVERRIDE_SAFETY_JURY_KO.md`
 - `sleep_competition_adapter/outputs/contrastive_failure_atlas/CONTRASTIVE_FAILURE_ATLAS_KO.md`
+- `sleep_competition_adapter/outputs/failure_boundary_law_distillation/FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`
 
 ## 경계
 

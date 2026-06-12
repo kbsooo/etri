@@ -1,0 +1,7 @@
+|--- abs_vs_core <= 0.27
+|   |--- expert_prob_mean <= 0.17
+|   |   |--- value: [-0.65]
+|   |--- expert_prob_mean >  0.17
+|   |   |--- value: [-0.01]
+|--- abs_vs_core >  0.27
+|   |--- value: [-0.55]
