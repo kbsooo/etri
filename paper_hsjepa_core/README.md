@@ -12,6 +12,7 @@
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
+- `paper_hsjepa_core/ACTION_EPISODE_LISTENER_TRANSPORT_KO.md`
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
@@ -127,6 +128,32 @@ responsibility transport다.
 
 이 실험은 cohort 방향을 버리라는 뜻이 아니라, cohort를 `사람 단위 평균 fingerprint`로 정의하면
 HS-JEPA action responsibility를 설명하기에 너무 거칠다는 negative evidence다.
+
+`ACTION_EPISODE_LISTENER_TRANSPORT_KO.md`는 위 negative evidence를 반영해 responsibility 전이 단위를 subject에서 row-target action episode로 바꾼다. 같은 target, action expert/family, HS-JEPA residual geometry가 가까운 peer action의 gain으로 현재 action을 keep/veto한다.
+
+현재 핵심 결과:
+
+- release policy: `target_expert__knn3__uniform__thr-0.10`
+- original OOF gain sum: `5.027044`
+- kept OOF gain sum: `5.857716`
+- OOF gain delta: `+0.830672`
+- removed action gain sum: `-0.830672`
+- active subjects: `6`
+- positive subjects: `2`
+- negative subjects: `1`
+- test vetoed switched cells: `29`
+- verdict: `action_episode_transport_positive`
+
+현재 해석:
+
+```text
+HS-JEPA responsibility는 subject 평균 fingerprint로는 전이되지 않지만,
+row-target action route와 residual geometry를 같이 보면 일부 전이된다.
+```
+
+이것은 HS-JEPA adapter claim에 더 가까운 positive evidence다. 다만 개선은 S3/id06 쪽에 집중되고
+S4/id04 손실이 남아 있어, 논문에서는 `완성된 decoder`가 아니라
+`action-episode responsibility transport가 필요한 이유와 가능성`으로 설명해야 한다.
 
 `LIFELOG_CORE_STATE_EVIDENCE_KO.md`는 public LB 없이 OG lifelog-derived context만으로 HS-JEPA core representation이 무엇을 설명하는지 정리한다. 현재 결론은 명확하다.
 

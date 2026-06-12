@@ -15467,3 +15467,74 @@ Next:
 The next big-bet should define cohort at the action-episode level:
 similar subject fingerprint + similar route/action expert + similar residual-energy pattern.
 Subject-level averaging is too coarse for HS-JEPA action responsibility.
+
+## 2026-06-13 - HS-JEPA Action-Episode Listener Transport
+
+### Question
+
+Subject-level cohort responsibility가 실패했다면, responsibility의 단위를 row-target action episode로 낮추면
+HS-JEPA residual geometry가 peer action gain을 전이할 수 있는가?
+
+### Experiment: Action-Episode Listener Transport
+
+- Code: `sleep_competition_adapter/action_episode_listener_transport.py`
+- Core input: `hsjepa_core/run_masked_context_world_model.py`
+- Adapter input: `sleep_competition_adapter/cross_subject_episode_prototype_transport.py`
+- Doc: `paper_hsjepa_core/ACTION_EPISODE_LISTENER_TRANSPORT_KO.md`
+- Candidate: `submission_hsjepa_action_episode_listener_transport_6e58a450_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+target + action route + HS-JEPA world-model residual geometry
+  -> peer action gain
+  -> keep/veto current row-target action
+```
+
+Result:
+
+- release policy: `target_expert__knn3__uniform__thr-0.10`
+- source OOF action cells: `44`
+- original gain sum: `5.027044`
+- kept cells: `38`
+- kept gain sum: `5.857716`
+- removed cells: `6`
+- removed gain sum: `-0.830672`
+- OOF gain delta: `+0.830672`
+- active subjects: `6`
+- positive subjects: `2`
+- negative subjects: `1`
+- min subject improvement: `-0.355817`
+- target-level gain: S3 `+1.186489`, S4 `-0.355817`
+- test switched cells: `105 -> 76 kept / 29 vetoed`
+- upload-safe validation passed
+- verdict: `action_episode_transport_positive`
+
+Interpretation:
+
+Positive evidence:
+
+```text
+Subject-average cohort transport failed, but route/action/residual action-episode transport recovers positive OOF toxicity separation.
+```
+
+Remaining risk:
+
+```text
+The gain is concentrated in S3/id06-like action episodes and still hurts S4/id04.
+The current solver is architecture evidence, not a fully stable release decoder.
+```
+
+Architecture implication:
+
+```text
+HS-JEPA responsibility should be modeled as action-episode transport:
+not "which subject is similar?" but "which row-target action route has similar residual geometry?"
+```
+
+Next:
+
+The next high-value step is to make this less brittle by adding target-specific route guards:
+keep action-episode transport for S3-like routes, but require stronger evidence or separate listener
+for S4-like routes where the current policy still loses gain.

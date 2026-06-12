@@ -37,6 +37,7 @@ python3 sleep_competition_adapter/cross_subject_surprise_responsibility_veto.py
 python3 sleep_competition_adapter/world_model_residual_action_decoder.py
 python3 sleep_competition_adapter/subject_invariant_world_model_listener_solver.py
 python3 sleep_competition_adapter/cohort_listener_responsibility_transport.py
+python3 sleep_competition_adapter/action_episode_listener_transport.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -77,6 +78,8 @@ python3 sleep_competition_adapter/cohort_listener_responsibility_transport.py
 
 `cohort_listener_responsibility_transport.py`는 cell-level rule을 더 크게 바꿔, world-model subject fingerprint가 비슷한 peer subject에서 listener responsibility rule을 빌려오는 실험이다. 기대는 subject/cohort-level responsibility가 subject-LOO 붕괴를 줄이는 것이었지만 결과는 반대였다. best k=1에서도 kept gain sum이 `5.027044`에서 `2.681536`으로 떨어졌고, improvement는 `-2.345507`였다. 특히 id05/S3 계열에서 peer rule이 좋은 action을 잘못 제거했다. 판정은 `cohort_transport_negative_or_inconclusive`다. 즉 현재 HS-JEPA subject fingerprint만으로는 action responsibility가 전이되지 않으며, 다음은 subject similarity가 아니라 route/action-context까지 포함한 responsibility transport가 필요하다. 후보 파일은 `submission_hsjepa_cohort_listener_responsibility_transport_50e86104_uploadsafe.csv`다.
 
+`action_episode_listener_transport.py`는 cohort 실패를 반영해 responsibility 전이 단위를 subject 평균에서 row-target action episode로 낮춘다. 같은 target/action expert/route와 HS-JEPA residual geometry가 가까운 peer action의 gain으로 현재 action을 keep/veto한다. 결과는 positive다. release policy `target_expert__knn3__uniform__thr-0.10`에서 kept gain sum이 `5.027044`에서 `5.857716`으로 증가했고, removed action gain sum은 `-0.830672`였다. positive subjects 2, negative subjects 1이며 판정은 `action_episode_transport_positive`다. 다만 개선은 S3/id06 쪽에 강하고 S4/id04 손실이 남아 있어, 완성된 release law라기보다 `route/action/residual geometry에서 responsibility가 일부 전이된다`는 architecture evidence로 보는 것이 맞다. 후보 파일은 `submission_hsjepa_action_episode_listener_transport_6e58a450_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -101,6 +104,7 @@ python3 sleep_competition_adapter/cohort_listener_responsibility_transport.py
 - `sleep_competition_adapter/outputs/world_model_residual_action_decoder/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `sleep_competition_adapter/outputs/subject_invariant_world_model_listener_solver/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `sleep_competition_adapter/outputs/cohort_listener_responsibility_transport/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
+- `sleep_competition_adapter/outputs/action_episode_listener_transport/ACTION_EPISODE_LISTENER_TRANSPORT_KO.md`
 
 ## 경계
 
