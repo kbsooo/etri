@@ -27,6 +27,7 @@ python3 sleep_competition_adapter/contrastive_failure_atlas.py
 python3 sleep_competition_adapter/failure_boundary_law_distillation.py
 python3 sleep_competition_adapter/row_reset_episode_detector.py
 python3 sleep_competition_adapter/episode_selective_assignment_decoder.py
+python3 sleep_competition_adapter/episode_action_space_restriction_decoder.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -45,6 +46,8 @@ python3 sleep_competition_adapter/episode_selective_assignment_decoder.py
 
 `episode_selective_assignment_decoder.py`는 row episode detector와 target/listener assignment를 결합한 ablation이다. 기대는 row-level hidden episode state가 cell-level release decision의 독성을 줄이는 것이었지만, clean OOF에서 episode-conditioned assignment `0.632902`는 no-episode route law `0.632902`와 같았다. 최종 model은 `row_episode_*` feature를 쓰지 않았고, 생성 후보도 failure-boundary law와 동일한 prediction이다. 따라서 이 실험은 positive release가 아니라 negative architecture evidence다. row episode는 diagnostic으로 살아 있지만, 단순 feature injection이 아니라 episode-conditioned action-space restriction 또는 listener responsibility reweighting이 필요하다.
 
+`episode_action_space_restriction_decoder.py`는 그 다음 구조를 검증한다. row episode state를 gain model feature로 넣지 않고, action 후보 공간을 제한하는 controller로 사용한다. clean OOF에서 unrestricted route law `0.632902`를 episode-family restricted policy `0.629771`까지 낮췄고, target+family null p-value는 `0.000625`다. 즉 HS-JEPA row-state encoder는 feature injection보다 action responsibility controller로 쓸 때 더 강하게 작동한다. 후보 파일은 `submission_hsjepa_episode_action_space_restriction_decoder_816c3a6e_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -59,6 +62,7 @@ python3 sleep_competition_adapter/episode_selective_assignment_decoder.py
 - `sleep_competition_adapter/outputs/failure_boundary_law_distillation/FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`
 - `sleep_competition_adapter/outputs/row_reset_episode_detector/ROW_RESET_EPISODE_DETECTOR_KO.md`
 - `sleep_competition_adapter/outputs/episode_selective_assignment_decoder/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
+- `sleep_competition_adapter/outputs/episode_action_space_restriction_decoder/EPISODE_ACTION_SPACE_RESTRICTION_DECODER_KO.md`
 
 ## 경계
 

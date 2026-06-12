@@ -17,6 +17,7 @@
 - `paper_hsjepa_core/FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`
 - `paper_hsjepa_core/ROW_RESET_EPISODE_DETECTOR_KO.md`
 - `paper_hsjepa_core/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
+- `paper_hsjepa_core/EPISODE_ACTION_SPACE_RESTRICTION_DECODER_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -205,6 +206,27 @@ row episode state는 diagnostic으로는 살아 있지만,
 단순 feature injection만으로는 release-grade target/listener assignment에 쓰이지 않았다.
 다음 구조는 episode score를 feature로 더하는 방식이 아니라,
 episode가 action space 자체를 제한하거나 listener responsibility를 재가중하는 방식이어야 한다.
+```
+
+`EPISODE_ACTION_SPACE_RESTRICTION_DECODER_KO.md`는 그 다음 구조적 결합을 검증한다. row episode score를 feature로 더하지 않고, action 후보 공간을 제한하는 controller로 사용했다.
+
+현재 핵심 결과:
+
+- raw KNN OOF: `0.636997`
+- unrestricted route law OOF: `0.632902`
+- episode action-space restriction OOF: `0.629771`
+- delta vs unrestricted: `-0.003132`
+- best policy: `episode_family_space_q90`
+- switched OOF cells: `44`
+- target+family null p-value: `0.000625`
+- generated candidate: `submission_hsjepa_episode_action_space_restriction_decoder_816c3a6e_uploadsafe.csv`
+
+현재 해석:
+
+```text
+episode를 ordinary feature로 넣으면 decoder가 무시했지만,
+episode가 action space를 제한하면 unrestricted route law를 이긴다.
+HS-JEPA row-state encoder는 label predictor보다 action responsibility controller로 더 잘 작동한다.
 ```
 
 ## 핵심 질문

@@ -1,0 +1,133 @@
+{
+  "package": "episode_action_space_restriction_decoder",
+  "status": "episode_action_space_restriction_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "uses_frontier_file": false,
+  "raw_knn_oof_logloss": 0.6369970821509948,
+  "best_overall_law_name": "route_tree_depth3_leaf24",
+  "best_overall_action_space_policy": "episode_family_space_q90",
+  "best_overall_oof_logloss": 0.6297705044462785,
+  "best_unrestricted_law_name": "route_tree_depth2_leaf28",
+  "best_unrestricted_oof_logloss": 0.6329024135132717,
+  "best_restricted_law_name": "route_tree_depth3_leaf24",
+  "best_restricted_action_space_policy": "episode_family_space_q90",
+  "best_restricted_oof_logloss": 0.6297705044462785,
+  "best_restricted_delta_vs_raw_knn": -0.007226577704716353,
+  "best_restricted_delta_vs_unrestricted": -0.0031319090669932326,
+  "release_law_name": "route_tree_depth3_leaf24",
+  "release_model_name": "route_tree_depth3_leaf24",
+  "release_action_space_policy": "episode_family_space_q90",
+  "release_action_space_kind": "episode_family_space",
+  "release_selection_policy": "topfrac",
+  "release_selection_param": 0.06,
+  "release_oof_logloss": 0.6297705044462785,
+  "release_switched_cells": 44,
+  "release_available_candidate_cells": 77,
+  "release_positive_true_gain_rate": 0.7045454545454546,
+  "release_episode_family_match_rate": 1.0,
+  "release_target_null_p_ge_observed": 0.0025,
+  "release_target_family_null_p_ge_observed": 0.000625,
+  "release_top_features": [
+    {
+      "feature": "expert_prob_mean",
+      "importance": 0.4135757427690803
+    },
+    {
+      "feature": "abs_vs_core",
+      "importance": 0.3581087554947627
+    },
+    {
+      "feature": "confidence_delta",
+      "importance": 0.22831550173615692
+    },
+    {
+      "feature": "expert_pred",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_logit",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_idx",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_q",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_s",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_q2",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_s2",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_global_prior",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_subject_prior",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_core_geometry",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_core_action_health",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_raw_action_core_gate",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_strict",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_balanced",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_wide",
+      "importance": 0.0
+    }
+  ],
+  "release_nonzero_feature_count": 3,
+  "episode_thresholds": {
+    "q70": 0.0194373377930282,
+    "q80": 0.026330083308290925,
+    "q90": 0.03676661743585959
+  },
+  "candidate_file": "submission_hsjepa_episode_action_space_restriction_decoder_816c3a6e_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_episode_action_space_restriction_decoder_816c3a6e_uploadsafe.csv",
+  "candidate_matches_failure_boundary_law": false,
+  "test_switched_cells": 105,
+  "test_switched_rows": 15,
+  "test_selected_expert_counts": {
+    "core_knn_blend": 56,
+    "global_prior": 46,
+    "subject_prior": 3
+  },
+  "test_target_counts": {
+    "Q1": 15,
+    "Q2": 15,
+    "Q3": 15,
+    "S1": 15,
+    "S2": 15,
+    "S3": 15,
+    "S4": 15
+  },
+  "architecture_verdict": "restricted action-space가 unrestricted route law를 이겼다. row episode state가 action toxicity를 줄이는 controller로 작동했다는 positive evidence다.",
+  "submission_priority": "high_information_sensor_episode_action_space_restriction"
+}
