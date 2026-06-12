@@ -32,6 +32,7 @@ python3 sleep_competition_adapter/episode_controller_stress_audit.py
 python3 sleep_competition_adapter/subject_invariant_episode_controller.py
 python3 sleep_competition_adapter/cross_subject_episode_prototype_transport.py
 python3 sleep_competition_adapter/masked_view_surprise_action_release.py
+python3 sleep_competition_adapter/surprise_responsibility_toxicity_veto.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -62,6 +63,8 @@ python3 sleep_competition_adapter/masked_view_surprise_action_release.py
 
 `masked_view_surprise_action_release.py`는 HS-JEPA core를 더 직접적인 JEPA objective로 찌른다. calendar/phone/body/app/mobility view 중 하나를 가리고 나머지 view로 target-view PCA representation을 예측한 뒤, residual energy가 큰 row를 hidden episode로 본다. public LB ledger와 action teacher 없이 Q3/Q2/S3 target prevalence shift `0.15~0.18`을 발견했고, surprise top 30%가 row-state frontier 45개 중 16개를 회수했다. random 대비 recall lift는 `+0.0556`, precision lift는 `+0.0333`으로 작지만 양수다. 후보 파일은 `submission_hsjepa_masked_view_surprise_action_release_14472506_uploadsafe.csv`이며, 이 실험의 핵심 가치는 점수 보장보다 `masked context prediction residual energy -> hidden human-state episode -> row-target action support`라는 JEPA mapping을 검증한다는 데 있다.
 
+`surprise_responsibility_toxicity_veto.py`는 위 residual energy를 직접 action으로 쓰지 않고, target별 listener responsibility로 쓴다. episode action-space release의 OOF 44 cells에서 masked-surprise listener rule이 12개를 veto했고, 원래 gain sum `5.311535`가 kept-only `5.542476`으로 증가했다. 제거된 cells의 gain sum은 `-0.230941`이다. 다만 release OOF가 `id02`, `id09` 두 subject에 몰려 있어 subject-heldout stress는 강한 검증이 아니라 약한 진단이다. 후보 파일은 `submission_hsjepa_surprise_responsibility_toxicity_veto_5e3d6e26_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -81,6 +84,7 @@ python3 sleep_competition_adapter/masked_view_surprise_action_release.py
 - `sleep_competition_adapter/outputs/subject_invariant_episode_controller/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
 - `sleep_competition_adapter/outputs/cross_subject_episode_prototype_transport/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
 - `sleep_competition_adapter/outputs/masked_view_surprise_action_release/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
+- `sleep_competition_adapter/outputs/surprise_responsibility_toxicity_veto/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
 
 ## 경계
 

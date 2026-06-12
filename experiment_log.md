@@ -15075,3 +15075,56 @@ What remains unresolved:
 ```text
 Surprise energy still needs listener responsibility and toxicity veto before it can be trusted as a public/private-safe release policy.
 ```
+
+## 2026-06-13 - HS-JEPA Surprise Responsibility Toxicity Veto
+
+### Question
+
+Masked-view residual energy가 action을 직접 만들기보다, target별 listener responsibility로 episode action-space decoder의 독성 cell을 줄일 수 있는가?
+
+### Experiment: Surprise Responsibility Toxicity Veto
+
+- Code: `sleep_competition_adapter/surprise_responsibility_toxicity_veto.py`
+- Doc: `paper_hsjepa_core/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
+- Candidate: `submission_hsjepa_surprise_responsibility_toxicity_veto_5e3d6e26_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+episode action-space proposed action
+  + masked-view surprise responsibility score
+  -> target-specific high/low/all listener rule
+  -> veto unhealthy row-target actions
+```
+
+Result:
+
+- source OOF release cells: `44`
+- original gain sum: `5.311535`
+- kept cells after surprise responsibility veto: `32`
+- kept gain sum: `5.542476`
+- removed cells: `12`
+- removed gain sum: `-0.230941`
+- original positive gain rate: `0.704545`
+- kept positive gain rate: `0.781250`
+- test switched cells: `105 -> 72 kept / 33 vetoed`
+
+Interpretation:
+
+Positive local evidence:
+
+```text
+Masked-view residual energy can reduce action toxicity when used as target-specific listener responsibility.
+```
+
+Important limitation:
+
+```text
+The source OOF release is concentrated in id02 and id09, so subject-heldout stress is weak.
+This is not yet proof of subject-general toxicity control.
+```
+
+Next:
+
+The next high-value experiment is to create a broader cross-subject action field first, then apply surprise responsibility veto there. If the veto still removes negative-gain cells across more subjects, the HS-JEPA action-health story becomes much stronger.

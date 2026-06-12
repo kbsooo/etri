@@ -944,3 +944,42 @@ target prevalence law와 neighbor margin이 동의하는 row-target action만 re
 자세한 설명:
 
 - `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
+
+### 18. Surprise Responsibility Toxicity Veto
+
+```bash
+python3 sleep_competition_adapter/surprise_responsibility_toxicity_veto.py
+```
+
+이 스크립트는 masked-view residual energy를 action 생성기가 아니라
+target별 listener responsibility로 사용한다. 즉 `surprise가 큰 row를 움직인다`가
+아니라, `이 target은 high-surprise listener를 믿을지, low-surprise listener를
+믿을지, 아니면 전체 action을 유지할지`를 OOF action gain으로 고른다.
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- source decoder: `episode_action_space_restriction_decoder`
+- original OOF release cells: `44`
+- original OOF gain sum: `5.311535`
+- surprise-veto kept cells: `32`
+- kept gain sum: `5.542476`
+- removed gain sum: `-0.230941`
+- original positive gain rate: `0.704545`
+- kept positive gain rate: `0.781250`
+- generated candidate: `submission_hsjepa_surprise_responsibility_toxicity_veto_5e3d6e26_uploadsafe.csv`
+
+해석:
+
+- masked-view surprise energy는 넓은 action을 직접 만드는 장치보다
+  target listener responsibility / toxicity veto로 더 자연스럽게 작동한다.
+- OOF에서는 독성 cell을 일부 제거한다.
+- 하지만 release OOF가 `id02`, `id09` 두 subject에 몰려 있어 subject-heldout
+  stress는 강한 검증이 아니다. 논문에서는 positive evidence와 subject-tail
+  한계를 같이 말해야 한다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
