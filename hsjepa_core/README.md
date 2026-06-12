@@ -41,6 +41,7 @@ python3 hsjepa_core/run_core_module_benchmark.py
 python3 hsjepa_core/run_lifelog_core_state_evidence.py
 python3 hsjepa_core/run_masked_context_world_model.py
 python3 hsjepa_core/run_action_support_world_model_core.py
+python3 hsjepa_core/run_action_support_view_invariance_core.py
 ```
 
 ## 산출물
@@ -63,6 +64,9 @@ python3 hsjepa_core/run_action_support_world_model_core.py
 - `hsjepa_core/outputs/action_support_world_model_core/action_support_world_model_core_summary.json`
 - `hsjepa_core/outputs/action_support_world_model_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
 - `hsjepa_core/outputs/action_support_world_model_core/*_metrics.csv`
+- `hsjepa_core/outputs/action_support_view_invariance_core/action_support_view_invariance_core_summary.json`
+- `hsjepa_core/outputs/action_support_view_invariance_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
+- `hsjepa_core/outputs/action_support_view_invariance_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -72,6 +76,7 @@ python3 hsjepa_core/run_action_support_world_model_core.py
 - `hsjepa_core/run_lifelog_core_state_evidence.py`: public LB 없이 OG lifelog-derived feature table만으로 core-state representation의 label manifold, masked-view prediction, nearest-neighbor consistency, external action replay를 검증하는 real-data evidence run.
 - `hsjepa_core/run_masked_context_world_model.py`: semantic lifelog view를 하나씩 mask하고 나머지 view로 target-view PCA representation을 예측해, explicit HS-JEPA world-model state와 residual energy를 만든다.
 - `hsjepa_core/run_action_support_world_model_core.py`: train label만으로 raw lifelog-memory action의 success/toxicity target을 만들고, HS-JEPA masked world-state가 subject-heldout으로 action-support를 예측하는지 검증한다.
+- `hsjepa_core/run_action_support_view_invariance_core.py`: action-support 신호가 target/action shortcut인지, single-view artifact인지, masked world-state residual/energy 신호인지 stress한다.
 
 ## 팀 공유 시 주의점
 
@@ -173,6 +178,32 @@ visible lifelog context
 HS-JEPA core는 broad raw-memory action generator가 아니다.
 하지만 action을 release하기 전에 어떤 row-target action이 toxic한지 구분하는
 world-state/action-support geometry를 제공한다.
+```
+
+## Action-Support View Invariance Core
+
+`run_action_support_view_invariance_core.py`는 위 action-support 결과를 더 엄격하게 찌른다.
+같은 train-only action-support target을 두고 target/action-only baseline, target-blind world state,
+single-view world state, leave-one-view-out world state를 비교한다.
+
+현재 핵심 결과:
+
+- selected feature set: `world_residual_energy`
+- selected policy: `top10_all_cells`
+- selected decoder: `raw_memory_release`
+- support AUC/AP: `0.542555` / `0.536845`
+- selected OOF gain sum: `+6.146252`
+- target-shuffle null 대비 gain lift: `+9.817777`, z-score `2.942742`
+- target/action-only baseline은 selected gain `-4.107447`로 실패했다.
+- target-blind world full-state는 baseline보다는 낫지만 selected gain `-0.320604`로 아직 positive는 아니다.
+- anchor-free candidate: `submission_hsjepa_action_support_view_invariance_anchor_free_84071a4b_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA world-state residual/energy는 target/action-only shortcut보다 강한 action-support 신호를 가진다.
+하지만 완전한 target-invariant core라고 주장하기에는 아직 부족하고,
+listener/target route conditioning이 필요한 상태다.
 ```
 
 ## Core가 아닌 것

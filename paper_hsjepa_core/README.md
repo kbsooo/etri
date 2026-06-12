@@ -11,6 +11,7 @@
 - `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
 - `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
+- `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
@@ -77,6 +78,26 @@ hidden world-state representation이다.
 ```
 
 이 문서는 `Cross-Subject Episode Prototype Transport`보다 더 HS-JEPA core에 가깝다. 단, 생성된 submission은 best-score adapter가 아니라 core-only action-support sensor로 읽어야 한다.
+
+`ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`는 위 action-support 신호가 target/action shortcut인지 stress한다. 같은 train-only target을 target/action-only, target-blind, single-view, leave-one-view-out feature set으로 다시 예측했다.
+
+현재 핵심 결과:
+
+- target/action-only baseline selected gain: `-4.107447`
+- selected world-state feature set: `world_residual_energy`
+- selected OOF gain sum: `+6.146252`
+- support AUC/AP: `0.542555` / `0.536845`
+- target-shuffle null 대비 gain lift: `+9.817777`, z-score `2.942742`
+- target-blind world full-state는 baseline보다 낫지만 selected gain `-0.320604`로 positive는 아니다.
+- verdict: `world_state_signal_positive_target_blind_weakly_survives`
+
+현재 해석:
+
+```text
+HS-JEPA residual/energy world state는 target/action-only shortcut보다 강한 action-support 신호를 가진다.
+다만 완전한 target-invariant representation은 아니므로,
+논문 주장은 "listener-conditioned human-state action-support model"이어야 한다.
+```
 
 `WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`는 이 core evidence를 adapter로 번역하는 다음 단계다. masked-context world model의 residual energy를 cross-subject prototype transport action field의 target-specific listener로 사용했다.
 

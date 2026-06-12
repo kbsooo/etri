@@ -15755,3 +15755,89 @@ Competition adapter는 이 core signal을 release-grade row-target correction으
 1. subject-heldout support score가 특정 subject/target shortcut인지 stress한다.
 2. inverse-toxic decoder를 target-route responsibility와 결합하되, public anchor 없이 OOF evidence만으로 선택한다.
 3. candidate public 결과가 들어오면 score 자체보다 `low-support toxic inversion` 세계관이 public sensor에서 살아나는지 해석한다.
+
+## 2026-06-13 - HS-JEPA Action-Support View Invariance Core
+
+### Question
+
+방금 발견한 action-support world model 신호가 진짜 HS-JEPA world-state에서 온 것인가,
+아니면 target/action magnitude, target onehot, 또는 특정 lifelog view 하나의 shortcut인가?
+
+### Experiment: Action-Support View Invariance Core
+
+- Code: `hsjepa_core/run_action_support_view_invariance_core.py`
+- Paper doc: `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
+- Output dir: `hsjepa_core/outputs/action_support_view_invariance_core/`
+- Candidate: `submission_hsjepa_action_support_view_invariance_anchor_free_84071a4b_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Stress feature sets:
+
+```text
+target/action-only baseline
+target-blind world full-state
+target-family world full-state
+world predicted-only
+world residual + energy
+single-view world listeners
+leave-one-view-out world listeners
+```
+
+### Result
+
+- verdict: `world_state_signal_positive_target_blind_weakly_survives`
+- selected feature set: `world_residual_energy`
+- selected policy: `top10_all_cells`
+- selected decoder: `raw_memory_release`
+- support AUC/AP: `0.542555` / `0.536845`
+- selected cells: `315`
+- selected OOF gain sum: `+6.146252`
+- selected mean gain: `+0.019512`
+- selected positive gain rate: `0.565079`
+- target-shuffle null mean gain: `-3.671525`
+- gain lift vs null: `+9.817777`
+- gain z vs null: `2.942742`
+- released test cells: `136`
+- upload-safe validation passed
+
+Important comparisons:
+
+- `target_action_only`: selected gain `-4.107447`
+- `world_full_all_views`: selected gain `+3.432323`
+- `world_residual_energy`: selected gain `+6.146252`
+- `target_blind_world_full`: selected gain `-0.320604`
+- best single view: `calendar_rhythm`, selected gain `+2.406992`
+- best leave-one-view stress: `leaveout_view_app_social_context`, selected gain `+4.682284`
+
+### Interpretation
+
+Strengthened:
+
+```text
+HS-JEPA residual/energy world state carries action-support information that
+target/action-only baseline does not capture.
+```
+
+Constrained:
+
+```text
+The signal is not fully target-invariant.
+Target-blind world full-state beats the target/action baseline but is still slightly negative.
+Therefore the paper claim should be listener-conditioned, not target-agnostic.
+```
+
+Architecture implication:
+
+```text
+HS-JEPA core should be presented as:
+visible human context -> hidden world-state residual/energy -> listener-conditioned action-support.
+
+It should not be presented as:
+visible human context -> universal target-free action decoder.
+```
+
+### Next
+
+The next core-side big-bet is to make the listener-conditioning explicit:
+learn or distill a target-route listener that uses world residual/energy without public anchors,
+then stress it with subject-heldout and target-family-heldout probes.
