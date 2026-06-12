@@ -1,0 +1,24 @@
+{
+  "package": "episode_controller_stress_audit",
+  "status": "subject_loo_policy_stress_complete",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "uses_frontier_file": false,
+  "source_candidate_file": "submission_hsjepa_episode_action_space_restriction_decoder_816c3a6e_uploadsafe.csv",
+  "source_best_restricted_oof_logloss": 0.6297705044462785,
+  "raw_oof_logloss_from_cells": 0.6369970821509948,
+  "full_best_policy_key": "route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06",
+  "full_best_policy_logloss": 0.6297705044462785,
+  "full_best_policy_gain_per_cell": 0.007226577704716352,
+  "subject_loo_logloss": 0.6399967134283127,
+  "subject_loo_delta_vs_raw": 0.002999631277317838,
+  "subject_loo_positive_subject_rate": 0.0,
+  "selected_policy_counts": {
+    "route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06": 8,
+    "route_tree_depth2_leaf28||episode_rows_only_any_route_q90||topfrac||0.1": 1,
+    "route_tree_depth2_leaf28||episode_veto_family_mismatch_q90||topfrac||0.08": 1
+  },
+  "most_selected_policy": "route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06",
+  "verdict": "policy_selection_artifact_risk"
+}

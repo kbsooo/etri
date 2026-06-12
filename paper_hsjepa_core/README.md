@@ -18,6 +18,7 @@
 - `paper_hsjepa_core/ROW_RESET_EPISODE_DETECTOR_KO.md`
 - `paper_hsjepa_core/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
 - `paper_hsjepa_core/EPISODE_ACTION_SPACE_RESTRICTION_DECODER_KO.md`
+- `paper_hsjepa_core/EPISODE_CONTROLLER_STRESS_AUDIT_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -227,6 +228,27 @@ episode가 action space 자체를 제한하거나 listener responsibility를 재
 episode를 ordinary feature로 넣으면 decoder가 무시했지만,
 episode가 action space를 제한하면 unrestricted route law를 이긴다.
 HS-JEPA row-state encoder는 label predictor보다 action responsibility controller로 더 잘 작동한다.
+```
+
+`EPISODE_CONTROLLER_STRESS_AUDIT_KO.md`는 이 positive result가 policy-selection artifact인지 subject-LOO로 검증한다. 전체 OOF에서 best policy를 고르는 대신, 한 subject를 완전히 빼고 policy를 고른 뒤 held-out subject에서 평가했다.
+
+현재 핵심 결과:
+
+- full best policy OOF: `0.629771`
+- subject-LOO selected-policy OOF: `0.639997`
+- subject-LOO delta vs raw: `+0.003000`
+- subject-LOO positive subject rate: `0.000000`
+- verdict: `policy_selection_artifact_risk`
+
+현재 해석:
+
+```text
+episode action-space restriction은 full OOF에서는 강하지만,
+subject-LOO policy selection에서는 무너진다.
+따라서 이 구조는 제출 후보/센서로는 정보량이 높지만,
+논문 주장으로는 아직 subject-general controller가 아니라
+episode-conditioned policy overfit 위험을 가진다.
+다음 단계는 full OOF best policy가 아니라 subject-invariant controller objective다.
 ```
 
 ## 핵심 질문

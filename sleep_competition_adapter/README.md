@@ -28,6 +28,7 @@ python3 sleep_competition_adapter/failure_boundary_law_distillation.py
 python3 sleep_competition_adapter/row_reset_episode_detector.py
 python3 sleep_competition_adapter/episode_selective_assignment_decoder.py
 python3 sleep_competition_adapter/episode_action_space_restriction_decoder.py
+python3 sleep_competition_adapter/episode_controller_stress_audit.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -48,6 +49,8 @@ python3 sleep_competition_adapter/episode_action_space_restriction_decoder.py
 
 `episode_action_space_restriction_decoder.py`는 그 다음 구조를 검증한다. row episode state를 gain model feature로 넣지 않고, action 후보 공간을 제한하는 controller로 사용한다. clean OOF에서 unrestricted route law `0.632902`를 episode-family restricted policy `0.629771`까지 낮췄고, target+family null p-value는 `0.000625`다. 즉 HS-JEPA row-state encoder는 feature injection보다 action responsibility controller로 쓸 때 더 강하게 작동한다. 후보 파일은 `submission_hsjepa_episode_action_space_restriction_decoder_816c3a6e_uploadsafe.csv`다.
 
+`episode_controller_stress_audit.py`는 위 positive result를 subject-LOO policy selection으로 검증한다. 결과는 full OOF best `0.629771`와 달리 subject-LOO selected-policy `0.639997`, raw 대비 `+0.003000`으로 무너졌다. 따라서 episode action-space restriction은 정보량 높은 제출 센서이지만, 아직 subject-general controller라고 주장하기에는 약하다. 다음 adapter 방향은 full OOF best policy가 아니라 subject-invariant controller objective다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -63,6 +66,7 @@ python3 sleep_competition_adapter/episode_action_space_restriction_decoder.py
 - `sleep_competition_adapter/outputs/row_reset_episode_detector/ROW_RESET_EPISODE_DETECTOR_KO.md`
 - `sleep_competition_adapter/outputs/episode_selective_assignment_decoder/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
 - `sleep_competition_adapter/outputs/episode_action_space_restriction_decoder/EPISODE_ACTION_SPACE_RESTRICTION_DECODER_KO.md`
+- `sleep_competition_adapter/outputs/episode_controller_stress_audit/EPISODE_CONTROLLER_STRESS_AUDIT_KO.md`
 
 ## 경계
 

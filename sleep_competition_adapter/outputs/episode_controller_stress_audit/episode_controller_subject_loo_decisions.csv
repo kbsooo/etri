@@ -1,0 +1,11 @@
+heldout_subject,selected_policy_key,selected_law_name,selected_action_space_policy,selected_selection_policy,selected_selection_param,train_logloss,heldout_logloss,heldout_raw_logloss,heldout_gain_per_cell,heldout_selected_cells,heldout_positive
+id01,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.6211189443084433,0.7119603257557133,0.7119603257557133,0.0,0,False
+id02,route_tree_depth2_leaf28||episode_rows_only_any_route_q90||topfrac||0.1,route_tree_depth2_leaf28,episode_rows_only_any_route_q90,topfrac,0.1,0.6450585789529726,0.5399246636407055,0.5112918196299426,-0.028632844010762788,35,False
+id03,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.6385686800915843,0.5230926247469448,0.5230926247469448,0.0,0,False
+id04,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.6271813929455456,0.6480934473745413,0.6480934473745413,0.0,0,False
+id05,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.6251234063310902,0.6739179365405665,0.6739179365405665,0.0,0,False
+id06,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.6555227424518459,0.40970592512597476,0.40970592512597476,0.0,0,False
+id07,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.623508773595136,0.6832798408105865,0.6832798408105865,0.0,0,False
+id08,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.620104525553913,0.698175893530711,0.698175893530711,0.0,0,False
+id09,route_tree_depth2_leaf28||episode_veto_family_mismatch_q90||topfrac||0.08,route_tree_depth2_leaf28,episode_veto_family_mismatch_q90,topfrac,0.08,0.6162132496049012,0.7914494706427907,0.7914494706427907,0.0,0,False
+id10,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06,route_tree_depth3_leaf24,episode_family_space_q90,topfrac,0.06,0.6221420880553697,0.722265053186046,0.722265053186046,0.0,0,False
