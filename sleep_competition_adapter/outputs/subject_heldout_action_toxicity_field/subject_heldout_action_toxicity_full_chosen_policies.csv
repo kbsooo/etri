@@ -1,0 +1,8 @@
+target,policy,fraction,selected_cells,selected_gain_sum,selected_mean_gain,selected_positive_gain_rate,active_subjects,positive_subjects,negative_subjects,raw_action_count,inverse_action_count,null_gain_mean,null_gain_std,gain_lift_vs_null,gain_z_vs_null,action_health_score,accepted,accept_reason
+Q1,hold,0.0,0,0.0,0.0,,0,0,0,0,0,0.0,,0.0,,0.0,False,no_action_health_policy_passed
+Q2,hold,0.0,0,0.0,0.0,,0,0,0,0,0,0.0,,0.0,,0.0,False,no_action_health_policy_passed
+Q3,hold,0.0,0,0.0,0.0,,0,0,0,0,0,0.0,,0.0,,0.0,False,no_action_health_policy_passed
+S1,hold,0.0,0,0.0,0.0,,0,0,0,0,0,0.0,,0.0,,0.0,False,no_action_health_policy_passed
+S2,hold,0.0,0,0.0,0.0,,0,0,0,0,0,0.0,,0.0,,0.0,False,no_action_health_policy_passed
+S3,hold,0.0,0,0.0,0.0,,0,0,0,0,0,0.0,,0.0,,0.0,False,no_action_health_policy_passed
+S4,top_health_decisive,0.18,57,1.190090625751663,0.02087878290792391,0.631578947368421,8,6,2,17,40,-1.6127186128936977,1.544954401147772,2.8028092386453607,1.8141695551422796,2.5012653229097133,True,positive_subjectheldout_health_gain

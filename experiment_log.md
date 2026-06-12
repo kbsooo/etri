@@ -16186,3 +16186,101 @@ The core contribution must be masked human-state representation plus action-heal
 The next high-information experiment should learn a subject-heldout toxicity/listener field,
 not another all-subject route selector.
 ```
+
+## 2026-06-13 - HS-JEPA Subject-Heldout Action Toxicity Field
+
+### Question
+
+The previous diagnostic killed the broad claim that subject-balanced target-route conservation is already a subject-general law.
+This experiment lowers the unit from route policy to row-target-action:
+
+```text
+Can HS-JEPA core context predict whether a specific raw or inverse action is healthy,
+when the action-health score for each subject is produced without training on that subject?
+```
+
+### Method
+
+Code:
+
+```bash
+python3 sleep_competition_adapter/subject_heldout_action_toxicity_field.py
+```
+
+For each row-target cell, create two action modes:
+
+- `raw_memory_release`
+- `inverse_toxic_memory`
+
+Train an action-health classifier using:
+
+- target context;
+- raw/inverse action geometry;
+- listener-conditioned support score;
+- masked world-state residual/energy;
+- target/family interaction features.
+
+The score is generated subject-heldout:
+
+```text
+for each subject:
+  train action-health model on all other subjects
+  score only the held-out subject
+```
+
+Then a nested policy stress chooses target policies without each subject and applies them only to that held-out subject.
+
+The public-free boundary is preserved:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+### Result
+
+- verdict: `subject_heldout_action_toxicity_negative_or_fragile`
+- action-health AUC: `0.597026`
+- action-health AP: `0.567465`
+- action-health base rate: `0.500000`
+- feature count: `444`
+- full OOF selected cells: `57`
+- full OOF gain sum: `+1.190091`
+- nested heldout selected cells: `112`
+- nested heldout gain sum: `-5.538044`
+- nested positive gain rate: `0.491071`
+- nested positive subjects: `2`
+- nested negative subjects: `8`
+- stable targets: none
+- released test cells: `0`
+- candidate: `submission_hsjepa_subject_heldout_action_toxicity_field_anchor_free_84bb9983_uploadsafe.csv`
+
+Target-level nested signal:
+
+- S4 is the only positive target, gain `+0.762686`, but positive/negative subject split is `4/4`.
+- S1 has many selected actions but total gain `-2.717411`.
+- Q1/Q2/Q3 are negative.
+- No target passes the stable heldout gate.
+
+### Interpretation
+
+Strengthened:
+
+```text
+HS-JEPA core representation contains nontrivial action-toxicity information.
+The subject-heldout action-health AUC/AP is above the 0.5 base rate.
+```
+
+Killed:
+
+```text
+A subject-heldout toxicity score alone is enough to produce a safe release decoder.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA core should be claimed as hidden action-health geometry,
+not as a standalone row-target action releaser.
+The missing component is a subject-invariant responsibility/assignment layer
+that can turn weak toxicity evidence into safe sparse corrections.
+```

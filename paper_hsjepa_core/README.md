@@ -1312,3 +1312,50 @@ held-out subject를 완전히 제거
 자세한 설명:
 
 - `paper_hsjepa_core/SUBJECT_HELDOUT_ROUTE_RESPONSIBILITY_DIAGNOSTIC_KO.md`
+
+### 20. Subject-Heldout Action Toxicity Field
+
+```bash
+python3 sleep_competition_adapter/subject_heldout_action_toxicity_field.py
+```
+
+이 스크립트는 route policy를 고르는 대신, row-target-action 자체를 예측 단위로 낮춘다.
+각 row-target cell에 대해 두 action 후보를 만든다.
+
+```text
+raw_memory_release
+inverse_toxic_memory
+```
+
+그리고 HS-JEPA masked world-state residual/energy와 listener-conditioned support context가
+어떤 action이 건강한지 subject-heldout으로 예측하는지 본다.
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- verdict: `subject_heldout_action_toxicity_negative_or_fragile`
+- action-health AUC: `0.597026`
+- action-health AP: `0.567465`
+- full OOF selected cells: `57`
+- full OOF gain sum: `+1.190091`
+- nested heldout selected cells: `112`
+- nested heldout gain sum: `-5.538044`
+- nested positive/negative subjects: `2/8`
+- stable targets: none
+- released test cells: `0`
+- generated candidate: `submission_hsjepa_subject_heldout_action_toxicity_field_anchor_free_84bb9983_uploadsafe.csv`
+
+해석:
+
+- core representation은 action toxicity를 완전히 못 읽는 것이 아니다. AUC/AP는 base rate보다
+  유의미하게 높다.
+- 하지만 이 신호를 nested subject-heldout release로 번역하면 무너진다.
+- 따라서 현재 HS-JEPA core는 hidden action-health geometry의 단서를 제공하지만,
+  release-grade decoder에는 subject-invariant responsibility/assignment가 더 필요하다.
+- 이 실험은 `core evidence`와 `adapter success`를 분리해야 한다는 논문 구조를 강화한다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SUBJECT_HELDOUT_ACTION_TOXICITY_FIELD_KO.md`

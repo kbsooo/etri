@@ -1,0 +1,8 @@
+target,heldout_accept_rate,top_policy,top_fraction,top_policy_count,heldout_gain_sum,heldout_positive_subjects,heldout_negative_subjects
+Q1,0.3,hold,0.0,7,-0.8140942604559935,0,3
+Q2,0.3,hold,0.0,7,-2.360711688674977,0,3
+Q3,0.1,hold,0.0,9,-0.40851247813651437,0,1
+S1,0.9,top_health_all,0.02,6,-2.717411442930678,4,5
+S2,0.0,hold,0.0,10,0.0,0,0
+S3,0.0,hold,0.0,10,0.0,0,0
+S4,0.9,top_health_all,0.18,3,0.7626860689187338,4,4

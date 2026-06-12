@@ -1,0 +1,7 @@
+metric,value
+action_health_auc,0.597026102292769
+action_health_ap,0.5674650710234007
+action_health_base_rate,0.5
+feature_count,444.0
+train_action_modes,6300.0
+test_action_modes,3500.0

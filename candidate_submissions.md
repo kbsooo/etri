@@ -10244,3 +10244,46 @@ If public LB worsens:
 
 Even the heldout-stable Q3/S4 route responsibility is not public/private safe.
 The next experiment should not tune this candidate; it should learn a cleaner core action-health field or public/private-invariant listener, still without public-score selection.
+
+## 2026-06-13 - HS-JEPA Subject-Heldout Action Toxicity Field Diagnostic Candidate
+
+- File: `submission_hsjepa_subject_heldout_action_toxicity_field_anchor_free_84bb9983_uploadsafe.csv`
+- Code: `sleep_competition_adapter/subject_heldout_action_toxicity_field.py`
+- Documentation: `paper_hsjepa_core/SUBJECT_HELDOUT_ACTION_TOXICITY_FIELD_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is not a scoring candidate. The stable policy set is empty, so the generated CSV is a prior-only upload-safe sensor.
+The important result is the gap between action-health prediction and release safety.
+
+Local evidence:
+
+- action-health AUC: `0.597026`
+- action-health AP: `0.567465`
+- full OOF selected gain: `+1.190091`
+- nested heldout gain: `-5.538044`
+- nested positive/negative subjects: `2/8`
+- stable targets: none
+- released test cells: `0`
+- validation: upload-safe
+
+Worldview:
+
+```text
+HS-JEPA core does encode action-toxicity information,
+but action toxicity is too weak and subject-fragile to be used as a direct release rule.
+The next publishable component must be a responsibility/assignment layer,
+not a stronger top-k toxicity threshold.
+```
+
+If public LB improves:
+
+This would only mean the prior-only baseline is accidentally competitive; it would not validate the toxicity release.
+
+If public LB worsens:
+
+No action law is disproved because this candidate releases no test cells.
+The diagnostic value is local: action-health AUC exists, but stable release is absent.
