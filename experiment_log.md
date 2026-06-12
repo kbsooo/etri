@@ -15023,3 +15023,55 @@ Next:
 
 - Public-test `submission_hsjepa_cross_subject_episode_prototype_transport_b034ce3b_uploadsafe.csv` if one slot is worth spending on architecture evidence rather than anchor-safe tuning.
 - If public fails, the killed claim is not "episode state has no signal"; it is "cross-subject prototype transport is public/private safe without an additional toxicity veto."
+
+## 2026-06-13 - HS-JEPA Masked View Surprise Action Release
+
+### Question
+
+HS-JEPA core를 더 직접적인 JEPA objective로 만들면, 즉 `visible lifelog views -> masked target-view representation`을 예측하게 하면, 그 prediction residual energy가 hidden human-state episode와 row-target action support를 설명하는가?
+
+### Experiment: Masked View Surprise Action Release
+
+- Code: `sleep_competition_adapter/masked_view_surprise_action_release.py`
+- Doc: `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
+- Candidate: `submission_hsjepa_masked_view_surprise_action_release_14472506_uploadsafe.csv`
+- Public LB ledger / action teacher for support / proprietary embedding API: not used
+
+JEPA mapping:
+
+```text
+visible lifelog context views
+  -> predict masked target-view PCA representation
+  -> residual surprise energy
+  -> target surprise law + neighbor margin
+  -> sparse row-target action release
+```
+
+Result:
+
+- strongest law: Q3 phone-device surprise, prevalence shift `-0.176991`
+- Q2 app/social surprise shift: `+0.168142`
+- S3 body/sleep/activity surprise shift: `+0.150442`
+- row-state frontier top 30% recall: `0.355556`
+- random recall expectation at top 30%: `0.300000`
+- recall lift vs random: `+0.055556`
+- precision lift vs random: `+0.033333`
+- generated candidate changed `177` cells across `56` rows
+- upload-safe validation passed
+
+Interpretation:
+
+This is a positive architecture-evidence experiment, not a guaranteed LB candidate. The strong signal is that masked-view predictability breaks create target prevalence laws. The frontier overlap lift is positive but modest, so masked surprise energy is not yet an action-grade decoder by itself.
+
+What survives:
+
+```text
+HS-JEPA core can expose hidden human-state episodes as residual energy from
+context-to-target representation prediction.
+```
+
+What remains unresolved:
+
+```text
+Surprise energy still needs listener responsibility and toxicity veto before it can be trusted as a public/private-safe release policy.
+```

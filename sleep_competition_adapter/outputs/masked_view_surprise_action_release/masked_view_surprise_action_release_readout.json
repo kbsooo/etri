@@ -1,0 +1,54 @@
+{
+  "package": "masked_view_surprise_action_release",
+  "status": "bigbet_candidate_ready",
+  "uses_public_score_ledger": false,
+  "uses_action_teacher_for_support": false,
+  "uses_proprietary_embedding_api": false,
+  "feature_source": "team_experiments/cohort_hsjepa/cohort_human_state_features.csv",
+  "probability_prior_file": "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+  "candidate_file": "submission_hsjepa_masked_view_surprise_action_release_14472506_uploadsafe.csv",
+  "changed_cells": 177,
+  "changed_rows": 56,
+  "mean_abs_logit_move": 0.1873980690824631,
+  "max_abs_logit_move": 0.49309952348536423,
+  "target_action_counts": {
+    "S1": 38,
+    "Q2": 35,
+    "Q1": 27,
+    "S4": 26,
+    "Q3": 23,
+    "S3": 14,
+    "S2": 14
+  },
+  "best_frontier_overlap": {
+    "reference": "row_state_vector_frontier",
+    "top_fraction": 0.3,
+    "k": 75,
+    "reference_rows": 45,
+    "overlap_rows": 16,
+    "recall": 0.35555555555555557,
+    "random_recall_expectation": 0.3,
+    "recall_lift_vs_random": 0.05555555555555558,
+    "precision": 0.21333333333333335,
+    "random_precision_expectation": 0.18,
+    "precision_lift_vs_random": 0.033333333333333354,
+    "mean_selected_surprise_rank": 0.8520000000000001
+  },
+  "strongest_target_surprise_law": {
+    "target": "Q3",
+    "surprise_score": "surprise_phone_device_rank",
+    "low_rate": 0.7079646017699115,
+    "high_rate": 0.5309734513274337,
+    "shift": -0.17699115044247782,
+    "abs_shift": 0.17699115044247782,
+    "direction": -1
+  },
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 1e-05,
+    "probability_max": 0.99999
+  },
+  "worldview": "HS-JEPA masked context prediction residual energy marks hidden human-state episodes; only rows where surprise, target law, and neighbor margin agree should receive row-target action."
+}

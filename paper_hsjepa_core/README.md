@@ -908,3 +908,39 @@ python3 sleep_competition_adapter/cross_subject_episode_prototype_transport.py
 자세한 설명:
 
 - `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
+
+### 17. Masked View Surprise Action Release
+
+```bash
+python3 sleep_competition_adapter/masked_view_surprise_action_release.py
+```
+
+이 스크립트는 HS-JEPA를 더 직접적인 JEPA 문제로 만든다.
+calendar/phone/body/app/mobility 중 하나의 view를 가리고,
+나머지 view로 target-view PCA representation을 예측한다.
+그 예측 residual energy가 큰 row를 hidden human-state episode로 보고,
+target prevalence law와 neighbor margin이 동의하는 row-target action만 release한다.
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- action teacher for support 사용: `False`
+- proprietary embedding API 사용: `False`
+- strongest target surprise law: Q3 phone-device surprise, prevalence shift `-0.176991`
+- Q2 app/social surprise shift: `+0.168142`
+- S3 body/sleep/activity surprise shift: `+0.150442`
+- row-state frontier top 30% recall: `0.355556`
+- random 대비 recall lift: `+0.055556`
+- generated candidate: `submission_hsjepa_masked_view_surprise_action_release_14472506_uploadsafe.csv`
+
+해석:
+
+- 이 실험의 강한 증거는 frontier overlap보다 target prevalence shift다.
+- HS-JEPA core가 label classifier라기보다, 생활 context의 predictability break를
+  hidden episode energy로 바꾸는 architecture라는 주장을 강화한다.
+- frontier overlap lift는 작으므로, 이 실험만으로 action-grade decoder가 완성됐다고
+  주장하면 안 된다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
