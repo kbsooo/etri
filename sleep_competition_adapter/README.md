@@ -35,6 +35,7 @@ python3 sleep_competition_adapter/masked_view_surprise_action_release.py
 python3 sleep_competition_adapter/surprise_responsibility_toxicity_veto.py
 python3 sleep_competition_adapter/cross_subject_surprise_responsibility_veto.py
 python3 sleep_competition_adapter/world_model_residual_action_decoder.py
+python3 sleep_competition_adapter/subject_invariant_world_model_listener_solver.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -71,6 +72,8 @@ python3 sleep_competition_adapter/world_model_residual_action_decoder.py
 
 `world_model_residual_action_decoder.py`는 더 core에 가까운 masked-context world model residual energy를 cross-subject prototype transport action field의 listener로 사용한다. OOF에서는 44개 action 중 9개를 veto하여 gain sum을 `5.027044`에서 `6.093459`로 높이고, 제거된 action의 gain sum은 `-1.066415`였다. 하지만 subject-heldout stress에서는 kept gain sum이 `1.557169`로 약해져 판정은 `oof_positive_subjectheldout_fragile`이다. 즉 이 결과는 제출-grade positive claim이라기보다 `HS-JEPA core residual energy가 action toxicity pocket을 감지한다`는 adapter/diagnostic evidence다. 후보 파일은 `submission_hsjepa_world_model_residual_action_decoder_b3361d85_uploadsafe.csv`다.
 
+`subject_invariant_world_model_listener_solver.py`는 위 fragile 결과를 정면으로 검증한다. full OOF gain이 아니라 subject-balanced objective로 target별 world-model listener rule을 고른다. 결과적으로 OOF gain은 더 강해져 `5.027044`에서 `6.442219`가 되었고 제거된 action gain은 `-1.415175`였지만, subject-LOO improvement는 `-3.281044`로 여전히 무너졌다. 판정은 `oof_positive_subject_invariant_negative`다. 이 실험은 HS-JEPA residual이 독성 pocket을 찾는다는 positive evidence와, 아직 subject-general release decoder가 아니라는 negative evidence를 동시에 남긴다. 후보 파일은 `submission_hsjepa_subject_invariant_world_model_listener_solver_1807cfd1_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -93,6 +96,7 @@ python3 sleep_competition_adapter/world_model_residual_action_decoder.py
 - `sleep_competition_adapter/outputs/surprise_responsibility_toxicity_veto/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
 - `sleep_competition_adapter/outputs/cross_subject_surprise_responsibility_veto/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
 - `sleep_competition_adapter/outputs/world_model_residual_action_decoder/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
+- `sleep_competition_adapter/outputs/subject_invariant_world_model_listener_solver/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 
 ## 경계
 

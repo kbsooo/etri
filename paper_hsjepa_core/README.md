@@ -10,6 +10,7 @@
 - `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
 - `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
+- `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
@@ -76,6 +77,31 @@ HS-JEPA core residual energy는 action toxicity pocket을 감지하지만,
 따라서 이 문서는 HS-JEPA core가 아니라 adapter/diagnostic이다. 논문에서는
 `core representation이 action decoder 독성을 줄이는 방향의 증거`와
 `subject-heldout에서 아직 완성되지 않은 한계`를 동시에 말해야 한다.
+
+`SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`는 위 fragile 결과를 더 엄격하게 찌른다. full OOF gain이 아니라 subject-balanced objective로 target별 listener rule을 고르게 만들었다.
+
+현재 핵심 결과:
+
+- source cross-subject action cells: `44`
+- selected objective: `subject_balanced_listener`
+- original gain sum: `5.027044`
+- subject-balanced kept gain sum: `6.442219`
+- removed action gain sum: `-1.415175`
+- non-all listener targets: `3`
+- subject-LOO improvement sum: `-3.281044`
+- verdict: `oof_positive_subject_invariant_negative`
+
+현재 해석:
+
+```text
+subject-balanced selector를 걸어도 OOF toxicity separation은 더 강해진다.
+하지만 subject-LOO에서는 여전히 음수라서, 현재 residual listener는
+subject-general release law가 아니라 toxic-pocket diagnostic에 가깝다.
+```
+
+이 결과는 실패가 아니라 경계 증거다. HS-JEPA core residual이 의미 없는 신호는 아니지만,
+논문에서 `release-grade architecture`로 주장하려면 subject-invariant listener responsibility가
+다음 핵심 병목이다.
 
 `LIFELOG_CORE_STATE_EVIDENCE_KO.md`는 public LB 없이 OG lifelog-derived context만으로 HS-JEPA core representation이 무엇을 설명하는지 정리한다. 현재 결론은 명확하다.
 

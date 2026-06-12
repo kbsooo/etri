@@ -15325,3 +15325,78 @@ Next:
 The next real breakthrough direction is not another narrow veto. It is a subject-invariant
 listener responsibility objective that preserves the OOF toxicity separation while avoiding
 the subject-heldout collapse observed here.
+
+## 2026-06-13 - HS-JEPA Subject-Invariant World-Model Listener Solver
+
+### Question
+
+World-model residual listener의 OOF toxic-action separation이 한 subject tail 때문인지,
+아니면 subject가 바뀌어도 살아남는 action-health law인지 subject-balanced objective로 검증할 수 있는가?
+
+### Experiment: Subject-Invariant World-Model Listener Solver
+
+- Code: `sleep_competition_adapter/subject_invariant_world_model_listener_solver.py`
+- Core input: `hsjepa_core/run_masked_context_world_model.py`
+- Adapter input: `sleep_competition_adapter/cross_subject_episode_prototype_transport.py`
+- Doc: `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
+- Candidate: `submission_hsjepa_subject_invariant_world_model_listener_solver_1807cfd1_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+HS-JEPA core residual energy
+  -> target-specific low/high/all listener candidates
+  -> subject-balanced robust objective
+  -> cross-subject prototype action veto
+  -> subject-LOO stress
+```
+
+Result:
+
+- release objective: `subject_balanced_listener`
+- source OOF action cells: `44`
+- original gain sum: `5.027044`
+- kept cells: `32`
+- kept gain sum: `6.442219`
+- removed cells: `12`
+- removed gain sum: `-1.415175`
+- kept positive gain rate: `0.812500`
+- non-all listener targets: `3` (`Q3`, `S3`, `S4`)
+- subject-LOO original gain sum: `5.027044`
+- subject-LOO kept gain sum: `1.746000`
+- subject-LOO improvement sum: `-3.281044`
+- subject-LOO positive subjects: `1`
+- subject-LOO negative subjects: `4`
+- test switched cells: `105 -> 85 kept / 20 vetoed`
+- upload-safe validation passed
+- verdict: `oof_positive_subject_invariant_negative`
+
+Interpretation:
+
+Positive evidence:
+
+```text
+The HS-JEPA core residual listener identifies stronger toxic pockets than the previous median-only rule.
+OOF removed gain is -1.415175, so the signal is not random.
+```
+
+Negative evidence:
+
+```text
+Subject-balanced selection still does not survive subject-LOO.
+The current listener is action-health diagnostic evidence, not a subject-general release decoder.
+```
+
+Architecture implication:
+
+```text
+HS-JEPA core representation is useful, but the missing piece is listener responsibility transport.
+The next core-level question is not "which cells to veto" but
+"which invariant listener should be responsible for a subject's action field?"
+```
+
+Next:
+
+The next big-bet should move one level up from row-target veto to subject/cohort-level
+listener responsibility. The current failure says cell-level residual thresholds are too local.

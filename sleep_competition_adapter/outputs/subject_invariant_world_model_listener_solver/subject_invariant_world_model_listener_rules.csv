@@ -1,0 +1,6 @@
+target,score_col,mode,threshold,objective,objective_score,all_cells,selected_cells,all_gain_sum,selected_gain_sum,improvement_sum,active_subjects,positive_improvement_subjects,negative_improvement_subjects,min_subject_improvement,selected_positive_gain_rate
+Q2,wm_energy_calendar_rhythm,all,0.0,subject_balanced_listener,0.0,12,12,1.976823748523643,1.976823748523643,0.0,4,0,0,0.0,0.75
+Q3,wm_energy_phone_behavior,low_energy_listener,1.932446639229916,subject_balanced_listener,0.12756001969078232,9,7,1.168314109578631,1.2608741292694132,0.09256001969078231,4,1,0,0.0,0.7142857142857143
+S2,wm_energy_calendar_rhythm,all,0.0,subject_balanced_listener,0.0,5,5,1.3614369514910036,1.3614369514910036,0.0,2,0,0,0.0,1.0
+S3,wm_energy_app_social_context,low_energy_listener,1.4080104475587831,subject_balanced_listener,0.22922770268334125,13,7,0.9454718451027289,1.4872666440459634,0.5417947989432346,2,2,1,-0.2911288660408615,0.8571428571428571
+S4,wm_energy_calendar_rhythm,high_energy_listener,1.5456681053462162,subject_balanced_listener,0.7958199832527296,5,1,-0.42500287012896504,0.3558171131237646,0.7808199832527296,1,1,0,0.0,1.0
