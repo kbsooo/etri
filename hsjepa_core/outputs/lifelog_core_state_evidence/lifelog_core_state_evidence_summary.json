@@ -1,0 +1,42 @@
+{
+  "status": "core_real_data_evidence_ready",
+  "uses_public_score_ledger": false,
+  "uses_proprietary_embedding_api": false,
+  "feature_source": "team_experiments/cohort_hsjepa/cohort_human_state_features.csv",
+  "raw_feature_count": 99,
+  "core_state_feature_count": 15,
+  "label_informed_features_excluded_from_core": [
+    "peer_margin_Q1",
+    "peer_margin_Q2",
+    "peer_margin_Q3",
+    "peer_margin_S1",
+    "peer_margin_S2",
+    "peer_margin_S3",
+    "peer_margin_S4",
+    "target_route_margin_q2q3s2"
+  ],
+  "external_action_replay_null_repeats": 32,
+  "label_probe": {
+    "prior_mean_logloss": 0.6778575331695814,
+    "hsjepa_state_mean_logloss": 0.7305549252034353,
+    "raw_lifelog_mean_logloss": 1.452716606454396,
+    "hsjepa_state_delta_vs_prior": 0.05269739203385393,
+    "raw_lifelog_delta_vs_prior": 0.7748590732848145
+  },
+  "neighbor_consistency": {
+    "hsjepa_state_match_rate": 0.5773333333333333,
+    "random_match_rate": 0.5267301587301587,
+    "lift": 0.05060317460317454
+  },
+  "masked_prediction": {
+    "best_target_view": "phone_behavior",
+    "best_r2_lift_vs_null": 20.92874760991561,
+    "best_mean_r2": -2.884496854604603,
+    "best_component_corr_lift_vs_null": 0.3803749781064304
+  },
+  "external_action_replay": {
+    "mean_core_row_auc": 0.9543109109672578,
+    "mean_core_row_recall_at_k": 0.8385939741750359,
+    "mean_core_auc_z_vs_permuted_train": 8.37584937305196
+  }
+}

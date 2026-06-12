@@ -24,6 +24,7 @@
 | target-assignment stress | target split 또는 Q3 repair 같은 micro branch가 decisive하지 않음을 보인 stress | `submission_h144_targetxor_def80b88_uploadsafe.csv`, `submission_h145_q3repair_2d818e46_uploadsafe.csv` |
 | cross-listener transport | listener posterior를 release gate로 쓰는 방식이 아직 action-grade가 아님을 보인 stress | `submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv` |
 | frontier active-silence | 성공한 frontier trajectory에서 release보다 abstention/silence를 action으로 본 실험 | `submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv` |
+| lifelog core state evidence | public LB 없이 OG lifelog-derived context만으로 HS-JEPA core-state geometry가 무엇을 설명하는지 검증한 논문용 evidence run | `hsjepa_core/run_lifelog_core_state_evidence.py` |
 
 ## 현재 public best 해석
 
@@ -49,6 +50,8 @@ HS-JEPA는 public-equation jump에서 hidden public-state를 발견했고,
 row-state vector frontier에서 그 hidden state가 특정 row-target vector로 표현됨을 보였다.
 이후 negative sensors는 좋은 latent가 곧 좋은 action이 아님을 보여줬고,
 frontier active-silence는 abstention 자체도 action-health의 일부임을 검증했다.
+lifelog core state evidence는 HS-JEPA core가 direct label classifier가 아니라
+row-action support를 복원하는 hidden human-state geometry임을 보여준다.
 ```
 
 ## 앞으로 금지할 표현

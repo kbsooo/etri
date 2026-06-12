@@ -26,6 +26,37 @@ partial human context
 
 즉 HS-JEPA의 core contribution은 좋은 feature를 더 붙이는 것이 아니다. 핵심은 `hidden state`, `listener`, `action`, `invariant`를 분리하고, label 예측 전에 보이지 않는 인간 상태와 action health를 먼저 예측하는 것이다.
 
+## 현재 가장 중요한 empirical thesis
+
+최근 real-data core evidence는 HS-JEPA의 역할을 더 좁고 강하게 정리한다.
+
+```bash
+python3 hsjepa_core/run_lifelog_core_state_evidence.py
+```
+
+결과는 다음처럼 요약된다.
+
+- HS-JEPA state-only는 subject-holdout label logloss에서 prior를 이기지 못했다.
+- 하지만 HS-JEPA state nearest-neighbor는 target-vector match에서 random 대비 `+0.0506` lift를 보였다.
+- masked lifelog view prediction은 phone/app/body representation에서 null 대비 component-correlation lift를 보였다.
+- external action replay에서는 core-state geometry만으로 평균 row AUC `0.9543`, recall@k `0.8386`, permutation z `8.38`을 보였다.
+
+따라서 논문 주장은 다음으로 고정한다.
+
+```text
+HS-JEPA core is not a standalone label predictor.
+It is a hidden human-state geometry that makes listener responsibility,
+row-action support, and action-health decisions recoverable.
+```
+
+한국어로는:
+
+```text
+HS-JEPA는 라벨을 직접 맞히는 새 분류기가 아니다.
+HS-JEPA는 생활 로그를 숨은 인간 상태 공간으로 바꾸고,
+그 공간에서 어떤 row-target action이 건강하게 release될 수 있는지 판단하게 하는 아키텍처다.
+```
+
 ## JEPA에서 가져온 것
 
 JEPA의 핵심 질문은 raw input을 복원하는 것이 아니라 보이는 context로 보이지 않는 representation을 예측하는 것이다.

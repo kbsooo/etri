@@ -6,8 +6,16 @@
 
 - `paper_hsjepa_core/HS_JEPA_PAPER_THESIS_KO.md`
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
+- `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
+
+`LIFELOG_CORE_STATE_EVIDENCE_KO.md`는 public LB 없이 OG lifelog-derived context만으로 HS-JEPA core representation이 무엇을 설명하는지 정리한다. 현재 결론은 명확하다.
+
+```text
+HS-JEPA core는 단독 label predictor가 아니라,
+row-action support와 action-health를 더 잘 읽게 하는 human-state geometry다.
+```
 
 ## 핵심 질문
 
@@ -26,6 +34,25 @@
 - competition decoder: public/private sensor를 사용해 sparse correction을 만든다.
 
 ## 현재 실험
+
+### 0. Lifelog Core State Evidence
+
+```bash
+python3 hsjepa_core/run_lifelog_core_state_evidence.py
+```
+
+이 스크립트는 public score ledger를 읽지 않고, OG lifelog-derived feature table에서 core-state evidence를 만든다.
+
+현재 결과:
+
+- subject-holdout label logloss는 prior보다 나쁘다. 따라서 HS-JEPA core를 direct classifier로 과장하면 안 된다.
+- nearest-neighbor target consistency는 random 대비 `+0.0506` lift를 보인다.
+- masked context prediction은 phone/app/body view에서 null 대비 component-correlation lift를 보인다.
+- external action replay에서는 core-state geometry만으로 평균 row AUC `0.9543`, recall@k `0.8386`, permutation z `8.38`을 보인다.
+
+논문 해석:
+
+> Human-state representation is weak as a direct classifier, but strong as a row-action support geometry.
 
 ### 1. Human-State Action Distillation
 

@@ -1,0 +1,24 @@
+{
+  "package": "core_geometry_outlier_route_adapter",
+  "status": "bigbet_candidate_ready",
+  "uses_public_score_ledger": false,
+  "base_probability_prior": "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+  "feature_source": "team_experiments/cohort_hsjepa/cohort_human_state_features.csv",
+  "submission_file": "submission_hsjepa_core_geometry_outlier_route_bigbet_ef001c23_uploadsafe.csv",
+  "root_submission_file": "submission_hsjepa_core_geometry_outlier_route_bigbet_ef001c23_uploadsafe.csv",
+  "changed_cells": 299,
+  "changed_rows": 52,
+  "mean_abs_logit_move": 0.0557108938564582,
+  "max_abs_logit_move": 0.1980311824068192,
+  "target_action_counts": {
+    "S2": 48,
+    "S4": 48,
+    "Q3": 45,
+    "Q2": 43,
+    "S1": 43,
+    "S3": 40,
+    "Q1": 32
+  },
+  "worldview": "Core-state geometry can identify row support; target direction should follow train-observed personal/cohort outlier laws rather than public-score equations.",
+  "failure_interpretation": "If this fails, core geometry is useful as support diagnostic but not yet action-grade without listener-specific target routing."
+}
