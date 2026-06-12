@@ -9,6 +9,7 @@
 - `paper_hsjepa_core/HS_JEPA_PAPER_THESIS_KO.md`
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
 - `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
+- `paper_hsjepa_core/CORE_EVIDENCE_LEDGER_KO.md`
 - `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
@@ -62,6 +63,9 @@ Diagnostic = 그 action이 shortcut/collapse/subject-tail인지 검사
 ```
 
 즉 `Cross-Subject Episode Prototype Transport`와 `Subject-Relative Responsibility Assignment`는 HS-JEPA 세계 안의 중요한 실험이지만, HS-JEPA core 자체로 소개하면 안 된다.
+
+core 증거만 빠르게 점검하려면 `CORE_EVIDENCE_LEDGER_KO.md`를 읽는다. 이 문서는 public LB 없이 나온 결과를 모아,
+무엇이 HS-JEPA core evidence이고 무엇이 competition adapter 또는 LeJEPA-style diagnostic인지 표로 분리한다.
 
 논문 방향으로는 그 다음 `HS_JEPA_PAPER_THESIS_KO.md`를 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 

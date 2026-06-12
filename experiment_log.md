@@ -17569,3 +17569,66 @@ Core-only direction signal은 약했다. `responsibility_weighted_pretext_direct
 
 1. direction adapter를 논문에서 competition adapter로 분리하고, HS-JEPA contribution을 responsibility field에 둔다.
 2. pure core direction을 강화하려면 action probability가 아니라 counterfactual direction representation 자체를 pretext target으로 만들어야 한다.
+
+## Core Evidence Ledger
+
+- date: 2026-06-13
+- code: `hsjepa_core/build_core_evidence_ledger.py`
+- paper doc: `paper_hsjepa_core/CORE_EVIDENCE_LEDGER_KO.md`
+- output summary: `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+
+### Purpose
+
+팀 공유/논문 관점에서 HS-JEPA가 무엇인지 흐려지는 문제가 있었다.
+특히 cross-subject transport, subject-invariant controller 같은 문서는 HS-JEPA ecosystem 안에는 있지만
+core 자체가 아니라 adapter/probe/diagnostic에 가깝다.
+
+이번 작업은 기존 public-free core 결과를 하나의 ledger로 묶어 다음을 분리했다.
+
+```text
+core evidence
+  = hidden human-state / listener-responsibility representation 자체의 증거
+
+adapter boundary
+  = core가 만든 geometry를 row-target correction으로 번역하는 층
+
+negative boundary
+  = HS-JEPA를 이렇게 말하면 안 된다는 반례
+```
+
+### Result
+
+- core positive cases: `4`
+- adapter boundary cases: `1`
+- negative boundary cases: `1`
+- masked context world-model component-correlation lift vs null: `+0.248882`
+- subject-invariant listener manifold AP lift over action-only: `+0.191742`
+- listener responsibility masked-pretext AP lift over listener-only: `+0.014785`
+- signed direction translation repair over previous decoder: `+2.206488`
+- direct label prediction boundary: HS-JEPA state-only logloss is `+0.052697` worse than prior.
+
+### Interpretation
+
+이 ledger가 강화하는 세계관:
+
+```text
+HS-JEPA core는 standalone label classifier가 아니다.
+HS-JEPA core는 보이는 생활 context에서 보이지 않는 hidden human-state와
+listener responsibility representation을 예측하고,
+adapter가 이 geometry를 sparse row-target correction으로 번역한다.
+```
+
+이 ledger가 죽인 과장:
+
+```text
+HS-JEPA core만으로 Q/S label을 직접 잘 맞힌다.
+```
+
+### Next
+
+다음 big-bet은 action probability를 더 쓰는 것이 아니라,
+`counterfactual raw/inverse direction representation` 자체를 HS-JEPA pretext target으로 끌어올리는 것이다.
+그래야 core가 "어디를 볼지"뿐 아니라 "어느 방향이 건강한지"까지 표현하는지 검증할 수 있다.

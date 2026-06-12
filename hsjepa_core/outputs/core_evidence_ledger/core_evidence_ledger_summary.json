@@ -1,0 +1,97 @@
+{
+  "package": "core_evidence_ledger",
+  "status": "paper_facing_core_evidence_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "core_positive_case_count": 4,
+  "adapter_boundary_case_count": 1,
+  "negative_boundary_case_count": 1,
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction plus subject-invariant listener/action-health separability.",
+  "cases": [
+    {
+      "case": "lifelog_core_state_geometry",
+      "layer": "core",
+      "question": "OG lifelog context에서 만든 human-state geometry가 label/action 구조를 더 잘 모으는가",
+      "primary_metric": "neighbor_consistency_lift",
+      "value": 0.05060317460317454,
+      "baseline": "random_neighbor",
+      "support": "positive",
+      "interpretation": "직접 label classifier는 아니지만, 가까운 row가 target manifold를 더 공유한다.",
+      "source": "hsjepa_core/outputs/lifelog_core_state_evidence/lifelog_core_state_evidence_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "masked_context_world_model",
+      "layer": "core",
+      "question": "보이는 semantic lifelog view로 보이지 않는 target-view representation을 예측하는가",
+      "primary_metric": "component_corr_lift_vs_null",
+      "value": 0.24888206895631249,
+      "baseline": "shuffled_target_view",
+      "support": "positive",
+      "interpretation": "JEPA contract 자체는 성립한다. 단, direct label decoder로 쓰면 망가진다.",
+      "source": "hsjepa_core/outputs/masked_context_world_model/masked_context_world_model_summary.json",
+      "candidate": "submission_hsjepa_masked_context_world_model_core_ff673c9a_uploadsafe.csv"
+    },
+    {
+      "case": "external_action_replay_geometry",
+      "layer": "core_to_adapter_probe",
+      "question": "core-state geometry가 다른 adapter의 row-action support를 재발견하는가",
+      "primary_metric": "row_auc_z_vs_permuted_train",
+      "value": 8.37584937305196,
+      "baseline": "permuted_teacher",
+      "support": "strong_positive_probe",
+      "interpretation": "public 없이도 기존 action-support 구조 일부를 row geometry에서 복원한다.",
+      "source": "hsjepa_core/outputs/lifelog_core_state_evidence/lifelog_core_state_evidence_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "subject_invariant_listener_manifold",
+      "layer": "core",
+      "question": "subject-invariant jury release target이 HS-JEPA listener manifold에서 action-only보다 잘 분리되는가",
+      "primary_metric": "hsjepa_listener_ap_lift_minus_action_only",
+      "value": 0.19174156280103571,
+      "baseline": "action_geometry_only",
+      "support": "strong_positive",
+      "interpretation": "action geometry만 보는 것보다 hidden listener manifold가 훨씬 강하다.",
+      "source": "hsjepa_core/outputs/subject_invariant_listener_manifold_core/subject_invariant_listener_manifold_core_summary.json",
+      "candidate": "submission_hsjepa_subject_invariant_listener_manifold_anchor_free_40628330_uploadsafe.csv"
+    },
+    {
+      "case": "listener_responsibility_field",
+      "layer": "core",
+      "question": "action을 고르기 전에 어느 row-target listener가 개입해야 하는지 복원하는가",
+      "primary_metric": "masked_pretext_ap_lift_minus_listener_only",
+      "value": 0.014785297936618938,
+      "baseline": "listener_only",
+      "support": "positive_but_small",
+      "interpretation": "core가 '어디를 볼지'는 더 잘 잡지만, action decoder는 여전히 독성이 있다.",
+      "source": "hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/subject_invariant_listener_responsibility_field_core_summary.json",
+      "candidate": "submission_hsjepa_subject_invariant_listener_responsibility_field_a9a2ea47_uploadsafe.csv"
+    },
+    {
+      "case": "signed_direction_translation",
+      "layer": "adapter_boundary",
+      "question": "responsibility-high cell에서 raw/inverse direction 독성을 줄이는가",
+      "primary_metric": "gain_sum_repaired_vs_previous_decoder",
+      "value": 2.2064881997674717,
+      "baseline": "previous_responsibility_decoder",
+      "support": "adapter_positive_core_boundary",
+      "interpretation": "core가 위치를 좁히고, signed action adapter가 방향 독성을 수리한다. pure core direction 승리는 아니다.",
+      "source": "hsjepa_core/outputs/signed_listener_responsibility_direction_core/signed_listener_responsibility_direction_core_summary.json",
+      "candidate": "submission_hsjepa_signed_listener_responsibility_direction_3a0fba1d_uploadsafe.csv"
+    },
+    {
+      "case": "direct_label_prediction",
+      "layer": "negative_boundary",
+      "question": "HS-JEPA state를 그대로 label classifier로 쓰면 되는가",
+      "primary_metric": "hsjepa_state_delta_vs_prior_logloss",
+      "value": 0.05269739203385393,
+      "baseline": "label_prior",
+      "support": "negative",
+      "interpretation": "HS-JEPA core는 standalone label predictor가 아니다. action-health geometry로 써야 한다.",
+      "source": "hsjepa_core/outputs/lifelog_core_state_evidence/lifelog_core_state_evidence_summary.json",
+      "candidate": null
+    }
+  ]
+}
