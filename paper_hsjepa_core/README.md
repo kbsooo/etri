@@ -7,6 +7,7 @@
 - `paper_hsjepa_core/HS_JEPA_PAPER_THESIS_KO.md`
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
+- `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -16,6 +17,14 @@
 HS-JEPA core는 단독 label predictor가 아니라,
 row-action support와 action-health를 더 잘 읽게 하는 human-state geometry다.
 ```
+
+`ACTION_HEALTH_SEPARATION_PROBE_KO.md`는 그 다음 질문을 다룬다. core-state geometry가 action decoder의 독성을 public score 없이 줄일 수 있는지 확인한다.
+
+현재 핵심 결과:
+
+- health score 계산에는 public LB를 쓰지 않는다.
+- retrospective evaluation에서 nonzero action field 6개 기준 Spearman(action health, -public LB) `0.8407`, p-value `0.0361`.
+- broad `core_geometry_outlier_route_bigbet`에서 cell-level health 하위 tail을 제거한 후보 `submission_hsjepa_action_health_separation_core_route_release_de79e203_uploadsafe.csv`를 생성했다.
 
 ## 핵심 질문
 
@@ -53,6 +62,25 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 논문 해석:
 
 > Human-state representation is weak as a direct classifier, but strong as a row-action support geometry.
+
+### 0b. Action-Health Separation Probe
+
+```bash
+python3 sleep_competition_adapter/action_health_separation_probe.py
+```
+
+이 스크립트는 public score 없이 action-health score를 계산한 뒤, public outcome은 마지막 retrospective label로만 사용한다.
+
+현재 결과:
+
+- scored candidates: `7`
+- nonzero action candidates: `6`
+- nonzero Spearman health vs -public LB: `0.8407`
+- generated candidate: `submission_hsjepa_action_health_separation_core_route_release_de79e203_uploadsafe.csv`
+
+논문 해석:
+
+> HS-JEPA core geometry is useful not only for row support, but also for ranking action toxicity before release.
 
 ### 1. Human-State Action Distillation
 

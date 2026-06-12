@@ -40,6 +40,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 - 하지만 HS-JEPA state nearest-neighbor는 target-vector match에서 random 대비 `+0.0506` lift를 보였다.
 - masked lifelog view prediction은 phone/app/body representation에서 null 대비 component-correlation lift를 보였다.
 - external action replay에서는 core-state geometry만으로 평균 row AUC `0.9543`, recall@k `0.8386`, permutation z `8.38`을 보였다.
+- action-health separation에서는 public score를 feature로 쓰지 않은 health score가 nonzero action field 6개에서 `-public LB`와 Spearman `0.8407`로 정렬됐다.
 
 따라서 논문 주장은 다음으로 고정한다.
 
@@ -55,6 +56,13 @@ row-action support, and action-health decisions recoverable.
 HS-JEPA는 라벨을 직접 맞히는 새 분류기가 아니다.
 HS-JEPA는 생활 로그를 숨은 인간 상태 공간으로 바꾸고,
 그 공간에서 어떤 row-target action이 건강하게 release될 수 있는지 판단하게 하는 아키텍처다.
+```
+
+이 주장은 다음 실행 가능한 실험으로 재현한다.
+
+```bash
+python3 hsjepa_core/run_lifelog_core_state_evidence.py
+python3 sleep_competition_adapter/action_health_separation_probe.py
 ```
 
 ## JEPA에서 가져온 것

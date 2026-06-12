@@ -1,0 +1,30 @@
+{
+  "package": "action_health_separation_probe",
+  "status": "probe_ready",
+  "uses_public_score_for_health_features": false,
+  "uses_public_score_for_retrospective_evaluation": true,
+  "base_stage_file": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
+  "candidate_file": "submission_hsjepa_action_health_separation_core_route_release_de79e203_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_action_health_separation_core_route_release_de79e203_uploadsafe.csv",
+  "eval": {
+    "uses_public_score_for_health_features": false,
+    "uses_public_score_for_retrospective_evaluation": true,
+    "scored_candidate_count": 7,
+    "spearman_health_vs_negative_public_lb": 0.7567874686642696,
+    "spearman_pvalue": 0.048905099134726335,
+    "nonzero_action_scored_candidate_count": 6,
+    "nonzero_spearman_health_vs_negative_public_lb": 0.8406680016960503,
+    "nonzero_spearman_pvalue": 0.0360575728451592,
+    "mean_health_public_success": 0.5434107504939683,
+    "mean_health_public_failure": 0.5157982566038454,
+    "success_threshold_public_lb": 0.56795
+  },
+  "candidate": {
+    "input_bigbet_cells": 310,
+    "released_cells": 180,
+    "released_rows": 38,
+    "mean_released_cell_health": 0.7785742663748532,
+    "mean_dropped_cell_health": 0.6737285882869628
+  },
+  "interpretation": "A score-free HS-JEPA action-health score is useful only if it ranks known safe/stress action fields coherently and the gated core-route release improves."
+}

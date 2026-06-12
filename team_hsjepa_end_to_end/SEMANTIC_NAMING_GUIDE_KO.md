@@ -25,6 +25,7 @@
 | cross-listener transport | listener posterior를 release gate로 쓰는 방식이 아직 action-grade가 아님을 보인 stress | `submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv` |
 | frontier active-silence | 성공한 frontier trajectory에서 release보다 abstention/silence를 action으로 본 실험 | `submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv` |
 | lifelog core state evidence | public LB 없이 OG lifelog-derived context만으로 HS-JEPA core-state geometry가 무엇을 설명하는지 검증한 논문용 evidence run | `hsjepa_core/run_lifelog_core_state_evidence.py` |
+| action-health separation | public LB 없이 계산한 HS-JEPA health score가 기존 positive/stress action field를 구분하는지 본 probe | `sleep_competition_adapter/action_health_separation_probe.py` |
 
 ## 현재 public best 해석
 
@@ -52,6 +53,7 @@ row-state vector frontier에서 그 hidden state가 특정 row-target vector로 
 frontier active-silence는 abstention 자체도 action-health의 일부임을 검증했다.
 lifelog core state evidence는 HS-JEPA core가 direct label classifier가 아니라
 row-action support를 복원하는 hidden human-state geometry임을 보여준다.
+action-health separation은 그 geometry가 release 전에 toxic action field를 낮게 평가할 수 있음을 보여준다.
 ```
 
 ## 앞으로 금지할 표현
