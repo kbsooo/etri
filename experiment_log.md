@@ -16382,3 +16382,101 @@ Next:
 The next big bet should combine pairwise responsibility with multi-row episode state
 or listener-level responsibility, because cell-wise responsibility is close but not enough.
 ```
+
+## 2026-06-13 - HS-JEPA Subject-Contrastive Action-Support Core
+
+### Question
+
+The strongest criticism of the current HS-JEPA evidence is that listener-conditioned
+support may still be too competition-specific:
+
+```text
+Maybe the model is not learning human-state.
+Maybe it is learning target/action shortcuts.
+```
+
+This experiment removes the most obvious shortcuts by changing supervision.
+Instead of predicting label probability or absolute action-health, it builds
+pairwise examples only inside the same subject and same target:
+
+```text
+same subject + same target action pair
+  -> which day has higher realized raw-memory action gain?
+```
+
+Held-out subject cells are then scored by comparing them against peer reference
+cells from other subjects.
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_subject_contrastive_action_support_core.py
+```
+
+The experiment preserves the core/public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+It compares:
+
+- action-only pairwise shortcuts;
+- target/action pairwise shortcuts;
+- HS-JEPA predicted world-state pairwise features;
+- HS-JEPA residual/energy pairwise features;
+- tail-weighted pairwise preference variants.
+
+### Result
+
+- verdict: `subject_contrastive_world_state_weakly_positive`
+- selected feature set: `binary_preference__world_residual_energy_pair`
+- selected policy: `top10_all_cells`
+- selected decoder: `raw_memory_release`
+- support AUC/AP: `0.512922` / `0.508946`
+- selected OOF gain sum: `+2.383219`
+- target-shuffle null gain lift: `+7.010120`
+- target-shuffle null z-score: `1.526122`
+- released test cells: `175`
+- candidate: `submission_hsjepa_subject_contrastive_action_support_anchor_free_2cc6457c_uploadsafe.csv`
+
+Target contribution for the selected policy:
+
+- Q2: `+0.528078`
+- S2: `+3.542119`
+- S4: `+1.431710`
+- Q1/Q3/S1/S3: negative.
+
+Important contrast:
+
+- shortcut/action-only pairwise models often had higher AUC, but their selected gain was negative.
+- tail-weighted preference did not fix the utility problem.
+- only pure residual-energy pairwise ordering produced positive selected gain.
+
+### Interpretation
+
+Strengthened:
+
+```text
+HS-JEPA residual energy contains a weak subject-contrastive episode-level
+action-health ordering signal.
+This is closer to a general architecture claim than target-route adapters.
+```
+
+Constrained:
+
+```text
+The signal is weak.  AUC/AP is not the right success criterion by itself.
+Log Loss utility is dominated by tail magnitude, and tail-weighted pairwise
+training did not automatically solve that.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA core should be presented as a hidden action-health geometry.
+The paper contribution needs a tail-safe decoder, because ranking health
+and improving Log Loss are not the same problem.
+```

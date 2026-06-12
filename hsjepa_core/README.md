@@ -43,6 +43,7 @@ python3 hsjepa_core/run_masked_context_world_model.py
 python3 hsjepa_core/run_action_support_world_model_core.py
 python3 hsjepa_core/run_action_support_view_invariance_core.py
 python3 hsjepa_core/run_listener_conditioned_action_support_core.py
+python3 hsjepa_core/run_subject_contrastive_action_support_core.py
 ```
 
 ## 산출물
@@ -71,6 +72,9 @@ python3 hsjepa_core/run_listener_conditioned_action_support_core.py
 - `hsjepa_core/outputs/listener_conditioned_action_support_core/listener_conditioned_action_support_core_summary.json`
 - `hsjepa_core/outputs/listener_conditioned_action_support_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
 - `hsjepa_core/outputs/listener_conditioned_action_support_core/*_metrics.csv`
+- `hsjepa_core/outputs/subject_contrastive_action_support_core/subject_contrastive_action_support_core_summary.json`
+- `hsjepa_core/outputs/subject_contrastive_action_support_core/SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
+- `hsjepa_core/outputs/subject_contrastive_action_support_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -82,6 +86,7 @@ python3 hsjepa_core/run_listener_conditioned_action_support_core.py
 - `hsjepa_core/run_action_support_world_model_core.py`: train label만으로 raw lifelog-memory action의 success/toxicity target을 만들고, HS-JEPA masked world-state가 subject-heldout으로 action-support를 예측하는지 검증한다.
 - `hsjepa_core/run_action_support_view_invariance_core.py`: action-support 신호가 target/action shortcut인지, single-view artifact인지, masked world-state residual/energy 신호인지 stress한다.
 - `hsjepa_core/run_listener_conditioned_action_support_core.py`: target-blind world state가 부족한지 확인하기 위해 target/family listener-conditioned residual/energy support predictor를 검증한다.
+- `hsjepa_core/run_subject_contrastive_action_support_core.py`: 같은 subject-target 내부 pairwise ordering으로 subject/target shortcut을 제거하고, masked world residual energy가 episode-level action-health ordering을 복원하는지 검증한다.
 
 ## 팀 공유 시 주의점
 
@@ -250,6 +255,40 @@ HS-JEPA core는 target-free universal decoder가 아니다.
 World-state residual/energy는 target listener와 결합될 때 action-support가 강해진다.
 다만 cross-target listener transfer는 아직 증명되지 않았으므로,
 현재 architecture claim은 listener-conditioned action-support model이다.
+```
+
+## Subject-Contrastive Action-Support Core
+
+`run_subject_contrastive_action_support_core.py`는 core evidence를 더 일반적으로 찌른다.
+일반 support classifier가 subject/target prior를 외울 수 있다는 문제를 피하기 위해,
+supervision을 같은 subject + 같은 target 내부의 pairwise ordering으로 바꾼다.
+
+```text
+same subject + same target action pair
+  -> which day has healthier raw-memory action?
+  -> held-out subject cells scored against peer references
+```
+
+현재 핵심 결과:
+
+- selected feature set: `binary_preference__world_residual_energy_pair`
+- selected policy: `top10_all_cells`
+- selected decoder: `raw_memory_release`
+- support AUC/AP: `0.512922` / `0.508946`
+- selected OOF gain sum: `+2.383219`
+- target-shuffle null 대비 gain lift: `+7.010120`, z-score `1.526122`
+- shortcut/action-only baselines는 AUC가 높아도 selected gain이 음수다.
+- tail-weighted preference도 utility로 번역되지 않았다.
+- anchor-free candidate: `submission_hsjepa_subject_contrastive_action_support_anchor_free_2cc6457c_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA residual energy는 subject/target shortcut을 제거해도 약한 episode-level
+action-health ordering을 갖는다.
+하지만 AUC가 높은 score가 Log Loss utility를 보장하지 않는다.
+따라서 HS-JEPA core 주장은 "ranking classifier"가 아니라
+tail-safe action-health geometry와 decoder 분리까지 포함해야 한다.
 ```
 
 ## Core가 아닌 것

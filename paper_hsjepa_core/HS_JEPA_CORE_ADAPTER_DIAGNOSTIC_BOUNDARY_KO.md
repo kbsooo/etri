@@ -20,6 +20,7 @@ Diagnostic = 그 action이 shortcut, collapse, subject-tail, public-luck인지 �
 - `Subject-Invariant Episode Controller`: LeJEPA-style diagnostic
 - `Masked Context World Model`: HS-JEPA core evidence
 - `Action Support World Model Core`: HS-JEPA core evidence
+- `Subject-Contrastive Action-Support Core`: HS-JEPA core evidence
 - `Masked View Surprise Action Release`: core residual을 action release로 번역한 adapter/probe
 - `Surprise Responsibility Toxicity Veto`: adapter와 diagnostic 사이의 action-health gate
 
@@ -79,6 +80,7 @@ Core의 좋은 증거:
 - `ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
 - `ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
+- `SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
 - `HS_JEPA_JEPA_CONTRACT_KO.md`
 
 Core evidence ladder:
@@ -95,6 +97,9 @@ Core evidence ladder:
 
 4. listener-conditioned support
    world-state geometry + target listener -> route-specific action-health
+
+5. subject-contrastive support
+   same-subject/same-target action pair -> episode-level action-health ordering
 ```
 
 이 ladder가 HS-JEPA의 JEPA성을 만든다. 즉 HS-JEPA는 label probability를 바로 맞히는 classifier가 아니라,

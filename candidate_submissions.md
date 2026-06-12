@@ -10330,3 +10330,50 @@ If public LB worsens:
 
 S4 pairwise responsibility is not public/private safe.
 The local lesson remains: pairwise coordinate reduced subject-heldout damage, but needs a stronger listener/episode gate.
+
+## 2026-06-13 - HS-JEPA Subject-Contrastive Action-Support Core Candidate
+
+- File: `submission_hsjepa_subject_contrastive_action_support_anchor_free_2cc6457c_uploadsafe.csv`
+- Code: `hsjepa_core/run_subject_contrastive_action_support_core.py`
+- Documentation: `paper_hsjepa_core/SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is not a leaderboard-anchor candidate. It is a core evidence sensor.
+It tests whether HS-JEPA residual energy can recover action-health ordering
+after subject and target shortcuts are suppressed through same-subject/same-target
+pairwise supervision.
+
+Local evidence:
+
+- selected feature set: `binary_preference__world_residual_energy_pair`
+- selected OOF gain sum: `+2.383219`
+- gain lift vs target-shuffle null: `+7.010120`
+- gain z vs target-shuffle null: `1.526122`
+- selected positive gain rate: `0.539683`
+- released test cells: `175`
+- validation: upload-safe
+
+Worldview:
+
+```text
+There is weak but real subject-contrastive action-health ordering inside
+HS-JEPA residual energy.
+However, this is still not a final release law.  Shortcut/action-only scores
+can have higher AUC while destroying Log Loss utility.
+```
+
+If public LB improves:
+
+The public subset may reward residual-energy episode ordering more than previous
+subject-heldout adapter stress suggested.  The next step should be a tail-safe
+decoder around residual-energy ordering, not wider top-k release.
+
+If public LB worsens:
+
+The local core evidence remains useful, but the candidate's broad 175-cell
+release is not public/private safe.  The next step should keep this as a
+representation proof and build a stricter tail-risk decoder before release.

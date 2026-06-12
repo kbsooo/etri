@@ -13,6 +13,7 @@
 - `paper_hsjepa_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
+- `paper_hsjepa_core/SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
@@ -132,6 +133,28 @@ HS-JEPA core evidence는 target-free universal decoder가 아니라
 listener-conditioned action-support world model 쪽으로 수렴한다.
 Target listener가 있을 때는 OOF action-support가 강하지만,
 새 target route로 전이되는 법칙은 아직 증명되지 않았다.
+```
+
+`SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`는 위 결론을 더 일반적인 방향에서 다시 찌른다. target/listener conditioning이 너무 대회 특화처럼 보일 수 있으므로, 같은 subject + 같은 target 내부의 pairwise ordering으로 supervision을 바꿔 subject/target prior shortcut을 제거했다.
+
+현재 핵심 결과:
+
+- selected feature set: `binary_preference__world_residual_energy_pair`
+- selected OOF gain sum: `+2.383219`
+- support AUC/AP: `0.512922` / `0.508946`
+- target-shuffle null 대비 gain lift: `+7.010120`, z-score `1.526122`
+- shortcut/action-only baselines는 AUC가 높아도 selected gain이 모두 음수다.
+- tail-weighted preference도 utility로 번역되지 않았다.
+- verdict: `subject_contrastive_world_state_weakly_positive`
+
+현재 해석:
+
+```text
+HS-JEPA residual energy는 subject/target shortcut을 제거해도 약한 episode-level
+action-health ordering을 갖는다.
+하지만 높은 AUC가 Log Loss utility를 보장하지 않는다.
+따라서 논문 주장은 "core representation + tail-safe action-health decoder"로
+정리해야 한다.
 ```
 
 `TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.
