@@ -11,6 +11,7 @@
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
 - `paper_hsjepa_core/CORE_OOF_ACTION_HEALTH_BENCHMARK_KO.md`
 - `paper_hsjepa_core/CONTEXTUAL_LISTENER_ROUTE_SELECTOR_KO.md`
+- `paper_hsjepa_core/RAW_KNN_FAILURE_DETECTOR_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -75,6 +76,22 @@ HS-JEPA의 성능은 단일 decoder가 아니라 target/listener별 route select
 ```text
 sample-level router는 fixed route를 이기지만, raw KNN을 안정적으로 넘지는 못한다.
 따라서 다음은 full router가 아니라 raw-KNN failure detector다.
+```
+
+`RAW_KNN_FAILURE_DETECTOR_KO.md`는 이 다음 질문을 직접 검증한다. raw lifelog KNN을 기본값으로 두고, HS-JEPA route-risk가 실패 가능성이 큰 cell만 sparse override한다.
+
+현재 핵심 결과:
+
+- raw KNN OOF: `0.636997`
+- raw-KNN failure detector OOF: `0.632612`
+- delta: `-0.004385`
+- OOF switched cells: `29`
+- generated candidate: `submission_hsjepa_raw_knn_failure_detector_2a097b16_uploadsafe.csv`
+
+현재 해석:
+
+```text
+HS-JEPA는 full predictor보다 failure-aware listener override로 쓸 때 더 강하다.
 ```
 
 ## 핵심 질문
@@ -192,6 +209,26 @@ python3 sleep_competition_adapter/contextual_listener_route_selector.py
 논문 해석:
 
 > HS-JEPA context improves over fixed listener routes, but sample-level routing is not yet strong enough to outperform raw-lifelog nearest-neighbor prediction.
+
+### 0f. Raw-KNN Failure Detector
+
+```bash
+python3 sleep_competition_adapter/raw_knn_failure_detector.py
+```
+
+이 스크립트는 raw KNN을 기본값으로 두고, HS-JEPA route-risk가 predicted gain이 높은 cell만 다른 listener route로 sparse override한다.
+
+현재 결과:
+
+- raw KNN OOF: `0.636997`
+- best failure detector OOF: `0.632612`
+- delta vs raw KNN: `-0.004385`
+- switched OOF cells: `29`
+- generated candidate: `submission_hsjepa_raw_knn_failure_detector_2a097b16_uploadsafe.csv`
+
+논문 해석:
+
+> HS-JEPA is most useful as a failure-aware listener override on top of a strong raw-lifelog predictor, not as a broad replacement for that predictor.
 
 ### 1. Human-State Action Distillation
 

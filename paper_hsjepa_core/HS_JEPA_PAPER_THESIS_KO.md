@@ -44,6 +44,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 - teacher-free core support에서는 public score와 action teacher 없이 row-state frontier 45개 row 중 16개를 top 28% support에서 회수했다.
 - core OOF action-health benchmark에서는 target/listener route selector가 temporal future split에서 subject prior `0.650566`, raw KNN `0.636997`보다 낮은 `0.629398`을 기록했다.
 - contextual listener route selector에서는 sample-level router가 fixed target route `0.657106`보다 낮은 `0.643769`를 기록했지만, raw KNN `0.636997`은 넘지 못했다.
+- raw-KNN failure detector에서는 raw KNN을 기본값으로 두고 상위 4% high-gain cell만 override해 `0.636997`에서 `0.632612`로 개선했다.
 
 따라서 논문 주장은 다음으로 고정한다.
 
@@ -69,6 +70,7 @@ python3 sleep_competition_adapter/action_health_separation_probe.py
 python3 sleep_competition_adapter/teacher_free_core_support_release.py
 python3 sleep_competition_adapter/core_oof_action_health_benchmark.py
 python3 sleep_competition_adapter/contextual_listener_route_selector.py
+python3 sleep_competition_adapter/raw_knn_failure_detector.py
 ```
 
 ## JEPA에서 가져온 것
@@ -201,6 +203,41 @@ to beat robust raw-lifelog nearest-neighbor prediction.
 ```
 
 따라서 다음 contribution 후보는 full router가 아니라 `raw-KNN failure detector`다.
+
+### Contribution 4e. Failure-Aware Listener Override
+
+full contextual router가 raw KNN을 넘지 못했다면, HS-JEPA의 역할을 더 좁고 강하게 정의해야 한다.
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/raw_knn_failure_detector.py
+```
+
+결과:
+
+```text
+raw KNN baseline: 0.636997
+raw-KNN failure detector: 0.632612
+switched cells: 29 / 735 OOF cells
+```
+
+해석:
+
+```text
+HS-JEPA should not replace a strong raw-lifelog predictor broadly.
+It should predict when that predictor will fail and release sparse listener overrides.
+```
+
+이 contribution은 JEPA 관점에서 특히 중요하다.
+
+```text
+visible context = human-state geometry + route disagreement + cohort outlier
+hidden target representation = raw predictor failure state
+prediction = sparse override decision
+```
+
+즉 HS-JEPA의 target representation은 label 자체가 아니라 `raw predictor가 실패하는 hidden state`다.
 
 ### Contribution 5. Counterfactual Listener-Dropout
 

@@ -1,0 +1,42 @@
+{
+  "package": "raw_knn_failure_detector",
+  "status": "anchor_free_failure_detector_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "uses_frontier_file": false,
+  "raw_knn_oof_logloss": 0.6369970821509948,
+  "best_detector_model": "gradient_boosted_gain",
+  "best_detector_policy": "topfrac",
+  "best_detector_param": 0.04,
+  "best_detector_oof_logloss": 0.6326124808674028,
+  "best_detector_delta_vs_raw_knn": -0.004384601283591971,
+  "best_detector_oof_switched_cells": 29,
+  "best_detector_oof_switched_rate": 0.03945578231292517,
+  "best_detector_mean_realized_gain": 0.00438460128359189,
+  "feature_count": 40,
+  "leakage_guard_blocked_columns": [
+    "loss",
+    "gain",
+    "raw_loss",
+    "y",
+    "loss__",
+    "oracle_"
+  ],
+  "candidate_file": "submission_hsjepa_raw_knn_failure_detector_2a097b16_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_raw_knn_failure_detector_2a097b16_uploadsafe.csv",
+  "test_switched_cells": 70,
+  "test_switched_rows": 41,
+  "test_selected_expert_counts": {
+    "raw_knn_blend": 1680,
+    "subject_prior": 32,
+    "global_prior": 17,
+    "core_knn_blend": 9,
+    "hsjepa_action_health__high_margin_listener_health": 6,
+    "hsjepa_action_health__wide_listener_health": 2,
+    "hsjepa_action_health__strict_listener_health": 2,
+    "hsjepa_action_health__balanced_listener_health": 1,
+    "raw_action_core_health__wide_listener_health": 1
+  },
+  "interpretation": "HS-JEPA route-risk is more useful as a raw-KNN failure detector than as a broad contextual router."
+}
