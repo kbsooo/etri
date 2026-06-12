@@ -42,6 +42,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 python3 hsjepa_core/run_masked_context_world_model.py
 python3 hsjepa_core/run_action_support_world_model_core.py
 python3 hsjepa_core/run_action_support_view_invariance_core.py
+python3 hsjepa_core/run_listener_conditioned_action_support_core.py
 ```
 
 ## 산출물
@@ -67,6 +68,9 @@ python3 hsjepa_core/run_action_support_view_invariance_core.py
 - `hsjepa_core/outputs/action_support_view_invariance_core/action_support_view_invariance_core_summary.json`
 - `hsjepa_core/outputs/action_support_view_invariance_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `hsjepa_core/outputs/action_support_view_invariance_core/*_metrics.csv`
+- `hsjepa_core/outputs/listener_conditioned_action_support_core/listener_conditioned_action_support_core_summary.json`
+- `hsjepa_core/outputs/listener_conditioned_action_support_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
+- `hsjepa_core/outputs/listener_conditioned_action_support_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -77,6 +81,7 @@ python3 hsjepa_core/run_action_support_view_invariance_core.py
 - `hsjepa_core/run_masked_context_world_model.py`: semantic lifelog view를 하나씩 mask하고 나머지 view로 target-view PCA representation을 예측해, explicit HS-JEPA world-model state와 residual energy를 만든다.
 - `hsjepa_core/run_action_support_world_model_core.py`: train label만으로 raw lifelog-memory action의 success/toxicity target을 만들고, HS-JEPA masked world-state가 subject-heldout으로 action-support를 예측하는지 검증한다.
 - `hsjepa_core/run_action_support_view_invariance_core.py`: action-support 신호가 target/action shortcut인지, single-view artifact인지, masked world-state residual/energy 신호인지 stress한다.
+- `hsjepa_core/run_listener_conditioned_action_support_core.py`: target-blind world state가 부족한지 확인하기 위해 target/family listener-conditioned residual/energy support predictor를 검증한다.
 
 ## 팀 공유 시 주의점
 
@@ -204,6 +209,34 @@ single-view world state, leave-one-view-out world state를 비교한다.
 HS-JEPA world-state residual/energy는 target/action-only shortcut보다 강한 action-support 신호를 가진다.
 하지만 완전한 target-invariant core라고 주장하기에는 아직 부족하고,
 listener/target route conditioning이 필요한 상태다.
+```
+
+## Listener-Conditioned Action-Support Core
+
+`run_listener_conditioned_action_support_core.py`는 target-blind stress의 다음 단계다.
+HS-JEPA residual/energy world state를 target/family listener와 결합했을 때
+action-support가 실제로 좋아지는지 확인한다.
+
+현재 핵심 결과:
+
+- selected feature set: `target_interaction_world_residual_energy`
+- selected policy: `top10_all_cells`
+- selected decoder: `raw_memory_release`
+- support AUC/AP: `0.611128` / `0.600888`
+- selected OOF gain sum: `+6.192500`
+- target-shuffle null 대비 gain lift: `+10.137463`, z-score `2.610537`
+- target/action-only baseline selected gain: `+1.543383`
+- global world residual/energy selected gain: `-1.955206`
+- target-heldout transfer AUC는 `0.629874`지만 selected gain은 `-2.496232`라 release law로는 아직 불안정하다.
+- anchor-free candidate: `submission_hsjepa_listener_conditioned_action_support_anchor_free_efdf0586_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA core는 target-free universal decoder가 아니다.
+World-state residual/energy는 target listener와 결합될 때 action-support가 강해진다.
+다만 cross-target listener transfer는 아직 증명되지 않았으므로,
+현재 architecture claim은 listener-conditioned action-support model이다.
 ```
 
 ## Core가 아닌 것

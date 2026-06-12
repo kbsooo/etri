@@ -12,6 +12,7 @@
 - `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
+- `paper_hsjepa_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
@@ -97,6 +98,28 @@ hidden world-state representation이다.
 HS-JEPA residual/energy world state는 target/action-only shortcut보다 강한 action-support 신호를 가진다.
 다만 완전한 target-invariant representation은 아니므로,
 논문 주장은 "listener-conditioned human-state action-support model"이어야 한다.
+```
+
+`LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`는 이 결론을 직접 검증한다. target-blind world state가 약했던 이유를 listener 부재로 보고, world-state residual/energy에 target/family listener interaction을 붙여 action-support를 예측했다.
+
+현재 핵심 결과:
+
+- selected listener: `target_interaction_world_residual_energy`
+- selected OOF gain sum: `+6.192500`
+- support AUC/AP: `0.611128` / `0.600888`
+- target-shuffle null 대비 gain lift: `+10.137463`, z-score `2.610537`
+- target/action-only baseline selected gain: `+1.543383`
+- global world residual/energy selected gain: `-1.955206`
+- target-heldout transfer는 AUC `0.629874`지만 selected gain `-2.496232`로 release-grade가 아니다.
+- verdict: `listener_conditioning_positive_but_target_transfer_unproven`
+
+현재 해석:
+
+```text
+HS-JEPA core evidence는 target-free universal decoder가 아니라
+listener-conditioned action-support world model 쪽으로 수렴한다.
+Target listener가 있을 때는 OOF action-support가 강하지만,
+새 target route로 전이되는 법칙은 아직 증명되지 않았다.
 ```
 
 `WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`는 이 core evidence를 adapter로 번역하는 다음 단계다. masked-context world model의 residual energy를 cross-subject prototype transport action field의 target-specific listener로 사용했다.

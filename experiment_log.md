@@ -15841,3 +15841,102 @@ visible human context -> universal target-free action decoder.
 The next core-side big-bet is to make the listener-conditioning explicit:
 learn or distill a target-route listener that uses world residual/energy without public anchors,
 then stress it with subject-heldout and target-family-heldout probes.
+
+## 2026-06-13 - HS-JEPA Listener-Conditioned Action-Support Core
+
+### Question
+
+`Action-Support View Invariance Core`에서 target-blind world state는 target/action baseline보다 낫지만
+positive gain까지는 못 갔다. 그렇다면 병목은 HS-JEPA core가 약한 것이 아니라
+listener/target route가 없는 decoder 때문인가?
+
+### Experiment: Listener-Conditioned Action-Support Core
+
+- Code: `hsjepa_core/run_listener_conditioned_action_support_core.py`
+- Paper doc: `paper_hsjepa_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
+- Output dir: `hsjepa_core/outputs/listener_conditioned_action_support_core/`
+- Candidate: `submission_hsjepa_listener_conditioned_action_support_anchor_free_efdf0586_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Stress feature sets:
+
+```text
+target/action-only baseline
+target-blind world residual/energy
+global world residual/energy
+family interaction world residual/energy
+target interaction world residual/energy
+per-family listener
+per-target listener
+target-heldout transfer listener
+```
+
+Implementation note:
+
+The candidate release rule is policy-matched to the OOF metric:
+`top10_all_cells` means global top 10% cells, not target-wise top 10%.
+
+### Result
+
+- verdict: `listener_conditioning_positive_but_target_transfer_unproven`
+- selected feature set: `target_interaction_world_residual_energy`
+- selected policy: `top10_all_cells`
+- selected decoder: `raw_memory_release`
+- support AUC/AP: `0.611128` / `0.600888`
+- selected cells: `315`
+- selected OOF gain sum: `+6.192500`
+- selected mean gain: `+0.019659`
+- selected positive gain rate: `0.704762`
+- target-shuffle null mean gain: `-3.944963`
+- gain lift vs null: `+10.137463`
+- gain z vs null: `2.610537`
+- released test cells: `175`
+- upload-safe validation passed
+
+Important comparisons:
+
+- `target_action_only`: selected gain `+1.543383`
+- `target_blind_world_residual_energy`: selected gain `+0.791207`
+- `global_world_residual_energy`: selected gain `-1.955206`
+- `family_interaction_world_residual_energy`: selected gain `+1.489033`
+- `target_interaction_world_residual_energy`: selected gain `+6.192500`
+- `per_target_world_residual_energy`: selected gain `-3.053041`
+- `target_heldout_world_residual_energy`: selected gain `-2.496232`
+
+Target contribution for selected listener:
+
+- Q2: `+3.176745`
+- S2: `+2.027212`
+- S3: `+1.406791`
+- S4: `+2.254243`
+- Q1/Q3/S1 remain weak or negative, especially S1 `-2.403852`.
+
+### Interpretation
+
+Strengthened:
+
+```text
+HS-JEPA world-state residual/energy becomes meaningfully more useful when decoded through
+target listener interaction. This is stronger than target/action-only and global world-state baselines.
+```
+
+Killed / constrained:
+
+```text
+Per-target isolated listeners and target-heldout transfer are not release-grade.
+High target-heldout AUC does not imply safe Log Loss action selection.
+The current evidence does not support a universal target-free or new-target-transfer decoder.
+```
+
+Architecture implication:
+
+```text
+HS-JEPA should be framed as listener-conditioned action-support:
+visible human context -> hidden world-state residual/energy -> target listener interaction -> action-health.
+```
+
+### Next
+
+The next big-bet is not to make the listener more flexible.
+It is to add an action selection constraint that vetoes the negative S1/Q1/Q3 pockets while preserving Q2/S2/S3/S4.
+This should be done without public anchors, using OOF listener toxicity and target-route conservation.
