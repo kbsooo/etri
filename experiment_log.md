@@ -17173,3 +17173,51 @@ HS-JEPA's current positive claim is not "core-only student recovers the
 frontier".  It is "action-aware masked-view tail representation is the current
 safe core-decoder boundary; core-only recovery remains unproven".
 ```
+## Subject-Invariant Masked-Tail Jury Core
+
+- date: 2026-06-13
+- task: HS-JEPA core / subject-invariant hidden-tail action-health evidence
+- code: `hsjepa_core/run_subject_invariant_masked_tail_jury_core.py`
+- paper doc: `paper_hsjepa_core/SUBJECT_INVARIANT_MASKED_TAIL_JURY_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/subject_invariant_masked_tail_jury_core/subject_invariant_masked_tail_jury_core_summary.json`
+- candidate: `submission_hsjepa_subject_invariant_masked_tail_jury_anchor_free_12249175_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+
+### Hypothesis
+
+Masked-view consensus tail이 진짜 HS-JEPA hidden human-state/action-health representation이라면,
+full OOF에서만 좋아 보이는 것이 아니라 subject를 하나씩 가린 world에서도 같은 row-target-action
+release가 반복해서 선택되어야 한다.
+
+### Method
+
+기존 masked-view consensus tail state를 parent hidden-tail state로 사용했다.
+각 subject를 제외한 selector world에서 target별 policy를 선택하고, held-out subject와 test
+row-target-action에 vote를 부여했다. 최종 candidate는 subject-excluded jury vote와 heldout
+gain이 동시에 살아남는 target만 release한다.
+
+### Result
+
+- verdict: `subject_invariant_masked_tail_jury_positive`
+- strict subject-heldout gain sum: `+0.564736`
+- strict subject-heldout selected cells: `174`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `63`
+- upload validation: valid, rows `250`, probability range `[0.428694, 0.791862]`
+
+### Interpretation
+
+기존 masked-view consensus의 strict heldout gain `+0.578637`이 subject-invariant jury 조건에서도
+`+0.564736`으로 거의 유지됐다. 따라서 현재 strongest positive evidence는 단순 full-context
+shortcut이 아니라 subject-excluded world에서도 보존되는 hidden-tail field에 가깝다.
+
+다만 Q1/Q3/S3은 jury에서 죽었다. 이 실험은 HS-JEPA가 universal direct classifier라는 주장을
+강화하지 않는다. 오히려 HS-JEPA core가 listener-specific action-health representation을 만들고,
+adapter가 그중 subject-invariant한 listener만 release해야 한다는 주장을 강화한다.
+
+### Next
+
+다음 실험은 jury vote를 단순 release 조건으로만 쓰지 않고, core state 자체가 어떤 target listener에서
+subject-invariant하게 collapse하지 않는지 representation-level metric으로 분리해야 한다.

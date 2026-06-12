@@ -1,0 +1,8 @@
+target,accepted,vote_threshold,test_budget,heldout_accept_rate,heldout_gain_sum,heldout_selected_cells,heldout_positive_gain_rate,heldout_positive_subjects,heldout_negative_subjects,accept_reason
+Q1,False,4,0,0.9,-0.9811227872641031,16,0.5625,3,6,failed_subject_invariant_jury_stress
+Q2,True,4,6,1.0,0.1256975168041972,11,0.5454545454545454,6,4,subject_invariant_masked_tail_jury_release
+Q3,False,4,0,1.0,-0.4527350038796642,30,0.43333333333333335,5,5,failed_subject_invariant_jury_stress
+S1,True,4,6,0.9,0.3202721481577825,11,0.6363636363636364,6,3,subject_invariant_masked_tail_jury_release
+S2,True,3,9,1.0,2.099623420792227,16,0.5625,7,3,subject_invariant_masked_tail_jury_release
+S3,False,4,0,0.8,-0.9574003116288773,8,0.25,2,6,failed_subject_invariant_jury_stress
+S4,True,4,46,1.0,0.41040108644358053,82,0.5609756097560976,7,3,subject_invariant_masked_tail_jury_release

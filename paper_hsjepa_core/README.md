@@ -1606,3 +1606,49 @@ python3 sleep_competition_adapter/subject_relative_responsibility_assignment.py
 자세한 설명:
 
 - `paper_hsjepa_core/SUBJECT_RELATIVE_RESPONSIBILITY_ASSIGNMENT_KO.md`
+
+### 22. Subject-Invariant Masked-Tail Jury Core
+
+```bash
+python3 hsjepa_core/run_subject_invariant_masked_tail_jury_core.py
+```
+
+이 스크립트는 masked-view consensus tail teacher를 다시 subject-invariant 조건으로 읽는다.
+full OOF에서 좋아 보이는 policy가 아니라, 각 subject를 하나씩 가린 world가 같은
+row-target-action release를 반복해서 고르는지 본다.
+
+```text
+masked visible context views
+  -> hidden episode-conditioned tail representation
+  -> subject-excluded policy selection
+  -> jury vote over row-target-action release
+  -> sparse anchor-free correction
+```
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- parent hidden-tail state source: `parent_masked_view_state_cache`
+- verdict: `subject_invariant_masked_tail_jury_positive`
+- strict subject-heldout gain sum: `+0.564736`
+- strict subject-heldout selected cells: `174`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `63`
+- generated candidate: `submission_hsjepa_subject_invariant_masked_tail_jury_anchor_free_12249175_uploadsafe.csv`
+
+해석:
+
+- 기존 masked-view consensus의 positive heldout gain `+0.578637`이 subject-excluded
+  jury 조건에서도 `+0.564736`으로 거의 유지됐다.
+- 이는 hidden-tail field가 단일 full-context shortcut만은 아니라는 더 강한 증거다.
+- Q1/Q3/S3은 jury에서 죽었고 Q2/S1/S2/S4만 살아났다. 따라서 HS-JEPA를
+  universal direct classifier로 과장하지 말고, listener-specific action-health
+  representation으로 설명해야 한다.
+- 이 결과는 `core -> adapter` 경계의 논문 주장을 강화한다. core는 label을 직접 푸는
+  모델이 아니라, subject-invariant 조건에서 안전한 action-tail 후보를 줄이는 world model이다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SUBJECT_INVARIANT_MASKED_TAIL_JURY_CORE_KO.md`

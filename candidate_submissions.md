@@ -10723,3 +10723,40 @@ If public LB worsens:
 
 This confirms the nested stress result and reinforces that this candidate is a
 diagnostic, not a release-grade decoder.
+## Subject-Invariant Masked-Tail Jury Core
+
+- file: `submission_hsjepa_subject_invariant_masked_tail_jury_anchor_free_12249175_uploadsafe.csv`
+- code: `hsjepa_core/run_subject_invariant_masked_tail_jury_core.py`
+- doc: `paper_hsjepa_core/SUBJECT_INVARIANT_MASKED_TAIL_JURY_CORE_KO.md`
+- status: upload-safe
+- public LB: not submitted
+- semantic purpose: subject-excluded jury로 masked-view hidden-tail action이 subject shortcut인지 검사한다.
+
+### Why This Candidate Exists
+
+이 후보는 점수 미세조정이 아니라 다음 세계관에 베팅한다.
+
+```text
+HS-JEPA hidden-tail representation이 진짜라면,
+subject를 하나 가린 world들이 비슷한 row-target-action을 반복해서 release해야 한다.
+```
+
+### Local Evidence
+
+- strict subject-heldout gain sum: `+0.564736`
+- selected heldout cells: `174`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `63`
+- validation: valid, rows `250`, probability range `[0.428694, 0.791862]`
+
+### Expected Public Meaning
+
+좋아지면:
+
+- masked-view consensus tail의 positive signal이 public-only shortcut이 아니라 subject-invariant action-health field일 가능성이 커진다.
+- Q2/S1까지 살아난 jury target 확장이 유효하다는 신호다.
+
+나빠지면:
+
+- subject-heldout local positive gain은 아직 public/private action toxicity를 충분히 대리하지 못한다.
+- S2/S4 중심의 더 좁은 stable policy가 더 안전하고, Q2/S1 확장은 release decoder 독성일 수 있다.

@@ -51,6 +51,7 @@ python3 hsjepa_core/run_masked_view_consensus_tail_core.py
 python3 hsjepa_core/run_action_free_vulnerability_gate_core.py
 python3 hsjepa_core/run_counterfactual_directional_action_health_core.py
 python3 hsjepa_core/run_core_student_recovers_masked_tail_teacher.py
+python3 hsjepa_core/run_subject_invariant_masked_tail_jury_core.py
 ```
 
 ## 산출물
@@ -103,6 +104,9 @@ python3 hsjepa_core/run_core_student_recovers_masked_tail_teacher.py
 - `hsjepa_core/outputs/core_student_recovers_masked_tail_teacher/core_student_recovers_masked_tail_teacher_summary.json`
 - `hsjepa_core/outputs/core_student_recovers_masked_tail_teacher/CORE_STUDENT_RECOVERS_MASKED_TAIL_TEACHER_KO.md`
 - `hsjepa_core/outputs/core_student_recovers_masked_tail_teacher/*_metrics.csv`
+- `hsjepa_core/outputs/subject_invariant_masked_tail_jury_core/subject_invariant_masked_tail_jury_core_summary.json`
+- `hsjepa_core/outputs/subject_invariant_masked_tail_jury_core/SUBJECT_INVARIANT_MASKED_TAIL_JURY_CORE_KO.md`
+- `hsjepa_core/outputs/subject_invariant_masked_tail_jury_core/*.csv`
 
 ## 실행 가능한 core
 
@@ -122,6 +126,7 @@ python3 hsjepa_core/run_core_student_recovers_masked_tail_teacher.py
 - `hsjepa_core/run_action_free_vulnerability_gate_core.py`: action/probability/support 입력 없이 row-target vulnerability를 예측해 masked-view action decoder를 gate할 수 있는지 검사한다. 현재 결과는 negative sensor다.
 - `hsjepa_core/run_counterfactual_directional_action_health_core.py`: action probability/magnitude 없이 counterfactual up/down direction listener만으로 hidden action-health를 예측할 수 있는지 검사한다. 현재 결과는 negative sensor다.
 - `hsjepa_core/run_core_student_recovers_masked_tail_teacher.py`: masked-view consensus tail teacher의 hidden representation을 action probability/magnitude/support 없이 core student가 복원할 수 있는지 검사한다. 현재 결과는 OOF positive / subject-heldout negative sensor다.
+- `hsjepa_core/run_subject_invariant_masked_tail_jury_core.py`: masked-view consensus teacher를 subject-excluded jury로 다시 읽어, subject를 하나씩 가려도 같은 hidden-tail action이 살아남는지 검사한다. 현재 결과는 subject-heldout positive다.
 
 ## 팀 공유 시 주의점
 
@@ -566,6 +571,40 @@ Core student can imitate enough of the teacher to create a large full-OOF gain,
 but this recovery is not subject-invariant.  The current frontier should not be
 claimed as core-only distillation.  The safer claim remains masked-view
 action-tail teacher boundary, with core student recovery as a diagnostic.
+```
+
+## Subject-Invariant Masked-Tail Jury Core
+
+`run_subject_invariant_masked_tail_jury_core.py`는 masked-view consensus tail teacher의 다음 질문을 다룬다.
+좋아 보이는 hidden-tail action이 특정 subject의 tail shortcut이면, subject를 하나씩 가린 world에서
+같은 release law가 반복해서 나오지 않아야 한다. 그래서 각 subject-excluded world를 하나의 jury로 두고,
+jury가 반복해서 받아들이는 row-target-action만 candidate로 번역한다.
+
+```text
+masked visible context views
+  -> hidden episode-conditioned tail representation
+  -> subject-excluded policy selection
+  -> jury vote over row-target-action release
+  -> sparse anchor-free correction
+```
+
+현재 핵심 결과:
+
+- strict subject-heldout gain sum: `+0.564736`
+- strict subject-heldout selected cells: `174`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `63`
+- parent hidden-tail state source: `parent_masked_view_state_cache`
+- anchor-free candidate: `submission_hsjepa_subject_invariant_masked_tail_jury_anchor_free_12249175_uploadsafe.csv`
+
+해석:
+
+```text
+masked-view consensus tail의 positive evidence가 subject-invariant 조건을 걸어도
+거의 유지됐다.  S2/S4만 남았던 이전 stable policy보다 Q2/S1까지 작은 positive
+listener로 살아난 점이 새롭다.  반대로 Q1/Q3/S3은 jury에서 죽었으므로,
+HS-JEPA hidden-tail field는 universal label solver가 아니라 listener-specific
+action-health representation이라고 주장해야 한다.
 ```
 
 ## Core가 아닌 것
