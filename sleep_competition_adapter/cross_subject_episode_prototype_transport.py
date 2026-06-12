@@ -481,6 +481,30 @@ def build_markdown(readout: dict[str, Any], metrics: pd.DataFrame, test_actions:
         "",
         "public LB, 기존 submission probability, action teacher, frontier file은 사용하지 않는다.",
         "",
+        "## 왜 이것이 HS-JEPA인가",
+        "",
+        "이 실험의 핵심은 kNN 자체가 아니다. kNN은 JEPA predictor를 non-parametric하게 구현한 한 가지 방식일 뿐이다.",
+        "",
+        "| JEPA 구성요소 | 이 실험에서의 의미 |",
+        "| --- | --- |",
+        "| context | 현재 row의 lifelog 상태, target route, expert route, row episode state |",
+        "| target representation | 다른 subject에서 실제로 성공했던 hidden episode-action prototype |",
+        "| predictor | 현재 context embedding에서 가까운 성공 action representation을 검색/예측하는 cross-subject prototype transport |",
+        "| energy / decoder | 예측된 target representation과 가까운 action만 row-target correction으로 release |",
+        "| LeJEPA-style health check | active subject coverage, negative active subject count, robust transport score로 shortcut/collapse를 검사 |",
+        "",
+        "따라서 이 실험은 label을 직접 맞히는 모델이 아니라, 보이는 human context에서 보이지 않는 action representation을 예측하는 HS-JEPA adapter다.",
+        "",
+        "## Architecture Contract",
+        "",
+        "```text",
+        "visible human-state context",
+        "  -> row/target/route joint embedding",
+        "  -> predict hidden episode-action representation from peer subjects",
+        "  -> score action-health energy",
+        "  -> release sparse row-target correction only when transport is healthy",
+        "```",
+        "",
         "## 핵심 결과",
         "",
         f"- raw OOF logloss: `{readout['raw_oof_logloss']:.6f}`",
@@ -507,7 +531,8 @@ def build_markdown(readout: dict[str, Any], metrics: pd.DataFrame, test_actions:
         "",
         "## 논문용 해석",
         "",
-        "이 실험은 HS-JEPA를 개인의 과거 label memory가 아니라 cross-subject state-action prototype transport로 해석한다.",
+        "이 실험은 HS-JEPA를 개인의 과거 label memory가 아니라 cross-subject target-representation prediction으로 해석한다.",
+        "여기서 target representation은 raw label이 아니라, peer subject에서 성공한 episode-action prototype이다.",
         "성공하면 human-state latent가 subject identity를 넘어 전이 가능한 action geometry를 가진다는 증거가 된다.",
         "실패하면 현재 episode latent는 local diagnostic으로는 유효하지만, peer subject로 전이 가능한 일반 representation은 아직 아니라는 결론이다.",
     ]
@@ -607,8 +632,8 @@ def run() -> dict[str, Any]:
         encoding="utf-8",
     )
     md = build_markdown(readout, metrics, test_actions)
-    (OUT / "CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md").write_text(md, encoding="utf-8")
-    (ROOT / "paper_hsjepa_core" / "CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md").write_text(md, encoding="utf-8")
+    (OUT / "CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md").write_text(md + "\n", encoding="utf-8")
+    (ROOT / "paper_hsjepa_core" / "CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md").write_text(md + "\n", encoding="utf-8")
     return readout
 
 

@@ -827,7 +827,24 @@ python3 paper_hsjepa_core/target_listener_route_lift_solver.py
 
 - `paper_hsjepa_core/TARGET_LISTENER_ROUTE_LIFT_SOLVER_KO.md`
 
-### 14. Subject-Invariant Episode Controller
+### 14. HS-JEPA JEPA Contract
+
+HS-JEPA가 단순 대회 adapter가 아니라 JEPA 계열 아키텍처로 읽히려면,
+각 실험이 다음 mapping을 분명히 가져야 한다.
+
+```text
+visible human context
+  -> hidden target representation prediction
+  -> listener/action responsibility
+  -> action-health energy
+  -> invariant-preserving sparse decoder
+```
+
+이 contract를 별도 문서로 정리했다.
+
+- `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
+
+### 15. Subject-Invariant Episode Controller
 
 ```bash
 python3 sleep_competition_adapter/episode_action_space_restriction_decoder.py
@@ -857,7 +874,7 @@ artifact인지 검증한다.
 
 - `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
 
-### 15. Cross-Subject Episode Prototype Transport
+### 16. Cross-Subject Episode Prototype Transport
 
 ```bash
 python3 sleep_competition_adapter/cross_subject_episode_prototype_transport.py

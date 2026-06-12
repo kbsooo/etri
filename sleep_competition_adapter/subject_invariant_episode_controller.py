@@ -369,6 +369,30 @@ def build_markdown(readout: dict[str, Any], objectives: pd.DataFrame, loo_summar
         "",
         "public LB, 기존 submission probability, action teacher, frontier file은 사용하지 않는다.",
         "",
+        "## 왜 이것이 HS-JEPA/LeJEPA 진단인가",
+        "",
+        "이 실험은 새 predictor를 만드는 실험이 아니라, HS-JEPA representation이 만든 action을 믿어도 되는지 검사하는 health check다.",
+        "",
+        "| JEPA 구성요소 | 이 실험에서의 의미 |",
+        "| --- | --- |",
+        "| context | row episode state와 target/route context |",
+        "| target representation | full OOF에서 성공한 것처럼 보이는 action-space policy |",
+        "| predictor | subject를 하나 가린 상태에서 어떤 controller가 target representation을 안정적으로 재현하는지 선택 |",
+        "| energy / decoder | 선택된 controller가 held-out subject에서 raw보다 낮은 action energy를 만드는지 검사 |",
+        "| LeJEPA-style health check | subject-LOO, active subject rate, negative heldout action으로 shortcut/collapse를 판정 |",
+        "",
+        "따라서 이 문서는 positive release 모델이라기보다, HS-JEPA decoder가 subject shortcut에 빠졌는지 확인하는 anti-collapse audit다.",
+        "",
+        "## Architecture Contract",
+        "",
+        "```text",
+        "row episode representation",
+        "  -> candidate action-space controller",
+        "  -> subject-heldout policy selection",
+        "  -> heldout action-health stress",
+        "  -> accept only if representation survives subject shift",
+        "```",
+        "",
         "## 핵심 결과",
         "",
         f"- raw OOF logloss: `{readout['raw_oof_logloss_from_cells']:.6f}`",
@@ -481,8 +505,8 @@ def run() -> dict[str, Any]:
     }
     (OUT / "subject_invariant_readout.json").write_text(json.dumps(readout, ensure_ascii=False, indent=2), encoding="utf-8")
     md = build_markdown(readout, objectives, loo_summary, decisions, test_actions)
-    (OUT / "SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md").write_text(md, encoding="utf-8")
-    (ROOT / "paper_hsjepa_core" / "SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md").write_text(md, encoding="utf-8")
+    (OUT / "SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md").write_text(md + "\n", encoding="utf-8")
+    (ROOT / "paper_hsjepa_core" / "SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md").write_text(md + "\n", encoding="utf-8")
     return readout
 
 

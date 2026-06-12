@@ -15,6 +15,22 @@ partial human context
 
 Transformer에서 BPE가 입력을 준비하는 층이고 attention이 핵심 기술인 것처럼, HS-JEPA에서 sleep-specific feature engineering과 public-sensor decoding은 adapter이고, 위 구조가 core다.
 
+## JEPA Contract
+
+HS-JEPA의 JEPA성은 모델 이름이 아니라 다음 contract에서 나온다.
+
+```text
+visible human context
+  -> predict hidden target representation
+  -> decode action-health under invariant constraints
+```
+
+여기서 target representation은 raw label이 아니다. hidden episode, listener route, action prototype, correction field처럼 label이 만들어지는 중간 구조다.
+
+자세한 논문용 정리는 다음 문서에 둔다.
+
+- `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
+
 ## 생성
 
 ```bash

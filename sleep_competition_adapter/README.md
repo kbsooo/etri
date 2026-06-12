@@ -57,6 +57,8 @@ python3 sleep_competition_adapter/cross_subject_episode_prototype_transport.py
 
 `cross_subject_episode_prototype_transport.py`는 그 실패를 해결하기 위한 큰 구조 변경이다. 같은 subject 안에서 action을 고르지 않고, 다른 subject에서 성공한 episode-action prototype을 비슷한 row-target-route로 전이한다. public LB, 기존 submission probability, action teacher, frontier file 없이 subject-held-out kNN transport를 사용하며, raw KNN OOF `0.636997`을 best `0.629211`, robust release `0.630158`까지 낮췄다. robust release는 active subject 7명, negative active subject 1명으로, 2명 tail에 집중된 episode action-space restriction보다 더 일반화된 HS-JEPA 증거다. 후보 파일은 `submission_hsjepa_cross_subject_episode_prototype_transport_b034ce3b_uploadsafe.csv`다.
 
+주의할 점은 kNN이 핵심 contribution이 아니라는 것이다. 이 실험에서 kNN은 JEPA predictor의 non-parametric readout이고, 진짜 HS-JEPA claim은 `visible human context -> hidden episode-action target representation`을 예측한다는 데 있다. 이 mapping은 `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`에 정리한다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
