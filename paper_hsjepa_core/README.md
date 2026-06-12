@@ -13,6 +13,7 @@
 - `paper_hsjepa_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
+- `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
@@ -120,6 +121,29 @@ HS-JEPA core evidence는 target-free universal decoder가 아니라
 listener-conditioned action-support world model 쪽으로 수렴한다.
 Target listener가 있을 때는 OOF action-support가 강하지만,
 새 target route로 전이되는 법칙은 아직 증명되지 않았다.
+```
+
+`TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.
+
+현재 핵심 결과:
+
+- public LB ledger 사용: `False`
+- 기존 submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- OOF selected gain sum: `+15.595885`
+- listener global gain reference: `+6.192500`
+- gain over listener global reference: `+9.403385`
+- selected positive gain rate: `0.734104`
+- released test cells: `197`
+- Q2/S2/S4는 raw-memory release, Q3/S1/S3는 inverse-toxic action을 선택했다.
+- candidate: `submission_hsjepa_target_route_conservation_decoder_anchor_free_4837b6ce_uploadsafe.csv`
+
+현재 해석:
+
+```text
+HS-JEPA core만으로는 release law가 완성되지 않는다.
+하지만 core residual/energy는 target listener와 결합될 때 action-health를 강하게 설명한다.
+따라서 competition adapter는 target-route conservation decoder를 가져야 한다.
 ```
 
 `WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`는 이 core evidence를 adapter로 번역하는 다음 단계다. masked-context world model의 residual energy를 cross-subject prototype transport action field의 target-specific listener로 사용했다.

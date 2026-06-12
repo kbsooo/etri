@@ -15940,3 +15940,80 @@ visible human context -> hidden world-state residual/energy -> target listener i
 The next big-bet is not to make the listener more flexible.
 It is to add an action selection constraint that vetoes the negative S1/Q1/Q3 pockets while preserving Q2/S2/S3/S4.
 This should be done without public anchors, using OOF listener toxicity and target-route conservation.
+
+## 2026-06-13 - HS-JEPA Target-Route Conservation Decoder
+
+### Question
+
+The listener-conditioned core recovered strong action-support signal, but a global top-10% release still mixed healthy and toxic route pockets.
+The experiment asked whether the HS-JEPA world-state residual/energy can be translated into route-specific action policies without public LB, prior submission probabilities, or proprietary embeddings.
+
+### Method
+
+Code:
+
+```bash
+python3 sleep_competition_adapter/target_route_conservation_decoder.py
+```
+
+The script builds masked context world-state residual/energy, combines it with target listener interactions, and chooses a policy per target:
+
+```text
+release_high_all
+release_high_decisive
+inverse_low_decisive
+hold
+```
+
+Each policy is selected by train-only OOF realized gain, subject balance, and target-shuffle null stress.
+
+### Result
+
+- verdict: `route_conservation_decoder_positive_public_free`
+- public LB ledger used: `False`
+- prior submission probabilities used: `False`
+- proprietary embedding API used: `False`
+- OOF selected cells: `346`
+- OOF selected gain sum: `+15.595885`
+- selected positive gain rate: `0.734104`
+- listener global gain reference: `+6.192500`
+- gain over listener global reference: `+9.403385`
+- released test cells: `197`
+- candidate: `submission_hsjepa_target_route_conservation_decoder_anchor_free_4837b6ce_uploadsafe.csv`
+
+Selected route policies:
+
+- Q1: `release_high_decisive`, gain `+0.700511`
+- Q2: `release_high_all`, gain `+4.590855`
+- Q3: `inverse_low_decisive`, gain `+0.727263`
+- S1: `inverse_low_decisive`, gain `+0.128822`
+- S2: `release_high_decisive`, gain `+2.070093`
+- S3: `inverse_low_decisive`, gain `+2.953439`
+- S4: `release_high_all`, gain `+4.424903`
+
+### Interpretation
+
+This is not HS-JEPA core itself. It is a competition adapter.
+The useful result is that the core world-state residual/energy becomes much more action-grade when decoded through target-route responsibility.
+
+Strengthened:
+
+```text
+HS-JEPA should not be framed as target-free direct prediction.
+It should be framed as hidden human-state world modeling plus listener-conditioned route action decoding.
+```
+
+Constrained:
+
+```text
+The route decoder is still train-OOF selected. It must be treated as adapter evidence,
+not as proof that the core alone solves the competition.
+```
+
+Next:
+
+```text
+Run a subject-LOO or subject-balanced version of this route conservation decoder.
+If it preserves a meaningful portion of the +15.6 gain, the architecture claim becomes much stronger.
+If it collapses, the result is still useful: target-route conservation is a public-free adapter but not yet subject-general.
+```

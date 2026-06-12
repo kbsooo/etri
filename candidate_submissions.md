@@ -10123,3 +10123,40 @@ The transport geometry is locally real but public/private unsafe. The next modul
 - Documentation: `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
 
 This candidate intentionally reproduces the episode action-space prediction under a subject-invariant selector. It is mainly a diagnostic artifact: the selector becomes safe but inactive on subject-LOO, which explains why cross-subject transport was needed.
+
+## 2026-06-13 - HS-JEPA Target-Route Conservation Decoder Candidate
+
+- File: `submission_hsjepa_target_route_conservation_decoder_anchor_free_4837b6ce_uploadsafe.csv`
+- Code: `sleep_competition_adapter/target_route_conservation_decoder.py`
+- Documentation: `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+It is not a HS-JEPA core proof by itself. It is the cleanest current adapter test for the claim that HS-JEPA core residual/energy becomes action-grade only after target listener and route conservation are applied.
+
+Local evidence:
+
+- OOF selected gain sum: `+15.595885`
+- positive gain rate: `0.734104`
+- gain over listener global reference: `+9.403385`
+- released test cells: `197`
+
+Worldview:
+
+```text
+Human-state representation is not a direct label predictor.
+Different targets listen to the same hidden state through different route/action laws.
+Q2/S2/S4 trust raw-memory release, while Q3/S1/S3 need inverse-toxic correction.
+```
+
+If public LB improves:
+
+The strongest next thesis becomes `HS-JEPA hidden world-state + target-route conservation decoder`.
+This would be stronger than a generic listener-conditioned action-support story because it shows the adapter can choose action direction per target without public anchors.
+
+If public LB worsens:
+
+The OOF route law is not public/private safe. The next experiment should be subject-balanced route conservation or private/public toxicity projection, not another route top-k sweep.
