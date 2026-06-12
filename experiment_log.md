@@ -16284,3 +16284,101 @@ not as a standalone row-target action releaser.
 The missing component is a subject-invariant responsibility/assignment layer
 that can turn weak toxicity evidence into safe sparse corrections.
 ```
+
+## 2026-06-13 - HS-JEPA Subject-Relative Responsibility Assignment
+
+### Question
+
+The previous action-toxicity field found a real subject-heldout action-health signal,
+but direct release failed:
+
+```text
+action-health AUC/AP = 0.597026 / 0.567465
+nested heldout gain = -5.538044
+```
+
+This experiment asks whether the failure was caused by using an absolute score
+under subject shift.  The same HS-JEPA action-health score is converted into:
+
+- subject-relative rank;
+- subject-target relative rank;
+- target-relative rank;
+- raw-vs-inverse pairwise responsibility;
+- support-aligned responsibility.
+
+### Method
+
+Code:
+
+```bash
+python3 sleep_competition_adapter/subject_relative_responsibility_assignment.py
+```
+
+The experiment preserves the public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+For each responsibility coordinate, it runs:
+
+```text
+full OOF target policy selection
+nested subject-heldout policy selection
+stable target filtering
+anchor-free candidate generation
+```
+
+### Result
+
+- verdict: `subject_relative_assignment_negative_or_fragile`
+- action-health AUC/AP: `0.597026` / `0.567465`
+- best coordinate: `pairwise_responsibility`
+- best nested gain sum: `-1.188289`
+- previous absolute action-toxicity nested gain: `-5.538044`
+- best selected cells: `97`
+- best positive gain rate: `0.587629`
+- best positive/negative subjects: `5/5`
+- stable targets: `S4`
+- stable OOF selected cells: `13`
+- stable OOF gain sum: `+0.825558`
+- released test cells: `8`
+- candidate: `submission_hsjepa_subject_relative_responsibility_assignment_anchor_free_eecb4e37_uploadsafe.csv`
+
+Coordinate comparison:
+
+- `pairwise_responsibility`: nested gain `-1.188289`, positive/negative subjects `5/5`
+- `health_score`: nested gain `-3.528860`, positive/negative subjects `3/7`
+- `support_aligned_responsibility`: nested gain `-5.309210`
+- `conservative_pair_best_responsibility`: nested gain `-5.778085`
+- `subject_relative_responsibility`: nested gain `-10.210479`
+
+Best-coordinate target signal:
+
+- Q1: gain `+1.407841`, positive/negative subjects `8/2`, but positive gain rate `0.583333`, just below strict stable threshold.
+- S4: gain `+1.559146`, positive/negative subjects `6/3`, stable.
+- Q2/Q3/S1/S2/S3: not release-grade.
+
+### Interpretation
+
+Strengthened:
+
+```text
+The action-health signal is not useless.
+Pairwise raw-vs-inverse responsibility reduced the nested heldout loss from -5.54 to -1.19.
+Part of the bottleneck is the coordinate system used to decode HS-JEPA core geometry.
+```
+
+Constrained:
+
+```text
+Subject-relative responsibility alone still does not produce a subject-general release law.
+Only S4 passed the strict stable gate, and overall nested gain remains negative.
+```
+
+Next:
+
+```text
+The next big bet should combine pairwise responsibility with multi-row episode state
+or listener-level responsibility, because cell-wise responsibility is close but not enough.
+```

@@ -1,0 +1,6 @@
+score_col,nested_selected_cells,nested_gain_sum,nested_positive_gain_rate,positive_subjects,negative_subjects,survival_score
+pairwise_responsibility,97,-1.1882892904192413,0.5876288659793815,5,5,-2.4382892904192413
+health_score,81,-3.5288602129927766,0.5308641975308642,3,7,-8.278860212992777
+support_aligned_responsibility,128,-5.309209964060305,0.5234375,4,6,-8.309209964060305
+conservative_pair_best_responsibility,78,-5.778084621165072,0.5,4,6,-8.778084621165071
+subject_relative_responsibility,113,-10.210479182660828,0.504424778761062,3,7,-14.960479182660828

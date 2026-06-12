@@ -10287,3 +10287,46 @@ If public LB worsens:
 
 No action law is disproved because this candidate releases no test cells.
 The diagnostic value is local: action-health AUC exists, but stable release is absent.
+
+## 2026-06-13 - HS-JEPA Subject-Relative Responsibility Assignment Candidate
+
+- File: `submission_hsjepa_subject_relative_responsibility_assignment_anchor_free_eecb4e37_uploadsafe.csv`
+- Code: `sleep_competition_adapter/subject_relative_responsibility_assignment.py`
+- Documentation: `paper_hsjepa_core/SUBJECT_RELATIVE_RESPONSIBILITY_ASSIGNMENT_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is a better diagnostic candidate than the direct action-toxicity field.
+It releases only S4 under a strict stable gate and tests whether pairwise raw-vs-inverse responsibility is safer than absolute health-score top-k.
+
+Local evidence:
+
+- best coordinate: `pairwise_responsibility`
+- best nested gain sum: `-1.188289`
+- previous direct toxicity nested gain: `-5.538044`
+- best positive/negative subjects: `5/5`
+- stable target: `S4`
+- stable OOF gain sum: `+0.825558`
+- released test cells: `8`
+- validation: upload-safe
+
+Worldview:
+
+```text
+HS-JEPA core action-health geometry is real but miscalibrated.
+Raw-vs-inverse pairwise responsibility is a better coordinate than absolute action-health score.
+However, this is still not a complete release law because overall nested gain remains negative.
+```
+
+If public LB improves:
+
+The useful public/private action law may be narrow S4 pairwise responsibility.
+The next architecture direction should compose pairwise responsibility with episode-level context instead of widening the release.
+
+If public LB worsens:
+
+S4 pairwise responsibility is not public/private safe.
+The local lesson remains: pairwise coordinate reduced subject-heldout damage, but needs a stronger listener/episode gate.

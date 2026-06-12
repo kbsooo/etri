@@ -1,0 +1,8 @@
+score_col,target,heldout_accept_rate,top_policy,top_fraction,top_policy_count,heldout_gain_sum,heldout_positive_subjects,heldout_negative_subjects
+pairwise_responsibility,Q1,1.0,top_responsibility_pairbest,0.08,4,1.407841080570675,8,2
+pairwise_responsibility,Q2,0.9,top_responsibility_decisive,0.04,5,-1.3262242961667563,3,6
+pairwise_responsibility,Q3,0.1,hold,0.0,9,-0.40851247813651437,0,1
+pairwise_responsibility,S1,1.0,top_responsibility_all,0.01,7,-0.32319447037000626,7,3
+pairwise_responsibility,S2,0.1,hold,0.0,9,-1.331706264559615,0,1
+pairwise_responsibility,S3,0.1,hold,0.0,9,-0.7656389846583419,0,1
+pairwise_responsibility,S4,1.0,top_responsibility_decisive,0.04,4,1.5591461229013173,6,3

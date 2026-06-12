@@ -1359,3 +1359,48 @@ inverse_toxic_memory
 자세한 설명:
 
 - `paper_hsjepa_core/SUBJECT_HELDOUT_ACTION_TOXICITY_FIELD_KO.md`
+
+### 21. Subject-Relative Responsibility Assignment
+
+```bash
+python3 sleep_competition_adapter/subject_relative_responsibility_assignment.py
+```
+
+이 스크립트는 subject-heldout action-health score가 release로 무너진 이유가
+절대 점수 calibration 문제인지 검사한다.
+
+같은 HS-JEPA action-health score를 다음 좌표계로 바꿔 비교했다.
+
+- raw `health_score`
+- `subject_relative_responsibility`
+- `pairwise_responsibility`
+- `support_aligned_responsibility`
+- `conservative_pair_best_responsibility`
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- verdict: `subject_relative_assignment_negative_or_fragile`
+- action-health AUC/AP: `0.597026` / `0.567465`
+- best coordinate: `pairwise_responsibility`
+- best nested heldout gain: `-1.188289`
+- previous absolute toxicity nested gain: `-5.538044`
+- best positive/negative subjects: `5/5`
+- stable targets: `S4`
+- stable OOF gain sum: `+0.825558`
+- released test cells: `8`
+- generated candidate: `submission_hsjepa_subject_relative_responsibility_assignment_anchor_free_eecb4e37_uploadsafe.csv`
+
+해석:
+
+- subject-relative/pairwise coordinate는 absolute health score보다 훨씬 덜 무너졌다.
+- 따라서 HS-JEPA core signal의 병목 중 일부는 signal absence가 아니라 calibration coordinate였다.
+- 그러나 전체 nested gain은 여전히 음수이고, strict stable target은 S4뿐이다.
+- 논문에서는 `subject-relative responsibility assignment`를 성공한 최종 decoder가 아니라,
+  core action-health geometry를 안전한 action으로 바꾸는 데 필요한 adapter layer 후보로 설명해야 한다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SUBJECT_RELATIVE_RESPONSIBILITY_ASSIGNMENT_KO.md`

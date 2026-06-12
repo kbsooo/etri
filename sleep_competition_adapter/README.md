@@ -43,6 +43,7 @@ python3 sleep_competition_adapter/target_route_conservation_decoder.py
 python3 sleep_competition_adapter/subject_balanced_route_conservation_decoder.py
 python3 sleep_competition_adapter/subject_heldout_route_responsibility_diagnostic.py
 python3 sleep_competition_adapter/subject_heldout_action_toxicity_field.py
+python3 sleep_competition_adapter/subject_relative_responsibility_assignment.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -95,6 +96,8 @@ python3 sleep_competition_adapter/subject_heldout_action_toxicity_field.py
 
 `subject_heldout_action_toxicity_field.py`는 route policy 대신 row-target-action 자체를 예측 단위로 낮춘다. 각 cell에 raw release와 inverse-toxic action 후보를 만들고, HS-JEPA support/residual/context가 어떤 action이 건강한지 subject-heldout으로 예측한다. 결과는 action-health AUC `0.597026`, AP `0.567465`로 독성 단서는 있지만, nested heldout gain `-5.538044`, positive/negative subjects `2/8`로 release-grade가 아니다. stable target은 없고 candidate는 prior-only sensor가 되었다. 결론은 core representation이 독성을 약하게 읽지만, subject-invariant responsibility/assignment adapter 없이는 안전하게 action으로 번역되지 않는다는 것이다.
 
+`subject_relative_responsibility_assignment.py`는 위 실패가 absolute score calibration 문제인지 검사한다. 같은 subject-heldout action-health score를 subject-relative rank, target-relative rank, raw-vs-inverse pairwise probability로 바꿔 nested heldout stress를 다시 수행했다. best coordinate는 `pairwise_responsibility`였고, nested heldout gain은 `-5.538044`에서 `-1.188289`까지 개선되었다. 여전히 전체 gain은 음수지만 positive/negative subjects가 `5/5`까지 회복되었고, `S4`는 strict stable target으로 남았다. 즉 HS-JEPA core signal의 일부 병목은 score 좌표계였지만, 아직 release-grade assignment layer는 아니다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -125,6 +128,7 @@ python3 sleep_competition_adapter/subject_heldout_action_toxicity_field.py
 - `sleep_competition_adapter/outputs/subject_balanced_route_conservation_decoder/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `sleep_competition_adapter/outputs/subject_heldout_route_responsibility_diagnostic/SUBJECT_HELDOUT_ROUTE_RESPONSIBILITY_DIAGNOSTIC_KO.md`
 - `sleep_competition_adapter/outputs/subject_heldout_action_toxicity_field/SUBJECT_HELDOUT_ACTION_TOXICITY_FIELD_KO.md`
+- `sleep_competition_adapter/outputs/subject_relative_responsibility_assignment/SUBJECT_RELATIVE_RESPONSIBILITY_ASSIGNMENT_KO.md`
 
 ## 경계
 
