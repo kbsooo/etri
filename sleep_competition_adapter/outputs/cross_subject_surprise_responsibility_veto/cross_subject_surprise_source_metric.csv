@@ -1,0 +1,2 @@
+policy,param,logloss,switched_cells,mean_realized_gain_all_cells,mean_realized_gain_switched,positive_true_gain_rate
+topfrac,0.06,0.6301575667978424,44,0.006839515353152436,0.1142509951037964,0.6818181818181818

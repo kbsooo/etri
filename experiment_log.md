@@ -15128,3 +15128,64 @@ This is not yet proof of subject-general toxicity control.
 Next:
 
 The next high-value experiment is to create a broader cross-subject action field first, then apply surprise responsibility veto there. If the veto still removes negative-gain cells across more subjects, the HS-JEPA action-health story becomes much stronger.
+
+## 2026-06-13 - HS-JEPA Cross-Subject Surprise Responsibility Veto
+
+### Question
+
+Masked-view residual energy가 narrow episode tail이 아니라, 더 넓은 cross-subject episode-action transport field에서도 toxic action을 제거할 수 있는가?
+
+### Experiment: Cross-Subject Surprise Responsibility Veto
+
+- Code: `sleep_competition_adapter/cross_subject_surprise_responsibility_veto.py`
+- Doc: `paper_hsjepa_core/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
+- Boundary doc: `paper_hsjepa_core/HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`
+- Candidate: `submission_hsjepa_cross_subject_surprise_responsibility_veto_aceca94c_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+cross-subject episode-action prototype transport
+  + masked-view surprise responsibility score
+  -> target-specific listener rule
+  -> veto unhealthy row-target actions
+```
+
+Result:
+
+- source release law: `route_episode_context__target_episode_family__knn13_distance`
+- source OOF action cells: `44`
+- source active subjects: `7`
+- original gain sum: `5.027044`
+- kept cells after veto: `41`
+- kept gain sum: `5.551664`
+- removed cells: `3`
+- removed gain sum: `-0.524620`
+- original positive gain rate: `0.681818`
+- kept positive gain rate: `0.707317`
+- test switched cells: `105 -> 101 kept / 4 vetoed`
+- test vetoed target: S4 only
+- upload-safe validation passed
+
+Interpretation:
+
+Positive evidence:
+
+```text
+Masked-view surprise responsibility is not only a narrow id02/id09 tail rule.
+On the broader cross-subject action field it still identifies a toxic target-specific action pocket.
+```
+
+Important limitation:
+
+```text
+The useful veto is concentrated in S4 and only changes 4 test cells.
+This is stronger as HS-JEPA action-health evidence than as a likely LB-breakthrough candidate.
+```
+
+Architecture packaging update:
+
+`Cross-Subject Episode Prototype Transport` is an HS-JEPA adapter, not the core.
+`Subject-Invariant Episode Controller` is a LeJEPA-style diagnostic, not the core.
+The core remains the context-to-hidden-human-state representation predictor, with masked-view surprise as the cleanest current probe.

@@ -4,8 +4,10 @@
 
 팀 공유용 최상위 설명 문서:
 
+- `paper_hsjepa_core/HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`
 - `paper_hsjepa_core/HS_JEPA_PAPER_THESIS_KO.md`
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
+- `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
@@ -19,8 +21,23 @@
 - `paper_hsjepa_core/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
 - `paper_hsjepa_core/EPISODE_ACTION_SPACE_RESTRICTION_DECODER_KO.md`
 - `paper_hsjepa_core/EPISODE_CONTROLLER_STRESS_AUDIT_KO.md`
+- `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
+- `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
+- `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
+- `paper_hsjepa_core/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
+- `paper_hsjepa_core/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
+
+`HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`는 팀 공유용 경계 문서다. HS-JEPA를 다음 세 층으로 나눈다.
+
+```text
+Core       = visible human-life context -> hidden human-state representation
+Adapter    = hidden representation -> row-target correction/action
+Diagnostic = action이 shortcut/collapse/subject-tail/public-luck인지 검사
+```
+
+이 경계를 유지해야 `Cross-Subject Episode Prototype Transport` 같은 competition adapter를 HS-JEPA core처럼 과장하지 않고, `Subject-Invariant Episode Controller` 같은 stress audit을 LeJEPA-style diagnostic으로 정확히 위치시킬 수 있다.
 
 `LIFELOG_CORE_STATE_EVIDENCE_KO.md`는 public LB 없이 OG lifelog-derived context만으로 HS-JEPA core representation이 무엇을 설명하는지 정리한다. 현재 결론은 명확하다.
 
