@@ -15538,3 +15538,133 @@ Next:
 The next high-value step is to make this less brittle by adding target-specific route guards:
 keep action-episode transport for S3-like routes, but require stronger evidence or separate listener
 for S4-like routes where the current policy still loses gain.
+
+## 2026-06-13 - HS-JEPA Target-Route Guarded Action-Episode Transport
+
+### Question
+
+Action-episode transport는 S3에서 살아났지만 S4에서 손실이 났다.
+전역 action listener를 target별 route guard로 분해하면 S3 positive signal을 유지하면서 S4 손실을 제거할 수 있는가?
+
+### Experiment: Target-Route Guarded Action-Episode Transport
+
+- Code: `sleep_competition_adapter/target_route_guarded_action_episode_transport.py`
+- Core input: `hsjepa_core/run_masked_context_world_model.py`
+- Adapter input: `sleep_competition_adapter/cross_subject_episode_prototype_transport.py`
+- Doc: `paper_hsjepa_core/TARGET_ROUTE_GUARDED_ACTION_EPISODE_TRANSPORT_KO.md`
+- Candidate: `submission_hsjepa_target_route_guarded_action_episode_transport_964c6cc7_uploadsafe.csv`
+- Public LB ledger / prior submission probability / proprietary embedding API: not used
+
+Structure:
+
+```text
+target-specific route guard
+  -> keep all / veto all / action-episode transport
+  -> row-target action responsibility
+```
+
+Result:
+
+- Q2: `keep_all`
+- Q3: `keep_all`
+- S2: `keep_all`
+- S3: `target_expert__knn1__uniform__thr-0.10`
+- S4: `veto_all`
+- source OOF action cells: `44`
+- original gain sum: `5.027044`
+- kept cells: `34`
+- kept gain sum: `6.638536`
+- removed cells: `10`
+- removed gain sum: `-1.611492`
+- OOF gain delta: `+1.611492`
+- positive subjects: `3`
+- negative subjects: `1`
+- min subject improvement: `-0.355817`
+- target gains: S3 `+1.186489`, S4 `+0.425003`
+- test switched cells: `105 -> 72 kept / 33 vetoed`
+- upload-safe validation passed
+- verdict: `target_route_guard_positive`
+
+Interpretation:
+
+Positive evidence:
+
+```text
+The HS-JEPA adapter should not use one global listener.
+Target-route decomposition preserves S3 transport gains and removes S4 action toxicity.
+```
+
+Remaining risk:
+
+```text
+S4 chooses veto_all from very small OOF support.
+This is a strong architectural clue, but still needs heldout/public sensor validation before being called release-grade.
+```
+
+Architecture implication:
+
+```text
+HS-JEPA core representation becomes useful when decoded through target-route responsibility:
+human-state -> action episode -> target-specific listener/guard.
+```
+
+Next:
+
+The next big-bet should stress this target-route decomposition under subject-heldout rule learning,
+or build a cleaner paper module named Target-Route Responsibility Decoder around this result.
+
+## 2026-06-13 - HS-JEPA Core-First Thesis Alignment
+
+### Question
+
+`Cross-Subject Episode Prototype Transport`와 `Subject-Invariant Episode Controller`를 보면
+HS-JEPA가 JEPA-style architecture라기보다 kNN transport, target guard, row-target veto 같은
+competition adapter처럼 보인다.
+
+HS-JEPA를 논문용 architecture로 유지하려면 core와 adapter/diagnostic을 어떻게 분리해야 하는가?
+
+### Action
+
+- Added: `paper_hsjepa_core/HS_JEPA_CORE_FIRST_THESIS_KO.md`
+- Updated: `hsjepa_core/README.md`
+- Updated: `paper_hsjepa_core/README.md`
+- Updated: `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
+- Updated: `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
+
+### Decision
+
+HS-JEPA의 본체는 다음이다.
+
+```text
+visible human context
+  -> predict hidden human-state target representation
+  -> listener/action responsibility
+  -> action-health and invariant-energy validation
+```
+
+`Cross-Subject Episode Prototype Transport`는 HS-JEPA core가 아니라 adapter/probe다.
+JEPA적인 부분은 current context로 peer subject의 hidden episode-action representation을
+predict/retrieve한다는 점이고, 대회 특화 부분은 그 representation을 sparse row-target
+correction으로 번역한다는 점이다.
+
+`Subject-Invariant Episode Controller`는 HS-JEPA core도 positive adapter도 아니다.
+LeJEPA-style anti-shortcut diagnostic이다. 좋아 보이는 action controller가 subject shift에서
+살아남는지 검사한다.
+
+### Interpretation
+
+이 정리는 현재 goal에 직접 중요하다.
+
+```text
+HS-JEPA core만으로 인간 생활 상태를 더 잘 표현한다는 증거
+```
+
+를 주장하려면 `hsjepa_core/`와 masked context world-model을 먼저 제시해야 한다.
+adapter 문서는 그 representation이 row-target action decoder의 독성을 줄이거나
+전이 가능한 action geometry를 만드는 downstream evidence로 배치해야 한다.
+
+### Next
+
+다음 실험은 adapter tuning이 아니라 core evidence를 강화해야 한다.
+가장 좋은 방향은 `masked context -> hidden target-view/action-support representation`을
+더 명시적인 prediction loss와 subject-heldout geometry diagnostic으로 묶는 것이다.

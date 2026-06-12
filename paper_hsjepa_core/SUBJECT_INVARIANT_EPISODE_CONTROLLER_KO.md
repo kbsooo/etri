@@ -4,6 +4,28 @@
 
 episode row-state controller를 full OOF 최저점으로 고르지 않고, subject가 바뀌어도 살아남는 목적함수로 고르는 실험이다.
 
+## 빠른 판정: 이것은 HS-JEPA인가?
+
+이 문서는 **HS-JEPA core도 아니고 positive adapter도 아니다.**
+정확한 역할은 LeJEPA-style diagnostic이다.
+
+```text
+HS-JEPA core question
+  = visible human context -> hidden human-state representation prediction
+
+이 문서의 question
+  = representation이 만든 action controller가 subject shortcut인지 아닌지 검사
+```
+
+즉 이 문서는 JEPA predictor를 새로 만든 결과가 아니라,
+이미 나온 episode/action representation이 collapse, shortcut, subject-tail에 빠졌는지 보는
+health check다.
+
+논문에서는 이 문서를 architecture 본체로 소개하면 안 된다.
+본체는 `hsjepa_core/`와 masked-context prediction이고,
+이 문서는 "좋아 보이는 decoder도 subject shift에서 죽을 수 있으므로
+LeJEPA식 anti-shortcut validation이 필요하다"는 근거로 써야 한다.
+
 ## HS-JEPA 안에서의 정확한 위치
 
 이 문서는 HS-JEPA core 자체도, positive adapter도 아니다. 정확한 위치는

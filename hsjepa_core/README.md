@@ -29,6 +29,7 @@ visible human context
 
 자세한 논문용 정리는 다음 문서에 둔다.
 
+- `paper_hsjepa_core/HS_JEPA_CORE_FIRST_THESIS_KO.md`
 - `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
 
 ## 생성
@@ -66,6 +67,19 @@ python3 hsjepa_core/run_masked_context_world_model.py
 - `hsjepa_core/run_core_module_benchmark.py`: 여러 generic human-state scenario에서 full core와 module-removal policy를 비교하는 dataset-free benchmark.
 - `hsjepa_core/run_lifelog_core_state_evidence.py`: public LB 없이 OG lifelog-derived feature table만으로 core-state representation의 label manifold, masked-view prediction, nearest-neighbor consistency, external action replay를 검증하는 real-data evidence run.
 - `hsjepa_core/run_masked_context_world_model.py`: semantic lifelog view를 하나씩 mask하고 나머지 view로 target-view PCA representation을 예측해, explicit HS-JEPA world-model state와 residual energy를 만든다.
+
+## 팀 공유 시 주의점
+
+`Cross-Subject Episode Prototype Transport`, `Target-Route Guarded Action-Episode Transport`,
+`Subject-Invariant Episode Controller` 같은 문서는 HS-JEPA core 자체가 아니다.
+
+- cross-subject/action-episode transport: core representation의 adapter/probe
+- target-route guard: competition-specific action decoder
+- subject-invariant controller: LeJEPA-style anti-shortcut diagnostic
+
+이들을 먼저 설명하면 HS-JEPA가 row-target 후처리처럼 보인다.
+팀원에게는 `core.py`와 masked context world-model을 먼저 보여주고,
+그 다음 adapter case study로 넘어가야 한다.
 
 ## Real-Data Core Evidence
 

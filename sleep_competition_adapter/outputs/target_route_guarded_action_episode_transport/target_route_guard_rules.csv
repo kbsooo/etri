@@ -1,0 +1,6 @@
+target,policy_key,group_mode,neighbors,weights,threshold,guarded_score,oof_gain_delta,oof_kept_gain_sum,oof_removed_gain_sum,positive_subjects,negative_subjects,min_subject_improvement
+Q2,keep_all,keep_all,0,none,0.0,0.0,0.0,1.976823748523643,0.0,0,0,0.0
+Q3,keep_all,keep_all,0,none,0.0,0.0,0.0,1.168314109578631,0.0,0,0,0.0
+S2,keep_all,keep_all,0,none,0.0,0.0,0.0,1.3614369514910036,0.0,0,0,0.0
+S3,target_expert__knn1__uniform__thr-0.10,target_expert,1,uniform,-0.1,1.246488955600687,1.186488955600687,2.131960800703416,-1.1864889556006868,2,0,0.0
+S4,veto_all,veto_all,0,none,0.0,0.2682577361918357,0.42500287012896504,0.0,-0.42500287012896504,1,1,-0.3558171131237646

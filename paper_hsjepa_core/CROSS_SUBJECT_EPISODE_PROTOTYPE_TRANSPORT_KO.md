@@ -4,6 +4,27 @@
 
 다른 subject에서 성공한 episode-action prototype을 held-out subject의 비슷한 row-target-route로 전이할 수 있는지 검증했다.
 
+## 빠른 판정: 이것은 HS-JEPA인가?
+
+부분적으로 맞다. 하지만 **HS-JEPA core 자체는 아니다.**
+
+이 문서는 HS-JEPA의 reusable core가 아니라,
+core/probe가 만든 hidden human-state geometry를 이용해
+다른 subject의 hidden episode-action representation을 전이할 수 있는지 보는
+**adapter/probe**다.
+
+```text
+HS-JEPA core question
+  = visible human context -> hidden human-state representation prediction
+
+이 문서의 question
+  = predicted/observed human-state geometry -> peer episode-action representation transport
+```
+
+따라서 이 문서만 보고 HS-JEPA를 설명하면 JEPA 느낌이 흐려진다.
+논문에서는 `hsjepa_core/core.py`와 masked-context world model을 먼저 설명하고,
+이 실험은 그 representation이 action transfer에 쓰이는 downstream evidence로 배치해야 한다.
+
 ## HS-JEPA 안에서의 정확한 위치
 
 이 문서는 HS-JEPA core 자체가 아니다. 정확한 위치는 **HS-JEPA adapter**다.
