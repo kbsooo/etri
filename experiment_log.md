@@ -16017,3 +16017,90 @@ Run a subject-LOO or subject-balanced version of this route conservation decoder
 If it preserves a meaningful portion of the +15.6 gain, the architecture claim becomes much stronger.
 If it collapses, the result is still useful: target-route conservation is a public-free adapter but not yet subject-general.
 ```
+
+## 2026-06-13 - HS-JEPA Subject-Balanced Route Conservation Decoder
+
+### Question
+
+The previous target-route conservation decoder produced a large public-free OOF gain, but it might still be a subject-tail shortcut.
+This experiment asks whether the same HS-JEPA listener-conditioned route law survives a stricter subject-balance objective.
+
+### Method
+
+Code:
+
+```bash
+python3 sleep_competition_adapter/subject_balanced_route_conservation_decoder.py
+```
+
+The experiment keeps the same public-free ingredients:
+
+```text
+masked world-state residual/energy
+target listener interaction support score
+train-only raw-memory action realized gain
+target-shuffle null stress
+```
+
+but chooses target routes by subject health:
+
+- positive OOF gain;
+- positive target-shuffle lift;
+- active subject coverage;
+- small negative-subject count;
+- controlled minimum subject gain.
+
+### Result
+
+- verdict: `subject_balanced_route_conservation_positive`
+- public LB ledger used: `False`
+- prior submission probabilities used: `False`
+- proprietary embedding API used: `False`
+- OOF selected cells: `166`
+- OOF selected gain sum: `+10.122799`
+- selected positive gain rate: `0.740964`
+- listener global gain reference: `+6.192500`
+- gain over listener global reference: `+3.930299`
+- route conservation gain reference: `+15.595885`
+- gain retained vs route conservation reference: `0.649069`
+- released test cells: `96`
+- candidate: `submission_hsjepa_subject_balanced_route_conservation_anchor_free_74ca928e_uploadsafe.csv`
+
+Selected routes:
+
+- Q2: `release_high_decisive`, gain `+2.734587`
+- Q3: `inverse_low_decisive`, gain `+0.727263`
+- S3: `inverse_low_decisive`, gain `+2.953439`
+- S4: `release_high_decisive`, gain `+3.707510`
+- Q1/S1/S2: held
+
+Subject stress:
+
+- all 10 subjects have positive total selected gain;
+- id10 is the weakest positive subject at `+0.147854`;
+- id08/id10 still contain negative target pockets, so this is not a solved subject-general law.
+
+### Interpretation
+
+Strengthened:
+
+```text
+The route-conservation signal is not only a single-subject OOF artifact.
+After subject-balance stress, it still beats listener-global reference and keeps about 65% of the aggregate route gain.
+```
+
+Constrained:
+
+```text
+Q1/S1/S2 do not survive the subject-balanced gate.
+The current architecture should be claimed as listener-conditioned route/action-health modeling,
+not as a universal seven-target release rule.
+```
+
+Next:
+
+```text
+The next high-information experiment is a true subject-heldout route selector:
+choose target policies without each subject, then score only that heldout subject.
+If that stays positive, HS-JEPA route responsibility becomes much more publishable as a general architecture.
+```

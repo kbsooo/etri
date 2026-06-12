@@ -86,13 +86,15 @@ python3 hsjepa_core/run_listener_conditioned_action_support_core.py
 ## 팀 공유 시 주의점
 
 `Cross-Subject Episode Prototype Transport`, `Target-Route Guarded Action-Episode Transport`,
-`Target-Route Conservation Decoder`, `Subject-Invariant Episode Controller` 같은 문서는
-HS-JEPA core 자체가 아니다.
+`Target-Route Conservation Decoder`, `Subject-Balanced Route Conservation Decoder`,
+`Subject-Invariant Episode Controller` 같은 문서는 HS-JEPA core 자체가 아니다.
 
 - cross-subject/action-episode transport: core representation의 adapter/probe
 - target-route guard: competition-specific action decoder
 - target-route conservation decoder: listener-conditioned core signal을 Q/S target route별
   release/inverse/hold action으로 번역하는 competition adapter
+- subject-balanced route conservation decoder: 위 adapter가 subject-tail shortcut인지 확인하는
+  LeJEPA-style diagnostic adapter
 - subject-invariant controller: LeJEPA-style anti-shortcut diagnostic
 
 이들을 먼저 설명하면 HS-JEPA가 row-target 후처리처럼 보인다.

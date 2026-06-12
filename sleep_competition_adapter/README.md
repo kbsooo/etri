@@ -40,6 +40,7 @@ python3 sleep_competition_adapter/cohort_listener_responsibility_transport.py
 python3 sleep_competition_adapter/action_episode_listener_transport.py
 python3 sleep_competition_adapter/target_route_guarded_action_episode_transport.py
 python3 sleep_competition_adapter/target_route_conservation_decoder.py
+python3 sleep_competition_adapter/subject_balanced_route_conservation_decoder.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -86,6 +87,8 @@ python3 sleep_competition_adapter/target_route_conservation_decoder.py
 
 `target_route_conservation_decoder.py`는 listener-conditioned HS-JEPA core signal을 더 직접적으로 target route별 action policy로 번역한다. public LB ledger, 기존 best submission probability, proprietary embedding API 없이 train-only raw lifelog KNN action의 realized gain을 support target으로 만들고, 각 target에 대해 release / inverse-toxic / hold 정책을 subject balance와 target-shuffle null로 고른다. 결과적으로 전역 listener release reference `+6.192500`보다 큰 OOF gain `+15.595885`를 얻었고, positive gain rate는 `0.734104`였다. Q2/S2/S4는 raw-memory release, Q3/S1/S3는 inverse-toxic action을 선택했다. 이 실험은 core 자체가 아니라 adapter다. 다만 HS-JEPA core residual/energy가 target listener와 결합될 때 action-health를 route별로 분해할 수 있다는 강한 증거다. 후보 파일은 `submission_hsjepa_target_route_conservation_decoder_anchor_free_4837b6ce_uploadsafe.csv`다.
 
+`subject_balanced_route_conservation_decoder.py`는 위 결과가 subject-tail shortcut인지 검사한다. 같은 public-free feature와 action target을 사용하되, subject별 gain exposure가 나쁜 route를 버리고 subject-balanced objective로 다시 고른다. 결과는 OOF gain `+10.122799`, positive gain rate `0.740964`, listener-global reference 대비 `+3.930299`, route-conservation reference 대비 `64.9%` retained gain이다. Q1/S1/S2는 hold로 내려가고, Q2/Q3/S3/S4만 살아남았다. subject별 총 gain은 10명 모두 양수였다. 이 실험은 HS-JEPA core proof가 아니라 LeJEPA-style diagnostic adapter지만, route law가 전부 subject-tail shortcut만은 아니라는 강한 public-free evidence다. 후보 파일은 `submission_hsjepa_subject_balanced_route_conservation_anchor_free_74ca928e_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -113,6 +116,7 @@ python3 sleep_competition_adapter/target_route_conservation_decoder.py
 - `sleep_competition_adapter/outputs/action_episode_listener_transport/ACTION_EPISODE_LISTENER_TRANSPORT_KO.md`
 - `sleep_competition_adapter/outputs/target_route_guarded_action_episode_transport/TARGET_ROUTE_GUARDED_ACTION_EPISODE_TRANSPORT_KO.md`
 - `sleep_competition_adapter/outputs/target_route_conservation_decoder/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
+- `sleep_competition_adapter/outputs/subject_balanced_route_conservation_decoder/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 
 ## 경계
 

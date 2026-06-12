@@ -14,6 +14,7 @@
 - `paper_hsjepa_core/ACTION_SUPPORT_VIEW_INVARIANCE_CORE_KO.md`
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
+- `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
@@ -144,6 +145,33 @@ Target listener가 있을 때는 OOF action-support가 강하지만,
 HS-JEPA core만으로는 release law가 완성되지 않는다.
 하지만 core residual/energy는 target listener와 결합될 때 action-health를 강하게 설명한다.
 따라서 competition adapter는 target-route conservation decoder를 가져야 한다.
+```
+
+`SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`는 이 positive adapter가 subject-tail shortcut인지 검사한다. 같은 public-free route law를 쓰되, subject별 gain exposure가 나쁜 target route를 버린다.
+
+현재 핵심 결과:
+
+- public LB ledger 사용: `False`
+- 기존 submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- OOF selected gain sum: `+10.122799`
+- listener global gain reference: `+6.192500`
+- route conservation gain reference: `+15.595885`
+- gain retained vs route conservation reference: `0.649069`
+- selected positive gain rate: `0.740964`
+- accepted targets: `Q2`, `Q3`, `S3`, `S4`
+- held targets: `Q1`, `S1`, `S2`
+- released test cells: `96`
+- subject별 total gain은 10명 모두 양수다.
+- candidate: `submission_hsjepa_subject_balanced_route_conservation_anchor_free_74ca928e_uploadsafe.csv`
+
+현재 해석:
+
+```text
+target-route conservation gain이 전부 subject-tail shortcut은 아니다.
+subject-balanced stress를 걸어도 listener-global reference를 넘고 약 65% gain이 남는다.
+다만 core 단독 증명이 아니라, HS-JEPA core representation이 adapter/diagnostic을 거칠 때
+action-health 독성을 줄인다는 증거로 써야 한다.
 ```
 
 `WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`는 이 core evidence를 adapter로 번역하는 다음 단계다. masked-context world model의 residual energy를 cross-subject prototype transport action field의 target-specific listener로 사용했다.

@@ -10160,3 +10160,42 @@ This would be stronger than a generic listener-conditioned action-support story 
 If public LB worsens:
 
 The OOF route law is not public/private safe. The next experiment should be subject-balanced route conservation or private/public toxicity projection, not another route top-k sweep.
+
+## 2026-06-13 - HS-JEPA Subject-Balanced Route Conservation Candidate
+
+- File: `submission_hsjepa_subject_balanced_route_conservation_anchor_free_74ca928e_uploadsafe.csv`
+- Code: `sleep_competition_adapter/subject_balanced_route_conservation_decoder.py`
+- Documentation: `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is the stricter sibling of the target-route conservation decoder.
+It gives up aggregate OOF gain to avoid subject-tail shortcut and keeps only target routes whose selected action exposure is healthier across subjects.
+
+Local evidence:
+
+- OOF selected gain sum: `+10.122799`
+- positive gain rate: `0.740964`
+- gain over listener global reference: `+3.930299`
+- gain retained vs route conservation reference: `0.649069`
+- released test cells: `96`
+- all 10 subjects have positive total selected gain in OOF audit
+
+Worldview:
+
+```text
+HS-JEPA core residual/energy produces a real route-action signal,
+but the competition adapter must filter it through subject-balanced listener responsibility.
+The safe target routes are Q2/Q3/S3/S4; Q1/S1/S2 are not currently release-grade.
+```
+
+If public LB improves:
+
+The publishable thesis strengthens: HS-JEPA is not just OOF action selection; its listener-conditioned route law can be made subject-health aware without public anchors.
+
+If public LB worsens:
+
+Even subject-balanced OOF route conservation is not public/private safe. The next step should be true subject-heldout route selection or public/private factorization, not additional OOF balance penalties.
