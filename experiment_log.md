@@ -17695,3 +17695,83 @@ raw/inverse counterfactual direction은 아직 release-grade core representation
 다음 방향은 direction을 더 큰 classifier로 맞히는 것이 아니다.
 방향을 복원하려면 human-state context만으로 부족한 숨은 변수가 무엇인지 찾아야 한다.
 후보는 row-transition/episode-reset, target-route conservation, subject-specific action asymmetry다.
+
+## Human-State World Model Core
+
+- date: 2026-06-13
+- core code: `hsjepa_core/human_state_world_model.py`
+- experiment runner: `hsjepa_core/run_human_state_world_model_core.py`
+- paper doc: `paper_hsjepa_core/HUMAN_STATE_WORLD_MODEL_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/human_state_world_model_core/human_state_world_model_summary.json`
+- downstream probe candidate: `submission_hsjepa_human_state_world_model_probe_69ab0808_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses label as pretext target: `False`
+
+### Hypothesis
+
+HS-JEPA를 row-target correction 후처리로 소개하면 논문 contribution이 약해진다.
+따라서 core를 다음처럼 다시 세웠다.
+
+```text
+visible human-life context views
+  -> predict masked / future / cohort hidden human-state representations
+  -> freeze representation
+  -> simple downstream probe로만 Q/S label 검증
+```
+
+핵심 반증 질문은 다음이다.
+
+```text
+label 없이 학습한 human-state world model이 subject identity memorization을 줄이면서도
+subject-heldout Q/S label manifold를 prior보다 조금이라도 더 선형적으로 만드는가?
+```
+
+### Result
+
+- verdict: `core_positive`, but effect size is small
+- best pretext variant: `subject_relative`
+- best pretext target: `phone_behavior`
+- best component-corr lift vs null: `+0.464197`
+- best R2 lift vs null: `+0.327008`
+- subject-heldout prior logloss: `0.677858`
+- subject-relative world full uncalibrated logloss: `0.714107`
+- subject-relative world full calibrated10 logloss: `0.677657`
+- best subject-heldout frozen probe: `subject_relative_world_model_predicted_calibrated10`
+- best subject-heldout frozen probe logloss: `0.677279`
+- subject-relative world calibrated delta vs prior: `-0.000201`
+- raw lifelog PCA subject-heldout logloss: `1.268418`
+- subject-relative world calibrated delta vs raw PCA: `-0.590761`
+- subject-relative predicted subject-id accuracy: `0.073333`
+- chance subject-id accuracy: `0.126667`
+- raw PCA subject-id accuracy: `0.957778`
+- validation: candidate schema valid, rows `250`, probability range `[0.464916, 0.707669]`
+
+### Interpretation
+
+이 실험은 큰 LB breakthrough가 아니다. 하지만 논문 방향에서는 중요한 경계가 생겼다.
+
+```text
+absolute world-state는 subject identity를 너무 많이 담는다.
+subject-relative world-state는 subject identity를 거의 제거하면서도
+low-trust frozen probe에서 prior를 아주 작게 이긴다.
+```
+
+따라서 현재 가장 정확한 thesis는 다음이다.
+
+```text
+HS-JEPA core는 standalone label classifier가 아니다.
+하지만 subject-relative context-to-hidden-state prediction은
+subject memorization을 줄이고, 작은 low-trust label signal을 만든다.
+```
+
+### Next
+
+다음 big-bet은 adapter를 더 조정하는 것이 아니라,
+subject-relative world-state의 label signal을 키우는 core pretext를 찾는 것이다.
+후보는 다음 세 가지다.
+
+1. future state를 단순 next-row가 아니라 episode-reset / routine-break target으로 바꾼다.
+2. Q/S label을 쓰지 않고 sleep-stage-like hidden target을 구성한다.
+3. subject-relative predicted state와 absolute state를 gating하지 말고, identity-free listener token으로 결합한다.

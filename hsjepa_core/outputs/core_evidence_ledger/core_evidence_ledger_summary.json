@@ -4,7 +4,7 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 4,
+  "core_positive_case_count": 5,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
   "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction plus subject-invariant listener/action-health separability.",
@@ -32,6 +32,18 @@
       "interpretation": "JEPA contract 자체는 성립한다. 단, direct label decoder로 쓰면 망가진다.",
       "source": "hsjepa_core/outputs/masked_context_world_model/masked_context_world_model_summary.json",
       "candidate": "submission_hsjepa_masked_context_world_model_core_ff673c9a_uploadsafe.csv"
+    },
+    {
+      "case": "subject_relative_human_state_world_model",
+      "layer": "core",
+      "question": "label-free subject-relative world-state가 subject identity를 줄이고 frozen label probe를 개선하는가",
+      "primary_metric": "calibrated_subject_heldout_delta_vs_prior",
+      "value": -0.00020050876143096197,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "positive_but_tiny",
+      "interpretation": "absolute state는 subject identity를 강하게 담지만, subject-relative predicted state는 subject-id leakage를 거의 제거하고 low-trust frozen probe에서 prior를 아주 작게 이긴다.",
+      "source": "hsjepa_core/outputs/human_state_world_model_core/human_state_world_model_summary.json",
+      "candidate": "submission_hsjepa_human_state_world_model_probe_69ab0808_uploadsafe.csv"
     },
     {
       "case": "external_action_replay_geometry",

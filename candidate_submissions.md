@@ -11029,3 +11029,47 @@ core가 "어디를 볼지"뿐 아니라
 
 - 현재 local 해석과 일치한다. raw/inverse direction은 아직 HS-JEPA core만으로 복원되지 않았고,
   signed direction은 adapter boundary로 남아야 한다.
+
+## Human-State World Model Probe
+
+- file: `submission_hsjepa_human_state_world_model_probe_69ab0808_uploadsafe.csv`
+- code: `hsjepa_core/run_human_state_world_model_core.py`
+- doc: `paper_hsjepa_core/HUMAN_STATE_WORLD_MODEL_CORE_KO.md`
+- status: upload-safe downstream probe candidate
+- public LB: not submitted
+- semantic purpose: HS-JEPA core를 label-free Human-State World Model로 학습한 뒤, subject-relative frozen state만 단순 calibrated label probe로 번역한다.
+
+### Why This Candidate Exists
+
+이 파일은 LB 개선용 한탕 후보라기보다, HS-JEPA core가 competition 후처리가 아니라
+독립 representation으로 작동하는지 확인하기 위한 downstream probe다.
+
+```text
+visible human-life context
+  -> subject-relative hidden human-state world representation
+  -> low-trust calibrated label probe
+```
+
+### Local Evidence
+
+- best pretext: `subject_relative / phone_behavior`
+- component-corr lift vs null: `+0.464197`
+- subject-heldout prior logloss: `0.677858`
+- subject-relative world full calibrated10 logloss: `0.677657`
+- best frozen probe logloss: `0.677279`
+- raw PCA subject-heldout logloss: `1.268418`
+- subject-relative predicted subject-id accuracy: `0.073333` vs chance `0.126667`
+- validation: valid, rows `250`, probability range `[0.464916, 0.707669]`
+
+### Submission Priority
+
+낮음. 이 파일은 최고 LB 후보가 아니라 논문 core sanity-check candidate다.
+
+좋아지면:
+
+- HS-JEPA core representation 자체가 public subset에서도 약한 label signal을 가진다는 뜻이다.
+
+나빠지면:
+
+- 현재 local 해석과 일치한다. core representation은 아직 low-trust signal이고,
+  competition LB를 크게 움직이려면 별도 adapter 또는 더 강한 pretext target이 필요하다.

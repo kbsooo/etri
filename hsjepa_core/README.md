@@ -58,6 +58,7 @@ python3 hsjepa_core/run_masked_human_state_pretext_listener_core.py
 python3 hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py
 python3 hsjepa_core/run_signed_listener_responsibility_direction_core.py
 python3 hsjepa_core/run_counterfactual_direction_pretext_core.py
+python3 hsjepa_core/run_human_state_world_model_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -132,6 +133,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/counterfactual_direction_pretext_core/counterfactual_direction_pretext_core_summary.json`
 - `hsjepa_core/outputs/counterfactual_direction_pretext_core/COUNTERFACTUAL_DIRECTION_PRETEXT_CORE_KO.md`
 - `hsjepa_core/outputs/counterfactual_direction_pretext_core/*.csv`
+- `hsjepa_core/outputs/human_state_world_model_core/human_state_world_model_summary.json`
+- `hsjepa_core/outputs/human_state_world_model_core/HUMAN_STATE_WORLD_MODEL_CORE_KO.md`
+- `hsjepa_core/outputs/human_state_world_model_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 
@@ -160,6 +164,7 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py`: action을 직접 예측하기 전에 row-target listener responsibility field를 복원할 수 있는지 검사한다. 현재 결과는 core responsibility positive / action translation fragile이다.
 - `hsjepa_core/run_signed_listener_responsibility_direction_core.py`: responsibility-high cell 내부에서 raw/inverse signed action direction을 예측해 action translation toxicity를 줄일 수 있는지 검사한다. 현재 결과는 responsibility core + action-geometry direction adapter positive다.
 - `hsjepa_core/run_counterfactual_direction_pretext_core.py`: raw/inverse direction을 action-probability-free counterfactual hidden target으로 끌어올려, HS-JEPA core가 direction까지 복원하는지 검사한다. 현재 결과는 negative boundary다.
+- `hsjepa_core/run_human_state_world_model_core.py`: HS-JEPA를 competition 후처리에서 분리해 label-free human-state world model로 구현한다. absolute/subject-relative semantic views에서 masked/future/cohort hidden state를 예측하고, frozen low-trust probe로 subject-heldout/chronological label manifold를 평가한다. 현재 결과는 subject-relative world model core positive지만 효과 크기는 작다.
 - `hsjepa_core/build_core_evidence_ledger.py`: public-free core evidence를 하나의 논문용 ledger로 묶어, 무엇이 HS-JEPA core 증거이고 무엇이 adapter/diagnostic boundary인지 분리한다.
 
 ## 팀 공유 시 주의점

@@ -1,0 +1,118 @@
+{
+  "package": "human_state_world_model_core",
+  "status": "human_state_world_model_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "core_adapter_boundary": "candidate submission is downstream probe only, not core evidence",
+  "best_pretext": {
+    "variant": "subject_relative",
+    "task": "masked_context_to_view_state",
+    "target": "phone_behavior",
+    "components": 4.0,
+    "context_feature_count": 59.0,
+    "target_feature_count": 40.0,
+    "component_corr": 0.48225447975971825,
+    "null_component_corr": 0.018057751059502164,
+    "component_corr_lift_vs_null": 0.4641967287002161,
+    "r2": 0.2534851497912021,
+    "null_r2": -0.07352243061468246,
+    "r2_lift_vs_null": 0.32700758040588457,
+    "valid_rows": NaN,
+    "cohort_count": NaN,
+    "subject_count": NaN,
+    "mean_subject_normal_dist": NaN,
+    "mean_cohort_normal_dist": NaN,
+    "mean_subject_to_cohort_dist": NaN
+  },
+  "subject_prior_logloss": 0.6778575331695814,
+  "subject_raw_pca_logloss": 1.2684182957850554,
+  "subject_world_full_logloss": 0.7141068841209811,
+  "subject_world_calibrated_logloss": 0.6776570244081505,
+  "subject_hybrid_world_logloss": 0.96608711610256,
+  "subject_world_delta_vs_prior": -0.00020050876143096197,
+  "subject_world_delta_vs_raw_pca": -0.5907612713769049,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "subject_relative_world_model_predicted_calibrated10",
+    "target": "all",
+    "logloss": 0.6772789335950195,
+    "auc": 0.4010895408057417,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1
+  },
+  "chronological_best_probe": {
+    "split": "chronological_holdout",
+    "feature_set": "raw_lifelog_pca_calibrated10",
+    "target": "all",
+    "logloss": 0.6647729379955306,
+    "auc": 0.6030525100511579,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 131,
+    "probe_calibration_shrink": 0.1
+  },
+  "best_neighbor_consistency": {
+    "feature_set": "absolute_world_model_predicted",
+    "target": "all",
+    "neighbor_match_rate": 0.5780952380952381,
+    "random_match_rate": 0.5280634920634921,
+    "lift": 0.05003174603174598
+  },
+  "subject_leakage": [
+    {
+      "feature_set": "raw_lifelog_pca",
+      "subject_id_accuracy": 0.9577777777777777,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.831111111111111
+    },
+    {
+      "feature_set": "existing_cohort_human_state",
+      "subject_id_accuracy": 0.9133333333333333,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.7866666666666666
+    },
+    {
+      "feature_set": "absolute_world_model_predicted",
+      "subject_id_accuracy": 0.8844444444444445,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.7577777777777778
+    },
+    {
+      "feature_set": "absolute_world_model_full",
+      "subject_id_accuracy": 0.9222222222222223,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.7955555555555556
+    },
+    {
+      "feature_set": "subject_relative_world_model_predicted",
+      "subject_id_accuracy": 0.07333333333333333,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": -0.053333333333333344
+    },
+    {
+      "feature_set": "subject_relative_world_model_energy",
+      "subject_id_accuracy": 0.5177777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.3911111111111111
+    },
+    {
+      "feature_set": "subject_relative_world_model_full",
+      "subject_id_accuracy": 0.2577777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.1311111111111111
+    },
+    {
+      "feature_set": "hybrid_absolute_relative_world_model",
+      "subject_id_accuracy": 0.6977777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.5711111111111111
+    }
+  ],
+  "candidate_file": "submission_hsjepa_human_state_world_model_probe_69ab0808_uploadsafe.csv"
+}
