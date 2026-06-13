@@ -99,6 +99,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "multi_target_human_state_world_model_core"
         / "multi_target_human_state_world_model_summary.json"
     )
+    route_responsibility = load_json(
+        outputs
+        / "route_responsibility_world_model_core"
+        / "route_responsibility_world_model_summary.json"
+    )
 
     return [
         {
@@ -199,6 +204,22 @@ def collect_cases() -> list[dict[str, Any]]:
             ),
             "source": "hsjepa_core/outputs/multi_target_human_state_world_model_core/multi_target_human_state_world_model_summary.json",
             "candidate": multi_target.get("candidate_file"),
+        },
+        {
+            "case": "route_responsibility_world_model",
+            "layer": "core_diagnostic",
+            "question": "label-free cross-route residual로 route responsibility를 만들면 base multi-target보다 좋아지는가",
+            "primary_metric": "route_weighted_delta_vs_base_multi_target_logloss",
+            "value": route_responsibility["route_weighted_delta_vs_base_multi_target"],
+            "baseline": "route_preserving_multi_target_predicted",
+            "support": "pretext_positive_downstream_negative_vs_base",
+            "interpretation": (
+                "cross-route responsibility pretext는 매우 강하지만, responsibility weighting은 prior만 이기고 "
+                "base multi-target predicted bundle보다 나쁘다. route responsibility는 현재 replacement가 아니라 diagnostic이다."
+            ),
+            "pretext_lift": route_responsibility["best_route_pretext"]["component_corr_lift_vs_null"],
+            "source": "hsjepa_core/outputs/route_responsibility_world_model_core/route_responsibility_world_model_summary.json",
+            "candidate": route_responsibility.get("candidate_file"),
         },
         {
             "case": "external_action_replay_geometry",
@@ -459,7 +480,33 @@ PCA로 하나의 compressed latent로 뭉치면 negative.
 downstream listener가 구분할 수 있도록 route axes를 보존한다.
 ```
 
-### 7. Subject-Invariant Listener Manifold
+### 7. Route-Responsibility Diagnostic
+
+multi-target bundle 위에서 다른 route들로 held-out route를 예측하고,
+그 residual energy로 label-free route responsibility를 만들었다.
+
+```text
+other predicted routes
+  -> held-out route representation
+  -> cross-route residual energy
+  -> route responsibility
+```
+
+route pretext lift는 `{fmt(by_case["route_responsibility_world_model"].get("pretext_lift"), 6)}`로 매우 강하다.
+하지만 responsibility-weighted axes는 base multi-target predicted bundle 대비
+`{fmt(by_case["route_responsibility_world_model"]["value"], 6)}`만큼 logloss가 악화된다.
+
+따라서 현재 결론은 다음이다.
+
+```text
+route responsibility는 label 없이 관측 가능하다.
+하지만 단순 route weighting은 좋은 route-preserving bundle을 대체하지 못한다.
+```
+
+이것은 실패라기보다 HS-JEPA architecture boundary다.
+다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
+
+### 8. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -467,7 +514,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 8. Listener Responsibility Field
+### 9. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.
@@ -538,6 +585,7 @@ routine-break world model: small positive and stronger hidden target
 sleep-pressure world model: strong pretext, small label-probe positive
 cohort-relative world model: predicted state positive, observed/full shortcut 위험
 multi-target world model: route-preserving bundle positive, compressed latent negative
+route responsibility diagnostic: pretext positive, route weighting은 base를 못 이김
 responsibility field: positive but small
 direction/action translation: adapter 의존
 direct label prediction: mostly negative without low-trust calibration

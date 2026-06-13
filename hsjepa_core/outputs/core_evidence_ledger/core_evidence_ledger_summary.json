@@ -94,6 +94,19 @@
       "candidate": "submission_hsjepa_multi_target_human_state_world_model_probe_d3165dfa_uploadsafe.csv"
     },
     {
+      "case": "route_responsibility_world_model",
+      "layer": "core_diagnostic",
+      "question": "label-free cross-route residual로 route responsibility를 만들면 base multi-target보다 좋아지는가",
+      "primary_metric": "route_weighted_delta_vs_base_multi_target_logloss",
+      "value": 0.0007795004844476372,
+      "baseline": "route_preserving_multi_target_predicted",
+      "support": "pretext_positive_downstream_negative_vs_base",
+      "interpretation": "cross-route responsibility pretext는 매우 강하지만, responsibility weighting은 prior만 이기고 base multi-target predicted bundle보다 나쁘다. route responsibility는 현재 replacement가 아니라 diagnostic이다.",
+      "pretext_lift": 0.8728906531500824,
+      "source": "hsjepa_core/outputs/route_responsibility_world_model_core/route_responsibility_world_model_summary.json",
+      "candidate": "submission_hsjepa_route_responsibility_world_model_probe_bab0d5b7_uploadsafe.csv"
+    },
+    {
       "case": "external_action_replay_geometry",
       "layer": "core_to_adapter_probe",
       "question": "core-state geometry가 다른 adapter의 row-action support를 재발견하는가",

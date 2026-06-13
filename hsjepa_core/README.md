@@ -63,6 +63,7 @@ python3 hsjepa_core/run_routine_break_world_model_core.py
 python3 hsjepa_core/run_sleep_pressure_world_model_core.py
 python3 hsjepa_core/run_cohort_relative_world_model_core.py
 python3 hsjepa_core/run_multi_target_human_state_world_model_core.py
+python3 hsjepa_core/run_route_responsibility_world_model_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -152,6 +153,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/multi_target_human_state_world_model_core/multi_target_human_state_world_model_summary.json`
 - `hsjepa_core/outputs/multi_target_human_state_world_model_core/MULTI_TARGET_HUMAN_STATE_WORLD_MODEL_CORE_KO.md`
 - `hsjepa_core/outputs/multi_target_human_state_world_model_core/*.csv`
+- `hsjepa_core/outputs/route_responsibility_world_model_core/route_responsibility_world_model_summary.json`
+- `hsjepa_core/outputs/route_responsibility_world_model_core/ROUTE_RESPONSIBILITY_WORLD_MODEL_CORE_KO.md`
+- `hsjepa_core/outputs/route_responsibility_world_model_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 
@@ -185,6 +189,7 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/run_sleep_pressure_world_model_core.py`: night disturbance, physiological load, social/cognitive arousal, rest-environment stability 같은 label-free sleep-pressure surrogate를 hidden target으로 만들고 visible daily context가 이를 예측하는지 검증한다. 현재 결과는 pretext lift `+0.563048`, subject-heldout low-trust probe에서 prior 대비 `-0.000867` logloss다.
 - `hsjepa_core/run_cohort_relative_world_model_core.py`: routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고, visible daily context가 personal-vs-peer cohort-relative hidden state를 예측하는지 검증한다. 현재 결과는 pretext lift `+0.672489`, subject-heldout low-trust predicted probe에서 prior 대비 `-0.001381` logloss다. observed/full cohort geometry는 subject shortcut 위험이 있어 core evidence에서 분리한다.
 - `hsjepa_core/run_multi_target_human_state_world_model_core.py`: routine-break, sleep-pressure, cohort-relative hidden target을 하나의 route-preserving predicted bundle로 묶는 통합 HS-JEPA core 실험이다. 현재 결과는 subject-heldout low-trust probe에서 prior 대비 `-0.001499`, best single hidden target 대비 `-0.000118` logloss다. 반대로 PCA compressed latent는 prior보다 `+0.000422` 나빠져, HS-JEPA core는 route axes를 보존해야 한다는 ablation을 제공한다.
+- `hsjepa_core/run_route_responsibility_world_model_core.py`: route-preserving bundle 위에서 다른 route들로 held-out route를 예측해 label-free route responsibility를 만든다. route pretext lift는 `+0.872891`로 강하지만, responsibility-weighted axes는 prior만 `-0.000720` 이기고 base multi-target보다 `+0.000780` 나쁘다. 따라서 현재는 replacement가 아니라 diagnostic boundary다.
 - `hsjepa_core/build_core_evidence_ledger.py`: public-free core evidence를 하나의 논문용 ledger로 묶어, 무엇이 HS-JEPA core 증거이고 무엇이 adapter/diagnostic boundary인지 분리한다.
 
 ## 팀 공유 시 주의점

@@ -11283,3 +11283,52 @@ PCA compressed core latent: negative
 
 - local subject-heldout 개선은 public route와 맞지 않는다는 뜻이다.
 - 그래도 compressed latent가 실패했다는 ablation은 남으므로, 다음은 bundle 자체가 아니라 listener responsibility route-selection으로 가야 한다.
+
+## Route-Responsibility World Model Probe
+
+- file: `submission_hsjepa_route_responsibility_world_model_probe_bab0d5b7_uploadsafe.csv`
+- code: `hsjepa_core/run_route_responsibility_world_model_core.py`
+- doc: `paper_hsjepa_core/ROUTE_RESPONSIBILITY_WORLD_MODEL_CORE_KO.md`
+- status: upload-safe downstream probe candidate
+- public LB: not submitted
+- semantic purpose: multi-target predicted bundle 위에서 label-free cross-route residual로 route responsibility를 만들고, responsibility-weighted axes가 public에서도 의미 있는지 확인한다.
+
+### Why This Candidate Exists
+
+이 파일은 다음 가설을 센싱한다.
+
+```text
+각 row에는 routine-break / sleep-pressure / cohort-relative route 중
+더 독립적인 human-state 정보를 들고 있는 route가 있다.
+
+그 route responsibility를 label 없이 추정해 weighted axes를 만들면
+downstream Q/S probe가 좋아질 수 있다.
+```
+
+### Local Evidence
+
+- verdict: `core_positive_but_not_base_improving`
+- best route pretext: `cross_route_to_hidden_route / routine_break`
+- component-corr lift vs null: `+0.872891`
+- R2 lift vs null: `+0.975238`
+- subject-heldout prior logloss: `0.677858`
+- base multi-target predicted calibrated logloss: `0.676358`
+- route-weighted predicted calibrated logloss: `0.677138`
+- route-weighted delta vs prior: `-0.000720`
+- route-weighted delta vs base multi-target: `+0.000780`
+- route-weighted predicted subject-id accuracy: `0.226667` vs chance `0.126667`
+- validation: valid, rows `250`, probability range `[0.457868, 0.713005]`
+
+### Submission Priority
+
+낮음에서 중간. 최고 LB 후보라기보다 HS-JEPA architecture boundary sensor다.
+
+좋아지면:
+
+- public에서는 route responsibility weighting이 local보다 더 맞는다는 뜻이다.
+- public/private hidden subset에서 base multi-target보다 route sparsity가 더 중요할 수 있다.
+
+나빠지면:
+
+- local 해석과 일치한다. route responsibility는 관측 가능하지만, route를 누르는 weighted sum은 정보 손실이다.
+- 다음은 `route-preserving bundle + listener-conditioned route readout`이어야 한다.

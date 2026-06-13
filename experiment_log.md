@@ -18089,3 +18089,78 @@ downstream listener가 어떤 route를 읽을지 고를 수 있도록 route axes
 다음 big-bet은 단순히 더 많은 hidden target을 bundle에 넣는 것이 아니다.
 `route-preserving predicted bundle` 위에서 listener responsibility가 어떤 route를 읽어야 하는지
 adapter-free로 예측하는 core objective가 필요하다.
+
+## Route-Responsibility World Model Core
+
+- date: 2026-06-13
+- code: `hsjepa_core/run_route_responsibility_world_model_core.py`
+- paper doc: `paper_hsjepa_core/ROUTE_RESPONSIBILITY_WORLD_MODEL_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/route_responsibility_world_model_core/route_responsibility_world_model_summary.json`
+- downstream probe candidate: `submission_hsjepa_route_responsibility_world_model_probe_bab0d5b7_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses label as pretext target: `False`
+
+### Hypothesis
+
+직전 multi-target 실험은 중요한 ablation을 만들었다.
+
+```text
+route-preserving predicted bundle은 좋다.
+compressed latent는 나쁘다.
+```
+
+그렇다면 다음 질문은 자연스럽게 이것이다.
+
+```text
+HS-JEPA core가 label 없이
+어느 route가 그 row의 non-redundant hidden state를 들고 있는지
+추정할 수 있는가?
+```
+
+이번 실험은 route A/B로 held-out route C를 예측하고,
+그 residual energy를 route responsibility로 해석했다.
+
+### Result
+
+- verdict: `core_positive_but_not_base_improving`
+- best route pretext: `cross_route_to_hidden_route / routine_break`
+- best route component-corr lift vs null: `+0.872891`
+- best route R2 lift vs null: `+0.975238`
+- subject-heldout prior logloss: `0.677858`
+- base multi-target predicted calibrated logloss: `0.676358`
+- route-weighted predicted calibrated logloss: `0.677138`
+- route-weighted delta vs prior: `-0.000720`
+- route-weighted delta vs base multi-target: `+0.000780`
+- route responsibility scores calibrated logloss: `0.678220`
+- route-weighted predicted subject-id accuracy: `0.226667` vs chance `0.126667`
+- base multi-target predicted subject-id accuracy: `0.257778`
+- validation: candidate valid, rows `250`, probability range `[0.457868, 0.713005]`
+
+### Interpretation
+
+이번 실험은 "route responsibility가 전혀 없다"를 죽였다.
+cross-route route prediction은 매우 강하다.
+
+하지만 더 중요한 사실도 드러났다.
+
+```text
+label-free route responsibility로 route axes를 weighting하면
+subject leakage는 줄지만, base multi-target predicted bundle보다 label probe가 나빠진다.
+```
+
+즉 현재 HS-JEPA core의 다음 thesis는 이렇게 수정된다.
+
+```text
+route responsibility는 관측 가능하지만,
+좋은 representation은 route를 누르는 것이 아니라 route를 보존한다.
+listener가 route를 선택적으로 읽어야 한다.
+```
+
+### Next
+
+다음 big-bet은 `route responsibility weighted sum`이 아니다.
+`route-preserving bundle + listener-conditioned readout`이 필요하다.
+즉 route를 하나의 scalar responsibility로 줄이지 않고,
+target/listener별로 어떤 route subspace를 읽을지 분리해야 한다.
