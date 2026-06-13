@@ -69,6 +69,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "signed_listener_responsibility_direction_core"
         / "signed_listener_responsibility_direction_core_summary.json"
     )
+    counterfactual_direction = load_json(
+        outputs
+        / "counterfactual_direction_pretext_core"
+        / "counterfactual_direction_pretext_core_summary.json"
+    )
 
     return [
         {
@@ -142,6 +147,21 @@ def collect_cases() -> list[dict[str, Any]]:
             "interpretation": "core가 위치를 좁히고, signed action adapter가 방향 독성을 수리한다. pure core direction 승리는 아니다.",
             "source": "hsjepa_core/outputs/signed_listener_responsibility_direction_core/signed_listener_responsibility_direction_core_summary.json",
             "candidate": signed.get("candidate_file"),
+        },
+        {
+            "case": "counterfactual_direction_pretext",
+            "layer": "negative_boundary",
+            "question": "raw/inverse counterfactual direction을 action-probability-free HS-JEPA core target으로 복원할 수 있는가",
+            "primary_metric": "best_core_responsibility_gain_sum",
+            "value": counterfactual_direction["best_core_responsibility_gain_sum"],
+            "baseline": "oracle_direction_available_but_hidden",
+            "support": "negative",
+            "interpretation": (
+                "direction oracle은 크지만 현재 human/pretext context는 release-grade direction을 복원하지 못한다. "
+                "signed direction은 아직 core보다 adapter boundary에 가깝다."
+            ),
+            "source": "hsjepa_core/outputs/counterfactual_direction_pretext_core/counterfactual_direction_pretext_core_summary.json",
+            "candidate": counterfactual_direction.get("candidate_file"),
         },
         {
             "case": "direct_label_prediction",
@@ -261,9 +281,24 @@ HS-JEPA contribution을 `확률값 보정`이 아니라 `listener responsibility
 
 ## 무엇을 과장하면 안 되는가
 
+### Counterfactual Direction은 아직 Core가 아니다
+
+raw/inverse direction oracle은 responsibility-selected cells에서 큰 양수 gain을 갖지만,
+action-probability-free core가 복원한 best direction gain은 `{fmt(cases[6]["value"], 6)}`이다.
+
+따라서 현재는 다음 문장이 더 정확하다.
+
+```text
+HS-JEPA core는 어디를 볼지(listener responsibility)는 일부 복원하지만,
+raw/inverse direction 자체는 아직 release-grade core representation으로 복원하지 못했다.
+```
+
+이것은 실패가 아니라 중요한 경계다.
+논문에서 direction까지 core 성과로 과장하지 않게 해준다.
+
 ### Direct Label Classifier는 아니다
 
-HS-JEPA state-only label probe는 prior 대비 logloss가 `{fmt(cases[6]["value"], 6)}` 악화된다.
+HS-JEPA state-only label probe는 prior 대비 logloss가 `{fmt(cases[7]["value"], 6)}` 악화된다.
 따라서 다음 문장은 쓰면 안 된다.
 
 ```text

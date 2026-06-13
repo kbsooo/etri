@@ -10984,3 +10984,48 @@ HS-JEPA masked-pretext responsibility core
 - local OOF의 signed direction gain이 public subset으로 전이되지 않았다는 뜻이다.
 - 특히 best direction이 action geometry였기 때문에, 실패 시 pure core보다는 adapter generalization이 죽는다.
 - 다음 실험은 action geometry를 더 키우는 것이 아니라, direction target을 core pretext representation으로 끌어올리는 쪽이어야 한다.
+
+## Counterfactual Direction Pretext Core
+
+- file: `submission_hsjepa_counterfactual_direction_pretext_d9e2a870_uploadsafe.csv`
+- code: `hsjepa_core/run_counterfactual_direction_pretext_core.py`
+- doc: `paper_hsjepa_core/COUNTERFACTUAL_DIRECTION_PRETEXT_CORE_KO.md`
+- status: upload-safe negative diagnostic candidate
+- public LB: not submitted
+- semantic purpose: raw/inverse direction을 action-geometry adapter가 아니라 HS-JEPA hidden target representation으로 복원할 수 있는지 검증한다.
+
+### Why This Candidate Exists
+
+직전 signed-direction 후보는 action translation을 수리했지만, best direction family가
+`action_geometry_direction`이었다. 이 후보는 그 약점을 정면으로 반증한다.
+
+```text
+core가 "어디를 볼지"뿐 아니라
+"raw와 inverse 중 어느 방향이 건강한지"까지 복원할 수 있는가?
+```
+
+### Local Evidence
+
+- verdict: `counterfactual_direction_pretext_negative`
+- responsibility source: `masked_pretext_listener_responsibility`
+- best core family: `human_plus_masked_pretext_direction`
+- best core AP lift: `+0.011620`
+- best core responsibility-gated gain sum: `-0.848511`
+- action-geometry reference responsibility-gated gain sum: `-1.239670`
+- oracle responsibility-gated gain sum: `+14.946064`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- validation: valid, rows `250`, probability range `[0.293629, 0.916509]`
+
+### Submission Priority
+
+낮다. 이 파일은 public LB 개선 후보가 아니라 negative sensor다.
+
+제출해서 좋아지면:
+
+- local negative와 public이 충돌한다. public subset에서 direction shortcut이 다르게 작동한다는 뜻이다.
+
+나빠지면:
+
+- 현재 local 해석과 일치한다. raw/inverse direction은 아직 HS-JEPA core만으로 복원되지 않았고,
+  signed direction은 adapter boundary로 남아야 한다.

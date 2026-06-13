@@ -17603,11 +17603,12 @@ negative boundary
 
 - core positive cases: `4`
 - adapter boundary cases: `1`
-- negative boundary cases: `1`
+- negative boundary cases: `2`
 - masked context world-model component-correlation lift vs null: `+0.248882`
 - subject-invariant listener manifold AP lift over action-only: `+0.191742`
 - listener responsibility masked-pretext AP lift over listener-only: `+0.014785`
 - signed direction translation repair over previous decoder: `+2.206488`
+- counterfactual direction pretext best core responsibility-gated gain: `-0.848511`
 - direct label prediction boundary: HS-JEPA state-only logloss is `+0.052697` worse than prior.
 
 ### Interpretation
@@ -17632,3 +17633,65 @@ HS-JEPA core만으로 Q/S label을 직접 잘 맞힌다.
 다음 big-bet은 action probability를 더 쓰는 것이 아니라,
 `counterfactual raw/inverse direction representation` 자체를 HS-JEPA pretext target으로 끌어올리는 것이다.
 그래야 core가 "어디를 볼지"뿐 아니라 "어느 방향이 건강한지"까지 표현하는지 검증할 수 있다.
+
+## Counterfactual Direction Pretext Core
+
+- date: 2026-06-13
+- code: `hsjepa_core/run_counterfactual_direction_pretext_core.py`
+- paper doc: `paper_hsjepa_core/COUNTERFACTUAL_DIRECTION_PRETEXT_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/counterfactual_direction_pretext_core/counterfactual_direction_pretext_core_summary.json`
+- candidate: `submission_hsjepa_counterfactual_direction_pretext_d9e2a870_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses action probability as core feature: `False`
+- uses label-informed peer margin: `False`
+
+### Hypothesis
+
+직전 signed-direction 실험은 action translation을 수리했지만 best direction family가
+`action_geometry_direction`이었다. 그래서 pure HS-JEPA core claim으로는 약했다.
+
+이번 실험은 raw/inverse action row를 cell-level counterfactual target으로 접었다.
+
+```text
+visible human-state context + target listener
+  -> hidden counterfactual direction representation
+  -> responsibility-high cell에서 raw 또는 inverse 선택
+```
+
+### Result
+
+- verdict: `counterfactual_direction_pretext_negative`
+- responsibility source: `masked_pretext_listener_responsibility`
+- best overall family: `human_plus_masked_pretext_direction`
+- best core family: `human_plus_masked_pretext_direction`
+- best core AP lift: `+0.011620`
+- best core responsibility-gated gain sum: `-0.848511`
+- action-geometry reference responsibility-gated gain sum: `-1.239670`
+- oracle responsibility-gated gain sum: `+14.946064`
+- released test cells: `67`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- validation: valid, rows `250`, probability range `[0.293629, 0.916509]`
+
+### Interpretation
+
+이 실험은 중요한 negative sensor다.
+
+```text
+direction signal itself exists: oracle responsibility-gated gain +14.946064
+current HS-JEPA core does not recover it: best core responsibility-gated gain -0.848511
+```
+
+따라서 현재 paper thesis는 다음처럼 제한해야 한다.
+
+```text
+HS-JEPA core는 listener responsibility와 action-health geometry를 일부 복원하지만,
+raw/inverse counterfactual direction은 아직 release-grade core representation으로 복원하지 못했다.
+```
+
+### Next
+
+다음 방향은 direction을 더 큰 classifier로 맞히는 것이 아니다.
+방향을 복원하려면 human-state context만으로 부족한 숨은 변수가 무엇인지 찾아야 한다.
+후보는 row-transition/episode-reset, target-route conservation, subject-specific action asymmetry다.

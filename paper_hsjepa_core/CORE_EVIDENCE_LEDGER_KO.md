@@ -31,6 +31,7 @@ visible human-life context
 | subject_invariant_listener_manifold | core | hsjepa_listener_ap_lift_minus_action_only | 0.191742 | action_geometry_only | strong_positive |
 | listener_responsibility_field | core | masked_pretext_ap_lift_minus_listener_only | 0.014785 | listener_only | positive_but_small |
 | signed_direction_translation | adapter_boundary | gain_sum_repaired_vs_previous_decoder | 2.206488 | previous_responsibility_decoder | adapter_positive_core_boundary |
+| counterfactual_direction_pretext | negative_boundary | best_core_responsibility_gain_sum | -0.848511 | oracle_direction_available_but_hidden | negative |
 | direct_label_prediction | negative_boundary | hsjepa_state_delta_vs_prior_logloss | 0.052697 | label_prior | negative |
 
 ## 무엇이 진짜 HS-JEPA Core 증거인가
@@ -65,6 +66,21 @@ HS-JEPA contribution을 `확률값 보정`이 아니라 `listener responsibility
 
 ## 무엇을 과장하면 안 되는가
 
+### Counterfactual Direction은 아직 Core가 아니다
+
+raw/inverse direction oracle은 responsibility-selected cells에서 큰 양수 gain을 갖지만,
+action-probability-free core가 복원한 best direction gain은 `-0.848511`이다.
+
+따라서 현재는 다음 문장이 더 정확하다.
+
+```text
+HS-JEPA core는 어디를 볼지(listener responsibility)는 일부 복원하지만,
+raw/inverse direction 자체는 아직 release-grade core representation으로 복원하지 못했다.
+```
+
+이것은 실패가 아니라 중요한 경계다.
+논문에서 direction까지 core 성과로 과장하지 않게 해준다.
+
 ### Direct Label Classifier는 아니다
 
 HS-JEPA state-only label probe는 prior 대비 logloss가 `0.052697` 악화된다.
@@ -98,6 +114,7 @@ core가 위치를 좁히고 adapter가 방향 독성을 수리한 boundary case�
 | subject_invariant_listener_manifold | submission_hsjepa_subject_invariant_listener_manifold_anchor_free_40628330_uploadsafe.csv | core |
 | listener_responsibility_field | submission_hsjepa_subject_invariant_listener_responsibility_field_a9a2ea47_uploadsafe.csv | core |
 | signed_direction_translation | submission_hsjepa_signed_listener_responsibility_direction_3a0fba1d_uploadsafe.csv | adapter_boundary |
+| counterfactual_direction_pretext | submission_hsjepa_counterfactual_direction_pretext_d9e2a870_uploadsafe.csv | negative_boundary |
 
 ## Paper Thesis로 쓰기 좋은 문장
 

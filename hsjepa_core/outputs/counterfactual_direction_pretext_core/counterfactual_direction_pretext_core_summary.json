@@ -1,0 +1,32 @@
+{
+  "package": "counterfactual_direction_pretext_core",
+  "status": "counterfactual_direction_pretext_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_action_probability_as_core_feature": false,
+  "uses_label_informed_peer_margin": false,
+  "verdict": "counterfactual_direction_pretext_negative",
+  "responsibility_source_family": "masked_pretext_listener_responsibility",
+  "best_overall_family": "human_plus_masked_pretext_direction",
+  "best_core_family": "human_plus_masked_pretext_direction",
+  "best_core_ap_lift": 0.01162018352800126,
+  "best_core_responsibility_gain_sum": -0.8485111854923055,
+  "action_geometry_reference_gain_sum": -1.239670462342533,
+  "oracle_responsibility_gain_sum": 14.946064327430742,
+  "released_test_cells": 67,
+  "release_targets": [
+    "Q2",
+    "S1",
+    "S2",
+    "S4"
+  ],
+  "candidate_file": "submission_hsjepa_counterfactual_direction_pretext_d9e2a870_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.2936294815982492,
+    "probability_max": 0.9165092105342904
+  }
+}

@@ -6,7 +6,7 @@
   "uses_proprietary_embedding_api": false,
   "core_positive_case_count": 4,
   "adapter_boundary_case_count": 1,
-  "negative_boundary_case_count": 1,
+  "negative_boundary_case_count": 2,
   "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction plus subject-invariant listener/action-health separability.",
   "cases": [
     {
@@ -80,6 +80,18 @@
       "interpretation": "core가 위치를 좁히고, signed action adapter가 방향 독성을 수리한다. pure core direction 승리는 아니다.",
       "source": "hsjepa_core/outputs/signed_listener_responsibility_direction_core/signed_listener_responsibility_direction_core_summary.json",
       "candidate": "submission_hsjepa_signed_listener_responsibility_direction_3a0fba1d_uploadsafe.csv"
+    },
+    {
+      "case": "counterfactual_direction_pretext",
+      "layer": "negative_boundary",
+      "question": "raw/inverse counterfactual direction을 action-probability-free HS-JEPA core target으로 복원할 수 있는가",
+      "primary_metric": "best_core_responsibility_gain_sum",
+      "value": -0.8485111854923055,
+      "baseline": "oracle_direction_available_but_hidden",
+      "support": "negative",
+      "interpretation": "direction oracle은 크지만 현재 human/pretext context는 release-grade direction을 복원하지 못한다. signed direction은 아직 core보다 adapter boundary에 가깝다.",
+      "source": "hsjepa_core/outputs/counterfactual_direction_pretext_core/counterfactual_direction_pretext_core_summary.json",
+      "candidate": "submission_hsjepa_counterfactual_direction_pretext_d9e2a870_uploadsafe.csv"
     },
     {
       "case": "direct_label_prediction",
