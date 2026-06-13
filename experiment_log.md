@@ -17775,3 +17775,77 @@ subject-relative world-state의 label signal을 키우는 core pretext를 찾는
 1. future state를 단순 next-row가 아니라 episode-reset / routine-break target으로 바꾼다.
 2. Q/S label을 쓰지 않고 sleep-stage-like hidden target을 구성한다.
 3. subject-relative predicted state와 absolute state를 gating하지 말고, identity-free listener token으로 결합한다.
+
+## Routine-Break World Model Core
+
+- date: 2026-06-13
+- code: `hsjepa_core/run_routine_break_world_model_core.py`
+- paper doc: `paper_hsjepa_core/ROUTINE_BREAK_WORLD_MODEL_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/routine_break_world_model_core/routine_break_world_model_summary.json`
+- downstream probe candidate: `submission_hsjepa_routine_break_world_model_probe_1cc38f16_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses label as pretext target: `False`
+
+### Hypothesis
+
+직전 Human-State World Model은 subject-relative state가 subject identity를 줄인다는 점은 보였지만
+label signal이 너무 작았다. 이번 실험은 hidden target을 더 인간적인 episode 개념으로 바꿨다.
+
+```text
+visible human-life context
+  -> subject-relative current state
+  -> previous episode jump
+  -> rolling personal-baseline residual
+  -> hidden routine-break / episode-reset representation
+```
+
+핵심 반증 질문은 다음이다.
+
+```text
+label 없이 만든 routine-break hidden target이
+subject-heldout Q/S label manifold를 prior보다 더 선형적으로 만드는가?
+```
+
+### Result
+
+- verdict: `core_positive`, still small effect
+- best pretext task: `masked_context_to_routine_break_view`
+- best pretext target: `mobility_environment`
+- best component-corr lift vs null: `+0.424933`
+- best R2 lift vs null: `+0.267127`
+- subject-heldout prior logloss: `0.677858`
+- routine predicted calibrated logloss: `0.677581`
+- routine full calibrated logloss: `0.676185`
+- routine predicted delta vs prior: `-0.000276`
+- routine full delta vs prior: `-0.001673`
+- chronological best remains raw PCA calibrated: `0.664773`
+- routine predicted subject-id accuracy: `0.097778` vs chance `0.126667`
+- routine full subject-id accuracy: `0.164444` vs chance `0.126667`
+- raw PCA subject-id accuracy: `0.957778`
+- validation: candidate valid, rows `250`, probability range `[0.453358, 0.706808]`
+
+### Interpretation
+
+이 실험은 이전 core보다 thesis가 더 좋다.
+
+```text
+HS-JEPA는 label을 직접 맞히는 모델이 아니라,
+생활 context에서 보이지 않는 루틴 붕괴/episode reset 표현을 예측하는 world model이다.
+```
+
+그리고 이 표현은 raw feature처럼 subject identity를 거의 외우지 않으면서,
+low-trust frozen probe에서 prior를 `-0.001673` 이겼다.
+
+단, 이 수치는 아직 큰 LB breakthrough가 아니다. 논문적으로는 core-positive지만,
+0.53급 점프를 만들려면 routine-break representation을 listener responsibility 또는
+sleep-stage-like hidden target과 결합해야 한다.
+
+### Next
+
+다음 big-bet은 competition adapter 미세조정이 아니다.
+
+1. routine-break hidden target을 listener responsibility field와 결합한다.
+2. routine-break가 Q/S 중 어느 family의 label manifold를 실제로 여는지 분해한다.
+3. sleep-stage-like hidden target을 label-free pretext로 구성해 routine-break와 비교한다.

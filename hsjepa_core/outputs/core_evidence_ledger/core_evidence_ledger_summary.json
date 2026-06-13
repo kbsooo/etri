@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 5,
+  "core_positive_case_count": 6,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction plus subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break prediction, and subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -44,6 +44,18 @@
       "interpretation": "absolute state는 subject identity를 강하게 담지만, subject-relative predicted state는 subject-id leakage를 거의 제거하고 low-trust frozen probe에서 prior를 아주 작게 이긴다.",
       "source": "hsjepa_core/outputs/human_state_world_model_core/human_state_world_model_summary.json",
       "candidate": "submission_hsjepa_human_state_world_model_probe_69ab0808_uploadsafe.csv"
+    },
+    {
+      "case": "routine_break_world_model",
+      "layer": "core",
+      "question": "보이는 human-life context로 보이지 않는 routine-break/episode-reset representation을 예측하는가",
+      "primary_metric": "routine_full_delta_vs_prior_logloss",
+      "value": -0.001672643656616346,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "positive_but_small",
+      "interpretation": "subject-relative deviation, previous-episode jump, rolling-baseline residual로 만든 label-free routine-break target이 subject-heldout frozen probe에서 prior를 이긴다.",
+      "source": "hsjepa_core/outputs/routine_break_world_model_core/routine_break_world_model_summary.json",
+      "candidate": "submission_hsjepa_routine_break_world_model_probe_1cc38f16_uploadsafe.csv"
     },
     {
       "case": "external_action_replay_geometry",

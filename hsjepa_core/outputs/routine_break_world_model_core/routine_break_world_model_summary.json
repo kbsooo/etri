@@ -1,0 +1,98 @@
+{
+  "package": "routine_break_world_model_core",
+  "status": "routine_break_world_model_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "hidden_target": "subject_relative_routine_break_and_next_episode_reset",
+  "best_pretext": {
+    "task": "masked_context_to_routine_break_view",
+    "target": "mobility_environment",
+    "components": 4,
+    "context_feature_count": 81,
+    "target_feature_count": 93,
+    "component_corr": 0.40947830518391626,
+    "null_component_corr": -0.01545512899159855,
+    "component_corr_lift_vs_null": 0.4249334341755148,
+    "r2": 0.1415923205295072,
+    "null_r2": -0.12553496613613543,
+    "r2_lift_vs_null": 0.26712728666564267,
+    "valid_rows": null
+  },
+  "subject_prior_logloss": 0.6778575331695814,
+  "routine_predicted_calibrated_logloss": 0.677581490658198,
+  "routine_full_calibrated_logloss": 0.6761848895129651,
+  "routine_predicted_delta_vs_prior": -0.00027604251138346747,
+  "routine_full_delta_vs_prior": -0.001672643656616346,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "routine_break_full_calibrated10",
+    "target": "all",
+    "logloss": 0.6761848895129651,
+    "auc": 0.4127762720068034,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1
+  },
+  "chronological_best_probe": {
+    "split": "chronological_holdout",
+    "feature_set": "raw_lifelog_pca_calibrated10",
+    "target": "all",
+    "logloss": 0.6647729379955306,
+    "auc": 0.6030525100511579,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 131,
+    "probe_calibration_shrink": 0.1
+  },
+  "best_neighbor_consistency": {
+    "feature_set": "raw_lifelog_pca",
+    "target": "all",
+    "neighbor_match_rate": 0.5805714285714285,
+    "random_match_rate": 0.5307936507936508,
+    "lift": 0.0497777777777777
+  },
+  "subject_leakage": [
+    {
+      "feature_set": "raw_lifelog_pca",
+      "subject_id_accuracy": 0.9577777777777777,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.831111111111111
+    },
+    {
+      "feature_set": "existing_cohort_human_state",
+      "subject_id_accuracy": 0.9133333333333333,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.7866666666666666
+    },
+    {
+      "feature_set": "routine_break_predicted",
+      "subject_id_accuracy": 0.09777777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": -0.028888888888888895
+    },
+    {
+      "feature_set": "routine_break_energy",
+      "subject_id_accuracy": 0.10666666666666667,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": -0.020000000000000004
+    },
+    {
+      "feature_set": "routine_break_observed",
+      "subject_id_accuracy": 0.2111111111111111,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.08444444444444443
+    },
+    {
+      "feature_set": "routine_break_full",
+      "subject_id_accuracy": 0.16444444444444445,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.03777777777777777
+    }
+  ],
+  "candidate_file": "submission_hsjepa_routine_break_world_model_probe_1cc38f16_uploadsafe.csv"
+}

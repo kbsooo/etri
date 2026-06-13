@@ -11073,3 +11073,53 @@ visible human-life context
 
 - 현재 local 해석과 일치한다. core representation은 아직 low-trust signal이고,
   competition LB를 크게 움직이려면 별도 adapter 또는 더 강한 pretext target이 필요하다.
+
+## Routine-Break World Model Probe
+
+- file: `submission_hsjepa_routine_break_world_model_probe_1cc38f16_uploadsafe.csv`
+- code: `hsjepa_core/run_routine_break_world_model_core.py`
+- doc: `paper_hsjepa_core/ROUTINE_BREAK_WORLD_MODEL_CORE_KO.md`
+- status: upload-safe downstream probe candidate
+- public LB: not submitted
+- semantic purpose: subject-relative current state, episode jump, rolling personal-baseline residual을 label-free hidden target으로 만든 뒤, low-trust frozen probe로 Q/S label signal을 읽는다.
+
+### Why This Candidate Exists
+
+이 파일은 HS-JEPA core를 다음 문장으로 검증한다.
+
+```text
+보이는 생활 context만으로
+보이지 않는 루틴 붕괴/episode reset 표현을 예측하면
+subject identity를 외우지 않고도 Q/S label manifold가 조금 더 선형화되는가?
+```
+
+즉 이 candidate는 최고 LB용 안전 제출이 아니라, HS-JEPA core thesis를 검증하는 downstream probe다.
+
+### Local Evidence
+
+- best pretext: `masked_context_to_routine_break_view / mobility_environment`
+- component-corr lift vs null: `+0.424933`
+- R2 lift vs null: `+0.267127`
+- subject-heldout prior logloss: `0.677858`
+- routine predicted calibrated logloss: `0.677581`
+- routine full calibrated logloss: `0.676185`
+- routine full delta vs prior: `-0.001673`
+- routine predicted subject-id accuracy: `0.097778` vs chance `0.126667`
+- routine full subject-id accuracy: `0.164444` vs chance `0.126667`
+- raw PCA subject-id accuracy: `0.957778`
+- validation: valid, rows `250`, probability range `[0.453358, 0.706808]`
+
+### Submission Priority
+
+낮음에서 중간. 현재 최고 LB를 바로 노리는 파일은 아니다.
+하지만 public에서 예상보다 살아남으면, routine-break hidden state가 public subset에서도 실제 human-state signal이라는 강한 증거가 된다.
+
+좋아지면:
+
+- HS-JEPA core를 `routine-break / episode-reset world model`로 패키징할 근거가 강해진다.
+- 다음 큰 실험은 routine-break representation을 listener responsibility/action-health decoder와 결합하는 것이다.
+
+나빠지면:
+
+- local 해석과 크게 모순되지 않는다. core representation은 low-trust signal이지만,
+  sparse row-target action으로 번역하는 adapter가 없으면 LB를 크게 움직이지 못한다는 뜻이다.
