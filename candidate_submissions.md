@@ -11332,3 +11332,75 @@ downstream Q/S probe가 좋아질 수 있다.
 
 - local 해석과 일치한다. route responsibility는 관측 가능하지만, route를 누르는 weighted sum은 정보 손실이다.
 - 다음은 `route-preserving bundle + listener-conditioned route readout`이어야 한다.
+
+## Listener-Conditioned Route Readout Probe
+
+- file: `submission_hsjepa_listener_conditioned_route_readout_probe_74befb45_uploadsafe.csv`
+- code: `hsjepa_core/run_listener_conditioned_route_readout_core.py`
+- doc: `paper_hsjepa_core/LISTENER_CONDITIONED_ROUTE_READOUT_CORE_KO.md`
+- status: upload-safe frozen downstream probe candidate
+- public LB: not submitted
+- semantic purpose: route-preserving HS-JEPA bundle을 하나의 latent로 압축하지 않고, Q/S listener별로 서로 다른 hidden route를 읽게 했을 때 public에서도 정보가 살아나는지 확인한다.
+
+### Why This Candidate Exists
+
+이 파일은 다음 세계관을 테스트한다.
+
+```text
+human-state route는 하나가 아니다.
+Q2, S1, S2, S3, S4 listener는 서로 다른 hidden state route를 읽는다.
+
+따라서 HS-JEPA는 single latent 또는 scalar route responsibility가 아니라
+route-preserving hidden state + listener-conditioned readout interface여야 한다.
+```
+
+중요한 경계:
+
+```text
+route bundle은 label-free HS-JEPA core다.
+target별 route 선택은 frozen probe diagnostic이다.
+```
+
+따라서 이 후보는 pure self-supervised submission이 아니라
+HS-JEPA core representation을 어떤 listener interface로 읽어야 하는지 확인하는 sensor다.
+
+### Local Evidence
+
+- subject-heldout prior logloss: `0.677858`
+- base multi-target predicted calibrated logloss: `0.676358`
+- listener-conditioned route readout logloss: `0.674611`
+- delta vs prior: `-0.003246`
+- delta vs base multi-target: `-0.001747`
+- chronological listener-conditioned logloss: `0.668190`
+- selected-route fold wins vs base multi-target: `25/35`
+- selected route counts: `sleep_pressure_route=2`, `multi_target_predicted=1`, `sleep_cohort_pair=1`, `routine_cohort_pair=1`, `cohort_relative_route=1`, `routine_break_route=1`
+- selected routes:
+  - `Q1 -> multi_target_predicted`
+  - `Q2 -> sleep_pressure_route`
+  - `Q3 -> sleep_cohort_pair`
+  - `S1 -> sleep_pressure_route`
+  - `S2 -> routine_cohort_pair`
+  - `S3 -> cohort_relative_route`
+  - `S4 -> routine_break_route`
+- validation: valid, rows `250`, probability range `[0.461430, 0.706724]`
+
+### Submission Priority
+
+높음. 최고 LB 보장 후보라기보다 지금 목표에 가장 맞는 architecture sensor다.
+public에서 좋아지면 HS-JEPA의 핵심 논문 claim을 다음처럼 정리할 수 있다.
+
+```text
+HS-JEPA는 보이는 human context에서 여러 hidden route representation을 예측하고,
+각 target/listener가 route-specific readout을 통해 인간 상태를 해석할 때 강해진다.
+```
+
+좋아지면:
+
+- route-preserving + listener-conditioned readout이 public hidden structure와도 맞는다는 뜻이다.
+- 다음 단계는 route selection을 더 label-free하게 만들거나 action-health decoder와 결합하는 것이다.
+
+나빠지면:
+
+- frozen probe selection이 subject-heldout에는 맞았지만 public route에는 맞지 않는다는 뜻이다.
+- 그래도 `single compressed latent`와 `scalar route responsibility weighting`은 약하다는 결론은 유지된다.
+- 다음은 label을 쓰지 않는 listener context로 route selection을 예측하는 쪽이다.

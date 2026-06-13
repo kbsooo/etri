@@ -18164,3 +18164,98 @@ listener가 route를 선택적으로 읽어야 한다.
 `route-preserving bundle + listener-conditioned readout`이 필요하다.
 즉 route를 하나의 scalar responsibility로 줄이지 않고,
 target/listener별로 어떤 route subspace를 읽을지 분리해야 한다.
+
+## Listener-Conditioned Route Readout Core
+
+- date: 2026-06-13
+- code: `hsjepa_core/run_listener_conditioned_route_readout_core.py`
+- paper doc: `paper_hsjepa_core/LISTENER_CONDITIONED_ROUTE_READOUT_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/listener_conditioned_route_readout_core/listener_conditioned_route_readout_summary.json`
+- downstream probe candidate: `submission_hsjepa_listener_conditioned_route_readout_probe_74befb45_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses label as pretext target: `False`
+- uses labels after frozen representation: `True`
+
+### Hypothesis
+
+직전 route-responsibility 실험은 중요한 negative sensor를 줬다.
+
+```text
+route responsibility는 존재한다.
+하지만 route를 scalar weight로 눌러 합치면 base multi-target bundle보다 나빠진다.
+```
+
+따라서 이번 질문은 다음이다.
+
+```text
+HS-JEPA core는 hidden route axes를 보존하고,
+각 Q/S listener가 자기에게 필요한 route를 따로 읽어야 하는가?
+```
+
+core representation은 label-free로 만든 route-preserving multi-target bundle이다.
+label은 representation을 만든 뒤 frozen probe 단계에서 target별 route readout을 고르는 데만 썼다.
+
+### Result
+
+- verdict: `listener_conditioned_route_readout_core_ready`
+- core representation: `route_preserving_multi_target_predicted_bundle`
+- listener selection layer: `frozen_probe_diagnostic`
+- subject-heldout prior logloss: `0.677858`
+- base multi-target predicted calibrated logloss: `0.676358`
+- listener-conditioned route readout logloss: `0.674611`
+- listener-conditioned delta vs prior: `-0.003246`
+- listener-conditioned delta vs base multi-target: `-0.001747`
+- chronological listener-conditioned logloss: `0.668190`
+- selected-route fold wins vs base multi-target: `25/35`
+- selected routes:
+  - `Q1 -> multi_target_predicted`
+  - `Q2 -> sleep_pressure_route`
+  - `Q3 -> sleep_cohort_pair`
+  - `S1 -> sleep_pressure_route`
+  - `S2 -> routine_cohort_pair`
+  - `S3 -> cohort_relative_route`
+  - `S4 -> routine_break_route`
+- validation: candidate valid, rows `250`, probability range `[0.461430, 0.706724]`
+
+### Interpretation
+
+이번 실험은 지금까지의 HS-JEPA core 실험 중 architecture-facing 증거가 가장 선명하다.
+
+```text
+HS-JEPA는 hidden human-state를 하나의 latent로 압축하는 모델이 아니다.
+보이는 context로 여러 hidden route representation을 예측하고,
+각 target/listener가 필요한 route를 읽는 interface가 필요하다.
+```
+
+특히 Q/S target별 route가 달라졌다.
+
+- Q2/S1은 sleep-pressure route를 읽었다.
+- S2는 routine + cohort route를 읽었다.
+- S3는 cohort-relative route를 읽었다.
+- S4는 routine-break route를 읽었다.
+
+이건 단순 후처리보다 논문적인 의미가 더 크다.
+target 이름을 바로 맞히는 모델이 아니라,
+human-state route를 만들고 listener가 그 route를 선택해 읽는 구조를 보여줬기 때문이다.
+
+단, 이 결과를 pure self-supervised core 성과로 과장하면 안 된다.
+route bundle은 label-free지만, route 선택은 label이 있는 frozen probe diagnostic이다.
+
+### Next
+
+다음 big-bet은 두 갈래다.
+
+```text
+1. route 선택 자체를 label 없이, 또는 더 약한 listener context만으로 예측할 수 있는가?
+2. listener-conditioned readout을 action-health / correction-field adapter와 연결해 public-safe하게 번역할 수 있는가?
+```
+
+즉 앞으로의 core thesis는 다음처럼 잡는다.
+
+```text
+HS-JEPA = masked human context -> route-preserving hidden state prediction
+       + listener-conditioned route readout
+       + anti-shortcut/action-health diagnostic
+```

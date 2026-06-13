@@ -1,0 +1,209 @@
+{
+  "package": "listener_conditioned_route_readout_core",
+  "status": "listener_conditioned_route_readout_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "core_representation": "route_preserving_multi_target_predicted_bundle",
+  "listener_selection_layer": "frozen_probe_diagnostic",
+  "subject_prior_logloss": 0.6778575331695814,
+  "multi_target_predicted_logloss": 0.676358495049137,
+  "listener_conditioned_logloss": 0.6746113470645007,
+  "listener_conditioned_delta_vs_prior": -0.0032461861050807617,
+  "listener_conditioned_delta_vs_multi_target": -0.0017471479846363769,
+  "selected_route_counts": {
+    "sleep_pressure_route": 2,
+    "multi_target_predicted": 1,
+    "sleep_cohort_pair": 1,
+    "routine_cohort_pair": 1,
+    "cohort_relative_route": 1,
+    "routine_break_route": 1
+  },
+  "selected_routes": [
+    {
+      "target": "Q1",
+      "selected_feature_set": "multi_target_predicted",
+      "selected_logloss": 0.7021605265673931,
+      "selected_auc": 0.4264238162027617,
+      "multi_target_logloss": 0.7021605265673931,
+      "delta_vs_multi_target": 0.0
+    },
+    {
+      "target": "Q2",
+      "selected_feature_set": "sleep_pressure_route",
+      "selected_logloss": 0.6908178521600173,
+      "selected_auc": 0.4641560161312975,
+      "multi_target_logloss": 0.692762689814161,
+      "delta_vs_multi_target": -0.0019448376541436607
+    },
+    {
+      "target": "Q3",
+      "selected_feature_set": "sleep_cohort_pair",
+      "selected_logloss": 0.6778410475554336,
+      "selected_auc": 0.46835390946502065,
+      "multi_target_logloss": 0.6788997961598647,
+      "delta_vs_multi_target": -0.0010587486044311145
+    },
+    {
+      "target": "S1",
+      "selected_feature_set": "sleep_pressure_route",
+      "selected_logloss": 0.6415244999091957,
+      "selected_auc": 0.40887451310904077,
+      "multi_target_logloss": 0.6439103585517116,
+      "delta_vs_multi_target": -0.002385858642515948
+    },
+    {
+      "target": "S2",
+      "selected_feature_set": "routine_cohort_pair",
+      "selected_logloss": 0.6598291502634837,
+      "selected_auc": 0.4098171778874372,
+      "multi_target_logloss": 0.6624019492902135,
+      "delta_vs_multi_target": -0.0025727990267297995
+    },
+    {
+      "target": "S3",
+      "selected_feature_set": "cohort_relative_route",
+      "selected_logloss": 0.6500038845704729,
+      "selected_auc": 0.430898975626987,
+      "multi_target_logloss": 0.6533563122925644,
+      "delta_vs_multi_target": -0.0033524277220915444
+    },
+    {
+      "target": "S4",
+      "selected_feature_set": "routine_break_route",
+      "selected_logloss": 0.7001024684255083,
+      "selected_auc": 0.3976070226070225,
+      "multi_target_logloss": 0.7010178326680502,
+      "delta_vs_multi_target": -0.0009153642425419051
+    }
+  ],
+  "selection_stability": [
+    {
+      "target": "Q1",
+      "selected_feature_set": "multi_target_predicted",
+      "mean_delta_vs_multi_target": 0.0,
+      "win_folds_vs_multi_target": 0,
+      "total_folds": 5
+    },
+    {
+      "target": "Q2",
+      "selected_feature_set": "sleep_pressure_route",
+      "mean_delta_vs_multi_target": -0.001969854645397917,
+      "win_folds_vs_multi_target": 4,
+      "total_folds": 5
+    },
+    {
+      "target": "Q3",
+      "selected_feature_set": "sleep_cohort_pair",
+      "mean_delta_vs_multi_target": -0.0010655178829011903,
+      "win_folds_vs_multi_target": 4,
+      "total_folds": 5
+    },
+    {
+      "target": "S1",
+      "selected_feature_set": "sleep_pressure_route",
+      "mean_delta_vs_multi_target": -0.0023700336460981573,
+      "win_folds_vs_multi_target": 5,
+      "total_folds": 5
+    },
+    {
+      "target": "S2",
+      "selected_feature_set": "routine_cohort_pair",
+      "mean_delta_vs_multi_target": -0.002585035155902804,
+      "win_folds_vs_multi_target": 5,
+      "total_folds": 5
+    },
+    {
+      "target": "S3",
+      "selected_feature_set": "cohort_relative_route",
+      "mean_delta_vs_multi_target": -0.003348682535501113,
+      "win_folds_vs_multi_target": 4,
+      "total_folds": 5
+    },
+    {
+      "target": "S4",
+      "selected_feature_set": "routine_break_route",
+      "mean_delta_vs_multi_target": -0.000930003379344213,
+      "win_folds_vs_multi_target": 3,
+      "total_folds": 5
+    }
+  ],
+  "selection_win_folds_total": 25,
+  "selection_folds_total": 35,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "listener_conditioned_route_readout_calibrated10",
+    "target": "all",
+    "logloss": 0.6746113470645007,
+    "auc": 0.4294473472899382,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1,
+    "selected_feature_set": "target_specific",
+    "listener_route_selected_from": "subject_heldout_calibrated_probe"
+  },
+  "chronological_listener_probe": {
+    "split": "chronological_holdout",
+    "feature_set": "listener_conditioned_route_readout_calibrated10",
+    "target": "all",
+    "logloss": 0.6681899214045668,
+    "auc": 0.5383778379211879,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 131,
+    "probe_calibration_shrink": 0.1,
+    "selected_feature_set": "target_specific",
+    "listener_route_selected_from": "subject_heldout_calibrated_probe"
+  },
+  "chronological_best_probe": {
+    "split": "chronological_holdout",
+    "feature_set": "raw_lifelog_pca_calibrated10",
+    "target": "all",
+    "logloss": 0.6647729379955306,
+    "auc": 0.6030525100511579,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 131,
+    "probe_calibration_shrink": 0.1,
+    "selected_feature_set": null,
+    "listener_route_selected_from": null
+  },
+  "subject_leakage": [
+    {
+      "feature_set": "listener_conditioned_selected_routes",
+      "subject_id_accuracy": 0.2577777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.1311111111111111
+    },
+    {
+      "feature_set": "multi_target_predicted",
+      "subject_id_accuracy": 0.2577777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.1311111111111111
+    },
+    {
+      "feature_set": "routine_break_route",
+      "subject_id_accuracy": 0.09777777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": -0.028888888888888895
+    },
+    {
+      "feature_set": "sleep_pressure_route",
+      "subject_id_accuracy": 0.09333333333333334,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": -0.03333333333333334
+    },
+    {
+      "feature_set": "cohort_relative_route",
+      "subject_id_accuracy": 0.35333333333333333,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.22666666666666666
+    }
+  ],
+  "candidate_file": "submission_hsjepa_listener_conditioned_route_readout_probe_74befb45_uploadsafe.csv"
+}

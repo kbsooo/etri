@@ -7,7 +7,7 @@
   "core_positive_case_count": 9,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -105,6 +105,19 @@
       "pretext_lift": 0.8728906531500824,
       "source": "hsjepa_core/outputs/route_responsibility_world_model_core/route_responsibility_world_model_summary.json",
       "candidate": "submission_hsjepa_route_responsibility_world_model_probe_bab0d5b7_uploadsafe.csv"
+    },
+    {
+      "case": "listener_conditioned_route_readout",
+      "layer": "frozen_probe_diagnostic",
+      "question": "target/listener별로 서로 다른 hidden route를 읽게 하면 route-preserving bundle보다 좋아지는가",
+      "primary_metric": "listener_conditioned_delta_vs_multi_target_logloss",
+      "value": -0.0017471479846363769,
+      "baseline": "route_preserving_multi_target_predicted",
+      "support": "strong_positive_probe",
+      "interpretation": "core는 label-free route bundle을 만들고, frozen probe에서 target별 route readout을 선택했다. listener-conditioned readout은 multi-target bundle을 이겨, HS-JEPA route axes가 listener별로 다르게 읽혀야 함을 보인다.",
+      "fold_wins": "25/35",
+      "source": "hsjepa_core/outputs/listener_conditioned_route_readout_core/listener_conditioned_route_readout_summary.json",
+      "candidate": "submission_hsjepa_listener_conditioned_route_readout_probe_74befb45_uploadsafe.csv"
     },
     {
       "case": "external_action_replay_geometry",

@@ -104,6 +104,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "route_responsibility_world_model_core"
         / "route_responsibility_world_model_summary.json"
     )
+    listener_readout = load_json(
+        outputs
+        / "listener_conditioned_route_readout_core"
+        / "listener_conditioned_route_readout_summary.json"
+    )
 
     return [
         {
@@ -222,6 +227,22 @@ def collect_cases() -> list[dict[str, Any]]:
             "candidate": route_responsibility.get("candidate_file"),
         },
         {
+            "case": "listener_conditioned_route_readout",
+            "layer": "frozen_probe_diagnostic",
+            "question": "target/listener별로 서로 다른 hidden route를 읽게 하면 route-preserving bundle보다 좋아지는가",
+            "primary_metric": "listener_conditioned_delta_vs_multi_target_logloss",
+            "value": listener_readout["listener_conditioned_delta_vs_multi_target"],
+            "baseline": "route_preserving_multi_target_predicted",
+            "support": "strong_positive_probe",
+            "interpretation": (
+                "core는 label-free route bundle을 만들고, frozen probe에서 target별 route readout을 선택했다. "
+                "listener-conditioned readout은 multi-target bundle을 이겨, HS-JEPA route axes가 listener별로 다르게 읽혀야 함을 보인다."
+            ),
+            "fold_wins": f'{listener_readout["selection_win_folds_total"]}/{listener_readout["selection_folds_total"]}',
+            "source": "hsjepa_core/outputs/listener_conditioned_route_readout_core/listener_conditioned_route_readout_summary.json",
+            "candidate": listener_readout.get("candidate_file"),
+        },
+        {
             "case": "external_action_replay_geometry",
             "layer": "core_to_adapter_probe",
             "question": "core-state geometry가 다른 adapter의 row-action support를 재발견하는가",
@@ -317,7 +338,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "not a standalone label classifier.  Its strongest evidence is masked context "
             "prediction, subject-relative routine-break, sleep-pressure, cohort-relative "
             "prediction, route-preserving multi-target human-state prediction, and "
-            "subject-invariant listener/action-health separability."
+            "listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
     }
@@ -506,7 +527,33 @@ route responsibility는 label 없이 관측 가능하다.
 이것은 실패라기보다 HS-JEPA architecture boundary다.
 다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
 
-### 8. Subject-Invariant Listener Manifold
+### 8. Listener-Conditioned Route Readout
+
+route-preserving multi-target bundle을 만든 뒤, frozen probe에서 target/listener별 route readout을 선택했다.
+이 단계는 label-free core pretext가 아니라 frozen probe diagnostic이다.
+하지만 논문적으로 중요하다.
+
+```text
+same HS-JEPA route bundle
+  -> Q2 reads sleep-pressure
+  -> S2 reads routine+cohort
+  -> S3 reads cohort-relative
+  -> S4 reads routine-break
+```
+
+subject-heldout low-trust probe에서 listener-conditioned route readout은
+base multi-target bundle 대비 `{fmt(by_case["listener_conditioned_route_readout"]["value"], 6)}` logloss 개선을 보였다.
+선택 route는 fold 단위로 `{by_case["listener_conditioned_route_readout"].get("fold_wins")}` wins를 기록했다.
+
+이 결과가 의미하는 바는 다음이다.
+
+```text
+HS-JEPA core의 좋은 interface는 하나의 압축 latent도,
+하나의 global route bundle도 아니다.
+route axes를 보존하고, downstream listener가 target별로 다른 route를 읽게 해야 한다.
+```
+
+### 9. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -514,7 +561,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 9. Listener Responsibility Field
+### 10. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.
@@ -586,6 +633,7 @@ sleep-pressure world model: strong pretext, small label-probe positive
 cohort-relative world model: predicted state positive, observed/full shortcut 위험
 multi-target world model: route-preserving bundle positive, compressed latent negative
 route responsibility diagnostic: pretext positive, route weighting은 base를 못 이김
+listener-conditioned route readout: frozen probe에서 route별 listener interface positive
 responsibility field: positive but small
 direction/action translation: adapter 의존
 direct label prediction: mostly negative without low-trust calibration
