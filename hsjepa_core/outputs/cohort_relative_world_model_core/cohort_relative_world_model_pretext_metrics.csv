@@ -1,0 +1,8 @@
+task,target,context,components,context_feature_count,target_feature_count,component_corr,null_component_corr,component_corr_lift_vs_null,r2,null_r2,r2_lift_vs_null,valid_rows
+visible_context_to_cohort_relative_state,personal_vs_peer_state,all_visible_context,8,99,98,0.5984833023388514,-0.07400553670508016,0.6724888390439315,0.32788474308792936,-0.24414481686175785,0.5720295599496872,
+visible_context_to_cohort_relative_state,personal_vs_peer_state,masked_without_calendar_rhythm,8,94,98,0.5739068107489338,-0.08650008131453368,0.6604068920634675,0.2946082583255358,-0.24217140838337753,0.5367796667089133,
+visible_context_to_cohort_relative_state,personal_vs_peer_state,masked_without_phone_behavior,8,59,98,0.4740524031404264,-0.08199519111190813,0.5560475942523345,0.1956252359120317,-0.16584011935521742,0.3614653552672491,
+visible_context_to_cohort_relative_state,personal_vs_peer_state,masked_without_body_activity_sleep,8,81,98,0.529759516394481,-0.08459466170757463,0.6143541781020556,0.25572459801198866,-0.21530497498617907,0.4710295729981677,
+visible_context_to_cohort_relative_state,personal_vs_peer_state,masked_without_app_social_context,8,81,98,0.5640177075033977,-0.09428570142277345,0.6583034089261712,0.30732239948458834,-0.21487057200862295,0.5221929714932113,
+visible_context_to_cohort_relative_state,personal_vs_peer_state,masked_without_mobility_environment,8,81,98,0.552842951443034,-0.08318966884912343,0.6360326202921573,0.27634139119309153,-0.21148976710057324,0.48783115829366475,
+current_context_to_next_cohort_relative_state,next_personal_vs_peer_state,all_visible_context,8,99,98,0.11148445214162417,-0.08249342632127403,0.1939778784628982,-0.12852734173095015,-0.2519105263152277,0.12338318458427755,690.0

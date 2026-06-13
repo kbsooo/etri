@@ -89,6 +89,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "sleep_pressure_world_model_core"
         / "sleep_pressure_world_model_summary.json"
     )
+    cohort_relative = load_json(
+        outputs
+        / "cohort_relative_world_model_core"
+        / "cohort_relative_world_model_summary.json"
+    )
 
     return [
         {
@@ -159,6 +164,21 @@ def collect_cases() -> list[dict[str, Any]]:
             ),
             "source": "hsjepa_core/outputs/sleep_pressure_world_model_core/sleep_pressure_world_model_summary.json",
             "candidate": sleep_pressure.get("candidate_file"),
+        },
+        {
+            "case": "cohort_relative_world_model",
+            "layer": "core",
+            "question": "보이는 daily context로 personal-vs-peer cohort-relative representation을 예측하는가",
+            "primary_metric": "cohort_relative_predicted_delta_vs_prior_logloss",
+            "value": cohort_relative["cohort_relative_predicted_delta_vs_prior"],
+            "baseline": "fold_prior_low_trust_probe",
+            "support": "positive_with_leakage_boundary",
+            "interpretation": (
+                "singleton 없는 peer cohort에서 predicted personal-vs-peer representation은 subject-heldout probe를 "
+                "개선하지만, observed/full cohort geometry는 subject shortcut이 강해 core evidence로 쓰면 안 된다."
+            ),
+            "source": "hsjepa_core/outputs/cohort_relative_world_model_core/cohort_relative_world_model_summary.json",
+            "candidate": cohort_relative.get("candidate_file"),
         },
         {
             "case": "external_action_replay_geometry",
@@ -254,8 +274,8 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
         "paper_thesis": (
             "HS-JEPA core is a hidden human-state and listener-responsibility representation, "
             "not a standalone label classifier.  Its strongest evidence is masked context "
-            "prediction, subject-relative routine-break and sleep-pressure prediction, and "
-            "subject-invariant listener/action-health separability."
+            "prediction, subject-relative routine-break, sleep-pressure, cohort-relative "
+            "prediction, and subject-invariant listener/action-health separability."
         ),
         "cases": cases,
     }
@@ -366,7 +386,28 @@ pretext 예측성은 강하지만 label probe 효과는 작다. 이 결과는 HS
 sleep-pressure representation을 만들 수 있다는 core evidence이면서,
 그 representation을 Q/S label로 번역하려면 listener/action-health adapter가 필요하다는 경계이기도 하다.
 
-### 5. Subject-Invariant Listener Manifold
+### 5. Cohort-Relative World Model
+
+routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고,
+오늘의 state를 개인 기준과 peer 기준에서 동시에 해석했다.
+
+```text
+visible daily human-life context
+  -> hidden personal-vs-peer cohort-relative representation
+```
+
+subject-heldout low-trust frozen probe에서 predicted cohort state의 prior 대비 delta는
+`{fmt(by_case["cohort_relative_world_model"]["value"], 6)}`이다.
+이는 현재 core world-model 계열에서 가장 강한 축에 속한다.
+
+다만 중요한 경계가 있다.
+
+```text
+observed/full cohort geometry는 subject identity shortcut이 강하다.
+core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
+```
+
+### 6. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -374,7 +415,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 6. Listener Responsibility Field
+### 7. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.
@@ -443,6 +484,7 @@ core가 위치를 좁히고 adapter가 방향 독성을 수리한 boundary case�
 subject-relative world model: tiny positive
 routine-break world model: small positive and stronger hidden target
 sleep-pressure world model: strong pretext, small label-probe positive
+cohort-relative world model: predicted state positive, observed/full shortcut 위험
 responsibility field: positive but small
 direction/action translation: adapter 의존
 direct label prediction: mostly negative without low-trust calibration

@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 7,
+  "core_positive_case_count": 8,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break and sleep-pressure prediction, and subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break, sleep-pressure, cohort-relative prediction, and subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -68,6 +68,18 @@
       "interpretation": "night disturbance, physiological load, social/cognitive arousal, rest-environment stability로 만든 label-free sleep-pressure target은 pretext 예측성이 강하지만 Q/S label probe 효과는 작다.",
       "source": "hsjepa_core/outputs/sleep_pressure_world_model_core/sleep_pressure_world_model_summary.json",
       "candidate": "submission_hsjepa_sleep_pressure_world_model_probe_2ed37b9a_uploadsafe.csv"
+    },
+    {
+      "case": "cohort_relative_world_model",
+      "layer": "core",
+      "question": "보이는 daily context로 personal-vs-peer cohort-relative representation을 예측하는가",
+      "primary_metric": "cohort_relative_predicted_delta_vs_prior_logloss",
+      "value": -0.0013806528829074516,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "positive_with_leakage_boundary",
+      "interpretation": "singleton 없는 peer cohort에서 predicted personal-vs-peer representation은 subject-heldout probe를 개선하지만, observed/full cohort geometry는 subject shortcut이 강해 core evidence로 쓰면 안 된다.",
+      "source": "hsjepa_core/outputs/cohort_relative_world_model_core/cohort_relative_world_model_summary.json",
+      "candidate": "submission_hsjepa_cohort_relative_world_model_probe_24fd334b_uploadsafe.csv"
     },
     {
       "case": "external_action_replay_geometry",
