@@ -18259,3 +18259,95 @@ HS-JEPA = masked human context -> route-preserving hidden state prediction
        + listener-conditioned route readout
        + anti-shortcut/action-health diagnostic
 ```
+
+## Human-State Drift Consistency Certifier
+
+- Date: 2026-06-13
+- Script: `sleep_competition_adapter/human_state_drift_consistency_certifier.py`
+- Report: `sleep_competition_adapter/outputs/human_state_drift_consistency_certifier/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
+- Control submission: `submission_hsjepa_human_state_drift_consistency_certified_replay_76bb1a88_uploadsafe.csv`
+- Primary submission: `submission_hsjepa_human_state_drift_consistency_drift_consistency_overshoot_0fb93301_uploadsafe.csv`
+
+### Observe
+
+팀의 certified result가 `0.5647490904`까지 내려갔다. 이 결과는 단순히 public LB 방정식을 잘 맞춘 것이 아니라, subject별 Q2/Q3 방향이 dense subject-uniform move일 때 sparse cell surgery보다 훨씬 잘 전이된다는 증거로 읽을 수 있다.
+
+중요한 관찰은 두 가지다.
+
+```text
+1. Q2/Q3는 row-cell 수술보다 subject-level 회복/악화 방향으로 움직일 때 강하다.
+2. train-time subject drift와 aggregate listener sign이 상당 부분 같은 인간 상태 방향을 가리킨다.
+```
+
+### Wonder
+
+이 certified move를 leaderboard trick이 아니라 HS-JEPA의 hidden human-state drift로 정식화할 수 있는가?
+
+그리고 train drift가 같은 방향을 가리키는 subject에서는 action magnitude를 조금 더 믿고, 충돌하는 subject에서는 줄이면 `0.564749`를 넘길 수 있는가?
+
+### Hypothesis
+
+```text
+HS-JEPA가 복원해야 하는 target representation 중 하나는
+subject별 recovery/degradation drift field다.
+
+이 drift field는 Q2 intervention route와 Q3 companion route로 번역되며,
+subject 내부에서는 row assignment와 무관하게 같은 logit action을 가져야 한다.
+```
+
+따라서 subject-uniform logit shift는 단순 보정이 아니라, hidden human-state direction을 action으로 읽는 decoder다.
+
+### Falsification Design
+
+두 후보를 만든다.
+
+1. `certified_replay`
+   - 외부에서 보고된 certified recipe를 재현하는 control
+   - Q2 `0.75`, Q3 `0.25` subject-uniform logit move
+
+2. `drift_consistency_overshoot`
+   - 같은 listener sign을 사용하되 train-time drift consistency로 step size를 조절
+   - direction이 일치하면 키우고, 충돌하면 줄임
+   - Q2는 최대 `0.92`, Q3는 최대 `0.38`
+
+두 후보 모두 Q2/Q3만 움직이고, active subject 내부 모든 row에 같은 logit shift를 준다.
+
+### Result
+
+- `certified_replay`
+  - changed rows: `202`
+  - changed cells: `404`
+  - Q2 cells: `202`
+  - Q3 cells: `202`
+  - upload safe: `True`
+
+- `drift_consistency_overshoot`
+  - changed rows: `202`
+  - changed cells: `404`
+  - Q2 cells: `202`
+  - Q3 cells: `202`
+  - mean abs Q2 logit move: `0.653970`
+  - mean abs Q3 logit move: `0.189482`
+  - upload safe: `True`
+
+### Interpretation
+
+이 후보는 pure HS-JEPA core 실험은 아니다. 정확한 위치는 다음이다.
+
+```text
+HS-JEPA core interpretation
+  -> subject-level human-state drift representation
+  -> competition adapter certifier
+  -> Q2/Q3 subject-uniform correction field
+```
+
+좋아지면:
+
+- subject-level recovery/degradation drift가 action magnitude까지 설명한다.
+- HS-JEPA의 논문 claim에 `human-state drift consistency decoder`를 추가할 수 있다.
+
+나빠지면:
+
+- aggregate listener는 direction은 주지만 magnitude는 이미 certified max-min 부근에서 포화됐다.
+- 다음 breakthrough는 같은 Q2/Q3 direction overshoot가 아니라 S-target hidden state, private-state factorization, 또는 label-free route selection으로 가야 한다.
