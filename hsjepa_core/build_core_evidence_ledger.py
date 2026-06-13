@@ -94,6 +94,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "cohort_relative_world_model_core"
         / "cohort_relative_world_model_summary.json"
     )
+    multi_target = load_json(
+        outputs
+        / "multi_target_human_state_world_model_core"
+        / "multi_target_human_state_world_model_summary.json"
+    )
 
     return [
         {
@@ -179,6 +184,21 @@ def collect_cases() -> list[dict[str, Any]]:
             ),
             "source": "hsjepa_core/outputs/cohort_relative_world_model_core/cohort_relative_world_model_summary.json",
             "candidate": cohort_relative.get("candidate_file"),
+        },
+        {
+            "case": "multi_target_human_state_world_model",
+            "layer": "core",
+            "question": "routine-break, sleep-pressure, cohort-relative hidden targets를 함께 예측한 route-preserving bundle이 더 좋은가",
+            "primary_metric": "multi_target_predicted_delta_vs_prior_logloss",
+            "value": multi_target["multi_target_predicted_delta_vs_prior"],
+            "baseline": "fold_prior_low_trust_probe",
+            "support": "positive_with_route_preservation",
+            "interpretation": (
+                "세 hidden target의 predicted axes를 보존한 bundle은 subject-heldout probe에서 prior와 best single target을 이기지만, "
+                "PCA식 compressed core latent는 오히려 악화된다. HS-JEPA core는 route 축을 보존해야 한다."
+            ),
+            "source": "hsjepa_core/outputs/multi_target_human_state_world_model_core/multi_target_human_state_world_model_summary.json",
+            "candidate": multi_target.get("candidate_file"),
         },
         {
             "case": "external_action_replay_geometry",
@@ -275,7 +295,8 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "HS-JEPA core is a hidden human-state and listener-responsibility representation, "
             "not a standalone label classifier.  Its strongest evidence is masked context "
             "prediction, subject-relative routine-break, sleep-pressure, cohort-relative "
-            "prediction, and subject-invariant listener/action-health separability."
+            "prediction, route-preserving multi-target human-state prediction, and "
+            "subject-invariant listener/action-health separability."
         ),
         "cases": cases,
     }
@@ -407,7 +428,38 @@ observed/full cohort geometry는 subject identity shortcut이 강하다.
 core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
 ```
 
-### 6. Subject-Invariant Listener Manifold
+### 6. Multi-Target Human-State World Model
+
+routine-break, sleep-pressure, cohort-relative hidden target을 따로 쓰지 않고,
+하나의 route-preserving predicted bundle로 묶었다.
+
+```text
+visible human-life context
+  -> predicted routine-break state
+  -> predicted sleep-pressure state
+  -> predicted personal-vs-peer cohort state
+  -> route-preserving human-state bundle
+```
+
+subject-heldout low-trust frozen probe에서 이 bundle의 prior 대비 delta는
+`{fmt(by_case["multi_target_human_state_world_model"]["value"], 6)}`이다.
+
+중요한 ablation은 다음이다.
+
+```text
+predicted axes를 그대로 보존하면 positive.
+PCA로 하나의 compressed latent로 뭉치면 negative.
+```
+
+따라서 HS-JEPA core thesis는 "모든 상태를 하나의 벡터로 압축한다"가 아니다.
+더 정확한 thesis는 다음이다.
+
+```text
+여러 hidden human-state target representation을 예측하되,
+downstream listener가 구분할 수 있도록 route axes를 보존한다.
+```
+
+### 7. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -415,7 +467,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 7. Listener Responsibility Field
+### 8. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.
@@ -485,6 +537,7 @@ subject-relative world model: tiny positive
 routine-break world model: small positive and stronger hidden target
 sleep-pressure world model: strong pretext, small label-probe positive
 cohort-relative world model: predicted state positive, observed/full shortcut 위험
+multi-target world model: route-preserving bundle positive, compressed latent negative
 responsibility field: positive but small
 direction/action translation: adapter 의존
 direct label prediction: mostly negative without low-trust calibration

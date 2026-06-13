@@ -18015,3 +18015,77 @@ HS-JEPA는 개인/peer 좌표계 자체를 그대로 쓰는 모델이 아니다.
 다음 big-bet은 더 많은 cohort feature를 붙이는 것이 아니다.
 cohort-relative predicted state, routine-break, sleep-pressure를 하나로 묶어
 `listener responsibility`를 label-free 또는 weakly supervised pretext로 복원해야 한다.
+
+## Multi-Target Human-State World Model Core
+
+- date: 2026-06-13
+- code: `hsjepa_core/run_multi_target_human_state_world_model_core.py`
+- paper doc: `paper_hsjepa_core/MULTI_TARGET_HUMAN_STATE_WORLD_MODEL_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/multi_target_human_state_world_model_core/multi_target_human_state_world_model_summary.json`
+- downstream probe candidate: `submission_hsjepa_multi_target_human_state_world_model_probe_d3165dfa_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses label as pretext target: `False`
+
+### Hypothesis
+
+개별 core 실험은 이미 positive였다.
+
+- routine-break: 개인 루틴 붕괴/episode reset
+- sleep-pressure: 수면 압력/각성/회복부하
+- cohort-relative: 개인 기준과 peer 기준 사이의 위치
+
+하지만 논문 관점에서 더 중요한 질문은 다음이다.
+
+```text
+HS-JEPA가 여러 hidden human-state target을 동시에 예측해
+단일 target보다 더 나은 frozen representation을 만들 수 있는가?
+```
+
+이번 실험은 세 target의 OOF predicted hidden state만 묶었다.
+observed/full cohort geometry나 public/LB 정보는 쓰지 않았다.
+
+### Result
+
+- verdict: `core_positive_with_route_preservation`
+- best pretext module: `cohort_relative`
+- best component-corr lift vs null: `+0.672489`
+- best R2 lift vs null: `+0.572030`
+- subject-heldout prior logloss: `0.677858`
+- multi-target predicted calibrated logloss: `0.676358`
+- multi-target predicted delta vs prior: `-0.001499`
+- best single predicted target: `cohort_relative_predicted_calibrated10`
+- multi-target predicted delta vs best single: `-0.000118`
+- compressed core latent calibrated logloss: `0.678279`
+- compressed core latent delta vs prior: `+0.000422`
+- multi-target predicted subject-id accuracy: `0.257778` vs chance `0.126667`
+- raw PCA subject-id accuracy: `0.957778`
+- validation: candidate valid, rows `250`, probability range `[0.461430, 0.712246]`
+
+### Interpretation
+
+이번 실험은 goal에 직접적인 진전이다.
+
+```text
+통합 HS-JEPA는 된다.
+하지만 route를 보존해야 한다.
+```
+
+세 hidden target을 그냥 PCA compressed latent로 뭉치면 prior보다 나빠졌다.
+반대로 routine-break / sleep-pressure / cohort-relative predicted axes를 그대로 보존하면
+best single hidden target보다도 작게 좋아졌다.
+
+따라서 HS-JEPA core thesis는 다음처럼 수정되어야 한다.
+
+```text
+HS-JEPA는 모든 human-state를 하나의 압축 벡터로 만드는 모델이 아니다.
+보이는 context로 여러 hidden human-state target representation을 예측하고,
+downstream listener가 어떤 route를 읽을지 고를 수 있도록 route axes를 보존하는 모델이다.
+```
+
+### Next
+
+다음 big-bet은 단순히 더 많은 hidden target을 bundle에 넣는 것이 아니다.
+`route-preserving predicted bundle` 위에서 listener responsibility가 어떤 route를 읽어야 하는지
+adapter-free로 예측하는 core objective가 필요하다.

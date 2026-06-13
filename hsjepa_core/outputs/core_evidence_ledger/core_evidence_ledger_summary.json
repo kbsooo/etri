@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 8,
+  "core_positive_case_count": 9,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break, sleep-pressure, cohort-relative prediction, and subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -80,6 +80,18 @@
       "interpretation": "singleton 없는 peer cohort에서 predicted personal-vs-peer representation은 subject-heldout probe를 개선하지만, observed/full cohort geometry는 subject shortcut이 강해 core evidence로 쓰면 안 된다.",
       "source": "hsjepa_core/outputs/cohort_relative_world_model_core/cohort_relative_world_model_summary.json",
       "candidate": "submission_hsjepa_cohort_relative_world_model_probe_24fd334b_uploadsafe.csv"
+    },
+    {
+      "case": "multi_target_human_state_world_model",
+      "layer": "core",
+      "question": "routine-break, sleep-pressure, cohort-relative hidden targets를 함께 예측한 route-preserving bundle이 더 좋은가",
+      "primary_metric": "multi_target_predicted_delta_vs_prior_logloss",
+      "value": -0.0014990381204443848,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "positive_with_route_preservation",
+      "interpretation": "세 hidden target의 predicted axes를 보존한 bundle은 subject-heldout probe에서 prior와 best single target을 이기지만, PCA식 compressed core latent는 오히려 악화된다. HS-JEPA core는 route 축을 보존해야 한다.",
+      "source": "hsjepa_core/outputs/multi_target_human_state_world_model_core/multi_target_human_state_world_model_summary.json",
+      "candidate": "submission_hsjepa_multi_target_human_state_world_model_probe_d3165dfa_uploadsafe.csv"
     },
     {
       "case": "external_action_replay_geometry",

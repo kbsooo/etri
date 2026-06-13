@@ -11223,3 +11223,63 @@ public에서 좋아지면 cohort-relative predicted state가 실제 test/public 
 나빠지면:
 
 - local leakage 경계와 일치한다. cohort-relative state는 예측 가능하지만 public Q/S route로 직접 번역하기에는 subject/cohort shortcut 위험이 크다는 뜻이다.
+
+## Multi-Target Human-State World Model Probe
+
+- file: `submission_hsjepa_multi_target_human_state_world_model_probe_d3165dfa_uploadsafe.csv`
+- code: `hsjepa_core/run_multi_target_human_state_world_model_core.py`
+- doc: `paper_hsjepa_core/MULTI_TARGET_HUMAN_STATE_WORLD_MODEL_CORE_KO.md`
+- status: upload-safe downstream probe candidate
+- public LB: not submitted
+- semantic purpose: routine-break, sleep-pressure, cohort-relative hidden target을 함께 예측한 route-preserving HS-JEPA bundle이 public에서도 단일 hidden target보다 더 나은지 확인한다.
+
+### Why This Candidate Exists
+
+이 파일은 다음 세계관을 테스트한다.
+
+```text
+사람의 생활 상태는 하나의 latent scalar가 아니라
+routine-break / sleep-pressure / cohort-relative route가 분리된 bundle이다.
+
+HS-JEPA는 이 route들을 보이는 context에서 예측하고,
+downstream listener가 route별 신호를 읽을 수 있게 보존해야 한다.
+```
+
+중요한 ablation:
+
+```text
+route-preserving predicted bundle: positive
+PCA compressed core latent: negative
+```
+
+즉 이 후보는 "더 큰 latent를 만들었다"가 아니라
+"route axes를 보존한 multi-target HS-JEPA가 단일 hidden target보다 낫다"는 주장이다.
+
+### Local Evidence
+
+- primary probe: `multi_target_predicted_calibrated10`
+- best pretext: `cohort_relative / visible_context_to_cohort_relative_state`
+- component-corr lift vs null: `+0.672489`
+- R2 lift vs null: `+0.572030`
+- subject-heldout prior logloss: `0.677858`
+- multi-target predicted calibrated logloss: `0.676358`
+- multi-target predicted delta vs prior: `-0.001499`
+- best single predicted target: `cohort_relative_predicted_calibrated10`
+- multi-target predicted delta vs best single: `-0.000118`
+- compressed core latent delta vs prior: `+0.000422`
+- multi-target predicted subject-id accuracy: `0.257778` vs chance `0.126667`
+- validation: valid, rows `250`, probability range `[0.461430, 0.712246]`
+
+### Submission Priority
+
+중간에서 높음. 최고 LB를 바로 보장하는 후보라기보다, HS-JEPA 논문 claim의 핵심 센서다.
+
+좋아지면:
+
+- public에서도 route-preserving multi-target HS-JEPA bundle이 단일 hidden target보다 더 일반화된다는 뜻이다.
+- HS-JEPA paper thesis를 "multi-target hidden representation prediction with route preservation"으로 강하게 밀 수 있다.
+
+나빠지면:
+
+- local subject-heldout 개선은 public route와 맞지 않는다는 뜻이다.
+- 그래도 compressed latent가 실패했다는 ablation은 남으므로, 다음은 bundle 자체가 아니라 listener responsibility route-selection으로 가야 한다.
