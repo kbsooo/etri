@@ -1,0 +1,98 @@
+{
+  "package": "sleep_pressure_world_model_core",
+  "status": "sleep_pressure_world_model_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "hidden_target": "label_free_sleep_pressure_surrogate",
+  "best_pretext": {
+    "task": "masked_context_to_sleep_pressure_family",
+    "target": "social_cognitive_arousal",
+    "components": 4,
+    "context_feature_count": 68,
+    "target_feature_count": 159,
+    "component_corr": 0.5857394963488224,
+    "null_component_corr": 0.022691360302972165,
+    "component_corr_lift_vs_null": 0.5630481360458502,
+    "r2": 0.4114186289956297,
+    "null_r2": -0.08771366142483511,
+    "r2_lift_vs_null": 0.4991322904204648,
+    "valid_rows": null
+  },
+  "subject_prior_logloss": 0.6778575331695814,
+  "sleep_pressure_predicted_calibrated_logloss": 0.6772661018552304,
+  "sleep_pressure_full_calibrated_logloss": 0.6769900781011019,
+  "sleep_pressure_predicted_delta_vs_prior": -0.0005914313143510208,
+  "sleep_pressure_full_delta_vs_prior": -0.0008674550684795168,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "raw_plus_sleep_pressure_full_calibrated10",
+    "target": "all",
+    "logloss": 0.6765883499594084,
+    "auc": 0.4142413882388573,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1
+  },
+  "chronological_best_probe": {
+    "split": "chronological_holdout",
+    "feature_set": "raw_lifelog_pca_calibrated10",
+    "target": "all",
+    "logloss": 0.6647729379955306,
+    "auc": 0.6030525100511579,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 131,
+    "probe_calibration_shrink": 0.1
+  },
+  "best_neighbor_consistency": {
+    "feature_set": "raw_lifelog_pca",
+    "target": "all",
+    "neighbor_match_rate": 0.5805714285714285,
+    "random_match_rate": 0.5307936507936508,
+    "lift": 0.0497777777777777
+  },
+  "subject_leakage": [
+    {
+      "feature_set": "raw_lifelog_pca",
+      "subject_id_accuracy": 0.9577777777777777,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.831111111111111
+    },
+    {
+      "feature_set": "existing_cohort_human_state",
+      "subject_id_accuracy": 0.9133333333333333,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.7866666666666666
+    },
+    {
+      "feature_set": "sleep_pressure_predicted",
+      "subject_id_accuracy": 0.09333333333333334,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": -0.03333333333333334
+    },
+    {
+      "feature_set": "sleep_pressure_energy",
+      "subject_id_accuracy": 0.1511111111111111,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.024444444444444435
+    },
+    {
+      "feature_set": "sleep_pressure_observed",
+      "subject_id_accuracy": 0.27555555555555555,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.14888888888888888
+    },
+    {
+      "feature_set": "sleep_pressure_full",
+      "subject_id_accuracy": 0.13777777777777778,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.0111111111111111
+    }
+  ],
+  "candidate_file": "submission_hsjepa_sleep_pressure_world_model_probe_2ed37b9a_uploadsafe.csv"
+}

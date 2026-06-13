@@ -17849,3 +17849,86 @@ sleep-stage-like hidden target과 결합해야 한다.
 1. routine-break hidden target을 listener responsibility field와 결합한다.
 2. routine-break가 Q/S 중 어느 family의 label manifold를 실제로 여는지 분해한다.
 3. sleep-stage-like hidden target을 label-free pretext로 구성해 routine-break와 비교한다.
+
+## Sleep-Pressure World Model Core
+
+- date: 2026-06-13
+- code: `hsjepa_core/run_sleep_pressure_world_model_core.py`
+- paper doc: `paper_hsjepa_core/SLEEP_PRESSURE_WORLD_MODEL_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/sleep_pressure_world_model_core/sleep_pressure_world_model_summary.json`
+- downstream probe candidate: `submission_hsjepa_sleep_pressure_world_model_probe_2ed37b9a_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses label as pretext target: `False`
+
+### Hypothesis
+
+HS-JEPA가 인간 이해 모델이라면 Q/S label을 직접 맞히기 전에,
+생활 context에서 숨은 sleep pressure 또는 recovery load를 읽어낼 수 있어야 한다.
+
+이번 실험은 hidden target을 다음 label-free surrogate로 만들었다.
+
+```text
+night disturbance
+physiological load
+social/cognitive arousal
+rest-environment stability
+calendar routine pressure
+```
+
+핵심 반증 질문은 다음이다.
+
+```text
+visible daily human-life context로
+label-free sleep-pressure representation을 예측할 수 있고,
+그 representation이 subject-heldout Q/S label probe를 prior보다 개선하는가?
+```
+
+### Result
+
+- verdict: `core_positive`, but label translation remains small
+- best pretext task: `masked_context_to_sleep_pressure_family`
+- best pretext target: `social_cognitive_arousal`
+- best component-corr lift vs null: `+0.563048`
+- best R2 lift vs null: `+0.499132`
+- subject-heldout prior logloss: `0.677858`
+- sleep-pressure predicted calibrated logloss: `0.677266`
+- sleep-pressure full calibrated logloss: `0.676990`
+- sleep-pressure predicted delta vs prior: `-0.000591`
+- sleep-pressure full delta vs prior: `-0.000867`
+- best subject-heldout probe: `raw_plus_sleep_pressure_full_calibrated10`
+- best subject-heldout probe logloss: `0.676588`
+- sleep-pressure predicted subject-id accuracy: `0.093333` vs chance `0.126667`
+- sleep-pressure full subject-id accuracy: `0.137778` vs chance `0.126667`
+- raw PCA subject-id accuracy: `0.957778`
+- validation: candidate valid, rows `250`, probability range `[0.451605, 0.706724]`
+
+### Interpretation
+
+이 실험은 중요한 경계를 만든다.
+
+```text
+sleep-pressure hidden target은 매우 잘 예측된다.
+하지만 Q/S label로의 직접 번역 효과는 routine-break보다 작다.
+```
+
+따라서 HS-JEPA 논문 관점에서는 긍정이다.
+보이는 생활 context에서 수면 압력/각성/회복부하 representation을 label 없이 만든다는 증거가 생겼다.
+
+하지만 대회 관점에서는 이 representation만으로 큰 LB를 기대하면 안 된다.
+sleep-pressure는 core state이고, Q/S label로 번역하려면 listener responsibility 또는 action-health decoder가 필요하다.
+
+### Next
+
+다음 big-bet은 sleep-pressure와 routine-break를 합쳐 직접 label을 맞히는 것이 아니다.
+더 맞는 질문은 다음이다.
+
+```text
+routine-break가 "언제 이상한 날인가"를 말하고,
+sleep-pressure가 "무슨 종류의 부담인가"를 말한다면,
+listener responsibility는 "어느 target route가 반응해야 하는가"를 복원할 수 있는가?
+```
+
+따라서 다음 core 실험은 `routine-break + sleep-pressure -> listener responsibility pretext` 또는
+`cross-subject sleep-pressure prototype` 쪽이 정보량이 크다.

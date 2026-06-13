@@ -60,6 +60,7 @@ python3 hsjepa_core/run_signed_listener_responsibility_direction_core.py
 python3 hsjepa_core/run_counterfactual_direction_pretext_core.py
 python3 hsjepa_core/run_human_state_world_model_core.py
 python3 hsjepa_core/run_routine_break_world_model_core.py
+python3 hsjepa_core/run_sleep_pressure_world_model_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -140,6 +141,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/routine_break_world_model_core/routine_break_world_model_summary.json`
 - `hsjepa_core/outputs/routine_break_world_model_core/ROUTINE_BREAK_WORLD_MODEL_CORE_KO.md`
 - `hsjepa_core/outputs/routine_break_world_model_core/*.csv`
+- `hsjepa_core/outputs/sleep_pressure_world_model_core/sleep_pressure_world_model_summary.json`
+- `hsjepa_core/outputs/sleep_pressure_world_model_core/SLEEP_PRESSURE_WORLD_MODEL_CORE_KO.md`
+- `hsjepa_core/outputs/sleep_pressure_world_model_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 
@@ -170,6 +174,7 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/run_counterfactual_direction_pretext_core.py`: raw/inverse direction을 action-probability-free counterfactual hidden target으로 끌어올려, HS-JEPA core가 direction까지 복원하는지 검사한다. 현재 결과는 negative boundary다.
 - `hsjepa_core/run_human_state_world_model_core.py`: HS-JEPA를 competition 후처리에서 분리해 label-free human-state world model로 구현한다. absolute/subject-relative semantic views에서 masked/future/cohort hidden state를 예측하고, frozen low-trust probe로 subject-heldout/chronological label manifold를 평가한다. 현재 결과는 subject-relative world model core positive지만 효과 크기는 작다.
 - `hsjepa_core/run_routine_break_world_model_core.py`: subject-relative current state, previous-episode jump, rolling personal-baseline residual로 label-free routine-break/episode-reset hidden target을 만들고, visible human-life context가 이 target을 예측하는지 검증한다. 현재 결과는 core positive이며 subject-heldout low-trust probe에서 prior 대비 `-0.001673` logloss다.
+- `hsjepa_core/run_sleep_pressure_world_model_core.py`: night disturbance, physiological load, social/cognitive arousal, rest-environment stability 같은 label-free sleep-pressure surrogate를 hidden target으로 만들고 visible daily context가 이를 예측하는지 검증한다. 현재 결과는 pretext lift `+0.563048`, subject-heldout low-trust probe에서 prior 대비 `-0.000867` logloss다.
 - `hsjepa_core/build_core_evidence_ledger.py`: public-free core evidence를 하나의 논문용 ledger로 묶어, 무엇이 HS-JEPA core 증거이고 무엇이 adapter/diagnostic boundary인지 분리한다.
 
 ## 팀 공유 시 주의점

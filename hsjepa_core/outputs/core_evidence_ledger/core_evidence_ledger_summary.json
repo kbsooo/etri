@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 6,
+  "core_positive_case_count": 7,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break prediction, and subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break and sleep-pressure prediction, and subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -56,6 +56,18 @@
       "interpretation": "subject-relative deviation, previous-episode jump, rolling-baseline residual로 만든 label-free routine-break target이 subject-heldout frozen probe에서 prior를 이긴다.",
       "source": "hsjepa_core/outputs/routine_break_world_model_core/routine_break_world_model_summary.json",
       "candidate": "submission_hsjepa_routine_break_world_model_probe_1cc38f16_uploadsafe.csv"
+    },
+    {
+      "case": "sleep_pressure_world_model",
+      "layer": "core",
+      "question": "보이는 daily human-life context로 label-free sleep-pressure representation을 예측하는가",
+      "primary_metric": "sleep_pressure_full_delta_vs_prior_logloss",
+      "value": -0.0008674550684795168,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "positive_but_small",
+      "interpretation": "night disturbance, physiological load, social/cognitive arousal, rest-environment stability로 만든 label-free sleep-pressure target은 pretext 예측성이 강하지만 Q/S label probe 효과는 작다.",
+      "source": "hsjepa_core/outputs/sleep_pressure_world_model_core/sleep_pressure_world_model_summary.json",
+      "candidate": "submission_hsjepa_sleep_pressure_world_model_probe_2ed37b9a_uploadsafe.csv"
     },
     {
       "case": "external_action_replay_geometry",
