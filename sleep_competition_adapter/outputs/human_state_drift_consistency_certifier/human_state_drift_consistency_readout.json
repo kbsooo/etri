@@ -5,12 +5,24 @@
     "public_lb": 0.5647490904,
     "note": "The file is not present locally; certified_replay reconstructs the reported recipe from the shared description."
   },
-  "primary_candidate": "submission_hsjepa_human_state_drift_consistency_drift_consistency_overshoot_0fb93301_uploadsafe.csv",
-  "primary_candidate_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_consistency_drift_consistency_overshoot_0fb93301_uploadsafe.csv",
+  "reference_public_lb": {
+    "frontier_silence": 0.5677269444,
+    "external_certified_subject_drift": 0.5647490904
+  },
+  "known_public_lb": {
+    "certified_replay": 0.5619100863
+  },
+  "confirmed_positive_candidate": "submission_hsjepa_human_state_drift_consistency_certified_replay_76bb1a88_uploadsafe.csv",
+  "confirmed_positive_candidate_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_consistency_certified_replay_76bb1a88_uploadsafe.csv",
+  "next_sensor_candidate": "submission_hsjepa_human_state_drift_consistency_drift_consistency_overshoot_0fb93301_uploadsafe.csv",
+  "next_sensor_candidate_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_consistency_drift_consistency_overshoot_0fb93301_uploadsafe.csv",
   "variants": [
     {
       "name": "certified_replay",
       "worldview": "Replay the externally certified subject-uniform drift field: Q2 is the primary intervention/degradation axis and Q3 is a weaker companion route.  This is the audit/control candidate.",
+      "known_public_lb": 0.5619100863,
+      "delta_vs_frontier_silence_lb": -0.0058168581000001,
+      "delta_vs_external_certified_lb": -0.002839004100000042,
       "config": {
         "name": "certified_replay",
         "worldview": "Replay the externally certified subject-uniform drift field: Q2 is the primary intervention/degradation axis and Q3 is a weaker companion route.  This is the audit/control candidate.",
@@ -215,6 +227,9 @@
     {
       "name": "drift_consistency_overshoot",
       "worldview": "Use the same certified aggregate-listener direction, but let HS-JEPA human-state evidence change the step size.  Subjects whose train-time drift agrees with the listener direction get a larger Q2/Q3 move; listener-only subjects are damped.  This is the public-frontier challenger.",
+      "known_public_lb": null,
+      "delta_vs_frontier_silence_lb": null,
+      "delta_vs_external_certified_lb": null,
       "config": {
         "name": "drift_consistency_overshoot",
         "worldview": "Use the same certified aggregate-listener direction, but let HS-JEPA human-state evidence change the step size.  Subjects whose train-time drift agrees with the listener direction get a larger Q2/Q3 move; listener-only subjects are damped.  This is the public-frontier challenger.",

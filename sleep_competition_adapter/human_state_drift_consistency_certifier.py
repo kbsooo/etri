@@ -38,6 +38,15 @@ PRIMARY_TARGETS = ["Q2", "Q3"]
 TRAIN_PATH = ROOT / "data" / "ch2026_metrics_train.csv"
 BASE_PATH = ROOT / "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv"
 
+REFERENCE_PUBLIC_LB = {
+    "frontier_silence": 0.5677269444,
+    "external_certified_subject_drift": 0.5647490904,
+}
+
+KNOWN_PUBLIC_LB = {
+    "certified_replay": 0.5619100863,
+}
+
 # This is the aggregate-listener subject direction reported by the certified
 # teammate result.  It is not a label memory rule: it is used as a coarse
 # recovery/degradation direction for the subject-level hidden state.
@@ -297,9 +306,19 @@ def summarize_variant(
         target: float(np.abs(delta_logit[:, idx]).mean()) for idx, target in enumerate(TARGETS)
     }
     validation = validate_submission(output_path, base, base_prob)
+    public_lb = KNOWN_PUBLIC_LB.get(config.name)
     return {
         "name": config.name,
         "worldview": config.worldview,
+        "known_public_lb": public_lb,
+        "delta_vs_frontier_silence_lb": (
+            float(public_lb - REFERENCE_PUBLIC_LB["frontier_silence"]) if public_lb is not None else None
+        ),
+        "delta_vs_external_certified_lb": (
+            float(public_lb - REFERENCE_PUBLIC_LB["external_certified_subject_drift"])
+            if public_lb is not None
+            else None
+        ),
         "config": asdict(config),
         "submission": str(output_path.resolve()),
         "validation": validation,
@@ -312,7 +331,7 @@ def summarize_variant(
     }
 
 
-def write_markdown(readout: dict[str, object], primary_name: str) -> None:
+def write_markdown(readout: dict[str, object], submitted_name: str, next_sensor_name: str) -> None:
     lines = [
         "# Human-State Drift Consistency Certifier",
         "",
@@ -325,7 +344,8 @@ def write_markdown(readout: dict[str, object], primary_name: str) -> None:
         "subject 내부에서는 모든 row에 같은 Q2/Q3 logit 이동을 적용한다. 그래서 어느 test row가 실제 positive인지에",
         "따른 배정노이즈를 최소화하고, row-cell 수술이 아니라 subject hidden-state 방향을 테스트한다.",
         "",
-        f"Primary candidate: `{primary_name}`",
+        f"Submitted positive candidate: `{submitted_name}`",
+        f"Next sensor candidate: `{next_sensor_name}`",
         "",
         "## 왜 HS-JEPA인가",
         "",
@@ -336,26 +356,33 @@ def write_markdown(readout: dict[str, object], primary_name: str) -> None:
         "",
         "## 후보 요약",
         "",
-        "| variant | changed rows | changed cells | Q2 cells | Q3 cells | upload safe |",
-        "| --- | ---: | ---: | ---: | ---: | --- |",
+        "| variant | public LB | vs FrontierSilence | vs external certified | changed rows | changed cells | Q2 cells | Q3 cells | upload safe |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     for variant in readout["variants"]:
         target_changes = variant["target_changes"]
         validation = variant["validation"]
+        public_lb = variant.get("known_public_lb")
+        public_text = f"{public_lb:.10f}" if public_lb is not None else "not submitted"
+        frontier_delta = variant.get("delta_vs_frontier_silence_lb")
+        external_delta = variant.get("delta_vs_external_certified_lb")
+        frontier_text = f"{frontier_delta:+.10f}" if frontier_delta is not None else "n/a"
+        external_text = f"{external_delta:+.10f}" if external_delta is not None else "n/a"
         lines.append(
-            f"| {variant['name']} | {variant['changed_rows_vs_frontier_silence']} | "
+            f"| {variant['name']} | {public_text} | {frontier_text} | {external_text} | "
+            f"{variant['changed_rows_vs_frontier_silence']} | "
             f"{variant['changed_cells_vs_frontier_silence']} | {target_changes['Q2']} | "
             f"{target_changes['Q3']} | {validation['upload_safe']} |"
         )
     lines += [
         "",
-        "## Subject Drift Field",
+        "## Submitted Subject Drift Field",
         "",
         "| subject | sign | Q2 train drift | Q2 step | Q3 train drift | Q3 step |",
         "| --- | ---: | ---: | ---: | ---: | ---: |",
     ]
-    primary = next(v for v in readout["variants"] if v["name"] == primary_name)
-    for rec in primary["subject_steps"]:
+    submitted = next(v for v in readout["variants"] if v["name"] == submitted_name)
+    for rec in submitted["subject_steps"]:
         lines.append(
             f"| {rec['subject_id']} | {rec['listener_sign']} | {rec['Q2_train_drift']:.6f} | "
             f"{rec['Q2_logit_step']:.6f} | {rec['Q3_train_drift']:.6f} | {rec['Q3_logit_step']:.6f} |"
@@ -365,6 +392,9 @@ def write_markdown(readout: dict[str, object], primary_name: str) -> None:
         "## 해석",
         "",
         "`certified_replay`는 0.564749 계열을 재현하기 위한 control이다. "
+        "실제 public LB는 `0.5619100863`으로, FrontierSilence 대비 `-0.0058168581`, "
+        "외부 certified result 대비 `-0.0028390041` 개선되었다. "
+        "이는 subject-uniform human-state drift action이 public에서 강하게 전이됐다는 증거다.",
         "`drift_consistency_overshoot`는 같은 방향을 더 세게 미는 것이 아니라, train drift가 뒷받침하는 subject에서만 "
         "더 크게 움직이고 충돌 subject는 줄이는 HS-JEPA action decoder다.",
         "",
@@ -381,7 +411,8 @@ def run() -> dict[str, object]:
     drift = subject_half_drift(train)
     base_prob = base[TARGETS].to_numpy(dtype=np.float64)
     variants: list[dict[str, object]] = []
-    primary_file = ""
+    confirmed_positive_file = ""
+    next_sensor_file = ""
 
     for config in CONFIGS:
         steps = subject_steps(config, drift)
@@ -397,28 +428,34 @@ def run() -> dict[str, object]:
         summary = summarize_variant(config, base, prob, steps, out_path)
         summary["root_submission"] = str(root_path.resolve())
         variants.append(summary)
+        if config.name == "certified_replay":
+            confirmed_positive_file = filename
         if config.name == "drift_consistency_overshoot":
-            primary_file = filename
+            next_sensor_file = filename
 
     readout = {
         "base_submission": str(BASE_PATH.resolve()),
         "known_external_frontier_to_beat": {
             "submission": "teammate certified per-subject drift field",
-            "public_lb": 0.5647490904,
+            "public_lb": REFERENCE_PUBLIC_LB["external_certified_subject_drift"],
             "note": (
                 "The file is not present locally; certified_replay reconstructs the "
                 "reported recipe from the shared description."
             ),
         },
-        "primary_candidate": primary_file,
-        "primary_candidate_path": str((ROOT / primary_file).resolve()),
+        "reference_public_lb": REFERENCE_PUBLIC_LB,
+        "known_public_lb": KNOWN_PUBLIC_LB,
+        "confirmed_positive_candidate": confirmed_positive_file,
+        "confirmed_positive_candidate_path": str((ROOT / confirmed_positive_file).resolve()),
+        "next_sensor_candidate": next_sensor_file,
+        "next_sensor_candidate_path": str((ROOT / next_sensor_file).resolve()),
         "variants": variants,
     }
     (OUT / "human_state_drift_consistency_readout.json").write_text(
         json.dumps(readout, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    write_markdown(readout, primary_name="drift_consistency_overshoot")
+    write_markdown(readout, submitted_name="certified_replay", next_sensor_name="drift_consistency_overshoot")
     return readout
 
 
@@ -433,4 +470,5 @@ if __name__ == "__main__":
             variant["changed_cells_vs_frontier_silence"],
             variant["validation"]["upload_safe"],
         )
-    print("primary", result["primary_candidate_path"])
+    print("confirmed_positive", result["confirmed_positive_candidate_path"])
+    print("next_sensor", result["next_sensor_candidate_path"])
