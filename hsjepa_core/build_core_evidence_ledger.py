@@ -159,6 +159,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "listener_head_router_pretext_core"
         / "listener_head_router_pretext_summary.json"
     )
+    learned_head_router = load_json(
+        outputs
+        / "learned_listener_head_router_core"
+        / "learned_listener_head_router_summary.json"
+    )
 
     return [
         {
@@ -409,6 +414,38 @@ def collect_cases() -> list[dict[str, Any]]:
             "candidate": None,
         },
         {
+            "case": "learned_listener_head_router_core",
+            "layer": "core_boundary",
+            "question": "fixed semantic prior 없이 hidden head-suitability field를 예측해 listener-head routing을 학습할 수 있는가",
+            "primary_metric": "best_learned_router_delta_vs_semantic_prior_logloss",
+            "value": learned_head_router["subject_best_learned_delta_vs_semantic_prior"],
+            "baseline": "fixed_semantic_prior_listener_head_router",
+            "support": learned_head_router["verdict"],
+            "interpretation": (
+                "label-free hidden head-suitability teacher를 만들고 visible context+predicted heads로 router를 학습했다. "
+                "best learned semantic router는 fixed semantic-prior router와 best single future head를 이기고 leakage도 낮춘다. "
+                "다만 subject-heldout global transport는 아직 넘지 못하므로, learned listener-head routing positive / global-transport boundary로 둔다."
+            ),
+            "best_learned_router_feature_set": learned_head_router["subject_best_learned_router_feature_set"],
+            "best_learned_router_logloss": learned_head_router["subject_best_learned_router_logloss"],
+            "semantic_prior_router_logloss": learned_head_router["subject_semantic_prior_router_logloss"],
+            "best_single_head_feature_set": learned_head_router["subject_best_single_head_feature_set"],
+            "best_single_head_logloss": learned_head_router["subject_best_single_head_logloss"],
+            "delta_vs_single": learned_head_router["subject_best_learned_delta_vs_single"],
+            "delta_vs_prior": learned_head_router["subject_best_learned_delta_vs_prior"],
+            "delta_vs_raw": learned_head_router["subject_best_learned_delta_vs_raw"],
+            "delta_vs_direct_semantic": learned_head_router["subject_best_learned_delta_vs_direct_semantic"],
+            "delta_vs_naive_multi": learned_head_router["subject_best_learned_delta_vs_naive_multi"],
+            "delta_vs_global": learned_head_router["subject_best_learned_delta_vs_global"],
+            "row_block_delta_vs_global": learned_head_router["row_block_best_learned_delta_vs_global"],
+            "chronological_delta_vs_global": learned_head_router["chronological_best_learned_delta_vs_global"],
+            "best_learned_leakage": learned_head_router["subject_best_learned_leakage"]["subject_id_accuracy"],
+            "semantic_prior_leakage": learned_head_router["subject_semantic_prior_leakage"]["subject_id_accuracy"],
+            "best_single_leakage": learned_head_router["subject_best_single_leakage"]["subject_id_accuracy"],
+            "source": "hsjepa_core/outputs/learned_listener_head_router_core/learned_listener_head_router_summary.json",
+            "candidate": None,
+        },
+        {
             "case": "routine_break_world_model",
             "layer": "core",
             "question": "보이는 human-life context로 보이지 않는 routine-break/episode-reset representation을 예측하는가",
@@ -631,7 +668,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "prediction, subject-invariant prototype grammar, subject-relative routine-break, "
             "cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, "
             "transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, "
-            "label-free listener-head routing, "
+            "label-free and learned listener-head routing, "
             "and listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
@@ -1073,7 +1110,65 @@ Learn the listener-head router as a JEPA pretext objective,
 instead of relying on fixed semantic priors.
 ```
 
-### 11. Routine-Break World Model
+### 11. Learned Listener-Head Router Core
+
+직전 실험은 fixed semantic-prior router가 best single future head를 이긴다는 결과를 남겼다.
+이번 실험은 그 prior를 사람이 고정하지 않고, label-free hidden head-suitability field를
+visible context와 predicted current/future/cohort heads에서 예측하게 했다.
+
+```text
+visible subject-relative human-life context
+  + predicted current/future/cohort listener heads
+  -> hidden head-suitability field prediction
+  -> learned listener-head router
+  -> routed HS-JEPA interface
+```
+
+핵심 결과:
+
+```text
+best learned router: {by_case["learned_listener_head_router_core"].get("best_learned_router_feature_set")}
+best learned router logloss: {fmt(by_case["learned_listener_head_router_core"].get("best_learned_router_logloss"), 6)}
+fixed semantic-prior router logloss: {fmt(by_case["learned_listener_head_router_core"].get("semantic_prior_router_logloss"), 6)}
+best single head: {by_case["learned_listener_head_router_core"].get("best_single_head_feature_set")}
+best single-head logloss: {fmt(by_case["learned_listener_head_router_core"].get("best_single_head_logloss"), 6)}
+learned delta vs fixed semantic router: {fmt(by_case["learned_listener_head_router_core"]["value"], 6)}
+learned delta vs single: {fmt(by_case["learned_listener_head_router_core"].get("delta_vs_single"), 6)}
+learned delta vs prior: {fmt(by_case["learned_listener_head_router_core"].get("delta_vs_prior"), 6)}
+learned delta vs raw lifelog PCA: {fmt(by_case["learned_listener_head_router_core"].get("delta_vs_raw"), 6)}
+learned delta vs direct semantic: {fmt(by_case["learned_listener_head_router_core"].get("delta_vs_direct_semantic"), 6)}
+learned delta vs naive multi-head: {fmt(by_case["learned_listener_head_router_core"].get("delta_vs_naive_multi"), 6)}
+learned delta vs global transport: {fmt(by_case["learned_listener_head_router_core"].get("delta_vs_global"), 6)}
+row-block learned delta vs global: {fmt(by_case["learned_listener_head_router_core"].get("row_block_delta_vs_global"), 6)}
+chronological learned delta vs global: {fmt(by_case["learned_listener_head_router_core"].get("chronological_delta_vs_global"), 6)}
+```
+
+leakage도 의미가 있다.
+
+```text
+best learned router leakage: {fmt(by_case["learned_listener_head_router_core"].get("best_learned_leakage"), 6)}
+fixed semantic-prior router leakage: {fmt(by_case["learned_listener_head_router_core"].get("semantic_prior_leakage"), 6)}
+best single future head leakage: {fmt(by_case["learned_listener_head_router_core"].get("best_single_leakage"), 6)}
+```
+
+살아난 믿음:
+
+```text
+HS-JEPA can learn listener-head routing as a label-free hidden-state pretext,
+not only as a hand-fixed semantic prior.
+```
+
+아직 죽지 않은 경계:
+
+```text
+The learned router beats semantic prior and best single head,
+but it still does not beat global transported prototype grammar on subject-heldout.
+```
+
+따라서 논문적으로는 이 실험을 "완성된 decoder"가 아니라
+`learned listener routing core evidence with global-transport boundary`로 기록한다.
+
+### 12. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.
@@ -1088,7 +1183,7 @@ subject-heldout low-trust frozen probe에서 prior 대비 delta는
 `{fmt(by_case["routine_break_world_model"]["value"], 6)}`이다.
 효과 크기는 여전히 작지만, 이전 subject-relative world model보다 더 선명한 core-positive signal이다.
 
-### 12. Sleep-Pressure World Model
+### 13. Sleep-Pressure World Model
 
 수면 label을 직접 target으로 쓰지 않고, night disturbance, physiological load,
 social/cognitive arousal, rest-environment stability, calendar routine pressure를
@@ -1105,7 +1200,7 @@ pretext 예측성은 강하지만 label probe 효과는 작다. 이 결과는 HS
 sleep-pressure representation을 만들 수 있다는 core evidence이면서,
 그 representation을 Q/S label로 번역하려면 listener/action-health adapter가 필요하다는 경계이기도 하다.
 
-### 13. Cohort-Relative World Model
+### 14. Cohort-Relative World Model
 
 routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고,
 오늘의 state를 개인 기준과 peer 기준에서 동시에 해석했다.
@@ -1126,7 +1221,7 @@ observed/full cohort geometry는 subject identity shortcut이 강하다.
 core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
 ```
 
-### 14. Multi-Target Human-State World Model
+### 15. Multi-Target Human-State World Model
 
 routine-break, sleep-pressure, cohort-relative hidden target을 따로 쓰지 않고,
 하나의 route-preserving predicted bundle로 묶었다.
@@ -1157,7 +1252,7 @@ PCA로 하나의 compressed latent로 뭉치면 negative.
 downstream listener가 구분할 수 있도록 route axes를 보존한다.
 ```
 
-### 15. Route-Responsibility Diagnostic
+### 16. Route-Responsibility Diagnostic
 
 multi-target bundle 위에서 다른 route들로 held-out route를 예측하고,
 그 residual energy로 label-free route responsibility를 만들었다.
@@ -1183,7 +1278,7 @@ route responsibility는 label 없이 관측 가능하다.
 이것은 실패라기보다 HS-JEPA architecture boundary다.
 다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
 
-### 16. Listener-Conditioned Route Readout
+### 17. Listener-Conditioned Route Readout
 
 route-preserving multi-target bundle을 만든 뒤, frozen probe에서 target/listener별 route readout을 선택했다.
 이 단계는 label-free core pretext가 아니라 frozen probe diagnostic이다.
@@ -1209,7 +1304,7 @@ HS-JEPA core의 좋은 interface는 하나의 압축 latent도,
 route axes를 보존하고, downstream listener가 target별로 다른 route를 읽게 해야 한다.
 ```
 
-### 17. Subject-Invariant Listener Manifold
+### 18. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -1217,7 +1312,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 18. Listener Responsibility Field
+### 19. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.
@@ -1292,6 +1387,7 @@ learned listener responsibility pretext: labels 없이 hand-coded profile보다 
 invariant listener responsibility pretext: future consistency는 current-only보다 좋고 row/chron stress에서 강하지만, cohort pretext accuracy는 downstream utility와 분리된다
 multi-head listener responsibility pretext: compact future head는 positive지만 naive head concat은 best single을 못 이겨 listener router가 필요하다
 listener-head router pretext: semantic-prior router가 best single future head와 naive concat을 이기지만 confidence-only router는 아직 약하다
+learned listener-head router core: hidden head-suitability pretext가 fixed semantic-prior router와 best single head를 이기지만 global transport는 아직 못 넘는다
 routine-break world model: small positive and stronger hidden target
 sleep-pressure world model: strong pretext, small label-probe positive
 cohort-relative world model: predicted state positive, observed/full shortcut 위험
@@ -1305,9 +1401,10 @@ direct label prediction: mostly negative without low-trust calibration
 
 따라서 다음 실험은 adapter를 더 조정하는 것이 아니라,
 subject-relative human-state target을 더 강하게 만들어야 한다.
-후보는 target별 head-routing target을 masked/future/cohort pretext로 학습하는 learned router,
+후보는 global transport를 넘는 stronger head-suitability teacher,
 sleep-pressure와 routine-break를 결합한 future-responsibility pretext,
-cross-subject sleep-pressure prototype, 그리고 hidden state를 action-health로 번역하는
+cross-subject sleep-pressure prototype, listener-router를 action-health로 직접 연결하는 learned release gate,
+그리고 hidden state를 action-health로 번역하는
 open-loop world model이다.
 """
 

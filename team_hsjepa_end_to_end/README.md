@@ -176,6 +176,14 @@ python3 team_hsjepa_end_to_end/listener_head_router_pretext_core/run_end_to_end.
 
 이 실험은 head confidence/entropy/energy와 target semantic prior만으로 label-free router를 만든다. 현재 결론은 `listener router positive / dynamic confidence router boundary`다. semantic-prior router는 best single future head를 소폭 이기지만, confidence heuristic을 섞은 router는 더 약하다.
 
+fixed semantic prior를 넘는 learned listener-head router를 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/learned_listener_head_router_core/run_end_to_end.py
+```
+
+이 실험은 hidden head-suitability field를 label-free pretext로 만들고, visible context와 predicted current/future/cohort heads가 router를 학습하는지 본다. 현재 결론은 `learned listener-head routing positive / global-transport boundary`다. best learned router는 fixed semantic-prior router와 best single future head를 모두 이기고 leakage도 낮지만, subject-heldout global transport는 아직 넘지 못한다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

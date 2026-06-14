@@ -253,6 +253,29 @@ semantic target-route priors more than confidence-only routing heuristics.
 The next architecture step is to learn the router as a JEPA pretext objective.
 ```
 
+`LEARNED_LISTENER_HEAD_ROUTER_CORE_KO.md`는 이 다음 architecture step을 직접 실험한다. fixed semantic prior를 정답처럼 쓰지 않고, label-free hidden head-suitability field를 만들고 visible context와 predicted listener heads가 그 routing을 예측하게 한다.
+
+현재 결론:
+
+```text
+best learned router는 learned_semantic_router_context_headsignal_listener_responsibility_calibrated10이다.
+learned router logloss는 0.677359이다.
+fixed semantic-prior router 대비 -0.000068 좋다.
+best single future head 대비 -0.000103 좋다.
+prior 대비 -0.000498, raw lifelog PCA 대비 -0.001154 좋다.
+row-block에서는 global transport 대비 -0.000505, chronological에서는 -0.001486 살아남는다.
+subject leakage도 fixed semantic router 0.462222에서 learned router 0.446667로 낮아진다.
+하지만 subject-heldout global transport 대비로는 +0.000636 나빠 아직 완성된 decoder는 아니다.
+```
+
+논문적으로 남는 문장:
+
+```text
+HS-JEPA can learn listener-head routing as a label-free hidden-state pretext.
+The routed interface is more useful and less subject-identifying than a fixed semantic-prior router,
+but global transport still defines a stronger boundary that the next route-suitability objective must cross.
+```
+
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.
 
 ```text

@@ -7,7 +7,7 @@
   "core_positive_case_count": 12,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, label-free listener-head routing, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, label-free and learned listener-head routing, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -217,6 +217,34 @@
       "best_router_leakage": 0.4622222222222222,
       "best_single_leakage": 0.47555555555555556,
       "source": "hsjepa_core/outputs/listener_head_router_pretext_core/listener_head_router_pretext_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "learned_listener_head_router_core",
+      "layer": "core_boundary",
+      "question": "fixed semantic prior 없이 hidden head-suitability field를 예측해 listener-head routing을 학습할 수 있는가",
+      "primary_metric": "best_learned_router_delta_vs_semantic_prior_logloss",
+      "value": -6.77585332332642e-05,
+      "baseline": "fixed_semantic_prior_listener_head_router",
+      "support": "learned_listener_head_router_beats_semantic_positive",
+      "interpretation": "label-free hidden head-suitability teacher를 만들고 visible context+predicted heads로 router를 학습했다. best learned semantic router는 fixed semantic-prior router와 best single future head를 이기고 leakage도 낮춘다. 다만 subject-heldout global transport는 아직 넘지 못하므로, learned listener-head routing positive / global-transport boundary로 둔다.",
+      "best_learned_router_feature_set": "learned_semantic_router_context_headsignal_listener_responsibility_calibrated10",
+      "best_learned_router_logloss": 0.6773593799283358,
+      "semantic_prior_router_logloss": 0.6774271384615691,
+      "best_single_head_feature_set": "head_future_relative_listener_responsibility_calibrated10",
+      "best_single_head_logloss": 0.6774627003951271,
+      "delta_vs_single": -0.00010332046679129014,
+      "delta_vs_prior": -0.0004981532412455802,
+      "delta_vs_raw": -0.0011535273683558334,
+      "delta_vs_direct_semantic": -0.00027869369835842317,
+      "delta_vs_naive_multi": -0.0006064219107255742,
+      "delta_vs_global": 0.000635505422880378,
+      "row_block_delta_vs_global": -0.0005050412718138331,
+      "chronological_delta_vs_global": -0.0014859185077482628,
+      "best_learned_leakage": 0.44666666666666666,
+      "semantic_prior_leakage": 0.4622222222222222,
+      "best_single_leakage": 0.47555555555555556,
+      "source": "hsjepa_core/outputs/learned_listener_head_router_core/learned_listener_head_router_summary.json",
       "candidate": null
     },
     {
