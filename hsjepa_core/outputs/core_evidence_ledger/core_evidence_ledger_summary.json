@@ -7,7 +7,7 @@
   "core_positive_case_count": 12,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, label-free listener-head routing, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -192,6 +192,31 @@
       "best_single_leakage": 0.47555555555555556,
       "best_multi_leakage": 0.4666666666666667,
       "source": "hsjepa_core/outputs/multi_head_listener_responsibility_pretext_core/multi_head_listener_responsibility_pretext_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "listener_head_router_pretext",
+      "layer": "core_boundary",
+      "question": "label-free listener-head router가 current/future/cohort head 중 무엇을 읽을지 정할 수 있는가",
+      "primary_metric": "best_router_delta_vs_single_head_logloss",
+      "value": -3.556193355802595e-05,
+      "baseline": "best_single_future_listener_head",
+      "support": "listener_head_router_beats_single_positive",
+      "interpretation": "semantic-prior listener-head router는 best single future head와 naive multi-head concat을 이긴다. 하지만 best router가 dynamic confidence router가 아니라 target semantic prior router였으므로, 현재 결론은 listener routing positive / learned-router objective boundary다.",
+      "best_router_feature_set": "semantic_prior_router_listener_responsibility_calibrated10",
+      "best_router_logloss": 0.6774271384615691,
+      "best_single_head_feature_set": "head_future_relative_listener_responsibility_calibrated10",
+      "best_single_head_logloss": 0.6774627003951271,
+      "delta_vs_prior": -0.00043039470801231605,
+      "delta_vs_raw": -0.0010857688351225692,
+      "delta_vs_direct_semantic": -0.00021093516512515897,
+      "delta_vs_naive_multi": -0.00053866337749231,
+      "delta_vs_global": 0.0007032639561136422,
+      "row_block_delta_vs_global": -0.00016560418927247245,
+      "chronological_delta_vs_global": -0.0014774864065909554,
+      "best_router_leakage": 0.4622222222222222,
+      "best_single_leakage": 0.47555555555555556,
+      "source": "hsjepa_core/outputs/listener_head_router_pretext_core/listener_head_router_pretext_summary.json",
       "candidate": null
     },
     {

@@ -233,6 +233,26 @@ Naively concatenating current/future/cohort heads does not solve listener routin
 HS-JEPA therefore needs a listener router, not a larger undifferentiated latent bundle.
 ```
 
+`LISTENER_HEAD_ROUTER_PRETEXT_CORE_KO.md`는 이 문장을 직접 실험한다. current/future/cohort head를 concat하지 않고, label-free listener-head router가 target별로 어떤 head를 읽을지 정한다.
+
+현재 결론:
+
+```text
+best router는 semantic_prior_router_listener_responsibility_calibrated10이다.
+router logloss는 0.677427으로 best single future head 대비 -0.000036 좋다.
+prior 대비 -0.000430, direct semantic 대비 -0.000211, naive multi-head concat 대비 -0.000539 좋다.
+row-block에서는 global transport 대비 -0.000166, chronological에서는 -0.001477 살아남는다.
+하지만 best가 confidence/entropy dynamic router가 아니라 semantic prior router라는 점이 중요하다.
+```
+
+논문적으로 남는 문장:
+
+```text
+HS-JEPA benefits from listener-head routing, but the current evidence supports
+semantic target-route priors more than confidence-only routing heuristics.
+The next architecture step is to learn the router as a JEPA pretext objective.
+```
+
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.
 
 ```text

@@ -168,6 +168,14 @@ python3 team_hsjepa_end_to_end/multi_head_listener_responsibility_pretext_core/r
 
 이 실험은 `current`, `future`, `cohort` listener responsibility head를 따로 예측하고 single/concat/delta readout을 비교한다. 현재 결론은 `future-responsibility head positive / multi-head concat boundary`다. best single future head는 prior와 direct semantic을 이기지만, multi-head concat은 best single head를 넘지 못한다.
 
+concat 대신 target별 listener router가 current/future/cohort head를 읽는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/listener_head_router_pretext_core/run_end_to_end.py
+```
+
+이 실험은 head confidence/entropy/energy와 target semantic prior만으로 label-free router를 만든다. 현재 결론은 `listener router positive / dynamic confidence router boundary`다. semantic-prior router는 best single future head를 소폭 이기지만, confidence heuristic을 섞은 router는 더 약하다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

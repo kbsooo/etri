@@ -19291,3 +19291,109 @@ multi-head concat은 leakage를 약간 낮추지만 subject-heldout utility를 b
 HS-JEPA needs a listener router that chooses current/future/cohort head per target,
 or a stronger future-responsibility head, rather than undifferentiated head concatenation.
 ```
+
+## Listener Head Router Pretext Core
+
+### Question
+
+직전 multi-head 실험은 다음을 보여줬다.
+
+```text
+future-consistent listener head는 compact하게 쓰면 좋다.
+하지만 current/future/cohort head를 naive concat하면 best single future head보다 나쁘다.
+```
+
+따라서 이번 질문은 다음이다.
+
+```text
+concat이 아니라 label-free listener router가 target별로 current/future/cohort head를 선택하면
+best single future head를 넘을 수 있는가?
+```
+
+### Hypothesis
+
+```text
+If HS-JEPA needs a listener router rather than a larger latent bundle,
+then a target-aware, label-free head router should beat the best single future head
+and naive multi-head concat under subject-heldout stress.
+```
+
+### Falsification Design
+
+- script: `hsjepa_core/run_listener_head_router_pretext_core.py`
+- report: `hsjepa_core/outputs/listener_head_router_pretext_core/LISTENER_HEAD_ROUTER_PRETEXT_CORE_KO.md`
+- paper report: `paper_hsjepa_core/LISTENER_HEAD_ROUTER_PRETEXT_CORE_KO.md`
+- team wrapper: `team_hsjepa_end_to_end/listener_head_router_pretext_core/run_end_to_end.py`
+- hidden heads:
+  - current listener responsibility
+  - future-consistent listener responsibility
+  - cohort-consistent listener responsibility
+- routers:
+  - confidence/entropy/energy router
+  - target semantic prior router
+  - semantic + confidence router
+  - future-anchor router
+  - anti-shortcut router
+- labels:
+  - not used in router
+  - not used in pretext
+  - used only after representation is frozen
+- stress:
+  - subject-heldout
+  - row-block holdout
+  - chronological holdout
+  - subject leakage diagnostic
+
+### Result
+
+- verdict: `listener_head_router_beats_single_positive`
+- best single head: `head_future_relative_listener_responsibility_calibrated10`
+- best single-head logloss: `0.677463`
+- best router: `semantic_prior_router_listener_responsibility_calibrated10`
+- best router logloss: `0.677427`
+- naive multi-head logloss: `0.677966`
+- global transport logloss: `0.676724`
+- direct semantic logloss: `0.677638`
+- prior logloss: `0.677858`
+- router delta vs single: `-0.000036`
+- router delta vs prior: `-0.000430`
+- router delta vs direct semantic: `-0.000211`
+- router delta vs naive multi-head: `-0.000539`
+- router delta vs global transport: `+0.000703`
+- row-block router delta vs global: `-0.000166`
+- chronological router delta vs global: `-0.001477`
+
+Subject leakage:
+
+```text
+semantic-prior router: 0.462222
+best single future head: 0.475556
+global transport: 0.542222
+raw lifelog PCA: 0.940000
+```
+
+### Interpretation
+
+살아난 믿음:
+
+```text
+Listener routing is a real HS-JEPA interface.  A target-aware router can beat
+the best single future head and naive head concatenation without using labels in the router.
+```
+
+죽은 믿음 또는 약해진 믿음:
+
+```text
+Head confidence / entropy / energy heuristics alone are enough to learn the router.
+```
+
+best router가 confidence dynamic router가 아니라 semantic prior router였다는 점이 중요하다.
+즉 current evidence는 "router가 필요하다"를 지지하지만,
+"confidence heuristic이 이미 충분한 learned router다"는 지지하지 않는다.
+
+다음 breakthrough 방향:
+
+```text
+Learn target-specific head routing as a JEPA pretext objective,
+instead of hand-fixed semantic priors or confidence heuristics.
+```
