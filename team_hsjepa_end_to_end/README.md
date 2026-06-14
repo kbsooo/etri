@@ -96,6 +96,14 @@ python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
 python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
 ```
 
+HS-JEPA core가 future human-state drift를 표현하는지 adapter 없이 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/subject_drift_world_model_core/run_end_to_end.py
+```
+
+이 실험은 제출 후보 생성이 아니라 paper-core boundary 검증이다. 현재 결론은 `weak positive boundary`다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

@@ -56,6 +56,7 @@
 - `paper_hsjepa_core/MULTI_TARGET_HUMAN_STATE_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/ROUTE_RESPONSIBILITY_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ROUTE_READOUT_CORE_KO.md`
+- `paper_hsjepa_core/SUBJECT_DRIFT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -64,6 +65,17 @@
 - `paper_hsjepa_core/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
 
 처음 보는 팀원은 `HS_JEPA_CORE_FIRST_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 kNN transport, veto rule, submission CSV가 아니라 `visible human context -> hidden human-state target representation prediction`이라는 core-first architecture로 정리한다.
+
+`SUBJECT_DRIFT_WORLD_MODEL_CORE_KO.md`는 최근 강한 public result의 subject-level Q2/Q3 drift consistency를 core-only 질문으로 바꾼 최신 boundary 문서다. public LB 방정식 없이 OG lifelog context만으로 다음 episode의 회복/악화 drift를 읽을 수 있는지 검증한다.
+
+현재 결론:
+
+```text
+HS-JEPA world-state에는 future drift ranking 신호가 아주 약하게 있다.
+subject-relative predicted state low-trust readout은 prior 대비 -0.000168 logloss다.
+하지만 calendar readout이 전체 best이고 효과가 0.001보다 작아,
+0.5619100863 public breakthrough를 core 단독 성과로 과장하면 안 된다.
+```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.
 

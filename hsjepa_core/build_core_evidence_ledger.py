@@ -109,6 +109,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "listener_conditioned_route_readout_core"
         / "listener_conditioned_route_readout_summary.json"
     )
+    subject_drift = load_json(
+        outputs
+        / "subject_drift_world_model_core"
+        / "subject_drift_world_model_summary.json"
+    )
 
     return [
         {
@@ -241,6 +246,22 @@ def collect_cases() -> list[dict[str, Any]]:
             "fold_wins": f'{listener_readout["selection_win_folds_total"]}/{listener_readout["selection_folds_total"]}',
             "source": "hsjepa_core/outputs/listener_conditioned_route_readout_core/listener_conditioned_route_readout_summary.json",
             "candidate": listener_readout.get("candidate_file"),
+        },
+        {
+            "case": "subject_drift_world_model",
+            "layer": "core_boundary",
+            "question": "label-free HS-JEPA world-state가 future recovery/degradation drift를 subject-heldout으로 읽기 쉽게 만드는가",
+            "primary_metric": "subject_hsjepa_delta_vs_prior_logloss",
+            "value": subject_drift["subject_hsjepa_delta_vs_prior"],
+            "baseline": "fold_prior_low_trust_probe",
+            "support": subject_drift["core_drift_verdict"],
+            "interpretation": (
+                "subject-relative predicted world-state가 low-trust drift readout에서 prior를 아주 작게 이긴다. "
+                "하지만 calendar low-trust readout이 전체 best이고 효과가 0.001보다 작아, drift consistency public breakthrough를 "
+                "core 단독 성과로 과장하면 안 된다."
+            ),
+            "source": "hsjepa_core/outputs/subject_drift_world_model_core/subject_drift_world_model_summary.json",
+            "candidate": None,
         },
         {
             "case": "external_action_replay_geometry",

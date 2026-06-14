@@ -1,0 +1,205 @@
+{
+  "package": "subject_drift_world_model_core",
+  "status": "subject_drift_world_model_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "drift_window": 4,
+  "min_periods": 2,
+  "core_adapter_boundary": "labels define frozen drift probes only; HS-JEPA pretext is label-free lifelog world-state prediction",
+  "core_drift_verdict": "core_drift_weak_positive_boundary",
+  "best_pretext": {
+    "variant": "subject_relative",
+    "task": "masked_context_to_view_state",
+    "target": "phone_behavior",
+    "components": 4.0,
+    "context_feature_count": 59.0,
+    "target_feature_count": 40.0,
+    "component_corr": 0.48225447975971825,
+    "null_component_corr": -0.004219976429363233,
+    "component_corr_lift_vs_null": 0.4864744561890815,
+    "r2": 0.2534851497912021,
+    "null_r2": -0.10885803499723506,
+    "r2_lift_vs_null": 0.3623431847884372,
+    "valid_rows": NaN,
+    "cohort_count": NaN,
+    "subject_count": NaN,
+    "mean_subject_normal_dist": NaN,
+    "mean_cohort_normal_dist": NaN,
+    "mean_subject_to_cohort_dist": NaN
+  },
+  "subject_prior_logloss": 0.626191773480096,
+  "subject_raw_logloss": 1.0280364229576506,
+  "subject_hsjepa_best_feature_set": "subject_relative_hsjepa_predicted_calibrated05",
+  "subject_hsjepa_logloss": 0.6260235714734389,
+  "subject_hsjepa_delta_vs_prior": -0.00016820200665712548,
+  "subject_hsjepa_delta_vs_raw": -0.40201285148421173,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "calendar_rhythm_calibrated10",
+    "probe_target": "all_drift_targets",
+    "logloss": 0.6259502859854672,
+    "auc": 0.43877771576950314,
+    "average_precision": 0.361953663300801,
+    "positive_rate": 0.38677792041078307,
+    "evaluated_rows": 410,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "probe_calibration_shrink": 0.1
+  },
+  "chronological_best_probe": {
+    "split": "chronological_holdout",
+    "feature_set": "subject_relative_hsjepa_predicted_calibrated10",
+    "probe_target": "all_drift_targets",
+    "logloss": 0.6253239359891624,
+    "auc": 0.5061416015076676,
+    "average_precision": 0.4292099057588262,
+    "positive_rate": 0.38692434210526316,
+    "evaluated_rows": 128,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "probe_calibration_shrink": 0.1
+  },
+  "q2q3_subject_best": {
+    "split": "subject_heldout",
+    "feature_set": "absolute_hsjepa_predicted_calibrated10",
+    "probe_target": "drift_down_Q2",
+    "logloss": 0.6287877922179899,
+    "auc": 0.49964573795509043,
+    "average_precision": 0.32212155277821175,
+    "positive_rate": 0.32195121951219513,
+    "evaluated_rows": 410,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "probe_calibration_shrink": 0.1
+  },
+  "best_drift_regression": {
+    "feature_set": "calendar_rhythm",
+    "regression_target": "drift_Q3",
+    "corr": 0.05150271596576091,
+    "mae": 0.3028166102957363,
+    "null_mae": 0.2997020265543281,
+    "mae_lift_vs_null": -0.0031145837414082167,
+    "evaluated_rows": 410
+  },
+  "target_meta": [
+    {
+      "probe_target": "recovery_up_subjective",
+      "positive_rate": 0.43414634146341463,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "intervention_relief_Q2",
+      "positive_rate": 0.32195121951219513,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "intervention_worsening_Q2",
+      "positive_rate": 0.4,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "quality_rise_Q3",
+      "positive_rate": 0.4073170731707317,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "objective_stage_shift",
+      "positive_rate": 0.9585365853658536,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_up_Q1",
+      "positive_rate": 0.3926829268292683,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_down_Q1",
+      "positive_rate": 0.32682926829268294,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_up_Q2",
+      "positive_rate": 0.4,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_down_Q2",
+      "positive_rate": 0.32195121951219513,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_up_Q3",
+      "positive_rate": 0.4073170731707317,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_down_Q3",
+      "positive_rate": 0.348780487804878,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_up_S1",
+      "positive_rate": 0.34146341463414637,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_down_S1",
+      "positive_rate": 0.32439024390243903,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_up_S2",
+      "positive_rate": 0.3121951219512195,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_down_S2",
+      "positive_rate": 0.3024390243902439,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_up_S3",
+      "positive_rate": 0.3073170731707317,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_down_S3",
+      "positive_rate": 0.3195121951219512,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_up_S4",
+      "positive_rate": 0.3853658536585366,
+      "valid_rows": 410,
+      "has_two_classes": true
+    },
+    {
+      "probe_target": "drift_down_S4",
+      "positive_rate": 0.33658536585365856,
+      "valid_rows": 410,
+      "has_two_classes": true
+    }
+  ]
+}

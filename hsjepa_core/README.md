@@ -65,6 +65,7 @@ python3 hsjepa_core/run_cohort_relative_world_model_core.py
 python3 hsjepa_core/run_multi_target_human_state_world_model_core.py
 python3 hsjepa_core/run_route_responsibility_world_model_core.py
 python3 hsjepa_core/run_listener_conditioned_route_readout_core.py
+python3 hsjepa_core/run_subject_drift_world_model_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -160,6 +161,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/listener_conditioned_route_readout_core/listener_conditioned_route_readout_summary.json`
 - `hsjepa_core/outputs/listener_conditioned_route_readout_core/LISTENER_CONDITIONED_ROUTE_READOUT_CORE_KO.md`
 - `hsjepa_core/outputs/listener_conditioned_route_readout_core/*.csv`
+- `hsjepa_core/outputs/subject_drift_world_model_core/subject_drift_world_model_summary.json`
+- `hsjepa_core/outputs/subject_drift_world_model_core/SUBJECT_DRIFT_WORLD_MODEL_CORE_KO.md`
+- `hsjepa_core/outputs/subject_drift_world_model_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 
@@ -195,6 +199,7 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/run_multi_target_human_state_world_model_core.py`: routine-break, sleep-pressure, cohort-relative hidden target을 하나의 route-preserving predicted bundle로 묶는 통합 HS-JEPA core 실험이다. 현재 결과는 subject-heldout low-trust probe에서 prior 대비 `-0.001499`, best single hidden target 대비 `-0.000118` logloss다. 반대로 PCA compressed latent는 prior보다 `+0.000422` 나빠져, HS-JEPA core는 route axes를 보존해야 한다는 ablation을 제공한다.
 - `hsjepa_core/run_route_responsibility_world_model_core.py`: route-preserving bundle 위에서 다른 route들로 held-out route를 예측해 label-free route responsibility를 만든다. route pretext lift는 `+0.872891`로 강하지만, responsibility-weighted axes는 prior만 `-0.000720` 이기고 base multi-target보다 `+0.000780` 나쁘다. 따라서 현재는 replacement가 아니라 diagnostic boundary다.
 - `hsjepa_core/run_listener_conditioned_route_readout_core.py`: route-preserving multi-target bundle을 frozen representation으로 고정한 뒤, target/listener별로 어떤 hidden route를 읽어야 하는지 subject-heldout probe로 선택한다. 현재 결과는 listener-conditioned readout이 prior 대비 `-0.003246`, base multi-target bundle 대비 `-0.001747` logloss이고, fold-level route win은 `25/35`다. labels는 core pretext가 아니라 frozen probe/readout selection에만 쓰인다.
+- `hsjepa_core/run_subject_drift_world_model_core.py`: public에서 강하게 살아난 subject-level Q2/Q3 drift consistency를 core-only 질문으로 바꾸어, OG lifelog world-state가 future recovery/degradation drift를 subject-heldout으로 읽기 쉽게 만드는지 검증한다. 현재 결과는 subject-relative predicted state의 low-trust readout이 prior 대비 `-0.000168` logloss로 아주 약하게 positive지만, calendar readout이 전체 best라서 `weak positive boundary`다.
 - `hsjepa_core/build_core_evidence_ledger.py`: public-free core evidence를 하나의 논문용 ledger로 묶어, 무엇이 HS-JEPA core 증거이고 무엇이 adapter/diagnostic boundary인지 분리한다.
 
 ## 팀 공유 시 주의점

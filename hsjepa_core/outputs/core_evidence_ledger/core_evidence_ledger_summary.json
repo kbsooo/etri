@@ -120,6 +120,18 @@
       "candidate": "submission_hsjepa_listener_conditioned_route_readout_probe_74befb45_uploadsafe.csv"
     },
     {
+      "case": "subject_drift_world_model",
+      "layer": "core_boundary",
+      "question": "label-free HS-JEPA world-state가 future recovery/degradation drift를 subject-heldout으로 읽기 쉽게 만드는가",
+      "primary_metric": "subject_hsjepa_delta_vs_prior_logloss",
+      "value": -0.00016820200665712548,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "core_drift_weak_positive_boundary",
+      "interpretation": "subject-relative predicted world-state가 low-trust drift readout에서 prior를 아주 작게 이긴다. 하지만 calendar low-trust readout이 전체 best이고 효과가 0.001보다 작아, drift consistency public breakthrough를 core 단독 성과로 과장하면 안 된다.",
+      "source": "hsjepa_core/outputs/subject_drift_world_model_core/subject_drift_world_model_summary.json",
+      "candidate": null
+    },
+    {
       "case": "external_action_replay_geometry",
       "layer": "core_to_adapter_probe",
       "question": "core-state geometry가 다른 adapter의 row-action support를 재발견하는가",
