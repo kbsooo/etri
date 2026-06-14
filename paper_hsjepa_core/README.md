@@ -61,6 +61,7 @@
 - `paper_hsjepa_core/HUMAN_STATE_PROTOTYPE_GRAMMAR_CORE_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_PROTOTYPE_TRANSPORT_CORE_KO.md`
 - `paper_hsjepa_core/TRANSPORTED_PROTOTYPE_LISTENER_READOUT_CORE_KO.md`
+- `paper_hsjepa_core/LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -144,6 +145,30 @@ row-block에서는 거의 동률(+0.000010), chronological에서는 -0.000919로
 ```text
 Transported human-state grammar becomes more useful when exposed as a
 listener-conditioned interface rather than collapsed into one global latent.
+```
+
+`LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`는 위 listener view 선택에서 labels를 제거한 boundary 문서다. target 설명과 transported prototype reliability만으로 listener responsibility를 만들면 충분한지 검증한다.
+
+현재 결론:
+
+```text
+label-free semantic listener는 prior 대비 -0.000219, raw lifelog PCA 대비 -0.001069로 약하게 좋다.
+하지만 global transported grammar 대비 +0.000914 나빠진다.
+row-block에서도 global 대비 +0.000044로 거의 동률이고, chronological에서는 -0.001343으로 살아남는다.
+subject leakage는 semantic listener 0.437778, global transport 0.542222, raw lifelog 0.957778이다.
+```
+
+이 실험이 죽인 믿음:
+
+```text
+target 설명만으로 hand-coded listener profile을 만들면 충분하다.
+```
+
+살아남은 방향:
+
+```text
+label-free listener responsibility는 필요하지만, hand-coded human story가 아니라
+HS-JEPA pretext target으로 학습되어야 한다.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

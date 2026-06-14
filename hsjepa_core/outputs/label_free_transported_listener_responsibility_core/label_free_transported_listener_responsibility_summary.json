@@ -1,0 +1,149 @@
+{
+  "package": "label_free_transported_listener_responsibility_core",
+  "status": "label_free_transported_listener_responsibility_core_ready",
+  "verdict": "label_free_listener_responsibility_prior_positive",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "listener_profile_source": "target_descriptions_and_human_state_semantics",
+  "subject_prior_logloss": 0.6778575331695814,
+  "subject_raw_logloss": 0.6787072706841146,
+  "subject_global_transport_logloss": 0.6767238745054555,
+  "subject_semantic_listener_logloss": 0.6776380736266943,
+  "subject_family_listener_logloss": 0.6776825277368437,
+  "subject_semantic_delta_vs_prior": -0.00021945954288715708,
+  "subject_semantic_delta_vs_global": 0.0009141991212388012,
+  "subject_semantic_delta_vs_raw": -0.001069197057420368,
+  "subject_family_delta_vs_global": 0.0009586532313882179,
+  "row_block_semantic_delta_vs_global": 4.434911312301004e-05,
+  "chronological_semantic_delta_vs_global": -0.0013432973316535035,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "global_transported_prototype_calibrated10",
+    "target": "all",
+    "logloss": 0.6767238745054555,
+    "auc": 0.4006911817217405,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "listener_profile_source": "target_description_not_labels",
+    "probe_calibration_shrink": 0.1,
+    "evaluated_rows": 450
+  },
+  "semantic_listener_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "label_free_semantic_listener_responsibility",
+    "subject_id_accuracy": 0.43777777777777777,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.3111111111111111
+  },
+  "family_listener_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "label_free_family_listener_responsibility",
+    "subject_id_accuracy": 0.39555555555555555,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.26888888888888884
+  },
+  "global_transport_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "global_transported_prototype",
+    "subject_id_accuracy": 0.5422222222222223,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.41555555555555557
+  },
+  "raw_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "raw_lifelog_pca",
+    "subject_id_accuracy": 0.9577777777777777,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.831111111111111
+  },
+  "semantic_target_profiles": {
+    "Q1": {
+      "body_activity_sleep": 1.4,
+      "mobility_environment": 1.1,
+      "calendar_rhythm": 1.0
+    },
+    "Q2": {
+      "calendar_rhythm": 1.3,
+      "phone_behavior": 1.1,
+      "app_social_context": 1.0
+    },
+    "Q3": {
+      "body_activity_sleep": 1.3,
+      "app_social_context": 1.1,
+      "phone_behavior": 1.0
+    },
+    "S1": {
+      "body_activity_sleep": 1.5,
+      "calendar_rhythm": 1.0
+    },
+    "S2": {
+      "body_activity_sleep": 1.4,
+      "calendar_rhythm": 1.1,
+      "mobility_environment": 0.7
+    },
+    "S3": {
+      "calendar_rhythm": 1.3,
+      "phone_behavior": 1.0,
+      "app_social_context": 0.8
+    },
+    "S4": {
+      "body_activity_sleep": 1.3,
+      "phone_behavior": 1.0,
+      "app_social_context": 0.8
+    }
+  },
+  "family_target_profiles": {
+    "Q1": {
+      "app_social_context": 1.3,
+      "phone_behavior": 1.2,
+      "calendar_rhythm": 1.0,
+      "mobility_environment": 0.8,
+      "body_activity_sleep": 0.8
+    },
+    "Q2": {
+      "app_social_context": 1.3,
+      "phone_behavior": 1.2,
+      "calendar_rhythm": 1.0,
+      "mobility_environment": 0.8,
+      "body_activity_sleep": 0.8
+    },
+    "Q3": {
+      "app_social_context": 1.3,
+      "phone_behavior": 1.2,
+      "calendar_rhythm": 1.0,
+      "mobility_environment": 0.8,
+      "body_activity_sleep": 0.8
+    },
+    "S1": {
+      "body_activity_sleep": 1.4,
+      "calendar_rhythm": 1.2,
+      "mobility_environment": 0.8,
+      "phone_behavior": 0.5,
+      "app_social_context": 0.5
+    },
+    "S2": {
+      "body_activity_sleep": 1.4,
+      "calendar_rhythm": 1.2,
+      "mobility_environment": 0.8,
+      "phone_behavior": 0.5,
+      "app_social_context": 0.5
+    },
+    "S3": {
+      "body_activity_sleep": 1.4,
+      "calendar_rhythm": 1.2,
+      "mobility_environment": 0.8,
+      "phone_behavior": 0.5,
+      "app_social_context": 0.5
+    },
+    "S4": {
+      "body_activity_sleep": 1.4,
+      "calendar_rhythm": 1.2,
+      "mobility_environment": 0.8,
+      "phone_behavior": 0.5,
+      "app_social_context": 0.5
+    }
+  }
+}

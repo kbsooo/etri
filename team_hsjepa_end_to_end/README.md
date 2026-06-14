@@ -136,6 +136,14 @@ python3 team_hsjepa_end_to_end/transported_prototype_listener_readout_core/run_e
 
 이 실험은 transported grammar를 하나의 global latent로 압축하지 않고 target별 listener-readable view로 노출해야 하는지 보는 frozen-probe diagnostic이다. 현재 결론은 `transported listener readout global positive`다.
 
+target 설명만으로 label-free listener responsibility를 만들면 충분한지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/label_free_transported_listener_responsibility_core/run_end_to_end.py
+```
+
+이 실험은 labels로 listener view를 선택하지 않고 human-semantic profile과 transported prototype reliability만 사용한다. 현재 결론은 `prior positive but global transport negative`이며, hand-coded human story만으로는 부족하고 listener responsibility를 pretext로 학습해야 한다는 boundary다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

@@ -103,6 +103,25 @@
       "candidate": null
     },
     {
+      "case": "label_free_transported_listener_responsibility",
+      "layer": "core_boundary",
+      "question": "target 설명과 transported prototype reliability만으로 label-free listener responsibility를 만들 수 있는가",
+      "primary_metric": "semantic_listener_delta_vs_global_transport_logloss",
+      "value": 0.0009141991212388012,
+      "baseline": "global_transported_prototype",
+      "support": "label_free_listener_responsibility_prior_positive",
+      "interpretation": "target 설명에서 고정한 human-semantic listener profile은 prior와 raw lifelog PCA를 이기지만 global transported grammar를 이기지는 못한다. leakage는 global transport보다 낮아지므로 방향은 맞지만, hand-coded listener responsibility만으로는 충분하지 않다. 다음 core는 listener responsibility를 pretext로 학습해야 한다.",
+      "delta_vs_prior": -0.00021945954288715708,
+      "delta_vs_raw": -0.001069197057420368,
+      "row_block_delta_vs_global": 4.434911312301004e-05,
+      "chronological_delta_vs_global": -0.0013432973316535035,
+      "semantic_subject_leakage": 0.43777777777777777,
+      "global_subject_leakage": 0.5422222222222223,
+      "raw_subject_leakage": 0.9577777777777777,
+      "source": "hsjepa_core/outputs/label_free_transported_listener_responsibility_core/label_free_transported_listener_responsibility_summary.json",
+      "candidate": null
+    },
+    {
       "case": "routine_break_world_model",
       "layer": "core",
       "question": "보이는 human-life context로 보이지 않는 routine-break/episode-reset representation을 예측하는가",

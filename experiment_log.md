@@ -18799,3 +18799,114 @@ Boundary:
 ```
 
 다음 큰 실험은 이 listener readout을 label selection이 아니라 label-free listener responsibility로 바꾸는 것이다.
+
+## Label-Free Transported Listener Responsibility Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_label_free_transported_listener_responsibility_core.py`
+- Report: `hsjepa_core/outputs/label_free_transported_listener_responsibility_core/LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`
+- Team wrapper: `team_hsjepa_end_to_end/label_free_transported_listener_responsibility_core/run_end_to_end.py`
+- Submission: none
+
+### Observe
+
+직전 transported prototype listener readout은 subject-heldout에서 global transported grammar를 이겼다.
+하지만 target별 view 선택에 frozen probe labels가 들어갔다.
+
+즉 결과는 다음을 보여줬지만:
+
+```text
+Transported grammar는 하나의 global latent보다 listener별로 읽힐 때 더 강하다.
+```
+
+아직 다음 질문은 남아 있었다.
+
+```text
+그 listener responsibility를 label 없이도 만들 수 있는가?
+```
+
+### Wonder
+
+target 설명과 human-state semantics만으로 listener profile을 고정하면 충분한가?
+
+예를 들어 Q2는 calendar/phone/social arousal 쪽 listener,
+S1/S2는 body/sleep/rhythm 쪽 listener로 읽는 방식이
+label-free HS-JEPA interface로 작동할 수 있는가?
+
+### Hypothesis
+
+```text
+If HS-JEPA is learning a human-readable hidden-state grammar,
+then target descriptions plus transported prototype reliability should produce
+a label-free listener responsibility representation that beats prior/raw probes
+and stays competitive with global transported grammar.
+```
+
+### Falsification Design
+
+- core representation: cross-subject transported prototype grammar
+- listener profile source: fixed target descriptions and human-state semantics
+- row-wise reliability: transported prototype confidence, entropy, energy lift
+- labels:
+  - not used for listener profile
+  - not used for pretext target
+  - used only after representation is frozen for probe evaluation
+- stress:
+  - subject-heldout
+  - row-block holdout
+  - chronological holdout
+  - subject leakage diagnostic
+- forbidden information:
+  - public LB ledger
+  - prior submission probabilities
+  - proprietary embedding API
+
+### Result
+
+- verdict: `label_free_listener_responsibility_prior_positive`
+- subject semantic listener logloss: `0.677638`
+- subject global transport logloss: `0.676724`
+- subject prior logloss: `0.677858`
+- subject raw lifelog PCA logloss: `0.678707`
+- delta vs prior: `-0.000219`
+- delta vs raw lifelog PCA: `-0.001069`
+- delta vs global transport: `+0.000914`
+- row-block delta vs global: `+0.000044`
+- chronological delta vs global: `-0.001343`
+- semantic listener subject leakage: `0.437778`
+- global transport subject leakage: `0.542222`
+- raw lifelog PCA subject leakage: `0.957778`
+
+### Interpretation
+
+이 실험은 성공 주장보다 boundary가 더 중요하다.
+
+죽은 믿음:
+
+```text
+target 설명만으로 hand-coded listener responsibility를 만들면 충분하다.
+```
+
+살아남은 믿음:
+
+```text
+listener responsibility는 HS-JEPA에 필요하다.
+하지만 사람이 고정한 semantic profile이 아니라,
+visible context -> hidden listener responsibility를 예측하는
+label-free pretext로 학습되어야 한다.
+```
+
+논문적으로는 다음 구분이 선명해졌다.
+
+```text
+Core:
+  transported human-state grammar는 subject leakage를 줄이며 prior/raw보다 의미가 있다.
+
+Boundary:
+  hand-coded human story는 inductive bias로는 유용하지만 충분하지 않다.
+
+Next breakthrough:
+  listener responsibility 자체를 target-description rule이 아니라
+  self-supervised/JEPA-style hidden target으로 학습해야 한다.
+```
