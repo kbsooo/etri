@@ -152,6 +152,14 @@ python3 team_hsjepa_end_to_end/learned_listener_responsibility_pretext_core/run_
 
 이 실험은 transported prototype reliability를 label-free teacher로 두고, OG visible human-life context가 hidden listener responsibility를 예측하는지 본다. 현재 결론은 `learned responsibility beats hand-coded semantic`이지만, subject-heldout global transport를 아직 넘지는 못한다. subject-relative context는 pretext 품질과 leakage가 더 건강해서 다음 HS-JEPA core 방향이다.
 
+future/cohort consistency를 넣어 더 invariant한 listener responsibility를 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/invariant_listener_responsibility_pretext_core/run_end_to_end.py
+```
+
+이 실험은 current transported responsibility에 same-subject future episode와 cross-subject cohort consistency를 섞어 hidden teacher를 만든다. 현재 결론은 `future consistency positive / cohort smoothing boundary`다. future-only responsibility는 current-relative보다 좋고 leakage도 낮지만, subject-heldout global transport는 아직 넘지 못한다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

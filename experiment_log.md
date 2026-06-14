@@ -19045,3 +19045,134 @@ subject-relative learned listener responsibility
 ```
 
 이것이 현재 가장 논문적으로 강한 HS-JEPA core 다음 스텝이다.
+
+## Invariant Listener Responsibility Pretext Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_invariant_listener_responsibility_pretext_core.py`
+- Report: `hsjepa_core/outputs/invariant_listener_responsibility_pretext_core/INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- Team wrapper: `team_hsjepa_end_to_end/invariant_listener_responsibility_pretext_core/run_end_to_end.py`
+- Submission: none
+
+### Observe
+
+직전 learned listener responsibility 실험은 core-positive였지만 boundary도 분명했다.
+
+```text
+absolute context는 hand-coded semantic보다 좋은 responsibility를 학습하지만 subject leakage가 높다.
+subject-relative context는 pretext CE와 leakage가 건강하지만 downstream best는 아니다.
+```
+
+따라서 다음 질문은 다음과 같았다.
+
+```text
+current-row responsibility만 맞히지 말고,
+같은 사람의 다음 episode와 다른 사람의 유사 episode에서도 반복되는 responsibility를
+hidden teacher로 만들면 더 invariant한가?
+```
+
+### Hypothesis
+
+```text
+If listener responsibility is a stable human-state property,
+then future/cohort-consistent responsibility should improve over current-only responsibility,
+especially under row-block and chronological stress, while keeping subject leakage below global transport.
+```
+
+### Falsification Design
+
+- current teacher:
+  - transported prototype confidence / entropy / energy lift
+- future teacher:
+  - same subject sorted by lifelog date
+  - current + next + previous responsibility smoothing
+- cohort teacher:
+  - subject-relative context nearest neighbors from other subjects
+  - cross-subject responsibility averaging
+- invariant teacher variants:
+  - future only
+  - cohort only
+  - future + cohort
+  - current + future + cohort mix
+  - conservative mix
+- context:
+  - subject-relative visible lifelog context
+- labels:
+  - not used for teacher
+  - not used for pretext
+  - used only after representation is frozen for downstream probes
+- stress:
+  - subject-heldout
+  - row-block holdout
+  - chronological holdout
+  - subject leakage diagnostic
+
+### Result
+
+- verdict: `invariant_listener_responsibility_beats_current_positive`
+- best invariant feature: `future_only_relative_balanced_listener_responsibility_calibrated10`
+- subject global transport logloss: `0.676724`
+- subject direct semantic logloss: `0.677638`
+- subject future-only invariant logloss: `0.677643`
+- subject current-relative logloss: `0.677901`
+- subject prior logloss: `0.677858`
+- delta vs current-relative: `-0.000258`
+- delta vs direct semantic: `+0.000005`
+- delta vs prior: `-0.000214`
+- delta vs raw lifelog PCA: `-0.001064`
+- delta vs global transport: `+0.000919`
+- row-block delta vs global: `-0.000612`
+- chronological delta vs global: `-0.001460`
+
+Pretext quality:
+
+```text
+cohort-only CE lift vs prior: +0.025017, top1 0.794540
+current-relative CE lift vs prior: +0.029806, top1 0.651154
+future-only CE lift vs prior: +0.011514, top1 0.714095
+invariant-mix CE lift vs prior: +0.022366, top1 0.710332
+```
+
+Subject leakage:
+
+```text
+future-only invariant: 0.480000
+current-relative: 0.480000
+cohort-only: 0.471111
+global transport: 0.542222
+raw lifelog PCA: 0.957778
+```
+
+### Interpretation
+
+살아난 믿음:
+
+```text
+future episode consistency improves listener responsibility over current-only subject-relative prediction.
+It survives row-block and chronological stress better than global transport.
+```
+
+죽은 믿음 또는 약해진 믿음:
+
+```text
+cohort smoothing is automatically useful for downstream labels.
+```
+
+cohort-only는 pretext/top1은 강하지만 subject-heldout downstream은 약하다.
+즉 pretext accuracy와 downstream human-understanding utility가 분리된다.
+
+남은 boundary:
+
+```text
+future-only invariant responsibility is healthier than current-only responsibility,
+but it still does not beat global transported grammar on subject-heldout.
+```
+
+다음 breakthrough 방향:
+
+```text
+single smoothed teacher가 아니라,
+current / future / cohort responsibility를 multi-head로 보존하고
+listener가 target별로 어느 consistency head를 읽을지 학습해야 한다.
+```

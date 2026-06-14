@@ -7,7 +7,7 @@
   "core_positive_case_count": 12,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned listener-responsibility pretext, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned and invariant listener-responsibility pretext, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -142,6 +142,31 @@
       "global_subject_leakage": 0.5422222222222223,
       "raw_subject_leakage": 0.9577777777777777,
       "source": "hsjepa_core/outputs/learned_listener_responsibility_pretext_core/learned_listener_responsibility_pretext_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "invariant_listener_responsibility_pretext",
+      "layer": "core_boundary",
+      "question": "future/cohort consistency를 넣은 listener responsibility teacher가 current-only responsibility보다 더 invariant한가",
+      "primary_metric": "best_invariant_delta_vs_current_relative_logloss",
+      "value": -0.00025779349686005926,
+      "baseline": "current_relative_semantic_listener_responsibility",
+      "support": "invariant_listener_responsibility_beats_current_positive",
+      "interpretation": "same-subject future episode와 cross-subject cohort consistency를 hidden teacher에 넣었다. future-only invariant responsibility는 current-relative responsibility보다 subject-heldout downstream이 좋고, row-block/chronological stress에서는 global transport보다도 살아남는다. 다만 direct semantic과 거의 동률이며 subject-heldout global transport는 아직 넘지 못한다. cohort-only는 pretext/top1은 강하지만 downstream은 약해, pretext accuracy와 downstream utility가 분리될 수 있음을 보여준다.",
+      "delta_vs_prior": -0.00021439105916576384,
+      "delta_vs_raw": -0.0010641285736989747,
+      "delta_vs_global": 0.0009192676049601944,
+      "delta_vs_direct_semantic": 5.0684837213932354e-06,
+      "row_block_delta_vs_global": -0.0006118233208985968,
+      "chronological_delta_vs_global": -0.0014603314679398904,
+      "best_invariant_feature_set": "future_only_relative_balanced_listener_responsibility_calibrated10",
+      "best_invariant_leakage": 0.48,
+      "current_relative_leakage": 0.48,
+      "global_subject_leakage": 0.5422222222222223,
+      "raw_subject_leakage": 0.9577777777777777,
+      "cohort_only_pretext_lift": 0.02501748233922044,
+      "future_only_pretext_lift": 0.011514261719623844,
+      "source": "hsjepa_core/outputs/invariant_listener_responsibility_pretext_core/invariant_listener_responsibility_pretext_summary.json",
       "candidate": null
     },
     {

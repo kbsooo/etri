@@ -63,6 +63,7 @@
 - `paper_hsjepa_core/TRANSPORTED_PROTOTYPE_LISTENER_READOUT_CORE_KO.md`
 - `paper_hsjepa_core/LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`
 - `paper_hsjepa_core/LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- `paper_hsjepa_core/INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -189,6 +190,26 @@ subject-relative balanced variant는 pretext CE lift +0.029806, subject leakage 
 ```text
 Listener responsibility can be learned as a label-free pretext from visible human-life context,
 but release-grade generalization requires subject-invariant responsibility prediction.
+```
+
+`INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`는 이 문제를 바로 찌른다. current transported responsibility만 hidden teacher로 쓰지 않고, same-subject future episode와 cross-subject cohort consistency를 섞어 invariant responsibility teacher를 만든다.
+
+현재 결론:
+
+```text
+future-only invariant responsibility는 current-relative 대비 -0.000258 좋다.
+prior 대비 -0.000214, raw lifelog PCA 대비 -0.001064 좋다.
+row-block에서는 global transport 대비 -0.000612, chronological에서는 -0.001460으로 살아남는다.
+subject leakage는 0.480000으로 global transport 0.542222보다 낮다.
+하지만 subject-heldout global transport 대비 +0.000919이고 direct semantic과 거의 동률이다.
+cohort-only teacher는 pretext/top1은 강하지만 downstream probe는 약하다.
+```
+
+논문적으로 남는 문장:
+
+```text
+Future-episode consistency is useful for listener-responsibility generalization,
+whereas cohort smoothing can improve pretext accuracy without improving downstream utility.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.
