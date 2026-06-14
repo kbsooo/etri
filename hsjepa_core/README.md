@@ -79,6 +79,7 @@ python3 hsjepa_core/run_learned_listener_head_router_core.py
 python3 hsjepa_core/run_global_transport_residual_listener_router_core.py
 python3 hsjepa_core/run_rhythm_conditioned_residual_listener_core.py
 python3 hsjepa_core/run_rhythm_conditioned_action_health_core.py
+python3 hsjepa_core/run_action_tail_representation_world_model_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -216,6 +217,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/rhythm_conditioned_action_health_core/rhythm_conditioned_action_health_summary.json`
 - `hsjepa_core/outputs/rhythm_conditioned_action_health_core/RHYTHM_CONDITIONED_ACTION_HEALTH_CORE_KO.md`
 - `hsjepa_core/outputs/rhythm_conditioned_action_health_core/*.csv`
+- `hsjepa_core/outputs/action_tail_representation_world_model_core/action_tail_representation_world_model_summary.json`
+- `hsjepa_core/outputs/action_tail_representation_world_model_core/ACTION_TAIL_REPRESENTATION_WORLD_MODEL_CORE_KO.md`
+- `hsjepa_core/outputs/action_tail_representation_world_model_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 

@@ -6,8 +6,9 @@
   "uses_proprietary_embedding_api": false,
   "core_positive_case_count": 14,
   "adapter_boundary_case_count": 1,
+  "core_to_decoder_boundary_case_count": 1,
   "negative_boundary_case_count": 3,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, label-free and learned listener-head routing, global-transport residual listener routing, rhythm-conditioned temporal decoding, the rhythm-conditioned action-health boundary, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, label-free and learned listener-head routing, global-transport residual listener routing, rhythm-conditioned temporal decoding, the rhythm-conditioned action-health boundary, the action-tail representation world-model boundary, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -312,6 +313,25 @@
       "chronological_toxic_tail_auc_delta_vs_listener_support": -0.0010282550005398239,
       "accepted_target_count_total": 0,
       "source": "hsjepa_core/outputs/rhythm_conditioned_action_health_core/rhythm_conditioned_action_health_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "action_tail_representation_world_model_core",
+      "layer": "core_to_decoder_boundary",
+      "question": "visible human-life context가 label-derived row-level action-tail representation을 직접 예측하고, 이것이 action-health decoder로 안전하게 이어지는가",
+      "primary_metric": "teacher_mae_lift_vs_mean",
+      "value": -0.0015455206994132165,
+      "baseline": "row_mean_action_tail_teacher",
+      "support": "boundary",
+      "interpretation": "fast action policy readout에서는 일부 양성 신호가 있었지만, JEPA pretext 자체는 mean teacher baseline을 이기지 못했다. 따라서 row-level full action-tail vector를 하나의 hidden target으로 두는 설계는 너무 label/action-specific하다. 다음 core 설계는 target-route/listener 조건부 action-tail teacher로 분해되어야 한다.",
+      "accepted_target_count_total": 87,
+      "positive_health_delta_count": 2,
+      "positive_toxic_delta_count": 4,
+      "best_health_delta_vs_listener": 0.002415117157974378,
+      "best_toxic_tail_delta_vs_listener": 0.0014020659743653185,
+      "best_pretext_source": "relative_lifelog_context",
+      "best_pretext_component_corr": 0.021000931967533765,
+      "source": "hsjepa_core/outputs/action_tail_representation_world_model_core/action_tail_representation_world_model_summary.json",
       "candidate": null
     },
     {

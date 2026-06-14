@@ -67,6 +67,7 @@
 - `paper_hsjepa_core/GLOBAL_TRANSPORT_RESIDUAL_LISTENER_ROUTER_CORE_KO.md`
 - `paper_hsjepa_core/RHYTHM_CONDITIONED_RESIDUAL_LISTENER_CORE_KO.md`
 - `paper_hsjepa_core/RHYTHM_CONDITIONED_ACTION_HEALTH_CORE_KO.md`
+- `paper_hsjepa_core/ACTION_TAIL_REPRESENTATION_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -2196,3 +2197,43 @@ python3 hsjepa_core/run_signed_listener_responsibility_direction_core.py
 자세한 설명:
 
 - `paper_hsjepa_core/SIGNED_LISTENER_RESPONSIBILITY_DIRECTION_CORE_KO.md`
+
+### 28. Action-Tail Representation World Model Core
+
+```bash
+python3 hsjepa_core/run_action_tail_representation_world_model_core.py
+```
+
+이 스크립트는 action translation 병목을 더 직접적으로 찌른다.
+label probability를 맞히는 대신, OG train label에서 만든 row-level action-tail field를
+hidden target representation으로 두고 visible human-life context가 이것을 예측하는지 본다.
+
+```text
+visible human-life context
+  -> hidden row-level action-tail representation
+  -> row-target action-health decoder
+```
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- label-derived action-tail teacher 사용: `True`
+- verdict: `action_tail_policy_readout_positive_but_pretext_not_readable`
+- best pretext lift vs mean baseline: `-0.001546`
+- best pretext component correlation: `+0.021001`
+- fast stress readout accepted target count total: `87`
+- best health-AUC delta vs listener: `+0.002415`
+- best toxic-tail-AUC delta vs listener: `+0.001402`
+
+해석:
+
+- action policy readout에는 일부 양성 신호가 있다.
+- 하지만 JEPA pretext 자체는 mean teacher baseline을 이기지 못했다.
+- 따라서 row-level full action-tail vector를 하나의 hidden target으로 두는 설계는 너무 label/action-specific하다.
+- 다음 HS-JEPA teacher는 target-route/listener 조건부 action-tail로 분해되어야 한다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/ACTION_TAIL_REPRESENTATION_WORLD_MODEL_CORE_KO.md`

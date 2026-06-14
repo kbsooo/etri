@@ -4,6 +4,83 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## Action-Tail Representation World Model Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_action_tail_representation_world_model_core.py`
+- Team wrapper: `team_hsjepa_end_to_end/action_tail_representation_world_model_core/run_end_to_end.py`
+- Paper doc: `paper_hsjepa_core/ACTION_TAIL_REPRESENTATION_WORLD_MODEL_CORE_KO.md`
+
+### Observe
+
+이전 core 실험들은 rhythm-conditioned temporal decoder와 listener residual interface가
+human-state readability에는 도움이 되지만, 그것을 그대로 row-target action release gate로 쓰면
+안전하지 않다는 boundary를 보였다.
+
+### Wonder
+
+그렇다면 action translation 병목은 readable state의 문제가 아니라 hidden target 정의의 문제인가?
+OG train label에서 만든 action-tail field를 hidden representation으로 두면,
+visible human-life context가 그 action-tail을 예측하고 safe action decoder로 이어질 수 있는가?
+
+### Hypothesis
+
+ActionTail-H:
+
+```text
+visible human-life context
+  -> hidden row-level action-tail representation
+  -> row-target action-health decoder
+```
+
+이 가설이 맞다면 JEPA pretext가 mean teacher baseline을 이기고,
+예측된 action-tail representation을 붙인 action-health readout이 listener baseline보다 안정적으로 좋아져야 한다.
+
+### Falsification Design
+
+- public LB ledger: 사용하지 않음
+- prior submission probability: 사용하지 않음
+- proprietary embedding API: 사용하지 않음
+- hidden teacher: OG train labels에서 만든 raw/inverse action의 gain, tail loss, healthy/toxic field
+- stress split: subject-heldout, row-block holdout, chronological holdout
+- readout: fast linear/Ridge/logistic frozen-ish probe와 compact top-score stress policy
+
+### Result
+
+- verdict: `action_tail_policy_readout_positive_but_pretext_not_readable`
+- best pretext source: `relative_lifelog_context`
+- teacher MAE lift vs mean baseline: `-0.001546`
+- component correlation: `+0.021001`
+- fast stress accepted target count total: `87`
+- positive health delta count: `2`
+- positive toxic-tail delta count: `4`
+- best health-AUC delta vs listener: `+0.002415`
+- best toxic-tail-AUC delta vs listener: `+0.001402`
+
+### Interpretation
+
+policy readout에는 일부 양성 신호가 있지만, JEPA pretext 자체는 mean teacher baseline을 이기지 못했다.
+따라서 `full row-level action-tail vector`를 하나의 hidden target으로 두는 설계는 너무 label/action-specific하다.
+
+이 실험이 죽인 믿음:
+
+```text
+action-tail을 row 단위 전체 벡터로 만들면 visible human-life context가 직접 복원할 수 있다.
+```
+
+살아남은 방향:
+
+```text
+action-tail teacher는 target-route/listener 조건부로 분해해야 한다.
+HS-JEPA core는 hidden state를 만들고, competition adapter는 그 state를 safe action으로 번역한다.
+```
+
+### Decide
+
+다음 큰 질문은 `target-route/listener-conditioned action-tail teacher`다.
+row 하나에 모든 target/action tail을 몰아넣지 말고,
+Q/S route, listener responsibility, subject drift consistency가 조건이 된 local hidden target을 만들어야 한다.
+
 ## Goal Reset. HS-JEPA v1 and 0.53 Breakthrough Track
 
 - Date: 2026-06-02

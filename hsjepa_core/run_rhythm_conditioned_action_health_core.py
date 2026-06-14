@@ -282,7 +282,23 @@ def add_split_features_to_cells(
     target_gated, target_gated_cols = target_feature_values(cells, row_features, gated_cols, "rhythm_gated_residual")
     parts.extend([shared_global, shared_rhythm, target_residual, target_gated])
     out = pd.concat(parts, axis=1)
+    meta_cols = [
+        col
+        for col in [
+            "row",
+            "metric_row",
+            "subject_id",
+            "sleep_date",
+            "lifelog_date",
+            "target",
+            "target_route_family",
+        ]
+        if col in out.columns
+    ]
+    meta = out[meta_cols].copy()
     out = sanitize_features(out)
+    for col in meta_cols:
+        out[col] = meta[col].to_numpy()
     support_col = "support_score_target_interaction_world_residual_energy"
     if support_col in out.columns:
         if "rhythm_rhythm_stability_gate" in out.columns:

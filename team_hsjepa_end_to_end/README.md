@@ -208,6 +208,14 @@ python3 team_hsjepa_end_to_end/rhythm_conditioned_action_health_core/run_end_to_
 
 이 실험은 제출 후보를 만드는 단계가 아니라 core-boundary 검증이다. 현재 결론은 `rhythm_conditioned_action_health_no_safe_assignment_boundary`다. tail-safe policy를 통과한 target은 `0`개였고, subject/chronological health-AUC도 listener baseline보다 낮았다. 따라서 HS-JEPA core는 readable human-state representation을 만들 수 있지만, row-target action을 안전하게 release하려면 별도의 action-tail teacher나 competition adapter가 필요하다.
 
+action-tail teacher를 hidden representation으로 직접 예측할 수 있는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/action_tail_representation_world_model_core/run_end_to_end.py
+```
+
+이 실험은 action translation 병목을 직접 찌르는 core-to-decoder boundary 검증이다. 현재 결론은 `action_tail_policy_readout_positive_but_pretext_not_readable`다. fast action policy readout에서는 일부 양성 신호가 있었지만, JEPA pretext는 mean teacher baseline을 이기지 못했다. 따라서 full row-level action-tail vector를 하나의 hidden target으로 두는 설계는 너무 label/action-specific하고, 다음 teacher는 target-route/listener 조건부로 분해되어야 한다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

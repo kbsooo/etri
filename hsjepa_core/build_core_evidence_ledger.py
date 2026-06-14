@@ -179,6 +179,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "rhythm_conditioned_action_health_core"
         / "rhythm_conditioned_action_health_summary.json"
     )
+    action_tail_representation = load_json(
+        outputs
+        / "action_tail_representation_world_model_core"
+        / "action_tail_representation_world_model_summary.json"
+    )
 
     return [
         {
@@ -590,6 +595,40 @@ def collect_cases() -> list[dict[str, Any]]:
             "candidate": None,
         },
         {
+            "case": "action_tail_representation_world_model_core",
+            "layer": "core_to_decoder_boundary",
+            "question": (
+                "visible human-life context가 label-derived row-level action-tail representation을 "
+                "직접 예측하고, 이것이 action-health decoder로 안전하게 이어지는가"
+            ),
+            "primary_metric": "teacher_mae_lift_vs_mean",
+            "value": action_tail_representation["best_pretext"]["teacher_mae_lift_vs_mean"],
+            "baseline": "row_mean_action_tail_teacher",
+            "support": "boundary",
+            "interpretation": (
+                "fast action policy readout에서는 일부 양성 신호가 있었지만, JEPA pretext 자체는 "
+                "mean teacher baseline을 이기지 못했다. 따라서 row-level full action-tail vector를 "
+                "하나의 hidden target으로 두는 설계는 너무 label/action-specific하다. 다음 core 설계는 "
+                "target-route/listener 조건부 action-tail teacher로 분해되어야 한다."
+            ),
+            "accepted_target_count_total": action_tail_representation["accepted_target_count_total"],
+            "positive_health_delta_count": action_tail_representation["positive_health_delta_count"],
+            "positive_toxic_delta_count": action_tail_representation["positive_toxic_delta_count"],
+            "best_health_delta_vs_listener": action_tail_representation["best_health_delta_vs_listener"][
+                "health_auc_delta_vs_listener"
+            ],
+            "best_toxic_tail_delta_vs_listener": action_tail_representation["best_toxic_tail_delta_vs_listener"][
+                "toxic_tail_auc_delta_vs_listener"
+            ],
+            "best_pretext_source": action_tail_representation["best_pretext"]["source"],
+            "best_pretext_component_corr": action_tail_representation["best_pretext"]["component_corr"],
+            "source": (
+                "hsjepa_core/outputs/action_tail_representation_world_model_core/"
+                "action_tail_representation_world_model_summary.json"
+            ),
+            "candidate": None,
+        },
+        {
             "case": "routine_break_world_model",
             "layer": "core",
             "question": "보이는 human-life context로 보이지 않는 routine-break/episode-reset representation을 예측하는가",
@@ -797,6 +836,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
     positive_core = [case for case in cases if case["layer"] == "core" and "positive" in case["support"]]
     negative = [case for case in cases if case["support"] == "negative"]
     adapter = [case for case in cases if case["layer"] == "adapter_boundary"]
+    core_to_decoder = [case for case in cases if case["layer"] == "core_to_decoder_boundary"]
     return {
         "package": "core_evidence_ledger",
         "status": "paper_facing_core_evidence_ready",
@@ -805,6 +845,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
         "uses_proprietary_embedding_api": False,
         "core_positive_case_count": len(positive_core),
         "adapter_boundary_case_count": len(adapter),
+        "core_to_decoder_boundary_case_count": len(core_to_decoder),
         "negative_boundary_case_count": len(negative),
         "paper_thesis": (
             "HS-JEPA core is a hidden human-state and listener-responsibility representation, "
@@ -816,6 +857,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "global-transport residual listener routing, "
             "rhythm-conditioned temporal decoding, "
             "the rhythm-conditioned action-health boundary, "
+            "the action-tail representation world-model boundary, "
             "and listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
@@ -1469,6 +1511,56 @@ tail-safe utility objective, 또는 competition adapter를 거쳐야 한다.
 이 negative boundary는 논문적으로 중요하다.
 HS-JEPA를 "label predictor"나 "제출값 생성기"로 과장하지 않고,
 human-state world model과 action decoder 사이의 경계를 분명히 해주기 때문이다.
+
+### 14.5 Action-Tail Representation World Model Boundary
+
+직전 실험이 "readable representation을 그대로 action gate로 쓰면 안 된다"를 보였다면,
+이번 실험은 더 직접적인 해결책을 검증했다.
+
+```text
+visible human-life context
+  -> hidden row-level action-tail representation
+  -> row-target action-health decoder
+```
+
+hidden teacher는 OG train label에서만 만든 row-level action-tail field다.
+즉 raw/inverse action이 각 target에서 만든 gain, tail loss, toxicity를
+하나의 보이지 않는 target representation으로 둔 뒤, visible context가 이것을 예측하는지 보았다.
+
+핵심 결과:
+
+```text
+best pretext source: {by_case["action_tail_representation_world_model_core"].get("best_pretext_source")}
+teacher MAE lift vs mean baseline: {fmt(by_case["action_tail_representation_world_model_core"].get("value"), 6)}
+component correlation: {fmt(by_case["action_tail_representation_world_model_core"].get("best_pretext_component_corr"), 6)}
+accepted target count total under fast stress readout: {by_case["action_tail_representation_world_model_core"].get("accepted_target_count_total")}
+positive health delta count: {by_case["action_tail_representation_world_model_core"].get("positive_health_delta_count")}
+positive toxic-tail delta count: {by_case["action_tail_representation_world_model_core"].get("positive_toxic_delta_count")}
+best health-AUC delta vs listener: {fmt(by_case["action_tail_representation_world_model_core"].get("best_health_delta_vs_listener"), 6)}
+best toxic-tail-AUC delta vs listener: {fmt(by_case["action_tail_representation_world_model_core"].get("best_toxic_tail_delta_vs_listener"), 6)}
+```
+
+죽은 믿음:
+
+```text
+row-level full action-tail vector를 하나의 hidden target으로 두면
+visible human-life context가 바로 복원할 수 있다.
+```
+
+정확한 해석:
+
+```text
+policy readout에는 일부 양성 신호가 있지만,
+JEPA pretext 자체는 mean baseline보다 나쁘다.
+따라서 full row-level action-tail은 너무 label/action-specific하다.
+다음 HS-JEPA teacher는 target-route/listener 조건부 action-tail로 분해되어야 한다.
+```
+
+논문적으로 중요한 점은 이것이다.
+HS-JEPA는 "아무 hidden target이나 만들고 예측하면 된다"가 아니다.
+좋은 hidden target은 human-life context에서 예측 가능해야 하고,
+동시에 downstream action-health로 번역 가능해야 한다.
+이번 실험은 그 둘 중 첫 번째 조건에서 실패했다.
 
 ### 15. Routine-Break World Model
 

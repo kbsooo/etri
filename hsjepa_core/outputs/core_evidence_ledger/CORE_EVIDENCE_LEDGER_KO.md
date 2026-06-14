@@ -40,6 +40,7 @@ visible human-life context
 | global_transport_residual_listener_router_core | core | best_learned_residual_delta_vs_global_transport_logloss | -0.000907 | global_transported_prototype | global_transport_residual_listener_router_positive |
 | rhythm_conditioned_residual_listener_core | core | chronological_best_rhythm_delta_vs_global_transport_logloss | -0.002237 | global_transported_prototype | rhythm_context_temporal_decoder_with_gated_residual_subject_positive |
 | rhythm_conditioned_action_health_core | negative_boundary | accepted_target_count_total | 0.000000 | listener_support_baseline_tail_safe_policy | negative |
+| action_tail_representation_world_model_core | core_to_decoder_boundary | teacher_mae_lift_vs_mean | -0.001546 | row_mean_action_tail_teacher | boundary |
 | routine_break_world_model | core | routine_full_delta_vs_prior_logloss | -0.001673 | fold_prior_low_trust_probe | positive_but_small |
 | sleep_pressure_world_model | core | sleep_pressure_full_delta_vs_prior_logloss | -0.000867 | fold_prior_low_trust_probe | positive_but_small |
 | cohort_relative_world_model | core | cohort_relative_predicted_delta_vs_prior_logloss | -0.001381 | fold_prior_low_trust_probe | positive_with_leakage_boundary |
@@ -652,6 +653,56 @@ tail-safe utility objective, 또는 competition adapter를 거쳐야 한다.
 이 negative boundary는 논문적으로 중요하다.
 HS-JEPA를 "label predictor"나 "제출값 생성기"로 과장하지 않고,
 human-state world model과 action decoder 사이의 경계를 분명히 해주기 때문이다.
+
+### 14.5 Action-Tail Representation World Model Boundary
+
+직전 실험이 "readable representation을 그대로 action gate로 쓰면 안 된다"를 보였다면,
+이번 실험은 더 직접적인 해결책을 검증했다.
+
+```text
+visible human-life context
+  -> hidden row-level action-tail representation
+  -> row-target action-health decoder
+```
+
+hidden teacher는 OG train label에서만 만든 row-level action-tail field다.
+즉 raw/inverse action이 각 target에서 만든 gain, tail loss, toxicity를
+하나의 보이지 않는 target representation으로 둔 뒤, visible context가 이것을 예측하는지 보았다.
+
+핵심 결과:
+
+```text
+best pretext source: relative_lifelog_context
+teacher MAE lift vs mean baseline: -0.001546
+component correlation: 0.021001
+accepted target count total under fast stress readout: 87
+positive health delta count: 2
+positive toxic-tail delta count: 4
+best health-AUC delta vs listener: 0.002415
+best toxic-tail-AUC delta vs listener: 0.001402
+```
+
+죽은 믿음:
+
+```text
+row-level full action-tail vector를 하나의 hidden target으로 두면
+visible human-life context가 바로 복원할 수 있다.
+```
+
+정확한 해석:
+
+```text
+policy readout에는 일부 양성 신호가 있지만,
+JEPA pretext 자체는 mean baseline보다 나쁘다.
+따라서 full row-level action-tail은 너무 label/action-specific하다.
+다음 HS-JEPA teacher는 target-route/listener 조건부 action-tail로 분해되어야 한다.
+```
+
+논문적으로 중요한 점은 이것이다.
+HS-JEPA는 "아무 hidden target이나 만들고 예측하면 된다"가 아니다.
+좋은 hidden target은 human-life context에서 예측 가능해야 하고,
+동시에 downstream action-health로 번역 가능해야 한다.
+이번 실험은 그 둘 중 첫 번째 조건에서 실패했다.
 
 ### 15. Routine-Break World Model
 
