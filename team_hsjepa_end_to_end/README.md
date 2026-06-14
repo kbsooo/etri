@@ -200,6 +200,14 @@ python3 team_hsjepa_end_to_end/rhythm_conditioned_residual_listener_core/run_end
 
 이 실험은 calendar-rhythm confidence/entropy/energy로 rhythm context와 rhythm-gated residual channel을 만든다. 현재 결론은 `rhythm_context_temporal_decoder_with_gated_residual_subject_positive`다. chronological에서는 plain residual이 global transport보다 `+0.001965` 나빠졌지만, rhythm context는 global 대비 `-0.002237`, plain residual 대비 `-0.004202` 좋아진다. subject-heldout에서는 rhythm-gated residual이 plain residual 대비 `-0.000537` 좋다. 따라서 HS-JEPA core는 `rhythm-conditioned temporal decoder`와 `rhythm-gated listener residual interface`를 분리해야 한다.
 
+분리된 rhythm/listener representation이 곧바로 action-health release gate가 되는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/rhythm_conditioned_action_health_core/run_end_to_end.py
+```
+
+이 실험은 제출 후보를 만드는 단계가 아니라 core-boundary 검증이다. 현재 결론은 `rhythm_conditioned_action_health_no_safe_assignment_boundary`다. tail-safe policy를 통과한 target은 `0`개였고, subject/chronological health-AUC도 listener baseline보다 낮았다. 따라서 HS-JEPA core는 readable human-state representation을 만들 수 있지만, row-target action을 안전하게 release하려면 별도의 action-tail teacher나 competition adapter가 필요하다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

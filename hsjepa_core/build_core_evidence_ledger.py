@@ -174,6 +174,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "rhythm_conditioned_residual_listener_core"
         / "rhythm_conditioned_residual_listener_summary.json"
     )
+    rhythm_action_health = load_json(
+        outputs
+        / "rhythm_conditioned_action_health_core"
+        / "rhythm_conditioned_action_health_summary.json"
+    )
 
     return [
         {
@@ -549,6 +554,42 @@ def collect_cases() -> list[dict[str, Any]]:
             "candidate": None,
         },
         {
+            "case": "rhythm_conditioned_action_health_core",
+            "layer": "negative_boundary",
+            "question": (
+                "rhythm temporal decoder와 listener residual interface가 release-grade "
+                "action-health/safe assignment field로 직접 번역되는가"
+            ),
+            "primary_metric": "accepted_target_count_total",
+            "value": rhythm_action_health["accepted_target_count_total"],
+            "baseline": "listener_support_baseline_tail_safe_policy",
+            "support": "negative",
+            "interpretation": (
+                "rhythm/residual representation은 label readout과 split별 readability에는 도움이 되지만, "
+                "train-only action-health target에서 tail-safe release policy를 통과한 target은 0개였다. "
+                "즉 HS-JEPA core representation을 그대로 action-grade decoder로 쓰면 안 되고, "
+                "별도의 action-tail teacher 또는 competition adapter가 필요하다."
+            ),
+            "subject_health_auc_delta_vs_listener_support": rhythm_action_health[
+                "subject_health_auc_delta_vs_listener_support"
+            ],
+            "chronological_health_auc_delta_vs_listener_support": rhythm_action_health[
+                "chronological_health_auc_delta_vs_listener_support"
+            ],
+            "subject_toxic_tail_auc_delta_vs_listener_support": rhythm_action_health[
+                "subject_toxic_tail_auc_delta_vs_listener_support"
+            ],
+            "chronological_toxic_tail_auc_delta_vs_listener_support": rhythm_action_health[
+                "chronological_toxic_tail_auc_delta_vs_listener_support"
+            ],
+            "accepted_target_count_total": rhythm_action_health["accepted_target_count_total"],
+            "source": (
+                "hsjepa_core/outputs/rhythm_conditioned_action_health_core/"
+                "rhythm_conditioned_action_health_summary.json"
+            ),
+            "candidate": None,
+        },
+        {
             "case": "routine_break_world_model",
             "layer": "core",
             "question": "보이는 human-life context로 보이지 않는 routine-break/episode-reset representation을 예측하는가",
@@ -774,6 +815,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "label-free and learned listener-head routing, "
             "global-transport residual listener routing, "
             "rhythm-conditioned temporal decoding, "
+            "the rhythm-conditioned action-health boundary, "
             "and listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
@@ -1387,7 +1429,48 @@ a rhythm-conditioned temporal decoder for chronological drift, and a
 rhythm-gated listener residual for subject/block-invariant readout.
 ```
 
-### 14. Routine-Break World Model
+### 14. Rhythm-Conditioned Action-Health Boundary
+
+직전 실험이 temporal decoder와 residual listener interface를 분리했다면,
+이번 실험은 그 분리가 곧바로 action-health release gate가 되는지 검증했다.
+
+```text
+transported human-state grammar
+  + listener residual interface
+  + rhythm-conditioned temporal decoder
+  -> hidden action-health / toxicity representation
+  -> tail-safe row-target release policy
+```
+
+핵심 결과:
+
+```text
+accepted target count total: {by_case["rhythm_conditioned_action_health_core"].get("accepted_target_count_total")}
+subject health-AUC delta vs listener baseline: {fmt(by_case["rhythm_conditioned_action_health_core"].get("subject_health_auc_delta_vs_listener_support"), 6)}
+chronological health-AUC delta vs listener baseline: {fmt(by_case["rhythm_conditioned_action_health_core"].get("chronological_health_auc_delta_vs_listener_support"), 6)}
+subject toxic-tail-AUC delta vs listener baseline: {fmt(by_case["rhythm_conditioned_action_health_core"].get("subject_toxic_tail_auc_delta_vs_listener_support"), 6)}
+chronological toxic-tail-AUC delta vs listener baseline: {fmt(by_case["rhythm_conditioned_action_health_core"].get("chronological_toxic_tail_auc_delta_vs_listener_support"), 6)}
+```
+
+죽은 믿음:
+
+```text
+rhythm-conditioned residual interface alone is already an action-grade decoder.
+```
+
+정확한 해석:
+
+```text
+HS-JEPA core는 hidden human-state/readability representation을 만든다.
+하지만 release-grade row-target action은 별도의 action-tail teacher,
+tail-safe utility objective, 또는 competition adapter를 거쳐야 한다.
+```
+
+이 negative boundary는 논문적으로 중요하다.
+HS-JEPA를 "label predictor"나 "제출값 생성기"로 과장하지 않고,
+human-state world model과 action decoder 사이의 경계를 분명히 해주기 때문이다.
+
+### 15. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.

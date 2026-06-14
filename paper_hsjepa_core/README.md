@@ -66,6 +66,7 @@
 - `paper_hsjepa_core/INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
 - `paper_hsjepa_core/GLOBAL_TRANSPORT_RESIDUAL_LISTENER_ROUTER_CORE_KO.md`
 - `paper_hsjepa_core/RHYTHM_CONDITIONED_RESIDUAL_LISTENER_CORE_KO.md`
+- `paper_hsjepa_core/RHYTHM_CONDITIONED_ACTION_HEALTH_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -333,6 +334,32 @@ rhythm-gated listener residual for subject/block-invariant readout.
 ```text
 gated residual이 chronological을 완전히 해결한 것은 아니다.
 chronological best는 gated residual이 아니라 rhythm_context다.
+```
+
+`RHYTHM_CONDITIONED_ACTION_HEALTH_CORE_KO.md`는 이 분리된 representation이 곧바로 release-grade action decoder가 되는지 검증한 boundary 문서다.
+
+현재 결론:
+
+```text
+accepted target count total은 0이다.
+subject health-AUC는 listener baseline보다 -0.006253 낮다.
+chronological health-AUC는 listener baseline보다 -0.001439 낮다.
+subject toxic-tail-AUC는 +0.001081로 아주 약하게 좋지만,
+chronological toxic-tail-AUC는 -0.001028 낮다.
+```
+
+죽은 믿음:
+
+```text
+rhythm-conditioned residual interface alone is already an action-grade decoder.
+```
+
+논문적으로 남는 문장:
+
+```text
+HS-JEPA core can separate temporal readability and listener readability,
+but release-grade row-target actions require an explicit action-tail teacher
+or competition adapter.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

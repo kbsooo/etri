@@ -39,6 +39,7 @@ visible human-life context
 | learned_listener_head_router_core | core_boundary | best_learned_router_delta_vs_semantic_prior_logloss | -0.000068 | fixed_semantic_prior_listener_head_router | learned_listener_head_router_beats_semantic_positive |
 | global_transport_residual_listener_router_core | core | best_learned_residual_delta_vs_global_transport_logloss | -0.000907 | global_transported_prototype | global_transport_residual_listener_router_positive |
 | rhythm_conditioned_residual_listener_core | core | chronological_best_rhythm_delta_vs_global_transport_logloss | -0.002237 | global_transported_prototype | rhythm_context_temporal_decoder_with_gated_residual_subject_positive |
+| rhythm_conditioned_action_health_core | negative_boundary | accepted_target_count_total | 0.000000 | listener_support_baseline_tail_safe_policy | negative |
 | routine_break_world_model | core | routine_full_delta_vs_prior_logloss | -0.001673 | fold_prior_low_trust_probe | positive_but_small |
 | sleep_pressure_world_model | core | sleep_pressure_full_delta_vs_prior_logloss | -0.000867 | fold_prior_low_trust_probe | positive_but_small |
 | cohort_relative_world_model | core | cohort_relative_predicted_delta_vs_prior_logloss | -0.001381 | fold_prior_low_trust_probe | positive_with_leakage_boundary |
@@ -611,7 +612,48 @@ a rhythm-conditioned temporal decoder for chronological drift, and a
 rhythm-gated listener residual for subject/block-invariant readout.
 ```
 
-### 14. Routine-Break World Model
+### 14. Rhythm-Conditioned Action-Health Boundary
+
+직전 실험이 temporal decoder와 residual listener interface를 분리했다면,
+이번 실험은 그 분리가 곧바로 action-health release gate가 되는지 검증했다.
+
+```text
+transported human-state grammar
+  + listener residual interface
+  + rhythm-conditioned temporal decoder
+  -> hidden action-health / toxicity representation
+  -> tail-safe row-target release policy
+```
+
+핵심 결과:
+
+```text
+accepted target count total: 0
+subject health-AUC delta vs listener baseline: -0.006253
+chronological health-AUC delta vs listener baseline: -0.001439
+subject toxic-tail-AUC delta vs listener baseline: 0.001081
+chronological toxic-tail-AUC delta vs listener baseline: -0.001028
+```
+
+죽은 믿음:
+
+```text
+rhythm-conditioned residual interface alone is already an action-grade decoder.
+```
+
+정확한 해석:
+
+```text
+HS-JEPA core는 hidden human-state/readability representation을 만든다.
+하지만 release-grade row-target action은 별도의 action-tail teacher,
+tail-safe utility objective, 또는 competition adapter를 거쳐야 한다.
+```
+
+이 negative boundary는 논문적으로 중요하다.
+HS-JEPA를 "label predictor"나 "제출값 생성기"로 과장하지 않고,
+human-state world model과 action decoder 사이의 경계를 분명히 해주기 때문이다.
+
+### 15. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.

@@ -19700,3 +19700,85 @@ transport backbone
   + rhythm-conditioned temporal decoder
   -> action toxicity / safe assignment field
 ```
+
+## Rhythm-Conditioned Action-Health Core
+
+### Question
+
+직전 결론은 HS-JEPA core가 다음 두 인터페이스를 분리해야 한다는 것이었다.
+
+```text
+rhythm-conditioned temporal decoder
+rhythm-gated listener residual interface
+```
+
+이번 실험은 이 분리가 곧바로 release-grade action decoder가 되는지 검증했다.
+
+```text
+transported human-state grammar
+  + listener residual interface
+  + rhythm-conditioned temporal decoder
+  -> action toxicity / safe assignment field
+```
+
+### Falsification Design
+
+- script: `hsjepa_core/run_rhythm_conditioned_action_health_core.py`
+- report: `hsjepa_core/outputs/rhythm_conditioned_action_health_core/RHYTHM_CONDITIONED_ACTION_HEALTH_CORE_KO.md`
+- paper report: `paper_hsjepa_core/RHYTHM_CONDITIONED_ACTION_HEALTH_CORE_KO.md`
+- team wrapper: `team_hsjepa_end_to_end/rhythm_conditioned_action_health_core/run_end_to_end.py`
+- public LB ledger: not used
+- prior submission probabilities: not used
+- proprietary embedding API: not used
+
+Hidden action-health target은 OG train label 안에서만 만든다.
+raw lifelog-memory action이 fold prior 대비 실제 logloss를 줄였는지,
+그리고 toxic-tail을 만드는지를 row-target cell 단위로 계산한다.
+
+평가는 subject-heldout, row-block, chronological split에서 다음을 본다.
+
+```text
+health-AUC
+toxic-tail-AUC
+tail-safe policy accepted target count
+selected gain
+```
+
+### Result
+
+- verdict: `rhythm_conditioned_action_health_no_safe_assignment_boundary`
+- accepted target count total: `0`
+- subject delta vs listener-support selected gain: `0.000000`
+- row-block delta vs listener-support selected gain: `0.000000`
+- chronological delta vs listener-support selected gain: `0.000000`
+- subject health-AUC delta vs listener baseline: `-0.006253`
+- chronological health-AUC delta vs listener baseline: `-0.001439`
+- subject toxic-tail-AUC delta vs listener baseline: `+0.001081`
+- chronological toxic-tail-AUC delta vs listener baseline: `-0.001028`
+
+모든 split/feature set에서 tail-safe policy가 release를 허용한 target은 없었다.
+
+### Interpretation
+
+죽은 믿음:
+
+```text
+rhythm-conditioned residual interface alone is already an action-grade decoder.
+```
+
+살아남은 믿음:
+
+```text
+HS-JEPA core는 hidden human-state readability를 만든다.
+하지만 row-target action release는 별도 hidden target이다.
+```
+
+이번 결과는 논문 thesis를 더 정직하게 만든다.
+
+```text
+HS-JEPA core = human-state/readability world model.
+competition adapter 또는 action-tail teacher = release-grade decoder.
+```
+
+따라서 다음 breakthrough는 residual/rhythm feature를 ordinary predictor에 더 넣는 것이 아니다.
+다음 질문은 visible context가 action-tail representation 자체를 JEPA target으로 예측할 수 있는지다.

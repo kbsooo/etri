@@ -78,6 +78,7 @@ python3 hsjepa_core/run_listener_head_router_pretext_core.py
 python3 hsjepa_core/run_learned_listener_head_router_core.py
 python3 hsjepa_core/run_global_transport_residual_listener_router_core.py
 python3 hsjepa_core/run_rhythm_conditioned_residual_listener_core.py
+python3 hsjepa_core/run_rhythm_conditioned_action_health_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -212,6 +213,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/rhythm_conditioned_residual_listener_core/rhythm_conditioned_residual_listener_summary.json`
 - `hsjepa_core/outputs/rhythm_conditioned_residual_listener_core/RHYTHM_CONDITIONED_RESIDUAL_LISTENER_CORE_KO.md`
 - `hsjepa_core/outputs/rhythm_conditioned_residual_listener_core/*.csv`
+- `hsjepa_core/outputs/rhythm_conditioned_action_health_core/rhythm_conditioned_action_health_summary.json`
+- `hsjepa_core/outputs/rhythm_conditioned_action_health_core/RHYTHM_CONDITIONED_ACTION_HEALTH_CORE_KO.md`
+- `hsjepa_core/outputs/rhythm_conditioned_action_health_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 
@@ -223,6 +227,7 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/run_lifelog_core_state_evidence.py`: public LB 없이 OG lifelog-derived feature table만으로 core-state representation의 label manifold, masked-view prediction, nearest-neighbor consistency, external action replay를 검증하는 real-data evidence run.
 - `hsjepa_core/run_masked_context_world_model.py`: semantic lifelog view를 하나씩 mask하고 나머지 view로 target-view PCA representation을 예측해, explicit HS-JEPA world-model state와 residual energy를 만든다.
 - `hsjepa_core/run_rhythm_conditioned_residual_listener_core.py`: residual listener router의 chronological 독성을 visible rhythm context와 rhythm-gated residual interface로 분리해 검증한다.
+- `hsjepa_core/run_rhythm_conditioned_action_health_core.py`: rhythm temporal decoder와 listener residual interface가 release-grade action-health/safe assignment field로 직접 번역되는지 검증한다. 현재 결과는 accepted target 0개의 negative boundary다.
 - `hsjepa_core/run_action_support_world_model_core.py`: train label만으로 raw lifelog-memory action의 success/toxicity target을 만들고, HS-JEPA masked world-state가 subject-heldout으로 action-support를 예측하는지 검증한다.
 - `hsjepa_core/run_action_support_view_invariance_core.py`: action-support 신호가 target/action shortcut인지, single-view artifact인지, masked world-state residual/energy 신호인지 stress한다.
 - `hsjepa_core/run_listener_conditioned_action_support_core.py`: target-blind world state가 부족한지 확인하기 위해 target/family listener-conditioned residual/energy support predictor를 검증한다.
