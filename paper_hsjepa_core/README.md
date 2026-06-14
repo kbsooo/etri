@@ -62,6 +62,7 @@
 - `paper_hsjepa_core/CROSS_SUBJECT_PROTOTYPE_TRANSPORT_CORE_KO.md`
 - `paper_hsjepa_core/TRANSPORTED_PROTOTYPE_LISTENER_READOUT_CORE_KO.md`
 - `paper_hsjepa_core/LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`
+- `paper_hsjepa_core/LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -169,6 +170,25 @@ target 설명만으로 hand-coded listener profile을 만들면 충분하다.
 ```text
 label-free listener responsibility는 필요하지만, hand-coded human story가 아니라
 HS-JEPA pretext target으로 학습되어야 한다.
+```
+
+`LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`는 그 다음 실험이다. target 설명을 사람이 고정한 profile로 바로 쓰지 않고, visible human-life context가 transported prototype reliability에서 만든 hidden listener responsibility field를 예측하게 한다.
+
+현재 결론:
+
+```text
+learned semantic balanced responsibility는 hand-coded semantic 대비 -0.000495 좋다.
+prior 대비 -0.000715, raw lifelog PCA 대비 -0.001565 좋다.
+row-block에서는 global transport 대비 -0.000051, chronological에서는 -0.001510으로 살아남는다.
+하지만 subject-heldout global transport 대비 +0.000419로 아직 뒤지고, absolute context leakage가 높다.
+subject-relative balanced variant는 pretext CE lift +0.029806, subject leakage 0.480000으로 더 건강하다.
+```
+
+논문적으로 남는 문장:
+
+```text
+Listener responsibility can be learned as a label-free pretext from visible human-life context,
+but release-grade generalization requires subject-invariant responsibility prediction.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

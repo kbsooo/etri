@@ -18910,3 +18910,138 @@ Next breakthrough:
   listener responsibility 자체를 target-description rule이 아니라
   self-supervised/JEPA-style hidden target으로 학습해야 한다.
 ```
+
+## Learned Listener Responsibility Pretext Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_learned_listener_responsibility_pretext_core.py`
+- Report: `hsjepa_core/outputs/learned_listener_responsibility_pretext_core/LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- Team wrapper: `team_hsjepa_end_to_end/learned_listener_responsibility_pretext_core/run_end_to_end.py`
+- Submission: none
+
+### Observe
+
+직전 label-free transported listener responsibility 실험은 중요한 boundary를 남겼다.
+
+```text
+target 설명과 hand-coded semantic profile만으로는 global transported grammar를 이기지 못한다.
+하지만 prior/raw를 이기고 leakage를 낮추므로 listener responsibility 방향 자체는 살아 있다.
+```
+
+즉 다음 질문은 분명했다.
+
+```text
+listener responsibility를 사람이 쓰지 말고, visible human-life context가 예측하게 만들 수 있는가?
+```
+
+### Wonder
+
+HS-JEPA가 진짜 world model이라면,
+보이는 생활 context에서 transported prototype grammar의 어느 view가 target listener에게 중요할지
+label 없이 예측할 수 있어야 한다.
+
+### Hypothesis
+
+```text
+If listener responsibility is a real hidden human-state interface,
+then visible human-life context should predict a transported listener-responsibility field
+that beats hand-coded semantic profiles under frozen downstream probes.
+```
+
+### Falsification Design
+
+- teacher:
+  - transported prototype confidence
+  - transported prototype entropy
+  - transported prototype energy lift
+- pretext:
+  - visible human-life context -> hidden listener responsibility distribution
+- variants:
+  - open-loop prediction
+  - prior-shrunk balanced prediction
+  - conservative prediction
+  - subject-relative context prediction
+  - semantic/family/generic profiles
+- labels:
+  - not used for teacher
+  - not used for pretext
+  - used only after representation is frozen for downstream probes
+- stress:
+  - subject-heldout
+  - row-block holdout
+  - chronological holdout
+  - subject leakage diagnostic
+
+### Result
+
+- verdict: `learned_listener_responsibility_beats_handcoded_positive`
+- subject global transport logloss: `0.676724`
+- subject direct semantic logloss: `0.677638`
+- subject learned semantic balanced logloss: `0.677143`
+- subject prior logloss: `0.677858`
+- subject raw lifelog PCA logloss: `0.678707`
+- delta vs hand-coded semantic: `-0.000495`
+- delta vs prior: `-0.000715`
+- delta vs raw lifelog PCA: `-0.001565`
+- delta vs global transport: `+0.000419`
+- row-block delta vs global: `-0.000051`
+- chronological delta vs global: `-0.001510`
+
+Pretext quality:
+
+```text
+open-loop semantic CE lift vs prior: -0.944448
+balanced semantic CE lift vs prior: +0.013241
+subject-relative balanced semantic CE lift vs prior: +0.029806
+```
+
+Subject leakage:
+
+```text
+direct semantic: 0.437778
+subject-relative balanced learned semantic: 0.480000
+global transport: 0.542222
+absolute learned semantic balanced: 0.800000
+raw lifelog PCA: 0.957778
+```
+
+### Interpretation
+
+이번 실험은 HS-JEPA core thesis에 실제로 도움이 된다.
+
+살아난 믿음:
+
+```text
+listener responsibility는 label 없이 학습 가능한 hidden representation이다.
+learned responsibility는 hand-coded semantic profile보다 downstream probe가 좋다.
+```
+
+죽은 믿음:
+
+```text
+open-loop context encoder가 알아서 건강한 responsibility distribution을 낼 것이다.
+```
+
+open-loop는 top-1 route는 어느 정도 맞히지만 CE가 크게 나쁘다.
+즉 listener responsibility는 "어느 view가 1등인가"만 맞히면 안 되고,
+distribution geometry를 calibration해야 한다.
+
+남은 boundary:
+
+```text
+absolute context learned responsibility는 subject leakage가 높다.
+subject-relative learned responsibility는 leakage와 pretext CE가 건강하지만,
+subject-heldout downstream logloss best는 아직 아니다.
+```
+
+다음 breakthrough 방향:
+
+```text
+subject-relative learned listener responsibility
+  + future episode consistency
+  + cohort consistency
+  -> invariant listener responsibility pretext
+```
+
+이것이 현재 가장 논문적으로 강한 HS-JEPA core 다음 스텝이다.

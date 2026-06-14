@@ -139,6 +139,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "label_free_transported_listener_responsibility_core"
         / "label_free_transported_listener_responsibility_summary.json"
     )
+    learned_listener = load_json(
+        outputs
+        / "learned_listener_responsibility_pretext_core"
+        / "learned_listener_responsibility_pretext_summary.json"
+    )
 
     return [
         {
@@ -265,6 +270,35 @@ def collect_cases() -> list[dict[str, Any]]:
             "global_subject_leakage": label_free_listener["global_transport_subject_leakage"]["subject_id_accuracy"],
             "raw_subject_leakage": label_free_listener["raw_subject_leakage"]["subject_id_accuracy"],
             "source": "hsjepa_core/outputs/label_free_transported_listener_responsibility_core/label_free_transported_listener_responsibility_summary.json",
+            "candidate": None,
+        },
+        {
+            "case": "learned_listener_responsibility_pretext",
+            "layer": "core",
+            "question": "visible human-life context만으로 hidden listener responsibility field를 label-free pretext로 학습할 수 있는가",
+            "primary_metric": "best_learned_delta_vs_handcoded_semantic_logloss",
+            "value": learned_listener["subject_best_learned_delta_vs_direct_semantic"],
+            "baseline": "hand_coded_semantic_listener_responsibility",
+            "support": learned_listener["verdict"],
+            "interpretation": (
+                "transported prototype reliability로 만든 hidden listener-responsibility teacher를 labels 없이 예측했다. "
+                "balanced learned semantic responsibility는 hand-coded semantic listener와 prior/raw를 이기고, row-block/chronological에서는 "
+                "global transport보다도 살아남는다. 다만 subject-heldout에서는 global transport를 아직 넘지 못하고 absolute context variant는 "
+                "subject leakage가 높다. subject-relative variant는 pretext CE와 leakage가 더 건강하므로 다음 core는 invariance-preserving "
+                "responsibility pretext로 가야 한다."
+            ),
+            "delta_vs_prior": learned_listener["subject_best_learned_delta_vs_prior"],
+            "delta_vs_raw": learned_listener["subject_best_learned_delta_vs_raw"],
+            "delta_vs_global": learned_listener["subject_best_learned_delta_vs_global"],
+            "row_block_delta_vs_global": learned_listener["row_block_best_learned_delta_vs_global"],
+            "chronological_delta_vs_global": learned_listener["chronological_best_learned_delta_vs_global"],
+            "best_learned_feature_set": learned_listener["subject_best_learned_feature_set"],
+            "best_learned_leakage": learned_listener["subject_best_learned_leakage"]["subject_id_accuracy"],
+            "relative_balanced_pretext_lift": learned_listener["subject_pretext_all"]["learned_semantic_relative_balanced"]["ce_lift_vs_prior"],
+            "relative_balanced_leakage": learned_listener["learned_semantic_relative_balanced_subject_leakage"]["subject_id_accuracy"],
+            "global_subject_leakage": learned_listener["global_transport_subject_leakage"]["subject_id_accuracy"],
+            "raw_subject_leakage": learned_listener["raw_subject_leakage"]["subject_id_accuracy"],
+            "source": "hsjepa_core/outputs/learned_listener_responsibility_pretext_core/learned_listener_responsibility_pretext_summary.json",
             "candidate": None,
         },
         {
@@ -489,7 +523,8 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "not a standalone label classifier.  Its strongest evidence is masked context "
             "prediction, subject-invariant prototype grammar, subject-relative routine-break, "
             "cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, "
-            "transported-prototype listener readout, and listener-conditioned route readout with subject-invariant listener/action-health separability."
+            "transported-prototype listener readout, learned listener-responsibility pretext, "
+            "and listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
     }
@@ -708,7 +743,59 @@ label-free listener responsibility 방향은 맞지만, 사람이 고정한 prof
 pretext로 학습된 listener responsibility가 필요하다.
 ```
 
-### 7. Routine-Break World Model
+### 7. Learned Listener Responsibility Pretext
+
+직전 boundary를 그대로 실험으로 바꿨다.
+이번에는 hand-coded profile을 바로 쓰지 않고, visible human-life context가
+transported prototype reliability에서 만든 hidden listener responsibility field를 예측하게 했다.
+
+```text
+visible human-life context
+  -> hidden transported listener responsibility
+  -> frozen low-trust probe
+```
+
+핵심 결과:
+
+```text
+best learned feature set: {by_case["learned_listener_responsibility_pretext"].get("best_learned_feature_set")}
+delta vs hand-coded semantic: {fmt(by_case["learned_listener_responsibility_pretext"]["value"], 6)}
+delta vs prior: {fmt(by_case["learned_listener_responsibility_pretext"].get("delta_vs_prior"), 6)}
+delta vs raw lifelog PCA: {fmt(by_case["learned_listener_responsibility_pretext"].get("delta_vs_raw"), 6)}
+delta vs global transport: {fmt(by_case["learned_listener_responsibility_pretext"].get("delta_vs_global"), 6)}
+row-block delta vs global: {fmt(by_case["learned_listener_responsibility_pretext"].get("row_block_delta_vs_global"), 6)}
+chronological delta vs global: {fmt(by_case["learned_listener_responsibility_pretext"].get("chronological_delta_vs_global"), 6)}
+```
+
+가장 중요한 점은 open-loop prediction이 아니라 calibrated responsibility prediction이다.
+open-loop는 top-1은 맞혀도 확률 geometry가 과신되어 pretext CE가 나빠진다.
+prior-shrunk balanced responsibility는 pretext CE를 prior보다 이긴다.
+
+subject-relative context variant는 더 논문적이다.
+
+```text
+relative balanced pretext CE lift vs prior: {fmt(by_case["learned_listener_responsibility_pretext"].get("relative_balanced_pretext_lift"), 6)}
+relative balanced subject leakage: {fmt(by_case["learned_listener_responsibility_pretext"].get("relative_balanced_leakage"), 6)}
+global transport subject leakage: {fmt(by_case["learned_listener_responsibility_pretext"].get("global_subject_leakage"), 6)}
+raw lifelog subject leakage: {fmt(by_case["learned_listener_responsibility_pretext"].get("raw_subject_leakage"), 6)}
+```
+
+따라서 이번 결과는 HS-JEPA thesis를 강화하지만 동시에 제한한다.
+
+```text
+강화:
+  listener responsibility는 label 없이 visible context에서 학습 가능하다.
+  learned responsibility는 hand-coded semantic profile보다 downstream probe가 좋다.
+
+제한:
+  absolute context encoder는 subject shortcut을 많이 담는다.
+  subject-heldout global transported grammar를 아직 넘지는 못한다.
+```
+
+다음 core는 learned responsibility를 유지하되,
+subject-relative/future/cohort consistency로 shortcut을 누르는 방향이어야 한다.
+
+### 8. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.
@@ -723,7 +810,7 @@ subject-heldout low-trust frozen probe에서 prior 대비 delta는
 `{fmt(by_case["routine_break_world_model"]["value"], 6)}`이다.
 효과 크기는 여전히 작지만, 이전 subject-relative world model보다 더 선명한 core-positive signal이다.
 
-### 8. Sleep-Pressure World Model
+### 9. Sleep-Pressure World Model
 
 수면 label을 직접 target으로 쓰지 않고, night disturbance, physiological load,
 social/cognitive arousal, rest-environment stability, calendar routine pressure를
@@ -740,7 +827,7 @@ pretext 예측성은 강하지만 label probe 효과는 작다. 이 결과는 HS
 sleep-pressure representation을 만들 수 있다는 core evidence이면서,
 그 representation을 Q/S label로 번역하려면 listener/action-health adapter가 필요하다는 경계이기도 하다.
 
-### 9. Cohort-Relative World Model
+### 10. Cohort-Relative World Model
 
 routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고,
 오늘의 state를 개인 기준과 peer 기준에서 동시에 해석했다.
@@ -761,7 +848,7 @@ observed/full cohort geometry는 subject identity shortcut이 강하다.
 core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
 ```
 
-### 10. Multi-Target Human-State World Model
+### 11. Multi-Target Human-State World Model
 
 routine-break, sleep-pressure, cohort-relative hidden target을 따로 쓰지 않고,
 하나의 route-preserving predicted bundle로 묶었다.
@@ -792,7 +879,7 @@ PCA로 하나의 compressed latent로 뭉치면 negative.
 downstream listener가 구분할 수 있도록 route axes를 보존한다.
 ```
 
-### 11. Route-Responsibility Diagnostic
+### 12. Route-Responsibility Diagnostic
 
 multi-target bundle 위에서 다른 route들로 held-out route를 예측하고,
 그 residual energy로 label-free route responsibility를 만들었다.
@@ -818,7 +905,7 @@ route responsibility는 label 없이 관측 가능하다.
 이것은 실패라기보다 HS-JEPA architecture boundary다.
 다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
 
-### 12. Listener-Conditioned Route Readout
+### 13. Listener-Conditioned Route Readout
 
 route-preserving multi-target bundle을 만든 뒤, frozen probe에서 target/listener별 route readout을 선택했다.
 이 단계는 label-free core pretext가 아니라 frozen probe diagnostic이다.
@@ -844,7 +931,7 @@ HS-JEPA core의 좋은 interface는 하나의 압축 latent도,
 route axes를 보존하고, downstream listener가 target별로 다른 route를 읽게 해야 한다.
 ```
 
-### 13. Subject-Invariant Listener Manifold
+### 14. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -852,7 +939,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 14. Listener Responsibility Field
+### 15. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.
@@ -923,6 +1010,7 @@ subject-invariant prototype grammar: pretext positive, low subject leakage, weak
 cross-subject prototype transport: train-subject grammar transports to held-out subjects, but readout leakage must be controlled
 transported prototype listener readout: global transported grammar보다 listener-specific readout이 subject-heldout에서 강하지만 frozen-probe diagnostic이다
 label-free transported listener responsibility: prior/raw는 이기지만 global transport는 못 이겨 hand-coded semantic profile의 한계를 보인다
+learned listener responsibility pretext: labels 없이 hand-coded profile보다 좋은 responsibility를 학습하지만 shortcut/leakage control이 남았다
 routine-break world model: small positive and stronger hidden target
 sleep-pressure world model: strong pretext, small label-probe positive
 cohort-relative world model: predicted state positive, observed/full shortcut 위험

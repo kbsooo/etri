@@ -71,6 +71,7 @@ python3 hsjepa_core/run_human_state_prototype_grammar_core.py
 python3 hsjepa_core/run_cross_subject_prototype_transport_core.py
 python3 hsjepa_core/run_transported_prototype_listener_readout_core.py
 python3 hsjepa_core/run_label_free_transported_listener_responsibility_core.py
+python3 hsjepa_core/run_learned_listener_responsibility_pretext_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -184,6 +185,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/label_free_transported_listener_responsibility_core/label_free_transported_listener_responsibility_summary.json`
 - `hsjepa_core/outputs/label_free_transported_listener_responsibility_core/LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`
 - `hsjepa_core/outputs/label_free_transported_listener_responsibility_core/*.csv`
+- `hsjepa_core/outputs/learned_listener_responsibility_pretext_core/learned_listener_responsibility_pretext_summary.json`
+- `hsjepa_core/outputs/learned_listener_responsibility_pretext_core/LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- `hsjepa_core/outputs/learned_listener_responsibility_pretext_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 
@@ -225,6 +229,7 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/run_cross_subject_prototype_transport_core.py`: train subjects/blocks에서만 subject-relative episode prototype grammar를 정의한 뒤 held-out subject/block으로 운반하고, 보이는 context가 transported hidden prototype responsibility를 예측하는지 검증한다. 현재 결과는 pretext mean cross-entropy lift `+0.060052`, subject-heldout transported stats+probabilities low-trust probe delta `-0.002026`, stats-only delta `-0.001411`, stats-only subject-id accuracy `0.273333` 대 raw lifelog PCA `0.957778`로 `cross-subject prototype transport core positive`다.
 - `hsjepa_core/run_transported_prototype_listener_readout_core.py`: cross-subject transported prototype grammar를 하나의 global latent로 읽지 않고, Q/S target listener별로 어떤 transported grammar view를 읽어야 하는지 frozen probe로 진단한다. 현재 결과는 subject-heldout listener-conditioned readout delta가 prior 대비 `-0.002509`, global transport 대비 `-0.001376`, raw lifelog PCA 대비 `-0.003359`이고 fold win은 `23/35`다. 단 labels는 listener selection probe에 쓰였으므로 core pretext가 아니라 `frozen_probe_diagnostic`이다.
 - `hsjepa_core/run_label_free_transported_listener_responsibility_core.py`: frozen labels로 listener view를 고르지 않고, target 설명과 transported prototype reliability만으로 label-free listener responsibility를 만든다. 현재 결과는 prior 대비 `-0.000219`, raw lifelog PCA 대비 `-0.001069`로 약하게 positive지만 global transport 대비 `+0.000914` 나빠져 `core boundary`다. hand-coded semantic profile만으로는 부족하고, 다음 core는 listener responsibility를 pretext로 학습해야 한다.
+- `hsjepa_core/run_learned_listener_responsibility_pretext_core.py`: target 설명을 hand-coded profile로 바로 쓰지 않고, visible human-life context가 transported prototype reliability에서 만든 hidden listener responsibility field를 예측하는 label-free pretext 실험이다. 현재 결과는 learned semantic balanced가 hand-coded semantic 대비 `-0.000495`, prior 대비 `-0.000715`, raw lifelog PCA 대비 `-0.001565` 좋고 row-block/chronological에서는 global transport도 이긴다. 다만 subject-heldout global transport 대비 `+0.000419`이고 absolute context leakage가 높아, `core positive with leakage boundary`로 둔다. subject-relative variant는 pretext CE lift `+0.029806`과 subject leakage `0.480000`으로 더 건강하다.
 - `hsjepa_core/build_core_evidence_ledger.py`: public-free core evidence를 하나의 논문용 ledger로 묶어, 무엇이 HS-JEPA core 증거이고 무엇이 adapter/diagnostic boundary인지 분리한다.
 
 ## 팀 공유 시 주의점

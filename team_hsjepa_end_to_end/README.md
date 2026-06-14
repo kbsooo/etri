@@ -144,6 +144,14 @@ python3 team_hsjepa_end_to_end/label_free_transported_listener_responsibility_co
 
 이 실험은 labels로 listener view를 선택하지 않고 human-semantic profile과 transported prototype reliability만 사용한다. 현재 결론은 `prior positive but global transport negative`이며, hand-coded human story만으로는 부족하고 listener responsibility를 pretext로 학습해야 한다는 boundary다.
 
+hand-coded profile 대신 visible context가 listener responsibility를 학습하는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/learned_listener_responsibility_pretext_core/run_end_to_end.py
+```
+
+이 실험은 transported prototype reliability를 label-free teacher로 두고, OG visible human-life context가 hidden listener responsibility를 예측하는지 본다. 현재 결론은 `learned responsibility beats hand-coded semantic`이지만, subject-heldout global transport를 아직 넘지는 못한다. subject-relative context는 pretext 품질과 leakage가 더 건강해서 다음 HS-JEPA core 방향이다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

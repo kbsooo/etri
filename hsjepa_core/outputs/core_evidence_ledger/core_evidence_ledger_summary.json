@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 11,
+  "core_positive_case_count": 12,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned listener-responsibility pretext, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -119,6 +119,29 @@
       "global_subject_leakage": 0.5422222222222223,
       "raw_subject_leakage": 0.9577777777777777,
       "source": "hsjepa_core/outputs/label_free_transported_listener_responsibility_core/label_free_transported_listener_responsibility_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "learned_listener_responsibility_pretext",
+      "layer": "core",
+      "question": "visible human-life context만으로 hidden listener responsibility field를 label-free pretext로 학습할 수 있는가",
+      "primary_metric": "best_learned_delta_vs_handcoded_semantic_logloss",
+      "value": -0.0004953185419549477,
+      "baseline": "hand_coded_semantic_listener_responsibility",
+      "support": "learned_listener_responsibility_beats_handcoded_positive",
+      "interpretation": "transported prototype reliability로 만든 hidden listener-responsibility teacher를 labels 없이 예측했다. balanced learned semantic responsibility는 hand-coded semantic listener와 prior/raw를 이기고, row-block/chronological에서는 global transport보다도 살아남는다. 다만 subject-heldout에서는 global transport를 아직 넘지 못하고 absolute context variant는 subject leakage가 높다. subject-relative variant는 pretext CE와 leakage가 더 건강하므로 다음 core는 invariance-preserving responsibility pretext로 가야 한다.",
+      "delta_vs_prior": -0.0007147780848421048,
+      "delta_vs_raw": -0.0015645155993753157,
+      "delta_vs_global": 0.00041888057928385347,
+      "row_block_delta_vs_global": -5.0581562060836305e-05,
+      "chronological_delta_vs_global": -0.0015101068647712657,
+      "best_learned_feature_set": "learned_semantic_balanced_listener_responsibility_calibrated10",
+      "best_learned_leakage": 0.8,
+      "relative_balanced_pretext_lift": 0.029806341165237223,
+      "relative_balanced_leakage": 0.48,
+      "global_subject_leakage": 0.5422222222222223,
+      "raw_subject_leakage": 0.9577777777777777,
+      "source": "hsjepa_core/outputs/learned_listener_responsibility_pretext_core/learned_listener_responsibility_pretext_summary.json",
       "candidate": null
     },
     {
