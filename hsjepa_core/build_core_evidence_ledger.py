@@ -114,6 +114,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "subject_drift_world_model_core"
         / "subject_drift_world_model_summary.json"
     )
+    transition_retrieval = load_json(
+        outputs
+        / "episode_transition_retrieval_core"
+        / "episode_transition_retrieval_summary.json"
+    )
 
     return [
         {
@@ -261,6 +266,24 @@ def collect_cases() -> list[dict[str, Any]]:
                 "core 단독 성과로 과장하면 안 된다."
             ),
             "source": "hsjepa_core/outputs/subject_drift_world_model_core/subject_drift_world_model_summary.json",
+            "candidate": None,
+        },
+        {
+            "case": "episode_transition_retrieval",
+            "layer": "core_boundary",
+            "question": "현재 visible human-life context가 보이지 않는 다음 episode representation을 retrieval할 수 있는가",
+            "primary_metric": "subject_rank_pct_lift_vs_random",
+            "value": transition_retrieval["subject_relative_predicted_retrieval"]["lift_rank_pct_vs_random"],
+            "baseline": "random_episode_candidate",
+            "support": "rhythm_dominant_boundary",
+            "interpretation": (
+                "subject-relative HS-JEPA transition predictor는 random보다 낫지만 persistence와 calendar rhythm을 넘지 못한다. "
+                "가장 강한 transition listener는 calendar_to_next_state이며, future-state core는 generic transition보다 "
+                "rhythm-conditioned transition으로 정립해야 한다."
+            ),
+            "calendar_rank_lift": transition_retrieval["subject_best_retrieval"]["lift_rank_pct_vs_random"],
+            "persistence_rank_lift": transition_retrieval["subject_persistence_retrieval"]["lift_rank_pct_vs_random"],
+            "source": "hsjepa_core/outputs/episode_transition_retrieval_core/episode_transition_retrieval_summary.json",
             "candidate": None,
         },
         {

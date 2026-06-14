@@ -57,6 +57,7 @@
 - `paper_hsjepa_core/ROUTE_RESPONSIBILITY_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ROUTE_READOUT_CORE_KO.md`
 - `paper_hsjepa_core/SUBJECT_DRIFT_WORLD_MODEL_CORE_KO.md`
+- `paper_hsjepa_core/EPISODE_TRANSITION_RETRIEVAL_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -75,6 +76,18 @@ HS-JEPA world-state에는 future drift ranking 신호가 아주 약하게 있다
 subject-relative predicted state low-trust readout은 prior 대비 -0.000168 logloss다.
 하지만 calendar readout이 전체 best이고 효과가 0.001보다 작아,
 0.5619100863 public breakthrough를 core 단독 성과로 과장하면 안 된다.
+```
+
+`EPISODE_TRANSITION_RETRIEVAL_CORE_KO.md`는 더 JEPA 본질에 가까운 질문을 던진다. 현재 episode context로 보이지 않는 다음 episode representation을 예측하고, 실제 next episode를 후보들 사이에서 retrieval할 수 있는지 본다.
+
+현재 결론:
+
+```text
+다음 episode transition은 calendar/rhythm view가 가장 강하게 설명한다.
+calendar_to_next_state의 subject-heldout rank-pct lift는 +0.087878이다.
+subject-relative HS-JEPA transition predictor는 +0.044611로 random보다 낫지만,
+persistence baseline +0.078214를 넘지 못한다.
+따라서 future-state HS-JEPA는 generic transition보다 rhythm-conditioned transition으로 정립해야 한다.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

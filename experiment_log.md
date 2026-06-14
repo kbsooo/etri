@@ -18445,3 +18445,80 @@ HS-JEPA는 hidden subject drift direction만 찾는 것이 아니라,
 
 - Q2 `0.75` step이 이미 포화점이다.
 - 다음 breakthrough는 Q2 line overshoot가 아니라 S-target route 또는 private-state factorization이어야 한다.
+
+## Episode Transition Retrieval Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_episode_transition_retrieval_core.py`
+- Report: `hsjepa_core/outputs/episode_transition_retrieval_core/EPISODE_TRANSITION_RETRIEVAL_CORE_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/EPISODE_TRANSITION_RETRIEVAL_CORE_KO.md`
+- Team wrapper: `team_hsjepa_end_to_end/episode_transition_retrieval_core/run_end_to_end.py`
+- Submission: none
+
+### Observe
+
+HS-JEPA를 논문형 core로 정립하려면, label이나 public score를 보지 않고도
+현재 visible human-life context가 보이지 않는 다음 episode representation을 예측할 수 있어야 한다.
+
+### Wonder
+
+현재 row의 생활 상태는 다음 row의 hidden state를 실제로 예측하는가, 아니면 대부분 calendar/rhythm과
+persistence만으로 설명되는가?
+
+### Hypothesis
+
+```text
+If HS-JEPA is a real human-state world model,
+current visible lifelog context should retrieve the true next episode representation
+better than random and ideally better than simple persistence/calendar baselines.
+```
+
+### Falsification Design
+
+- label-free pretext: current episode context -> next episode semantic representation
+- retrieval target: validation 후보 episode 중 실제 next episode rank
+- stress:
+  - subject-heldout split
+  - chronological holdout
+  - frozen next-label probe only after representation is fixed
+- forbidden information:
+  - public LB ledger
+  - prior submission probabilities
+  - label as pretext target
+  - proprietary embedding API
+
+### Result
+
+Subject-heldout retrieval:
+
+- `calendar_to_next_state`: rank-pct lift vs random `+0.087878`
+- `current_episode_identity`: rank-pct lift vs random `+0.078214`
+- `subject_relative_context_to_next_state`: rank-pct lift vs random `+0.044611`
+- `rhythm_conditioned_subject_relative_to_next_state`: rank-pct lift vs random `+0.044534`
+
+Frozen next-label probe:
+
+- best subject-heldout logloss: `current_episode_identity` = `0.676404`
+- HS-JEPA predicted transition logloss: `0.676764`
+- HS-JEPA predicted transition AUC: `0.525249`, best AUC but not best logloss
+
+### Interpretation
+
+이 실험은 core breakthrough가 아니라 중요한 boundary다.
+
+```text
+Future episode transition is real but rhythm-dominant.
+HS-JEPA transition predictor is better than random,
+but it does not beat calendar rhythm or persistence.
+```
+
+따라서 0.561910 계열의 성능 원천은 generic next-state prediction이 아니라,
+subject-level drift direction을 Q2/Q3 listener route로 안전하게 번역한 adapter/certifier 쪽이다.
+
+논문 주장도 다음처럼 좁혀야 한다.
+
+```text
+HS-JEPA should not be sold as a universal next-episode predictor.
+It is stronger as a hidden human-state representation system whose axes
+must be read by listener-specific, drift-consistent decoders.
+```

@@ -132,6 +132,20 @@
       "candidate": null
     },
     {
+      "case": "episode_transition_retrieval",
+      "layer": "core_boundary",
+      "question": "현재 visible human-life context가 보이지 않는 다음 episode representation을 retrieval할 수 있는가",
+      "primary_metric": "subject_rank_pct_lift_vs_random",
+      "value": 0.044611009009199086,
+      "baseline": "random_episode_candidate",
+      "support": "rhythm_dominant_boundary",
+      "interpretation": "subject-relative HS-JEPA transition predictor는 random보다 낫지만 persistence와 calendar rhythm을 넘지 못한다. 가장 강한 transition listener는 calendar_to_next_state이며, future-state core는 generic transition보다 rhythm-conditioned transition으로 정립해야 한다.",
+      "calendar_rank_lift": 0.08787823459260535,
+      "persistence_rank_lift": 0.07821367719872224,
+      "source": "hsjepa_core/outputs/episode_transition_retrieval_core/episode_transition_retrieval_summary.json",
+      "candidate": null
+    },
+    {
       "case": "external_action_replay_geometry",
       "layer": "core_to_adapter_probe",
       "question": "core-state geometry가 다른 adapter의 row-action support를 재발견하는가",

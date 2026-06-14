@@ -35,6 +35,7 @@ visible human-life context
 | route_responsibility_world_model | core_diagnostic | route_weighted_delta_vs_base_multi_target_logloss | 0.000780 | route_preserving_multi_target_predicted | pretext_positive_downstream_negative_vs_base |
 | listener_conditioned_route_readout | frozen_probe_diagnostic | listener_conditioned_delta_vs_multi_target_logloss | -0.001747 | route_preserving_multi_target_predicted | strong_positive_probe |
 | subject_drift_world_model | core_boundary | subject_hsjepa_delta_vs_prior_logloss | -0.000168 | fold_prior_low_trust_probe | core_drift_weak_positive_boundary |
+| episode_transition_retrieval | core_boundary | subject_rank_pct_lift_vs_random | 0.044611 | random_episode_candidate | rhythm_dominant_boundary |
 | external_action_replay_geometry | core_to_adapter_probe | row_auc_z_vs_permuted_train | 8.375849 | permuted_teacher | strong_positive_probe |
 | subject_invariant_listener_manifold | core | hsjepa_listener_ap_lift_minus_action_only | 0.191742 | action_geometry_only | strong_positive |
 | listener_responsibility_field | core | masked_pretext_ap_lift_minus_listener_only | 0.014785 | listener_only | positive_but_small |
