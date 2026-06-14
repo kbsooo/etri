@@ -1,0 +1,64 @@
+{
+  "package": "cross_subject_prototype_transport_core",
+  "status": "cross_subject_prototype_transport_core_ready",
+  "verdict": "cross_subject_prototype_transport_core_positive",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "prototype_count": 3,
+  "subject_pretext_mean_cross_entropy_lift_vs_prior": 0.06005178205604298,
+  "subject_stats_logloss": 0.6764462501422301,
+  "subject_stats_delta_vs_prior": -0.0014112830273512733,
+  "subject_stats_probabilities_logloss": 0.6758314834047121,
+  "subject_stats_probabilities_delta_vs_prior": -0.0020260497648693088,
+  "subject_prior_logloss": 0.6778575331695814,
+  "subject_raw_logloss": 0.6787072706841146,
+  "subject_stats_delta_vs_raw": -0.002261020541884484,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "transported_prototype_stats_probabilities_calibrated10",
+    "target": "all",
+    "logloss": 0.6758314834047121,
+    "auc": 0.40828872770928865,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1
+  },
+  "row_block_best_probe": {
+    "split": "row_block_holdout",
+    "feature_set": "raw_lifelog_pca_calibrated10",
+    "target": "all",
+    "logloss": 0.6682460000256009,
+    "auc": 0.48395758295854857,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1
+  },
+  "transported_stats_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "transported_prototype_stats",
+    "subject_id_accuracy": 0.2733333333333333,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.14666666666666664
+  },
+  "raw_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "raw_lifelog_pca",
+    "subject_id_accuracy": 0.9577777777777777,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.831111111111111
+  },
+  "best_neighbor_consistency": {
+    "split": "subject_heldout",
+    "feature_set": "calendar_rhythm",
+    "target": "all",
+    "neighbor_match_rate": 0.5861587301587302,
+    "random_match_rate": 0.5307936507936508,
+    "lift": 0.055365079365079395
+  }
+}

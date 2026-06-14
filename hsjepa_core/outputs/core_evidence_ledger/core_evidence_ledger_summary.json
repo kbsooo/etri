@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 10,
+  "core_positive_case_count": 11,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -58,6 +58,24 @@
       "subject_leakage_accuracy": 0.2311111111111111,
       "raw_leakage_reference": 0.957778,
       "source": "hsjepa_core/outputs/human_state_prototype_grammar_core/human_state_prototype_grammar_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "cross_subject_prototype_transport",
+      "layer": "core",
+      "question": "train subjects/blocks가 만든 subject-relative episode grammar를 held-out subject/block으로 운반할 수 있는가",
+      "primary_metric": "transported_stats_probabilities_delta_vs_prior_logloss",
+      "value": -0.0020260497648693088,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "cross_subject_prototype_transport_core_positive",
+      "interpretation": "prototype grammar를 full cohort에 맞춘 것이 아니라 fold마다 train subjects/blocks에서만 정의한 뒤 held-out subject로 transport했다. label-free pretext는 prior를 이기고, transported stats+probabilities frozen probe는 subject-heldout prior와 raw lifelog PCA보다 낮은 logloss를 보인다. 다만 probability-rich readout은 subject leakage가 커질 수 있어 stats-only/readout-risk를 분리해야 한다.",
+      "pretext_lift": 0.06005178205604298,
+      "stats_delta_vs_prior": -0.0014112830273512733,
+      "stats_probabilities_delta_vs_prior": -0.0020260497648693088,
+      "stats_delta_vs_raw": -0.002261020541884484,
+      "subject_leakage_accuracy": 0.2733333333333333,
+      "raw_leakage_reference": 0.9577777777777777,
+      "source": "hsjepa_core/outputs/cross_subject_prototype_transport_core/cross_subject_prototype_transport_summary.json",
       "candidate": null
     },
     {

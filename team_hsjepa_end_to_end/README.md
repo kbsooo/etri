@@ -120,6 +120,14 @@ python3 team_hsjepa_end_to_end/human_state_prototype_grammar_core/run_end_to_end
 
 이 실험은 label-free masked-prototype JEPA 검증이다. 현재 결론은 `subject-invariant prototype grammar positive boundary`다.
 
+HS-JEPA core의 prototype grammar가 처음 보는 subject/block으로 운반되는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/cross_subject_prototype_transport_core/run_end_to_end.py
+```
+
+이 실험은 train subjects/blocks에서만 정의한 subject-relative episode grammar를 held-out subject/block으로 transport하는 label-free JEPA 검증이다. 현재 결론은 `cross-subject prototype transport core positive`다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

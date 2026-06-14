@@ -18600,3 +18600,93 @@ HS-JEPA는 사람마다 다른 절대 센서/사용량 크기를 외우기보다
 
 다만 frozen probe 효과는 아직 작고 row-block/neighbor consistency에서는 raw/calendar baseline이 강하다.
 LB breakthrough로 연결하려면 이 grammar를 listener-specific drift/action decoder가 읽어야 한다.
+
+## Cross-Subject Prototype Transport Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_cross_subject_prototype_transport_core.py`
+- Report: `hsjepa_core/outputs/cross_subject_prototype_transport_core/CROSS_SUBJECT_PROTOTYPE_TRANSPORT_CORE_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/CROSS_SUBJECT_PROTOTYPE_TRANSPORT_CORE_KO.md`
+- Team wrapper: `team_hsjepa_end_to_end/cross_subject_prototype_transport_core/run_end_to_end.py`
+- Submission: none
+
+### Observe
+
+prototype grammar 실험은 positive였지만, 한 가지 의심이 남았다.
+full cohort 안에서 prototype을 만들면 실제 human-state grammar가 아니라 cohort-specific shortcut일 수 있다.
+
+### Wonder
+
+train subjects/blocks에서만 만든 subject-relative episode grammar를 held-out subject/block으로 운반해도
+보이는 생활 context가 hidden prototype responsibility를 예측할 수 있는가?
+
+### Hypothesis
+
+```text
+If HS-JEPA learns a transferable human-state grammar,
+then a prototype grammar fitted without the held-out subject/block should still be predictable
+from visible context on the held-out rows, and the transported frozen representation should improve
+subject-heldout label probes without using public LB or labels as a pretext target.
+```
+
+### Falsification Design
+
+- grammar frame: subject-relative lifelog
+- prototype count: 3 per semantic view
+- training boundary:
+  - subject-heldout: prototype grammar fitted without validation subject
+  - row-block: prototype grammar fitted without validation time block
+  - chronological: validation rows are out-of-sample; train rows are filled only for full-state comparison
+- hidden target: transported prototype responsibility
+- pretext: remaining visible views -> hidden transported prototype
+- stress:
+  - subject-heldout frozen probe
+  - chronological frozen probe
+  - row-block frozen probe
+  - subject leakage probe
+- forbidden information:
+  - public LB ledger
+  - prior submission probabilities
+  - proprietary embedding API
+  - label as pretext target
+
+### Result
+
+- verdict: `cross_subject_prototype_transport_core_positive`
+- subject-heldout pretext mean cross-entropy lift vs prior: `+0.060052`
+- subject-heldout transported stats+probabilities delta vs prior: `-0.002026`
+- subject-heldout transported stats-only delta vs prior: `-0.001411`
+- subject-heldout transported stats-only delta vs raw lifelog PCA: `-0.002261`
+- transported stats subject-id accuracy: `0.273333`
+- raw lifelog PCA subject-id accuracy: `0.957778`
+- best hidden views by pretext lift:
+  - phone_behavior `+0.105597`
+  - app_social_context `+0.095373`
+  - body_activity_sleep `+0.064764`
+
+### Interpretation
+
+이번 실험은 논문 core 측면에서 이전보다 강하다.
+
+```text
+Subject-relative episode grammar is not only internally useful.
+It can be fitted on observed subjects/blocks and transported to held-out subjects/blocks.
+```
+
+따라서 HS-JEPA를 다음처럼 말할 근거가 생겼다.
+
+```text
+HS-JEPA는 subject fingerprint를 외우는 대신,
+다른 subject에게도 운반 가능한 생활 episode grammar를 학습한다.
+```
+
+단, 주의점도 남았다.
+
+```text
+probability-rich readout은 logloss가 가장 좋지만 subject leakage가 커질 수 있다.
+stats-only readout은 효과가 조금 작지만 leakage risk가 낮다.
+row-block에서는 raw lifelog PCA가 아직 강하다.
+```
+
+다음 breakthrough 방향은 prototype grammar 자체가 아니라,
+transported grammar를 listener-specific drift/action-health decoder로 읽는 것이다.

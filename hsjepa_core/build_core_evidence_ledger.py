@@ -124,6 +124,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "human_state_prototype_grammar_core"
         / "human_state_prototype_grammar_summary.json"
     )
+    cross_subject_transport = load_json(
+        outputs
+        / "cross_subject_prototype_transport_core"
+        / "cross_subject_prototype_transport_summary.json"
+    )
 
     return [
         {
@@ -182,6 +187,29 @@ def collect_cases() -> list[dict[str, Any]]:
             "subject_leakage_accuracy": prototype_grammar["predicted_energy_subject_leakage"]["subject_id_accuracy"],
             "raw_leakage_reference": 0.957778,
             "source": "hsjepa_core/outputs/human_state_prototype_grammar_core/human_state_prototype_grammar_summary.json",
+            "candidate": None,
+        },
+        {
+            "case": "cross_subject_prototype_transport",
+            "layer": "core",
+            "question": "train subjects/blocks가 만든 subject-relative episode grammar를 held-out subject/block으로 운반할 수 있는가",
+            "primary_metric": "transported_stats_probabilities_delta_vs_prior_logloss",
+            "value": cross_subject_transport["subject_stats_probabilities_delta_vs_prior"],
+            "baseline": "fold_prior_low_trust_probe",
+            "support": cross_subject_transport["verdict"],
+            "interpretation": (
+                "prototype grammar를 full cohort에 맞춘 것이 아니라 fold마다 train subjects/blocks에서만 정의한 뒤 "
+                "held-out subject로 transport했다. label-free pretext는 prior를 이기고, transported stats+probabilities "
+                "frozen probe는 subject-heldout prior와 raw lifelog PCA보다 낮은 logloss를 보인다. "
+                "다만 probability-rich readout은 subject leakage가 커질 수 있어 stats-only/readout-risk를 분리해야 한다."
+            ),
+            "pretext_lift": cross_subject_transport["subject_pretext_mean_cross_entropy_lift_vs_prior"],
+            "stats_delta_vs_prior": cross_subject_transport["subject_stats_delta_vs_prior"],
+            "stats_probabilities_delta_vs_prior": cross_subject_transport["subject_stats_probabilities_delta_vs_prior"],
+            "stats_delta_vs_raw": cross_subject_transport["subject_stats_delta_vs_raw"],
+            "subject_leakage_accuracy": cross_subject_transport["transported_stats_subject_leakage"]["subject_id_accuracy"],
+            "raw_leakage_reference": cross_subject_transport["raw_subject_leakage"]["subject_id_accuracy"],
+            "source": "hsjepa_core/outputs/cross_subject_prototype_transport_core/cross_subject_prototype_transport_summary.json",
             "candidate": None,
         },
         {
@@ -405,7 +433,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "HS-JEPA core is a hidden human-state and listener-responsibility representation, "
             "not a standalone label classifier.  Its strongest evidence is masked context "
             "prediction, subject-invariant prototype grammar, subject-relative routine-break, "
-            "sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and "
+            "cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and "
             "listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
@@ -517,7 +545,41 @@ HS-JEPA는 사람마다 다른 절대 센서 크기를 외우는 대신,
 다만 label-probe 효과는 아직 작다. LB breakthrough로 번역하려면
 이 grammar를 listener/drift decoder가 읽어야 한다.
 
-### 4. Routine-Break World Model
+### 4. Cross-Subject Prototype Transport
+
+이전 prototype grammar 실험이 full cohort 안에서만 성립한 것인지 확인하기 위해,
+이번에는 fold마다 train subjects/blocks에서만 prototype grammar를 정의하고 held-out subject/block으로 운반했다.
+
+```text
+train subjects define subject-relative episode grammar
+  -> held-out subject is transported into that grammar
+  -> visible context predicts hidden transported prototype responsibilities
+```
+
+subject-heldout label-free pretext의 mean cross-entropy lift는
+`{fmt(by_case["cross_subject_prototype_transport"].get("pretext_lift"), 6)}`이다.
+transported stats+probabilities frozen probe의 prior 대비 delta는
+`{fmt(by_case["cross_subject_prototype_transport"].get("stats_probabilities_delta_vs_prior"), 6)}`이고,
+stats-only frozen probe의 prior 대비 delta는
+`{fmt(by_case["cross_subject_prototype_transport"].get("stats_delta_vs_prior"), 6)}`이다.
+
+raw lifelog PCA 대비 stats-only delta는
+`{fmt(by_case["cross_subject_prototype_transport"].get("stats_delta_vs_raw"), 6)}`이다.
+subject-id leakage 기준으로 transported stats accuracy는
+`{fmt(by_case["cross_subject_prototype_transport"].get("subject_leakage_accuracy"), 6)}`이고,
+raw lifelog PCA reference는 `{fmt(by_case["cross_subject_prototype_transport"].get("raw_leakage_reference"), 6)}`이다.
+
+따라서 이 실험은 HS-JEPA core에 더 강한 문장을 허용한다.
+
+```text
+HS-JEPA는 full cohort 안에서만 쓸 수 있는 subject-relative grammar가 아니라,
+train subjects가 정의한 생활 episode grammar를 held-out subject로 운반할 수 있다.
+```
+
+단, probability-rich readout은 leakage가 커질 수 있다.
+논문에서는 transport 가능성과 readout leakage risk를 분리해서 써야 한다.
+
+### 5. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.
@@ -532,7 +594,7 @@ subject-heldout low-trust frozen probe에서 prior 대비 delta는
 `{fmt(by_case["routine_break_world_model"]["value"], 6)}`이다.
 효과 크기는 여전히 작지만, 이전 subject-relative world model보다 더 선명한 core-positive signal이다.
 
-### 5. Sleep-Pressure World Model
+### 6. Sleep-Pressure World Model
 
 수면 label을 직접 target으로 쓰지 않고, night disturbance, physiological load,
 social/cognitive arousal, rest-environment stability, calendar routine pressure를
@@ -549,7 +611,7 @@ pretext 예측성은 강하지만 label probe 효과는 작다. 이 결과는 HS
 sleep-pressure representation을 만들 수 있다는 core evidence이면서,
 그 representation을 Q/S label로 번역하려면 listener/action-health adapter가 필요하다는 경계이기도 하다.
 
-### 6. Cohort-Relative World Model
+### 7. Cohort-Relative World Model
 
 routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고,
 오늘의 state를 개인 기준과 peer 기준에서 동시에 해석했다.
@@ -570,7 +632,7 @@ observed/full cohort geometry는 subject identity shortcut이 강하다.
 core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
 ```
 
-### 7. Multi-Target Human-State World Model
+### 8. Multi-Target Human-State World Model
 
 routine-break, sleep-pressure, cohort-relative hidden target을 따로 쓰지 않고,
 하나의 route-preserving predicted bundle로 묶었다.
@@ -601,7 +663,7 @@ PCA로 하나의 compressed latent로 뭉치면 negative.
 downstream listener가 구분할 수 있도록 route axes를 보존한다.
 ```
 
-### 8. Route-Responsibility Diagnostic
+### 9. Route-Responsibility Diagnostic
 
 multi-target bundle 위에서 다른 route들로 held-out route를 예측하고,
 그 residual energy로 label-free route responsibility를 만들었다.
@@ -627,7 +689,7 @@ route responsibility는 label 없이 관측 가능하다.
 이것은 실패라기보다 HS-JEPA architecture boundary다.
 다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
 
-### 9. Listener-Conditioned Route Readout
+### 10. Listener-Conditioned Route Readout
 
 route-preserving multi-target bundle을 만든 뒤, frozen probe에서 target/listener별 route readout을 선택했다.
 이 단계는 label-free core pretext가 아니라 frozen probe diagnostic이다.
@@ -653,7 +715,7 @@ HS-JEPA core의 좋은 interface는 하나의 압축 latent도,
 route axes를 보존하고, downstream listener가 target별로 다른 route를 읽게 해야 한다.
 ```
 
-### 10. Subject-Invariant Listener Manifold
+### 11. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -661,7 +723,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 11. Listener Responsibility Field
+### 12. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.
@@ -729,6 +791,7 @@ core가 위치를 좁히고 adapter가 방향 독성을 수리한 boundary case�
 ```text
 subject-relative world model: tiny positive
 subject-invariant prototype grammar: pretext positive, low subject leakage, weak probe positive
+cross-subject prototype transport: train-subject grammar transports to held-out subjects, but readout leakage must be controlled
 routine-break world model: small positive and stronger hidden target
 sleep-pressure world model: strong pretext, small label-probe positive
 cohort-relative world model: predicted state positive, observed/full shortcut 위험
