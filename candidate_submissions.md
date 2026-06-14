@@ -11471,3 +11471,47 @@ direction만 맞은 것인가, 아니면 train drift consistency로 magnitude까
 
 - direction은 맞지만 magnitude overshoot는 이미 포화됐다는 뜻이다.
 - 그러면 다음 후보는 Q2/Q3 direction을 더 미는 것이 아니라, S-target hidden-state 또는 private-state factorization을 새 target representation으로 잡아야 한다.
+
+## Human-State Drift Line Control Axis
+
+- recommended file: `submission_hsjepa_human_state_drift_line_q2_dominant_forward_axis_03b49564_uploadsafe.csv`
+- code: `sleep_competition_adapter/human_state_drift_line_explorer.py`
+- report: `sleep_competition_adapter/outputs/human_state_drift_line_explorer/HUMAN_STATE_DRIFT_LINE_EXPLORER_KO.md`
+- paper doc: `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
+- team wrapper: `team_hsjepa_end_to_end/human_state_drift_line_control/run_end_to_end.py`
+- status: upload-safe next sensor after confirmed `0.5619100863`
+
+### Why This Candidate Exists
+
+`certified_replay` proved that subject-level Q2/Q3 drift direction transfers. The next question is not direction but magnitude.
+
+```text
+Has Q2 reached its optimum at logit step 0.75,
+or is the intervention/degradation route still under-powered?
+```
+
+### Candidate Anatomy
+
+`q2_dominant_forward_axis` keeps the confirmed Q3 companion route but pushes Q2 harder.
+
+- base: FrontierSilence
+- active subjects: same as confirmed drift field
+- Q2 logit step: `0.90`
+- Q3 logit step: `0.25`
+- changed rows: `202`
+- changed cells: `404`
+- upload safe: `True`
+
+### Submission Priority
+
+높음. 이 후보는 best 보존형이 아니라, 현재 가장 중요한 믿음 하나를 자른다.
+
+좋아지면:
+
+- Q2 route가 아직 under-powered였다.
+- HS-JEPA는 `hidden state direction`뿐 아니라 `route-specific magnitude decoder`를 가져야 한다.
+
+나빠지면:
+
+- Q2 `0.75` step 부근이 이미 public aggregate optimum에 가깝다.
+- 이후에는 Q2/Q3 line을 더 미는 실험을 중단하고 S-target hidden route 또는 private-state factorization으로 가야 한다.

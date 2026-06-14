@@ -1,0 +1,611 @@
+{
+  "base_submission": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+  "confirmed_positive": {
+    "submission": "submission_hsjepa_human_state_drift_consistency_certified_replay_76bb1a88_uploadsafe.csv",
+    "public_lb": 0.5619100863,
+    "delta_vs_frontier_silence": -0.0058168581000001
+  },
+  "recommended_next_sensor": "q2_dominant_forward_axis",
+  "recommended_next_sensor_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_line_q2_dominant_forward_axis_03b49564_uploadsafe.csv",
+  "variants": [
+    {
+      "name": "q2_dominant_forward_axis",
+      "worldview": "The confirmed drift direction is right, and Q2 is the real intervention/degradation axis.  Push Q2 beyond the certified replay while keeping Q3 at the confirmed companion strength.",
+      "config": {
+        "name": "q2_dominant_forward_axis",
+        "worldview": "The confirmed drift direction is right, and Q2 is the real intervention/degradation axis.  Push Q2 beyond the certified replay while keeping Q3 at the confirmed companion strength.",
+        "q2_step": 0.9,
+        "q3_step": 0.25,
+        "extra_subject_q2_steps": [],
+        "extra_subject_q3_steps": [],
+        "probability_floor": 1e-06
+      },
+      "submission": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_q2_dominant_forward_axis_03b49564_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_q2_dominant_forward_axis_03b49564_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 3.3603820262119876e-06,
+        "max_prob": 0.9999977899410004,
+        "changed_cells_vs_frontier_silence": 404,
+        "upload_safe": true
+      },
+      "changed_rows_vs_frontier_silence": 202,
+      "changed_cells_vs_frontier_silence": 404,
+      "target_changes": {
+        "Q1": 0,
+        "Q2": 202,
+        "Q3": 202,
+        "S1": 0,
+        "S2": 0,
+        "S3": 0,
+        "S4": 0
+      },
+      "mean_abs_logit_delta": {
+        "Q1": 1.562573404001455e-13,
+        "Q2": 0.7272000000000001,
+        "Q3": 0.2019999999999959,
+        "S1": 7.749702268800007e-13,
+        "S2": 2.065357052050132e-13,
+        "S3": 1.0478423684290306e-16,
+        "S4": 2.3380880564971563e-15
+      },
+      "root_submission": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_line_q2_dominant_forward_axis_03b49564_uploadsafe.csv",
+      "subject_steps": [
+        {
+          "subject_id": "id01",
+          "listener_sign": 0,
+          "Q2_train_drift": 0.11904761904761907,
+          "Q3_train_drift": -0.02857142857142858,
+          "Q2_logit_step": 0.0,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id02",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.08333333333333337,
+          "Q3_train_drift": 0.125,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id03",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2536764705882353,
+          "Q3_train_drift": -0.044117647058823484,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id04",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.333743842364532,
+          "Q3_train_drift": 0.11330049261083741,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id05",
+          "listener_sign": 0,
+          "Q2_train_drift": -0.40909090909090906,
+          "Q3_train_drift": 0.0,
+          "Q2_logit_step": 0.0,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id06",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.5416666666666666,
+          "Q3_train_drift": 0.5833333333333333,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id07",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.30666666666666664,
+          "Q3_train_drift": 0.1833333333333333,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id08",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.0,
+          "Q3_train_drift": -0.17857142857142855,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id09",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2714285714285714,
+          "Q3_train_drift": -0.021428571428571463,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id10",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.03308823529411764,
+          "Q3_train_drift": -0.22058823529411764,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.0
+        }
+      ]
+    },
+    {
+      "name": "joint_forward_axis",
+      "worldview": "The whole Q2/Q3 drift line is under-powered.  Move both Q2 and Q3 forward along the same hidden state axis.",
+      "config": {
+        "name": "joint_forward_axis",
+        "worldview": "The whole Q2/Q3 drift line is under-powered.  Move both Q2 and Q3 forward along the same hidden state axis.",
+        "q2_step": 0.8625,
+        "q3_step": 0.2875,
+        "extra_subject_q2_steps": [],
+        "extra_subject_q3_steps": [],
+        "probability_floor": 1e-06
+      },
+      "submission": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_joint_forward_axis_0b421a51_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_joint_forward_axis_0b421a51_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 3.3603820262119876e-06,
+        "max_prob": 0.9999977899410004,
+        "changed_cells_vs_frontier_silence": 404,
+        "upload_safe": true
+      },
+      "changed_rows_vs_frontier_silence": 202,
+      "changed_cells_vs_frontier_silence": 404,
+      "target_changes": {
+        "Q1": 0,
+        "Q2": 202,
+        "Q3": 202,
+        "S1": 0,
+        "S2": 0,
+        "S3": 0,
+        "S4": 0
+      },
+      "mean_abs_logit_delta": {
+        "Q1": 1.562573404001455e-13,
+        "Q2": 0.6969,
+        "Q3": 0.23230000000000905,
+        "S1": 7.749702268800007e-13,
+        "S2": 2.065357052050132e-13,
+        "S3": 1.0478423684290306e-16,
+        "S4": 2.3380880564971563e-15
+      },
+      "root_submission": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_line_joint_forward_axis_0b421a51_uploadsafe.csv",
+      "subject_steps": [
+        {
+          "subject_id": "id01",
+          "listener_sign": 0,
+          "Q2_train_drift": 0.11904761904761907,
+          "Q3_train_drift": -0.02857142857142858,
+          "Q2_logit_step": 0.0,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id02",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.08333333333333337,
+          "Q3_train_drift": 0.125,
+          "Q2_logit_step": -0.8625,
+          "Q3_logit_step": -0.2875,
+          "Q2_step_vs_confirmed": -0.11250000000000004,
+          "Q3_step_vs_confirmed": -0.03749999999999998
+        },
+        {
+          "subject_id": "id03",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2536764705882353,
+          "Q3_train_drift": -0.044117647058823484,
+          "Q2_logit_step": 0.8625,
+          "Q3_logit_step": 0.2875,
+          "Q2_step_vs_confirmed": 0.11250000000000004,
+          "Q3_step_vs_confirmed": 0.03749999999999998
+        },
+        {
+          "subject_id": "id04",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.333743842364532,
+          "Q3_train_drift": 0.11330049261083741,
+          "Q2_logit_step": 0.8625,
+          "Q3_logit_step": 0.2875,
+          "Q2_step_vs_confirmed": 0.11250000000000004,
+          "Q3_step_vs_confirmed": 0.03749999999999998
+        },
+        {
+          "subject_id": "id05",
+          "listener_sign": 0,
+          "Q2_train_drift": -0.40909090909090906,
+          "Q3_train_drift": 0.0,
+          "Q2_logit_step": 0.0,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id06",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.5416666666666666,
+          "Q3_train_drift": 0.5833333333333333,
+          "Q2_logit_step": 0.8625,
+          "Q3_logit_step": 0.2875,
+          "Q2_step_vs_confirmed": 0.11250000000000004,
+          "Q3_step_vs_confirmed": 0.03749999999999998
+        },
+        {
+          "subject_id": "id07",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.30666666666666664,
+          "Q3_train_drift": 0.1833333333333333,
+          "Q2_logit_step": -0.8625,
+          "Q3_logit_step": -0.2875,
+          "Q2_step_vs_confirmed": -0.11250000000000004,
+          "Q3_step_vs_confirmed": -0.03749999999999998
+        },
+        {
+          "subject_id": "id08",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.0,
+          "Q3_train_drift": -0.17857142857142855,
+          "Q2_logit_step": -0.8625,
+          "Q3_logit_step": -0.2875,
+          "Q2_step_vs_confirmed": -0.11250000000000004,
+          "Q3_step_vs_confirmed": -0.03749999999999998
+        },
+        {
+          "subject_id": "id09",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2714285714285714,
+          "Q3_train_drift": -0.021428571428571463,
+          "Q2_logit_step": 0.8625,
+          "Q3_logit_step": 0.2875,
+          "Q2_step_vs_confirmed": 0.11250000000000004,
+          "Q3_step_vs_confirmed": 0.03749999999999998
+        },
+        {
+          "subject_id": "id10",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.03308823529411764,
+          "Q3_train_drift": -0.22058823529411764,
+          "Q2_logit_step": -0.8625,
+          "Q3_logit_step": -0.2875,
+          "Q2_step_vs_confirmed": -0.11250000000000004,
+          "Q3_step_vs_confirmed": -0.03749999999999998
+        }
+      ]
+    },
+    {
+      "name": "q2_forward_q3_pullback_axis",
+      "worldview": "Q2 carries the true human-state drift, but Q3 is a noisy companion. Push Q2 while pulling Q3 slightly back from the confirmed replay.",
+      "config": {
+        "name": "q2_forward_q3_pullback_axis",
+        "worldview": "Q2 carries the true human-state drift, but Q3 is a noisy companion. Push Q2 while pulling Q3 slightly back from the confirmed replay.",
+        "q2_step": 0.9,
+        "q3_step": 0.18,
+        "extra_subject_q2_steps": [],
+        "extra_subject_q3_steps": [],
+        "probability_floor": 1e-06
+      },
+      "submission": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_q2_forward_q3_pullback_axis_a5a6f818_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_q2_forward_q3_pullback_axis_a5a6f818_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 3.3603820262119876e-06,
+        "max_prob": 0.9999977899410004,
+        "changed_cells_vs_frontier_silence": 404,
+        "upload_safe": true
+      },
+      "changed_rows_vs_frontier_silence": 202,
+      "changed_cells_vs_frontier_silence": 404,
+      "target_changes": {
+        "Q1": 0,
+        "Q2": 202,
+        "Q3": 202,
+        "S1": 0,
+        "S2": 0,
+        "S3": 0,
+        "S4": 0
+      },
+      "mean_abs_logit_delta": {
+        "Q1": 1.562573404001455e-13,
+        "Q2": 0.7272000000000001,
+        "Q3": 0.1454399999999995,
+        "S1": 7.749702268800007e-13,
+        "S2": 2.065357052050132e-13,
+        "S3": 1.0478423684290306e-16,
+        "S4": 2.3380880564971563e-15
+      },
+      "root_submission": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_line_q2_forward_q3_pullback_axis_a5a6f818_uploadsafe.csv",
+      "subject_steps": [
+        {
+          "subject_id": "id01",
+          "listener_sign": 0,
+          "Q2_train_drift": 0.11904761904761907,
+          "Q3_train_drift": -0.02857142857142858,
+          "Q2_logit_step": 0.0,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id02",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.08333333333333337,
+          "Q3_train_drift": 0.125,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.18,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.07
+        },
+        {
+          "subject_id": "id03",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2536764705882353,
+          "Q3_train_drift": -0.044117647058823484,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.18,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": -0.07
+        },
+        {
+          "subject_id": "id04",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.333743842364532,
+          "Q3_train_drift": 0.11330049261083741,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.18,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": -0.07
+        },
+        {
+          "subject_id": "id05",
+          "listener_sign": 0,
+          "Q2_train_drift": -0.40909090909090906,
+          "Q3_train_drift": 0.0,
+          "Q2_logit_step": 0.0,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id06",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.5416666666666666,
+          "Q3_train_drift": 0.5833333333333333,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.18,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": -0.07
+        },
+        {
+          "subject_id": "id07",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.30666666666666664,
+          "Q3_train_drift": 0.1833333333333333,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.18,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.07
+        },
+        {
+          "subject_id": "id08",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.0,
+          "Q3_train_drift": -0.17857142857142855,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.18,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.07
+        },
+        {
+          "subject_id": "id09",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2714285714285714,
+          "Q3_train_drift": -0.021428571428571463,
+          "Q2_logit_step": 0.9,
+          "Q3_logit_step": 0.18,
+          "Q2_step_vs_confirmed": 0.15000000000000002,
+          "Q3_step_vs_confirmed": -0.07
+        },
+        {
+          "subject_id": "id10",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.03308823529411764,
+          "Q3_train_drift": -0.22058823529411764,
+          "Q2_logit_step": -0.9,
+          "Q3_logit_step": -0.18,
+          "Q2_step_vs_confirmed": -0.15000000000000002,
+          "Q3_step_vs_confirmed": 0.07
+        }
+      ]
+    },
+    {
+      "name": "silent_subject_reentry_axis",
+      "worldview": "id05 was silent in the aggregate listener field, but train history shows the strongest Q2 downward drift.  Keep the confirmed axis and test whether this silent subject should re-enter Q2.",
+      "config": {
+        "name": "silent_subject_reentry_axis",
+        "worldview": "id05 was silent in the aggregate listener field, but train history shows the strongest Q2 downward drift.  Keep the confirmed axis and test whether this silent subject should re-enter Q2.",
+        "q2_step": 0.75,
+        "q3_step": 0.25,
+        "extra_subject_q2_steps": [
+          [
+            "id05",
+            -0.5
+          ]
+        ],
+        "extra_subject_q3_steps": [],
+        "probability_floor": 1e-06
+      },
+      "submission": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_silent_subject_reentry_axis_e2103900_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/submission_hsjepa_human_state_drift_line_silent_subject_reentry_axis_e2103900_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 3.3603820262119876e-06,
+        "max_prob": 0.9999977899410004,
+        "changed_cells_vs_frontier_silence": 425,
+        "upload_safe": true
+      },
+      "changed_rows_vs_frontier_silence": 223,
+      "changed_cells_vs_frontier_silence": 425,
+      "target_changes": {
+        "Q1": 0,
+        "Q2": 223,
+        "Q3": 202,
+        "S1": 0,
+        "S2": 0,
+        "S3": 0,
+        "S4": 0
+      },
+      "mean_abs_logit_delta": {
+        "Q1": 1.562573404001455e-13,
+        "Q2": 0.648,
+        "Q3": 0.2019999999999959,
+        "S1": 7.749702268800007e-13,
+        "S2": 2.065357052050132e-13,
+        "S3": 1.0478423684290306e-16,
+        "S4": 2.3380880564971563e-15
+      },
+      "root_submission": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_human_state_drift_line_silent_subject_reentry_axis_e2103900_uploadsafe.csv",
+      "subject_steps": [
+        {
+          "subject_id": "id01",
+          "listener_sign": 0,
+          "Q2_train_drift": 0.11904761904761907,
+          "Q3_train_drift": -0.02857142857142858,
+          "Q2_logit_step": 0.0,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id02",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.08333333333333337,
+          "Q3_train_drift": 0.125,
+          "Q2_logit_step": -0.75,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id03",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2536764705882353,
+          "Q3_train_drift": -0.044117647058823484,
+          "Q2_logit_step": 0.75,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id04",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.333743842364532,
+          "Q3_train_drift": 0.11330049261083741,
+          "Q2_logit_step": 0.75,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id05",
+          "listener_sign": 0,
+          "Q2_train_drift": -0.40909090909090906,
+          "Q3_train_drift": 0.0,
+          "Q2_logit_step": -0.5,
+          "Q3_logit_step": 0.0,
+          "Q2_step_vs_confirmed": -0.5,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id06",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.5416666666666666,
+          "Q3_train_drift": 0.5833333333333333,
+          "Q2_logit_step": 0.75,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id07",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.30666666666666664,
+          "Q3_train_drift": 0.1833333333333333,
+          "Q2_logit_step": -0.75,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id08",
+          "listener_sign": -1,
+          "Q2_train_drift": 0.0,
+          "Q3_train_drift": -0.17857142857142855,
+          "Q2_logit_step": -0.75,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id09",
+          "listener_sign": 1,
+          "Q2_train_drift": 0.2714285714285714,
+          "Q3_train_drift": -0.021428571428571463,
+          "Q2_logit_step": 0.75,
+          "Q3_logit_step": 0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        },
+        {
+          "subject_id": "id10",
+          "listener_sign": -1,
+          "Q2_train_drift": -0.03308823529411764,
+          "Q3_train_drift": -0.22058823529411764,
+          "Q2_logit_step": -0.75,
+          "Q3_logit_step": -0.25,
+          "Q2_step_vs_confirmed": 0.0,
+          "Q3_step_vs_confirmed": 0.0
+        }
+      ]
+    }
+  ],
+  "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer/human_state_drift_line_readout.json",
+  "output_dir": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/human_state_drift_line_explorer"
+}

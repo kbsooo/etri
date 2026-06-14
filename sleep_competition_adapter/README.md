@@ -45,6 +45,7 @@ python3 sleep_competition_adapter/subject_heldout_route_responsibility_diagnosti
 python3 sleep_competition_adapter/subject_heldout_action_toxicity_field.py
 python3 sleep_competition_adapter/subject_relative_responsibility_assignment.py
 python3 sleep_competition_adapter/human_state_drift_consistency_certifier.py
+python3 sleep_competition_adapter/human_state_drift_line_explorer.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -100,6 +101,8 @@ python3 sleep_competition_adapter/human_state_drift_consistency_certifier.py
 `subject_relative_responsibility_assignment.py`는 위 실패가 absolute score calibration 문제인지 검사한다. 같은 subject-heldout action-health score를 subject-relative rank, target-relative rank, raw-vs-inverse pairwise probability로 바꿔 nested heldout stress를 다시 수행했다. best coordinate는 `pairwise_responsibility`였고, nested heldout gain은 `-5.538044`에서 `-1.188289`까지 개선되었다. 여전히 전체 gain은 음수지만 positive/negative subjects가 `5/5`까지 회복되었고, `S4`는 strict stable target으로 남았다. 즉 HS-JEPA core signal의 일부 병목은 score 좌표계였지만, 아직 release-grade assignment layer는 아니다.
 
 `human_state_drift_consistency_certifier.py`는 팀의 0.564749 certified result를 HS-JEPA 언어로 재정의한다. public LB를 정답으로 맞추는 것이 아니라, aggregate listener가 들려준 subject별 회복/악화 방향을 train-time subject drift와 대조해 Q2/Q3 subject-uniform logit action으로 번역한다. subject 내부 모든 row에 같은 이동을 주므로 row assignment noise를 최소화한다. 출력은 `certified_replay` control과, train drift가 listener 방향을 뒷받침하는 subject에서 step을 키우고 충돌 subject를 줄인 `drift_consistency_overshoot` challenger다. primary 후보는 `submission_hsjepa_human_state_drift_consistency_drift_consistency_overshoot_0fb93301_uploadsafe.csv`다.
+
+`human_state_drift_line_explorer.py`는 `certified_replay` public LB `0.5619100863` 이후의 다음 질문을 분리한다. confirmed replay가 subject-level direction을 증명했다면, 다음 병목은 magnitude다. 이 스크립트는 Q2/Q3 drift를 하나의 human-state control axis로 보고 `q2_dominant_forward_axis`, `joint_forward_axis`, `q2_forward_q3_pullback_axis`, `silent_subject_reentry_axis` 후보를 만든다. 가장 정보량이 큰 다음 센서는 `submission_hsjepa_human_state_drift_line_q2_dominant_forward_axis_03b49564_uploadsafe.csv`다.
 
 ## 산출물
 
