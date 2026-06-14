@@ -7,7 +7,7 @@
   "core_positive_case_count": 11,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -76,6 +76,30 @@
       "subject_leakage_accuracy": 0.2733333333333333,
       "raw_leakage_reference": 0.9577777777777777,
       "source": "hsjepa_core/outputs/cross_subject_prototype_transport_core/cross_subject_prototype_transport_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "transported_prototype_listener_readout",
+      "layer": "frozen_probe_diagnostic",
+      "question": "cross-subject transported prototype grammar는 target/listener별로 다른 view를 읽어야 하는가",
+      "primary_metric": "listener_conditioned_delta_vs_global_transport_logloss",
+      "value": -0.0013756670592766085,
+      "baseline": "global_transported_prototype_stats_probabilities",
+      "support": "transported_listener_readout_global_positive",
+      "interpretation": "label-free transported prototype grammar를 고정한 뒤 target별 listener가 읽을 view를 frozen probe로 선택했다. listener-conditioned readout은 global transported grammar와 prior를 이기며, selected routes의 subject leakage는 global all-view bundle보다 낮다. 단, route 선택에는 labels가 쓰였으므로 core pretext가 아니라 core-interface diagnostic이다.",
+      "delta_vs_prior": -0.0025093257234025668,
+      "delta_vs_raw": -0.0033590632379357777,
+      "row_block_delta_vs_global": 9.77300940774306e-06,
+      "chronological_delta_vs_global": -0.0009189972317696915,
+      "fold_wins": "23/35",
+      "selected_route_counts": {
+        "listener_view_calendar_rhythm_stats_probabilities": 3,
+        "listener_view_mobility_environment_stats": 1,
+        "listener_view_calendar_rhythm_stats": 1,
+        "listener_view_app_social_context_probabilities": 1,
+        "listener_view_body_activity_sleep_stats_probabilities": 1
+      },
+      "source": "hsjepa_core/outputs/transported_prototype_listener_readout_core/transported_prototype_listener_readout_summary.json",
       "candidate": null
     },
     {

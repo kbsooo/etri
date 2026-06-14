@@ -128,6 +128,14 @@ python3 team_hsjepa_end_to_end/cross_subject_prototype_transport_core/run_end_to
 
 이 실험은 train subjects/blocks에서만 정의한 subject-relative episode grammar를 held-out subject/block으로 transport하는 label-free JEPA 검증이다. 현재 결론은 `cross-subject prototype transport core positive`다.
 
+운반된 prototype grammar를 Q/S target listener별로 어떻게 읽어야 하는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/transported_prototype_listener_readout_core/run_end_to_end.py
+```
+
+이 실험은 transported grammar를 하나의 global latent로 압축하지 않고 target별 listener-readable view로 노출해야 하는지 보는 frozen-probe diagnostic이다. 현재 결론은 `transported listener readout global positive`다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

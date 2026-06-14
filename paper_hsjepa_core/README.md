@@ -60,6 +60,7 @@
 - `paper_hsjepa_core/EPISODE_TRANSITION_RETRIEVAL_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_PROTOTYPE_GRAMMAR_CORE_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_PROTOTYPE_TRANSPORT_CORE_KO.md`
+- `paper_hsjepa_core/TRANSPORTED_PROTOTYPE_LISTENER_READOUT_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -124,6 +125,25 @@ stats-only subject-id accuracy는 0.273333으로 raw lifelog PCA 0.957778보다 
 HS-JEPA는 각 subject의 절대 feature fingerprint를 외우는 대신,
 train subjects에서 형성된 subject-relative 생활 episode grammar를
 held-out subject에게 운반 가능한 hidden human-state representation으로 학습한다.
+```
+
+`TRANSPORTED_PROTOTYPE_LISTENER_READOUT_CORE_KO.md`는 transported grammar를 하나의 global latent로 읽는 것이 충분한지, 아니면 Q/S listener별로 다른 transported view를 읽어야 하는지 검증한 core-interface 문서다.
+
+현재 결론:
+
+```text
+listener-conditioned transported readout은 subject-heldout에서 global transport보다 -0.001376 좋다.
+prior 대비 -0.002509, raw lifelog PCA 대비 -0.003359이다.
+선택 route는 23/35 subject-heldout folds에서 global transport를 이긴다.
+row-block에서는 거의 동률(+0.000010), chronological에서는 -0.000919로 살아남는다.
+다만 listener view 선택에는 frozen probe labels가 쓰였으므로, pure core pretext가 아니라 core-interface diagnostic이다.
+```
+
+논문 문장으로는 다음이 적절하다.
+
+```text
+Transported human-state grammar becomes more useful when exposed as a
+listener-conditioned interface rather than collapsed into one global latent.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

@@ -1,0 +1,235 @@
+{
+  "package": "transported_prototype_listener_readout_core",
+  "status": "transported_prototype_listener_readout_core_ready",
+  "verdict": "transported_listener_readout_global_positive",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_label_as_pretext_target": false,
+  "core_representation": "cross_subject_transported_prototype_grammar",
+  "listener_selection_layer": "frozen_probe_diagnostic",
+  "subject_prior_logloss": 0.6778575331695814,
+  "subject_raw_logloss": 0.6787072706841146,
+  "subject_global_transport_logloss": 0.6767238745054555,
+  "subject_listener_conditioned_logloss": 0.6753482074461788,
+  "subject_listener_delta_vs_prior": -0.0025093257234025668,
+  "subject_listener_delta_vs_global_transport": -0.0013756670592766085,
+  "subject_listener_delta_vs_raw": -0.0033590632379357777,
+  "row_block_listener_logloss": 0.6733407331878235,
+  "row_block_global_transport_logloss": 0.6733309601784158,
+  "row_block_listener_delta_vs_global_transport": 9.77300940774306e-06,
+  "chronological_listener_logloss": 0.670617762690383,
+  "chronological_global_transport_logloss": 0.6715367599221527,
+  "chronological_listener_delta_vs_global_transport": -0.0009189972317696915,
+  "selected_route_counts": {
+    "listener_view_calendar_rhythm_stats_probabilities": 3,
+    "listener_view_mobility_environment_stats": 1,
+    "listener_view_calendar_rhythm_stats": 1,
+    "listener_view_app_social_context_probabilities": 1,
+    "listener_view_body_activity_sleep_stats_probabilities": 1
+  },
+  "selected_routes": [
+    {
+      "target": "Q1",
+      "selected_feature_set": "listener_view_mobility_environment_stats",
+      "selected_logloss": 0.7037839650341243,
+      "selected_auc": 0.39477687125896366,
+      "global_transport_logloss": 0.7077950502882431,
+      "delta_vs_global_transport": -0.004011085254118751
+    },
+    {
+      "target": "Q2",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats",
+      "selected_logloss": 0.693520975122829,
+      "selected_auc": 0.42284464597419796,
+      "global_transport_logloss": 0.6955940623924477,
+      "delta_vs_global_transport": -0.0020730872696187452
+    },
+    {
+      "target": "Q3",
+      "selected_feature_set": "listener_view_app_social_context_probabilities",
+      "selected_logloss": 0.6790276387791504,
+      "selected_auc": 0.44699588477366253,
+      "global_transport_logloss": 0.6792935123485363,
+      "delta_vs_global_transport": -0.00026587356938589934
+    },
+    {
+      "target": "S1",
+      "selected_feature_set": "listener_view_body_activity_sleep_stats_probabilities",
+      "selected_logloss": 0.6385901865239477,
+      "selected_auc": 0.3849342839570853,
+      "global_transport_logloss": 0.6401835339297535,
+      "delta_vs_global_transport": -0.001593347405805745
+    },
+    {
+      "target": "S2",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats_probabilities",
+      "selected_logloss": 0.6579301533566422,
+      "selected_auc": 0.41488228516771375,
+      "global_transport_logloss": 0.6527430225674198,
+      "delta_vs_global_transport": 0.005187130789222394
+    },
+    {
+      "target": "S3",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats_probabilities",
+      "selected_logloss": 0.6575016332351838,
+      "selected_auc": 0.3635199576121512,
+      "global_transport_logloss": 0.6659529465850915,
+      "delta_vs_global_transport": -0.008451313349907674
+    },
+    {
+      "target": "S4",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats_probabilities",
+      "selected_logloss": 0.6970829000713742,
+      "selected_auc": 0.3954425204425205,
+      "global_transport_logloss": 0.6955049934266959,
+      "delta_vs_global_transport": 0.001577906644678273
+    }
+  ],
+  "selection_stability": [
+    {
+      "target": "Q1",
+      "selected_feature_set": "listener_view_mobility_environment_stats",
+      "mean_delta_vs_global": -0.004026854609847153,
+      "win_folds_vs_global": 4,
+      "total_folds": 5
+    },
+    {
+      "target": "Q2",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats",
+      "mean_delta_vs_global": -0.0020719055501571713,
+      "win_folds_vs_global": 4,
+      "total_folds": 5
+    },
+    {
+      "target": "Q3",
+      "selected_feature_set": "listener_view_app_social_context_probabilities",
+      "mean_delta_vs_global": -0.00026130256746181857,
+      "win_folds_vs_global": 3,
+      "total_folds": 5
+    },
+    {
+      "target": "S1",
+      "selected_feature_set": "listener_view_body_activity_sleep_stats_probabilities",
+      "mean_delta_vs_global": -0.0015919840252746954,
+      "win_folds_vs_global": 4,
+      "total_folds": 5
+    },
+    {
+      "target": "S2",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats_probabilities",
+      "mean_delta_vs_global": 0.0052225701494277525,
+      "win_folds_vs_global": 1,
+      "total_folds": 5
+    },
+    {
+      "target": "S3",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats_probabilities",
+      "mean_delta_vs_global": -0.00847323948979981,
+      "win_folds_vs_global": 5,
+      "total_folds": 5
+    },
+    {
+      "target": "S4",
+      "selected_feature_set": "listener_view_calendar_rhythm_stats_probabilities",
+      "mean_delta_vs_global": 0.0015969268196552645,
+      "win_folds_vs_global": 2,
+      "total_folds": 5
+    }
+  ],
+  "selection_win_folds_total": 23,
+  "selection_folds_total": 35,
+  "subject_best_probe": {
+    "split": "subject_heldout",
+    "feature_set": "listener_conditioned_transported_prototype_readout_calibrated10",
+    "target": "all",
+    "logloss": 0.6753482074461788,
+    "auc": 0.40334234988375645,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1,
+    "selected_feature_set": "target_specific",
+    "listener_view_selected_from": "subject_heldout_calibrated_probe"
+  },
+  "row_block_best_probe": {
+    "split": "row_block_holdout",
+    "feature_set": "raw_lifelog_pca_calibrated10",
+    "target": "all",
+    "logloss": 0.6682460000256009,
+    "auc": 0.48395758295854857,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 450,
+    "probe_calibration_shrink": 0.1,
+    "selected_feature_set": null,
+    "listener_view_selected_from": null
+  },
+  "chronological_best_probe": {
+    "split": "chronological_holdout",
+    "feature_set": "raw_lifelog_pca_calibrated10",
+    "target": "all",
+    "logloss": 0.6647729379955305,
+    "auc": 0.6030525100511579,
+    "uses_public_score": false,
+    "uses_train_labels": true,
+    "core_representation_frozen": true,
+    "evaluated_rows": 131,
+    "probe_calibration_shrink": 0.1,
+    "selected_feature_set": null,
+    "listener_view_selected_from": null
+  },
+  "selected_route_subject_leakage": [
+    {
+      "split": "subject_heldout",
+      "feature_set": "listener_view_calendar_rhythm_stats",
+      "subject_id_accuracy": 0.13111111111111112,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.004444444444444445
+    },
+    {
+      "split": "subject_heldout",
+      "feature_set": "listener_view_mobility_environment_stats",
+      "subject_id_accuracy": 0.16444444444444445,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.03777777777777777
+    },
+    {
+      "split": "subject_heldout",
+      "feature_set": "listener_view_body_activity_sleep_stats_probabilities",
+      "subject_id_accuracy": 0.2288888888888889,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.10222222222222221
+    },
+    {
+      "split": "subject_heldout",
+      "feature_set": "listener_view_app_social_context_probabilities",
+      "subject_id_accuracy": 0.24444444444444444,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.11777777777777776
+    },
+    {
+      "split": "subject_heldout",
+      "feature_set": "listener_view_calendar_rhythm_stats_probabilities",
+      "subject_id_accuracy": 0.2733333333333333,
+      "chance_accuracy": 0.12666666666666668,
+      "leakage_lift_vs_chance": 0.14666666666666664
+    }
+  ],
+  "global_transport_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "transported_prototype_stats_probabilities",
+    "subject_id_accuracy": 0.5422222222222223,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.41555555555555557
+  },
+  "raw_subject_leakage": {
+    "split": "subject_heldout",
+    "feature_set": "raw_lifelog_pca",
+    "subject_id_accuracy": 0.9577777777777777,
+    "chance_accuracy": 0.12666666666666668,
+    "leakage_lift_vs_chance": 0.831111111111111
+  }
+}

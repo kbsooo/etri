@@ -18690,3 +18690,112 @@ row-block에서는 raw lifelog PCA가 아직 강하다.
 
 다음 breakthrough 방향은 prototype grammar 자체가 아니라,
 transported grammar를 listener-specific drift/action-health decoder로 읽는 것이다.
+
+## Transported Prototype Listener Readout Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_transported_prototype_listener_readout_core.py`
+- Report: `hsjepa_core/outputs/transported_prototype_listener_readout_core/TRANSPORTED_PROTOTYPE_LISTENER_READOUT_CORE_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/TRANSPORTED_PROTOTYPE_LISTENER_READOUT_CORE_KO.md`
+- Team wrapper: `team_hsjepa_end_to_end/transported_prototype_listener_readout_core/run_end_to_end.py`
+- Submission: none
+
+### Observe
+
+cross-subject prototype transport는 positive였지만, global transported bundle을 그대로 쓰면
+target/listener별로 필요한 grammar view가 평균으로 섞일 수 있다.
+
+### Wonder
+
+운반된 human-state grammar는 하나의 global latent로 읽어야 하는가,
+아니면 Q/S target listener별로 서로 다른 transported view를 읽어야 하는가?
+
+### Hypothesis
+
+```text
+If HS-JEPA should expose a listener-readable human-state interface,
+then a target-specific frozen listener readout over transported prototype views
+should improve over a global transported grammar while keeping subject leakage below raw lifelog PCA.
+```
+
+### Falsification Design
+
+- core representation: cross-subject transported prototype grammar
+- candidate listener views:
+  - calendar rhythm
+  - phone behavior
+  - app/social context
+  - mobility/environment
+  - body/activity/sleep
+- candidate view forms:
+  - predicted probabilities
+  - surprise/energy stats
+  - stats + probabilities
+- selection:
+  - subject-heldout calibrated frozen probe only
+- stress:
+  - subject-heldout
+  - row-block holdout
+  - chronological holdout
+  - subject leakage diagnostic
+- forbidden information:
+  - public LB ledger
+  - prior submission probabilities
+  - proprietary embedding API
+  - label as pretext target
+
+### Result
+
+- verdict: `transported_listener_readout_global_positive`
+- subject listener-conditioned logloss: `0.675348`
+- subject global transport logloss: `0.676724`
+- subject prior logloss: `0.677858`
+- subject raw lifelog PCA logloss: `0.678707`
+- delta vs global transport: `-0.001376`
+- delta vs prior: `-0.002509`
+- delta vs raw lifelog PCA: `-0.003359`
+- row-block delta vs global transport: `+0.000010`
+- chronological delta vs global transport: `-0.000919`
+- selected route fold wins: `23/35`
+- global transported stats+probabilities subject-id accuracy: `0.542222`
+- selected route leakage range: `0.131111` to `0.273333`
+- raw lifelog PCA subject-id accuracy: `0.957778`
+
+Target별 선택:
+
+```text
+Q1 -> mobility_environment stats
+Q2 -> calendar_rhythm stats
+Q3 -> app_social_context probabilities
+S1 -> body_activity_sleep stats+probabilities
+S2 -> calendar_rhythm stats+probabilities, but global transport is better
+S3 -> calendar_rhythm stats+probabilities
+S4 -> calendar_rhythm stats+probabilities, but global transport is slightly better
+```
+
+### Interpretation
+
+이번 실험은 HS-JEPA 논문 패키징에 중요하다.
+
+```text
+Transported grammar should not be collapsed into one global latent.
+It should be exposed as listener-readable views.
+```
+
+하지만 이것은 pure core pretext가 아니라 core-interface diagnostic이다.
+target별 view 선택에는 frozen probe labels가 쓰였다.
+
+따라서 정확한 결론은 다음이다.
+
+```text
+Core:
+  train-subject grammar transports to held-out subjects.
+
+Interface:
+  target listeners read different transported views.
+
+Boundary:
+  S2/S4는 target-specific readout보다 global bundle이 더 안전할 수 있다.
+```
+
+다음 큰 실험은 이 listener readout을 label selection이 아니라 label-free listener responsibility로 바꾸는 것이다.
