@@ -34,6 +34,7 @@ visible human-life context
 | label_free_transported_listener_responsibility | core_boundary | semantic_listener_delta_vs_global_transport_logloss | 0.000914 | global_transported_prototype | label_free_listener_responsibility_prior_positive |
 | learned_listener_responsibility_pretext | core | best_learned_delta_vs_handcoded_semantic_logloss | -0.000495 | hand_coded_semantic_listener_responsibility | learned_listener_responsibility_beats_handcoded_positive |
 | invariant_listener_responsibility_pretext | core_boundary | best_invariant_delta_vs_current_relative_logloss | -0.000258 | current_relative_semantic_listener_responsibility | invariant_listener_responsibility_beats_current_positive |
+| multi_head_listener_responsibility_pretext | core_boundary | best_single_head_delta_vs_direct_semantic_logloss | -0.000175 | hand_coded_direct_semantic_listener_responsibility | future_head_positive_multihead_concat_boundary |
 | routine_break_world_model | core | routine_full_delta_vs_prior_logloss | -0.001673 | fold_prior_low_trust_probe | positive_but_small |
 | sleep_pressure_world_model | core | sleep_pressure_full_delta_vs_prior_logloss | -0.000867 | fold_prior_low_trust_probe | positive_but_small |
 | cohort_relative_world_model | core | cohort_relative_predicted_delta_vs_prior_logloss | -0.001381 | fold_prior_low_trust_probe | positive_with_leakage_boundary |
@@ -321,7 +322,65 @@ HS-JEPA core에서 좋은 human-state teacher는
 multi-head로 보존하고 listener가 필요한 head를 읽게 해야 한다.
 ```
 
-### 9. Routine-Break World Model
+### 9. Multi-Head Listener Responsibility Pretext
+
+직전 결론을 그대로 반증했다.
+이번에는 current/future/cohort responsibility를 하나의 smoothed teacher로 만들지 않고,
+세 head를 따로 예측한 뒤 frozen listener probe가 single/concat/delta geometry를 읽게 했다.
+
+```text
+subject-relative visible context
+  -> current listener responsibility head
+  -> future-consistent listener responsibility head
+  -> cohort-consistent listener responsibility head
+  -> frozen listener reads head geometry
+```
+
+결과는 positive와 negative가 같이 나왔다.
+
+```text
+best single head: head_future_relative_listener_responsibility_calibrated10
+best single-head logloss: 0.677463
+best multi-head feature set: multihead_current_future_listener_responsibility_calibrated10
+best multi-head logloss: 0.677735
+single delta vs direct semantic: -0.000175
+single delta vs prior: -0.000395
+single delta vs raw lifelog PCA: -0.001050
+multi delta vs single: 0.000272
+multi delta vs global transport: 0.001011
+row-block multi delta vs global: -0.000265
+chronological multi delta vs global: -0.001451
+```
+
+살아남은 core evidence:
+
+```text
+future-consistent listener responsibility is the strongest compact head.
+It beats prior, raw lifelog PCA, and hand-coded direct semantic responsibility.
+```
+
+죽은 믿음:
+
+```text
+Naively concatenating current/future/cohort heads lets the downstream listener automatically route.
+```
+
+leakage 관점에서는 multi-head가 single future head보다 약간 낮지만,
+subject-heldout utility는 낮다.
+
+```text
+best single-head leakage: 0.475556
+best multi-head leakage: 0.466667
+```
+
+따라서 다음 architecture 문장은 더 정확해졌다.
+
+```text
+HS-JEPA does not need a larger undifferentiated latent bundle.
+It needs a listener router that chooses current/future/cohort heads per target.
+```
+
+### 10. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.
@@ -336,7 +395,7 @@ subject-heldout low-trust frozen probe에서 prior 대비 delta는
 `-0.001673`이다.
 효과 크기는 여전히 작지만, 이전 subject-relative world model보다 더 선명한 core-positive signal이다.
 
-### 10. Sleep-Pressure World Model
+### 11. Sleep-Pressure World Model
 
 수면 label을 직접 target으로 쓰지 않고, night disturbance, physiological load,
 social/cognitive arousal, rest-environment stability, calendar routine pressure를
@@ -353,7 +412,7 @@ pretext 예측성은 강하지만 label probe 효과는 작다. 이 결과는 HS
 sleep-pressure representation을 만들 수 있다는 core evidence이면서,
 그 representation을 Q/S label로 번역하려면 listener/action-health adapter가 필요하다는 경계이기도 하다.
 
-### 11. Cohort-Relative World Model
+### 12. Cohort-Relative World Model
 
 routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고,
 오늘의 state를 개인 기준과 peer 기준에서 동시에 해석했다.
@@ -374,7 +433,7 @@ observed/full cohort geometry는 subject identity shortcut이 강하다.
 core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
 ```
 
-### 12. Multi-Target Human-State World Model
+### 13. Multi-Target Human-State World Model
 
 routine-break, sleep-pressure, cohort-relative hidden target을 따로 쓰지 않고,
 하나의 route-preserving predicted bundle로 묶었다.
@@ -405,7 +464,7 @@ PCA로 하나의 compressed latent로 뭉치면 negative.
 downstream listener가 구분할 수 있도록 route axes를 보존한다.
 ```
 
-### 13. Route-Responsibility Diagnostic
+### 14. Route-Responsibility Diagnostic
 
 multi-target bundle 위에서 다른 route들로 held-out route를 예측하고,
 그 residual energy로 label-free route responsibility를 만들었다.
@@ -431,7 +490,7 @@ route responsibility는 label 없이 관측 가능하다.
 이것은 실패라기보다 HS-JEPA architecture boundary다.
 다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
 
-### 14. Listener-Conditioned Route Readout
+### 15. Listener-Conditioned Route Readout
 
 route-preserving multi-target bundle을 만든 뒤, frozen probe에서 target/listener별 route readout을 선택했다.
 이 단계는 label-free core pretext가 아니라 frozen probe diagnostic이다.
@@ -457,7 +516,7 @@ HS-JEPA core의 좋은 interface는 하나의 압축 latent도,
 route axes를 보존하고, downstream listener가 target별로 다른 route를 읽게 해야 한다.
 ```
 
-### 15. Subject-Invariant Listener Manifold
+### 16. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `0.191742` 더 크다.
@@ -465,7 +524,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `0.191742` 더 크다
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 16. Listener Responsibility Field
+### 17. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `0.014785`만큼 앞선다.
@@ -551,6 +610,7 @@ transported prototype listener readout: global transported grammar보다 listene
 label-free transported listener responsibility: prior/raw는 이기지만 global transport는 못 이겨 hand-coded semantic profile의 한계를 보인다
 learned listener responsibility pretext: labels 없이 hand-coded profile보다 좋은 responsibility를 학습하지만 shortcut/leakage control이 남았다
 invariant listener responsibility pretext: future consistency는 current-only보다 좋고 row/chron stress에서 강하지만, cohort pretext accuracy는 downstream utility와 분리된다
+multi-head listener responsibility pretext: compact future head는 positive지만 naive head concat은 best single을 못 이겨 listener router가 필요하다
 routine-break world model: small positive and stronger hidden target
 sleep-pressure world model: strong pretext, small label-probe positive
 cohort-relative world model: predicted state positive, observed/full shortcut 위험
@@ -564,7 +624,7 @@ direct label prediction: mostly negative without low-trust calibration
 
 따라서 다음 실험은 adapter를 더 조정하는 것이 아니라,
 subject-relative human-state target을 더 강하게 만들어야 한다.
-후보는 current/future/cohort responsibility를 한 teacher로 평균내지 않는 multi-head listener pretext,
-sleep-pressure와 routine-break를 결합한 listener-responsibility pretext,
+후보는 current/future/cohort head를 concat하지 않고 target별로 선택하는 label-free listener router,
+sleep-pressure와 routine-break를 결합한 future-responsibility pretext,
 cross-subject sleep-pressure prototype, 그리고 hidden state를 action-health로 번역하는
 open-loop world model이다.

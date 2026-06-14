@@ -212,6 +212,27 @@ Future-episode consistency is useful for listener-responsibility generalization,
 whereas cohort smoothing can improve pretext accuracy without improving downstream utility.
 ```
 
+`MULTI_HEAD_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`는 그 다음 질문을 찌른다. current/future/cohort를 하나의 invariant teacher로 평균내지 않고, 세 listener responsibility head를 보존하면 frozen listener가 더 잘 읽을 수 있는지 검증한다.
+
+현재 결론:
+
+```text
+best single head는 future responsibility head다.
+future head logloss는 0.677463으로 prior 대비 -0.000395, direct semantic 대비 -0.000175 좋다.
+best multi-head concat은 0.677735로 best single future head보다 +0.000272 나쁘다.
+row-block에서는 best multi-head가 global transport 대비 -0.000265 살아남고,
+chronological에서는 -0.001451 살아남는다.
+하지만 subject-heldout에서 multi-head concat은 single future head를 넘지 못한다.
+```
+
+논문적으로 남는 문장:
+
+```text
+The future-consistent listener-responsibility head is currently the strongest core interface.
+Naively concatenating current/future/cohort heads does not solve listener routing.
+HS-JEPA therefore needs a listener router, not a larger undifferentiated latent bundle.
+```
+
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.
 
 ```text

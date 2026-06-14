@@ -19176,3 +19176,118 @@ single smoothed teacher가 아니라,
 current / future / cohort responsibility를 multi-head로 보존하고
 listener가 target별로 어느 consistency head를 읽을지 학습해야 한다.
 ```
+
+## Multi-Head Listener Responsibility Pretext Core
+
+### Question
+
+직전 invariant listener responsibility 실험은 다음 결론을 남겼다.
+
+```text
+future consistency는 current-only responsibility보다 downstream에 도움이 된다.
+cohort-only는 pretext/top1은 강하지만 downstream utility가 약하다.
+current/future/cohort를 단일 smoothed teacher로 평균내면 신호가 흐려질 수 있다.
+```
+
+따라서 이번 실험의 질문은 다음이다.
+
+```text
+current / future / cohort listener responsibility를 하나의 teacher로 섞지 않고
+세 head로 보존하면 frozen listener probe가 더 좋은 head geometry를 읽을 수 있는가?
+```
+
+### Hypothesis
+
+```text
+If HS-JEPA needs route-preserving human-state representation,
+then a current/future/cohort multi-head listener responsibility interface should beat
+the best single smoothed responsibility head under subject-heldout stress.
+```
+
+### Falsification Design
+
+- script: `hsjepa_core/run_multi_head_listener_responsibility_pretext_core.py`
+- report: `hsjepa_core/outputs/multi_head_listener_responsibility_pretext_core/MULTI_HEAD_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- paper report: `paper_hsjepa_core/MULTI_HEAD_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- team wrapper: `team_hsjepa_end_to_end/multi_head_listener_responsibility_pretext_core/run_end_to_end.py`
+- context:
+  - subject-relative visible lifelog context
+- hidden teacher heads:
+  - current transported listener responsibility
+  - same-subject future-consistent listener responsibility
+  - cross-subject cohort-consistent listener responsibility
+- feature interfaces:
+  - single current/future/cohort head
+  - current+future concat
+  - current+cohort concat
+  - future+cohort concat
+  - current+future+cohort concat
+  - inter-head delta geometry
+- labels:
+  - not used in teacher
+  - not used in pretext
+  - used only in frozen downstream probes
+- stress:
+  - subject-heldout
+  - row-block holdout
+  - chronological holdout
+  - subject leakage diagnostic
+
+### Result
+
+- verdict: `multi_head_listener_responsibility_prior_positive`
+- best single head: `head_future_relative_listener_responsibility_calibrated10`
+- best single-head logloss: `0.677463`
+- best multi-head: `multihead_current_future_listener_responsibility_calibrated10`
+- best multi-head logloss: `0.677735`
+- subject prior logloss: `0.677858`
+- subject direct semantic logloss: `0.677638`
+- subject global transport logloss: `0.676724`
+- multi-head delta vs best single: `+0.000272`
+- multi-head delta vs prior: `-0.000123`
+- multi-head delta vs direct semantic: `+0.000097`
+- multi-head delta vs global transport: `+0.001011`
+- row-block best multi-head delta vs global: `-0.000265`
+- chronological best multi-head delta vs global: `-0.001451`
+
+Pretext quality:
+
+```text
+head current CE lift vs prior: +0.029806, top1 0.651154
+head future CE lift vs prior: +0.011514, top1 0.714095
+head cohort CE lift vs prior: +0.025017, top1 0.794540
+```
+
+Subject leakage:
+
+```text
+best multi-head: 0.466667
+best single future head: 0.475556
+global transport: 0.542222
+raw lifelog PCA: 0.940000
+```
+
+### Interpretation
+
+살아난 믿음:
+
+```text
+future-consistent listener responsibility is the strongest current compact head.
+It beats prior, raw lifelog PCA, and hand-coded direct semantic responsibility in subject-heldout.
+```
+
+죽은 믿음:
+
+```text
+Naively concatenating current/future/cohort heads lets the downstream listener automatically route.
+```
+
+multi-head concat은 leakage를 약간 낮추지만 subject-heldout utility를 best single future head보다 높이지 못했다.
+따라서 HS-JEPA core의 다음 방향은 "더 큰 latent bundle"이 아니다.
+
+남은 더 정확한 방향:
+
+```text
+HS-JEPA needs a listener router that chooses current/future/cohort head per target,
+or a stronger future-responsibility head, rather than undifferentiated head concatenation.
+```

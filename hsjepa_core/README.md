@@ -73,6 +73,7 @@ python3 hsjepa_core/run_transported_prototype_listener_readout_core.py
 python3 hsjepa_core/run_label_free_transported_listener_responsibility_core.py
 python3 hsjepa_core/run_learned_listener_responsibility_pretext_core.py
 python3 hsjepa_core/run_invariant_listener_responsibility_pretext_core.py
+python3 hsjepa_core/run_multi_head_listener_responsibility_pretext_core.py
 python3 hsjepa_core/build_core_evidence_ledger.py
 ```
 
@@ -192,6 +193,9 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/outputs/invariant_listener_responsibility_pretext_core/invariant_listener_responsibility_pretext_summary.json`
 - `hsjepa_core/outputs/invariant_listener_responsibility_pretext_core/INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
 - `hsjepa_core/outputs/invariant_listener_responsibility_pretext_core/*.csv`
+- `hsjepa_core/outputs/multi_head_listener_responsibility_pretext_core/multi_head_listener_responsibility_pretext_summary.json`
+- `hsjepa_core/outputs/multi_head_listener_responsibility_pretext_core/MULTI_HEAD_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- `hsjepa_core/outputs/multi_head_listener_responsibility_pretext_core/*.csv`
 - `hsjepa_core/outputs/core_evidence_ledger/core_evidence_ledger_summary.json`
 - `hsjepa_core/outputs/core_evidence_ledger/CORE_EVIDENCE_LEDGER_KO.md`
 
@@ -235,6 +239,7 @@ python3 hsjepa_core/build_core_evidence_ledger.py
 - `hsjepa_core/run_label_free_transported_listener_responsibility_core.py`: frozen labels로 listener view를 고르지 않고, target 설명과 transported prototype reliability만으로 label-free listener responsibility를 만든다. 현재 결과는 prior 대비 `-0.000219`, raw lifelog PCA 대비 `-0.001069`로 약하게 positive지만 global transport 대비 `+0.000914` 나빠져 `core boundary`다. hand-coded semantic profile만으로는 부족하고, 다음 core는 listener responsibility를 pretext로 학습해야 한다.
 - `hsjepa_core/run_learned_listener_responsibility_pretext_core.py`: target 설명을 hand-coded profile로 바로 쓰지 않고, visible human-life context가 transported prototype reliability에서 만든 hidden listener responsibility field를 예측하는 label-free pretext 실험이다. 현재 결과는 learned semantic balanced가 hand-coded semantic 대비 `-0.000495`, prior 대비 `-0.000715`, raw lifelog PCA 대비 `-0.001565` 좋고 row-block/chronological에서는 global transport도 이긴다. 다만 subject-heldout global transport 대비 `+0.000419`이고 absolute context leakage가 높아, `core positive with leakage boundary`로 둔다. subject-relative variant는 pretext CE lift `+0.029806`과 subject leakage `0.480000`으로 더 건강하다.
 - `hsjepa_core/run_invariant_listener_responsibility_pretext_core.py`: current transported responsibility에 same-subject future episode consistency와 cross-subject cohort consistency를 더해 invariant listener responsibility teacher를 만들고, subject-relative context가 이를 예측하는지 검증한다. 현재 결과는 future-only invariant responsibility가 current-relative 대비 `-0.000258`, prior 대비 `-0.000214`, raw lifelog PCA 대비 `-0.001064` 좋고, row-block/chronological에서는 global transport를 이긴다. 다만 subject-heldout global transport 대비 `+0.000919`이고 direct semantic과 거의 동률이라 `future consistency positive / cohort smoothing boundary`로 둔다.
+- `hsjepa_core/run_multi_head_listener_responsibility_pretext_core.py`: current/future/cohort responsibility를 하나의 smoothed teacher로 평균내지 않고 세 head로 보존해 frozen listener가 읽을 수 있는지 검증한다. 현재 결과는 multi-head concat이 best single future head보다 `+0.000272` 나빠져 concat 가설은 약해졌고, compact future head는 prior 대비 `-0.000395`, direct semantic 대비 `-0.000175` 좋아 `future-responsibility head positive / multi-head concat boundary`로 둔다.
 - `hsjepa_core/build_core_evidence_ledger.py`: public-free core evidence를 하나의 논문용 ledger로 묶어, 무엇이 HS-JEPA core 증거이고 무엇이 adapter/diagnostic boundary인지 분리한다.
 
 ## 팀 공유 시 주의점

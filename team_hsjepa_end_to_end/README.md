@@ -160,6 +160,14 @@ python3 team_hsjepa_end_to_end/invariant_listener_responsibility_pretext_core/ru
 
 이 실험은 current transported responsibility에 same-subject future episode와 cross-subject cohort consistency를 섞어 hidden teacher를 만든다. 현재 결론은 `future consistency positive / cohort smoothing boundary`다. future-only responsibility는 current-relative보다 좋고 leakage도 낮지만, subject-heldout global transport는 아직 넘지 못한다.
 
+current/future/cohort를 평균내지 않고 세 head로 보존하는 것이 더 나은지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/multi_head_listener_responsibility_pretext_core/run_end_to_end.py
+```
+
+이 실험은 `current`, `future`, `cohort` listener responsibility head를 따로 예측하고 single/concat/delta readout을 비교한다. 현재 결론은 `future-responsibility head positive / multi-head concat boundary`다. best single future head는 prior와 direct semantic을 이기지만, multi-head concat은 best single head를 넘지 못한다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

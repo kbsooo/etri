@@ -7,7 +7,7 @@
   "core_positive_case_count": 12,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned and invariant listener-responsibility pretext, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -167,6 +167,31 @@
       "cohort_only_pretext_lift": 0.02501748233922044,
       "future_only_pretext_lift": 0.011514261719623844,
       "source": "hsjepa_core/outputs/invariant_listener_responsibility_pretext_core/invariant_listener_responsibility_pretext_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "multi_head_listener_responsibility_pretext",
+      "layer": "core_boundary",
+      "question": "current/future/cohort listener responsibility를 세 head로 보존하면 listener가 더 잘 읽는가",
+      "primary_metric": "best_single_head_delta_vs_direct_semantic_logloss",
+      "value": -0.00017537323156713303,
+      "baseline": "hand_coded_direct_semantic_listener_responsibility",
+      "support": "future_head_positive_multihead_concat_boundary",
+      "interpretation": "compact future-consistent listener responsibility head는 prior/raw/direct semantic을 이긴다. 하지만 naive current/future/cohort concat은 best single future head를 넘지 못한다. 따라서 HS-JEPA는 더 큰 latent bundle이 아니라 target/listener별 head router가 필요하다.",
+      "best_single_head_feature_set": "head_future_relative_listener_responsibility_calibrated10",
+      "best_single_head_logloss": 0.6774627003951271,
+      "best_multi_head_feature_set": "multihead_current_future_listener_responsibility_calibrated10",
+      "best_multi_head_logloss": 0.6777346753550832,
+      "single_delta_vs_prior": -0.0003948327744542901,
+      "single_delta_vs_raw": -0.0010502069015645432,
+      "multi_delta_vs_single": 0.00027197495995612275,
+      "multi_delta_vs_prior": -0.00012285781449816735,
+      "multi_delta_vs_global": 0.001010800849627791,
+      "row_block_multi_delta_vs_global": -0.0002654879903938312,
+      "chronological_multi_delta_vs_global": -0.001450612138836238,
+      "best_single_leakage": 0.47555555555555556,
+      "best_multi_leakage": 0.4666666666666667,
+      "source": "hsjepa_core/outputs/multi_head_listener_responsibility_pretext_core/multi_head_listener_responsibility_pretext_summary.json",
       "candidate": null
     },
     {
