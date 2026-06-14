@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 12,
+  "core_positive_case_count": 13,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, label-free and learned listener-head routing, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, label-free and learned listener-head routing, global-transport residual listener routing, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -245,6 +245,28 @@
       "semantic_prior_leakage": 0.4622222222222222,
       "best_single_leakage": 0.47555555555555556,
       "source": "hsjepa_core/outputs/learned_listener_head_router_core/learned_listener_head_router_summary.json",
+      "candidate": null
+    },
+    {
+      "case": "global_transport_residual_listener_router_core",
+      "layer": "core",
+      "question": "learned listener-head router는 global transport를 대체하는가, 아니면 residual interface로 붙어야 하는가",
+      "primary_metric": "best_learned_residual_delta_vs_global_transport_logloss",
+      "value": -0.0009066157990165191,
+      "baseline": "global_transported_prototype",
+      "support": "global_transport_residual_listener_router_positive",
+      "interpretation": "learned router alone은 subject-heldout global transport를 넘지 못했지만, global transported grammar 위에 semantic+learned residual listener interface로 붙이면 subject-heldout과 row-block에서 global transport를 이긴다. 동시에 chronological에서는 악화되므로 HS-JEPA core는 transport backbone + listener residual interface로 정리하되, temporal drift/action-health decoder는 별도 문제로 남겨야 한다.",
+      "best_residual_feature_set": "global_plus_semantic_and_learned_router_calibrated10",
+      "best_residual_logloss": 0.6758172587064389,
+      "global_transport_logloss": 0.6767238745054555,
+      "learned_alone_logloss": 0.677359379928336,
+      "delta_vs_learned_alone": -0.0015421212218970082,
+      "row_block_delta_vs_global": -0.0004275414881587114,
+      "chronological_delta_vs_global": 0.0019650532089512396,
+      "best_residual_leakage": 0.44,
+      "global_subject_leakage": 0.5422222222222223,
+      "raw_subject_leakage": 0.94,
+      "source": "hsjepa_core/outputs/global_transport_residual_listener_router_core/global_transport_residual_listener_router_summary.json",
       "candidate": null
     },
     {

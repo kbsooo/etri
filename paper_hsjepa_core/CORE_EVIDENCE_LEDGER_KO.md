@@ -37,6 +37,7 @@ visible human-life context
 | multi_head_listener_responsibility_pretext | core_boundary | best_single_head_delta_vs_direct_semantic_logloss | -0.000175 | hand_coded_direct_semantic_listener_responsibility | future_head_positive_multihead_concat_boundary |
 | listener_head_router_pretext | core_boundary | best_router_delta_vs_single_head_logloss | -0.000036 | best_single_future_listener_head | listener_head_router_beats_single_positive |
 | learned_listener_head_router_core | core_boundary | best_learned_router_delta_vs_semantic_prior_logloss | -0.000068 | fixed_semantic_prior_listener_head_router | learned_listener_head_router_beats_semantic_positive |
+| global_transport_residual_listener_router_core | core | best_learned_residual_delta_vs_global_transport_logloss | -0.000907 | global_transported_prototype | global_transport_residual_listener_router_positive |
 | routine_break_world_model | core | routine_full_delta_vs_prior_logloss | -0.001673 | fold_prior_low_trust_probe | positive_but_small |
 | sleep_pressure_world_model | core | sleep_pressure_full_delta_vs_prior_logloss | -0.000867 | fold_prior_low_trust_probe | positive_but_small |
 | cohort_relative_world_model | core | cohort_relative_predicted_delta_vs_prior_logloss | -0.001381 | fold_prior_low_trust_probe | positive_with_leakage_boundary |

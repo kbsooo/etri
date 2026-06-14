@@ -64,6 +64,7 @@
 - `paper_hsjepa_core/LABEL_FREE_TRANSPORTED_LISTENER_RESPONSIBILITY_CORE_KO.md`
 - `paper_hsjepa_core/LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
 - `paper_hsjepa_core/INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
+- `paper_hsjepa_core/GLOBAL_TRANSPORT_RESIDUAL_LISTENER_ROUTER_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -274,6 +275,36 @@ subject leakage도 fixed semantic router 0.462222에서 learned router 0.446667�
 HS-JEPA can learn listener-head routing as a label-free hidden-state pretext.
 The routed interface is more useful and less subject-identifying than a fixed semantic-prior router,
 but global transport still defines a stronger boundary that the next route-suitability objective must cross.
+```
+
+`GLOBAL_TRANSPORT_RESIDUAL_LISTENER_ROUTER_CORE_KO.md`는 그 boundary를 직접 찌른다. learned router가 global transport를 대체하지 못한다면, global transport 위에 붙는 residual interface로는 살아남는지 검증한다.
+
+현재 결론:
+
+```text
+best residual은 global_plus_semantic_and_learned_router_calibrated10이다.
+best residual logloss는 0.675817이다.
+global transport 대비 -0.000907 좋다.
+learned router alone 대비 -0.001542 좋다.
+semantic-prior router alone 대비 -0.001610 좋다.
+row-block에서는 global 대비 -0.000428 살아남는다.
+chronological에서는 global 대비 +0.001965 나빠진다.
+subject leakage는 global transport 0.542222에서 residual 0.440000으로 낮아진다.
+```
+
+논문적으로 남는 문장:
+
+```text
+HS-JEPA should not expose one monolithic human-state embedding.
+It should first transport a subject-invariant episode grammar and then expose it through
+a listener-specific residual interface.
+```
+
+과장하면 안 되는 경계:
+
+```text
+Residual listener routing improves subject-invariant readability,
+but it does not solve temporal drift.  Rhythm-conditioned or action-health decoding remains separate.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

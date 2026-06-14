@@ -19499,3 +19499,96 @@ global transport를 넘는 stronger head-suitability teacher가 필요하다.
 후보는 routine-break/sleep-pressure/future-consistency를 head suitability에 직접 넣거나,
 listener-router를 action-health release gate로 연결하는 것이다.
 ```
+
+## Global Transport Residual Listener-Router Core
+
+### Question
+
+Learned listener-head router는 fixed semantic-prior router와 best single future head를 이겼지만,
+subject-heldout global transported prototype grammar는 넘지 못했다.
+
+따라서 다음 질문은 replacement가 아니라 interface 문제다.
+
+```text
+listener router는 global transport를 대체해야 하는가,
+아니면 global transport 위의 residual interface여야 하는가?
+```
+
+### Falsification Design
+
+- script: `hsjepa_core/run_global_transport_residual_listener_router_core.py`
+- report: `hsjepa_core/outputs/global_transport_residual_listener_router_core/GLOBAL_TRANSPORT_RESIDUAL_LISTENER_ROUTER_CORE_KO.md`
+- paper report: `paper_hsjepa_core/GLOBAL_TRANSPORT_RESIDUAL_LISTENER_ROUTER_CORE_KO.md`
+- team wrapper: `team_hsjepa_end_to_end/global_transport_residual_listener_router_core/run_end_to_end.py`
+- backbone:
+  - cross-subject transported prototype grammar
+- residual interface:
+  - fixed semantic-prior router
+  - learned label-free listener-head router
+  - learned-minus-semantic residual delta
+- labels:
+  - not used in hidden head-suitability teacher
+  - not used in router pretext
+  - used only after representation is frozen
+- stress:
+  - subject-heldout
+  - row-block holdout
+  - chronological holdout
+  - subject leakage diagnostic
+
+### Result
+
+- verdict: `global_transport_residual_listener_router_positive`
+- best residual: `global_plus_semantic_and_learned_router_calibrated10`
+- best residual logloss: `0.675817`
+- global transport logloss: `0.676724`
+- learned router alone logloss: `0.677359`
+- semantic-prior router alone logloss: `0.677427`
+- residual delta vs global: `-0.000907`
+- residual delta vs learned alone: `-0.001542`
+- residual delta vs semantic prior alone: `-0.001610`
+- row-block delta vs global: `-0.000428`
+- chronological delta vs global: `+0.001965`
+
+Subject leakage:
+
+```text
+best residual: 0.440000
+global transport: 0.542222
+learned router alone: 0.446667
+raw lifelog PCA: 0.940000
+```
+
+### Interpretation
+
+살아난 믿음:
+
+```text
+HS-JEPA core는 하나의 monolithic human-state vector가 아니다.
+운반 가능한 human-state grammar를 backbone으로 두고,
+listener-specific residual router가 target별 readout을 조절해야 한다.
+```
+
+죽은 믿음 또는 약해진 믿음:
+
+```text
+learned router는 global transported grammar를 replacement로 직접 이겨야 한다.
+```
+
+남은 경계:
+
+```text
+residual listener routing은 subject-invariant readability에는 도움이 되지만,
+chronological drift를 해결하지 않는다.
+```
+
+### Next
+
+다음 core/breakthrough 질문은 residual interface를 temporal drift와 분리하는 것이다.
+
+```text
+transport backbone + listener residual interface + rhythm-conditioned drift/action-health decoder
+```
+
+즉 다음 실험은 listener router를 더 키우는 것이 아니라,
+chronological stress에서 독성을 보이는 residual release를 veto하거나 rhythm-conditioned decoder로 분리해야 한다.

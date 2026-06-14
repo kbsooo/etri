@@ -184,6 +184,14 @@ python3 team_hsjepa_end_to_end/learned_listener_head_router_core/run_end_to_end.
 
 이 실험은 hidden head-suitability field를 label-free pretext로 만들고, visible context와 predicted current/future/cohort heads가 router를 학습하는지 본다. 현재 결론은 `learned listener-head routing positive / global-transport boundary`다. best learned router는 fixed semantic-prior router와 best single future head를 모두 이기고 leakage도 낮지만, subject-heldout global transport는 아직 넘지 못한다.
 
+learned router가 global transport를 대체하지 못한다면 residual interface로는 살아남는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/global_transport_residual_listener_router_core/run_end_to_end.py
+```
+
+이 실험은 cross-subject transported prototype grammar를 backbone으로 두고, fixed semantic router와 learned listener-head router, learned-minus-semantic delta를 residual interface로 붙인다. 현재 결론은 `global transport residual listener-router positive`다. subject-heldout에서 global transport 대비 `-0.000907`, row-block에서 `-0.000428` 좋아지고 subject leakage도 낮아진다. 다만 chronological에서는 `+0.001965` 나빠져 temporal drift decoder는 별도로 풀어야 한다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

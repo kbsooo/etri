@@ -164,6 +164,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "learned_listener_head_router_core"
         / "learned_listener_head_router_summary.json"
     )
+    global_residual_router = load_json(
+        outputs
+        / "global_transport_residual_listener_router_core"
+        / "global_transport_residual_listener_router_summary.json"
+    )
 
     return [
         {
@@ -446,6 +451,43 @@ def collect_cases() -> list[dict[str, Any]]:
             "candidate": None,
         },
         {
+            "case": "global_transport_residual_listener_router_core",
+            "layer": "core",
+            "question": "learned listener-head router는 global transport를 대체하는가, 아니면 residual interface로 붙어야 하는가",
+            "primary_metric": "best_learned_residual_delta_vs_global_transport_logloss",
+            "value": global_residual_router["subject_best_learned_residual_delta_vs_global"],
+            "baseline": "global_transported_prototype",
+            "support": global_residual_router["verdict"],
+            "interpretation": (
+                "learned router alone은 subject-heldout global transport를 넘지 못했지만, "
+                "global transported grammar 위에 semantic+learned residual listener interface로 붙이면 "
+                "subject-heldout과 row-block에서 global transport를 이긴다. "
+                "동시에 chronological에서는 악화되므로 HS-JEPA core는 transport backbone + listener residual interface로 "
+                "정리하되, temporal drift/action-health decoder는 별도 문제로 남겨야 한다."
+            ),
+            "best_residual_feature_set": global_residual_router["subject_best_learned_residual_feature_set"],
+            "best_residual_logloss": global_residual_router["subject_best_learned_residual_logloss"],
+            "global_transport_logloss": global_residual_router["subject_global_transport_logloss"],
+            "learned_alone_logloss": global_residual_router["subject_learned_router_logloss"],
+            "delta_vs_learned_alone": global_residual_router["subject_best_learned_residual_delta_vs_learned_alone"],
+            "row_block_delta_vs_global": global_residual_router["row_block_best_learned_residual_delta_vs_global"],
+            "chronological_delta_vs_global": global_residual_router[
+                "chronological_best_learned_residual_delta_vs_global"
+            ],
+            "best_residual_leakage": global_residual_router["subject_best_learned_residual_leakage"][
+                "subject_id_accuracy"
+            ],
+            "global_subject_leakage": global_residual_router["global_transport_subject_leakage"][
+                "subject_id_accuracy"
+            ],
+            "raw_subject_leakage": global_residual_router["raw_subject_leakage"]["subject_id_accuracy"],
+            "source": (
+                "hsjepa_core/outputs/global_transport_residual_listener_router_core/"
+                "global_transport_residual_listener_router_summary.json"
+            ),
+            "candidate": None,
+        },
+        {
             "case": "routine_break_world_model",
             "layer": "core",
             "question": "보이는 human-life context로 보이지 않는 routine-break/episode-reset representation을 예측하는가",
@@ -669,6 +711,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "cross-subject prototype transport, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, "
             "transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, "
             "label-free and learned listener-head routing, "
+            "global-transport residual listener routing, "
             "and listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
