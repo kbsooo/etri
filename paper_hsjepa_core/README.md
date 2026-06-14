@@ -58,6 +58,7 @@
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ROUTE_READOUT_CORE_KO.md`
 - `paper_hsjepa_core/SUBJECT_DRIFT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/EPISODE_TRANSITION_RETRIEVAL_CORE_KO.md`
+- `paper_hsjepa_core/HUMAN_STATE_PROTOTYPE_GRAMMAR_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -88,6 +89,19 @@ calendar_to_next_state의 subject-heldout rank-pct lift는 +0.087878이다.
 subject-relative HS-JEPA transition predictor는 +0.044611로 random보다 낫지만,
 persistence baseline +0.078214를 넘지 못한다.
 따라서 future-state HS-JEPA는 generic transition보다 rhythm-conditioned transition으로 정립해야 한다.
+```
+
+`HUMAN_STATE_PROTOTYPE_GRAMMAR_CORE_KO.md`는 HS-JEPA를 더 일반적인 인간 이해 architecture로 보이게 만드는 최신 positive-boundary 문서다. absolute lifelog를 바로 쓰지 않고 subject-relative 좌표에서 생활 episode prototype grammar를 만들고, 보이는 context로 가려진 prototype responsibility를 예측한다.
+
+현재 결론:
+
+```text
+subject-relative prototype grammar는 label-free pretext에서 prior를 이긴다.
+mean cross-entropy lift는 +0.072856이고, best hidden view는 app_social_context +0.148333이다.
+subject-heldout frozen probe에서는 predicted prototype grammar가 prior 대비 -0.000490 logloss다.
+subject-id leakage accuracy는 0.231111로 raw lifelog PCA 0.957778보다 훨씬 낮다.
+따라서 이 실험은 HS-JEPA core가 subject identity shortcut을 줄인 human-state grammar를 만든다는 증거다.
+다만 row-block과 neighbor consistency에서는 calendar/raw lifelog가 아직 강하므로, LB breakthrough는 listener/drift decoder가 필요하다.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

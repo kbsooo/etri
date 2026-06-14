@@ -18522,3 +18522,81 @@ HS-JEPA should not be sold as a universal next-episode predictor.
 It is stronger as a hidden human-state representation system whose axes
 must be read by listener-specific, drift-consistent decoders.
 ```
+
+## Human-State Prototype Grammar Core
+
+- Date: 2026-06-14
+- Script: `hsjepa_core/run_human_state_prototype_grammar_core.py`
+- Report: `hsjepa_core/outputs/human_state_prototype_grammar_core/HUMAN_STATE_PROTOTYPE_GRAMMAR_CORE_KO.md`
+- Paper-facing doc: `paper_hsjepa_core/HUMAN_STATE_PROTOTYPE_GRAMMAR_CORE_KO.md`
+- Team wrapper: `team_hsjepa_end_to_end/human_state_prototype_grammar_core/run_end_to_end.py`
+- Submission: none
+
+### Observe
+
+absolute lifelog feature는 subject identity를 너무 잘 담는다.
+raw lifelog PCA의 subject-id accuracy는 `0.957778`로, 이 상태를 그대로 core라고 주장하면
+HS-JEPA가 인간 상태를 배웠는지 subject fingerprint를 외웠는지 구분하기 어렵다.
+
+### Wonder
+
+각 subject의 절대 feature 크기를 제거하고, 그 사람 기준의 relative episode prototype grammar를 만들면
+subject identity shortcut을 줄이면서도 Q/S label manifold를 조금 더 읽기 쉽게 만들 수 있는가?
+
+### Hypothesis
+
+```text
+HS-JEPA core should first express a day as a subject-relative human-life prototype grammar.
+If this is real human-state structure, masked semantic views should predict hidden prototype
+responsibilities better than prior, and the frozen grammar should weakly improve downstream probes
+without high subject leakage.
+```
+
+### Falsification Design
+
+- grammar frame: subject-relative lifelog
+- prototype count: 3 per semantic view
+- hidden target: masked view prototype responsibility
+- pretext: remaining views -> hidden prototype
+- stress:
+  - subject-heldout frozen probe
+  - chronological frozen probe
+  - row-block frozen probe
+  - subject leakage probe
+- forbidden information:
+  - public LB ledger
+  - prior submission probabilities
+  - proprietary embedding API
+  - label as pretext target
+
+### Result
+
+- verdict: `subject_invariant_prototype_grammar_core_positive_boundary`
+- mean pretext cross-entropy lift vs prior: `+0.072856`
+- best hidden view: `app_social_context`
+  - cross-entropy lift: `+0.148333`
+  - accuracy lift: `+0.161429`
+- subject-heldout predicted prototype delta vs prior: `-0.000490`
+- subject-heldout predicted prototype energy delta vs prior: `-0.000484`
+- observed prototype upper-bound delta vs prior: `-0.001338`
+- predicted prototype energy subject-id accuracy: `0.231111`
+- raw lifelog PCA subject-id accuracy: `0.957778`
+
+### Interpretation
+
+이 실험은 큰 LB breakthrough가 아니라, paper-core 측면의 좋은 positive-boundary다.
+
+```text
+Absolute lifelog -> subject shortcut.
+Subject-relative prototype grammar -> lower subject leakage and positive masked pretext.
+```
+
+따라서 HS-JEPA core thesis는 더 좋아졌다.
+
+```text
+HS-JEPA는 사람마다 다른 절대 센서/사용량 크기를 외우기보다,
+각자의 평소 기준에서 오늘이 어떤 생활 episode 원형인지 표현한다.
+```
+
+다만 frozen probe 효과는 아직 작고 row-block/neighbor consistency에서는 raw/calendar baseline이 강하다.
+LB breakthrough로 연결하려면 이 grammar를 listener-specific drift/action decoder가 읽어야 한다.

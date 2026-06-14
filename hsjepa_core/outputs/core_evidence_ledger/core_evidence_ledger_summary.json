@@ -4,10 +4,10 @@
   "uses_public_score_ledger": false,
   "uses_prior_submission_probabilities": false,
   "uses_proprietary_embedding_api": false,
-  "core_positive_case_count": 9,
+  "core_positive_case_count": 10,
   "adapter_boundary_case_count": 1,
   "negative_boundary_case_count": 2,
-  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-relative routine-break, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
+  "paper_thesis": "HS-JEPA core is a hidden human-state and listener-responsibility representation, not a standalone label classifier.  Its strongest evidence is masked context prediction, subject-invariant prototype grammar, subject-relative routine-break, sleep-pressure, cohort-relative prediction, route-preserving multi-target human-state prediction, and listener-conditioned route readout with subject-invariant listener/action-health separability.",
   "cases": [
     {
       "case": "lifelog_core_state_geometry",
@@ -44,6 +44,21 @@
       "interpretation": "absolute state는 subject identity를 강하게 담지만, subject-relative predicted state는 subject-id leakage를 거의 제거하고 low-trust frozen probe에서 prior를 아주 작게 이긴다.",
       "source": "hsjepa_core/outputs/human_state_world_model_core/human_state_world_model_summary.json",
       "candidate": "submission_hsjepa_human_state_world_model_probe_69ab0808_uploadsafe.csv"
+    },
+    {
+      "case": "subject_invariant_prototype_grammar",
+      "layer": "core",
+      "question": "subject-relative lifelog 좌표에서 label-free episode prototype grammar를 예측할 수 있는가",
+      "primary_metric": "predicted_energy_delta_vs_prior_logloss",
+      "value": -0.00048418551724460634,
+      "baseline": "fold_prior_low_trust_probe",
+      "support": "subject_invariant_prototype_grammar_core_positive_boundary",
+      "interpretation": "absolute lifelog 대신 subject-relative 좌표에서 만든 prototype grammar는 masked prototype pretext에서 prior를 이기고, raw lifelog보다 subject leakage를 크게 줄인다. frozen probe 효과는 작지만 HS-JEPA core가 subject-invariant human-life episode grammar를 만들 수 있다는 positive-boundary evidence다.",
+      "pretext_lift": 0.07285640388718975,
+      "subject_leakage_accuracy": 0.2311111111111111,
+      "raw_leakage_reference": 0.957778,
+      "source": "hsjepa_core/outputs/human_state_prototype_grammar_core/human_state_prototype_grammar_summary.json",
+      "candidate": null
     },
     {
       "case": "routine_break_world_model",

@@ -112,6 +112,14 @@ python3 team_hsjepa_end_to_end/episode_transition_retrieval_core/run_end_to_end.
 
 이 실험은 label-free future-state JEPA 검증이다. 현재 결론은 `rhythm-dominant boundary`다.
 
+HS-JEPA core가 subject identity를 줄인 human-life episode prototype grammar를 학습하는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/human_state_prototype_grammar_core/run_end_to_end.py
+```
+
+이 실험은 label-free masked-prototype JEPA 검증이다. 현재 결론은 `subject-invariant prototype grammar positive boundary`다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash
