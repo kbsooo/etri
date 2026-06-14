@@ -169,6 +169,11 @@ def collect_cases() -> list[dict[str, Any]]:
         / "global_transport_residual_listener_router_core"
         / "global_transport_residual_listener_router_summary.json"
     )
+    rhythm_residual = load_json(
+        outputs
+        / "rhythm_conditioned_residual_listener_core"
+        / "rhythm_conditioned_residual_listener_summary.json"
+    )
 
     return [
         {
@@ -488,6 +493,62 @@ def collect_cases() -> list[dict[str, Any]]:
             "candidate": None,
         },
         {
+            "case": "rhythm_conditioned_residual_listener_core",
+            "layer": "core",
+            "question": (
+                "visible rhythm context가 temporal drift decoder와 subject/block residual listener readout을 "
+                "분리할 수 있는가"
+            ),
+            "primary_metric": "chronological_best_rhythm_delta_vs_global_transport_logloss",
+            "value": rhythm_residual["chronological_best_rhythm_delta_vs_global"],
+            "baseline": "global_transported_prototype",
+            "support": rhythm_residual["verdict"],
+            "interpretation": (
+                "plain residual listener router는 chronological에서 독성을 보였지만, rhythm context는 chronological drift를 "
+                "global transport보다 낮은 logloss로 읽는다. subject-heldout과 row-block에서는 rhythm-gated residual이 "
+                "plain residual을 더 낮춘다. 따라서 HS-JEPA는 temporal decoder와 listener residual readout을 하나의 "
+                "monolithic interface로 합치면 안 되고, rhythm-conditioned temporal decoder와 rhythm-gated residual listener를 "
+                "분리해야 한다."
+            ),
+            "subject_best_rhythm_feature_set": rhythm_residual["subject_best_rhythm_feature_set"],
+            "subject_best_rhythm_delta_vs_global": rhythm_residual["subject_best_rhythm_delta_vs_global"],
+            "subject_best_rhythm_delta_vs_plain_residual": rhythm_residual[
+                "subject_best_rhythm_delta_vs_plain_residual"
+            ],
+            "row_block_best_rhythm_feature_set": rhythm_residual["row_block_best_rhythm_feature_set"],
+            "row_block_best_rhythm_delta_vs_global": rhythm_residual["row_block_best_rhythm_delta_vs_global"],
+            "row_block_best_rhythm_delta_vs_plain_residual": rhythm_residual[
+                "row_block_best_rhythm_delta_vs_plain_residual"
+            ],
+            "chronological_best_rhythm_feature_set": rhythm_residual["chronological_best_rhythm_feature_set"],
+            "chronological_best_rhythm_logloss": rhythm_residual["chronological_best_rhythm_logloss"],
+            "chronological_plain_residual_delta_vs_global": rhythm_residual[
+                "chronological_plain_residual_delta_vs_global"
+            ],
+            "chronological_best_rhythm_delta_vs_plain_residual": rhythm_residual[
+                "chronological_best_rhythm_delta_vs_plain_residual"
+            ],
+            "chronological_best_gated_residual_delta_vs_global": rhythm_residual[
+                "chronological_best_gated_residual_delta_vs_global"
+            ],
+            "rhythm_context_subject_leakage": rhythm_residual["rhythm_context_subject_leakage"][
+                "subject_id_accuracy"
+            ],
+            "best_gated_residual_subject_leakage": rhythm_residual[
+                "subject_best_gated_residual_leakage"
+            ]["subject_id_accuracy"],
+            "plain_residual_subject_leakage": rhythm_residual["plain_residual_subject_leakage"][
+                "subject_id_accuracy"
+            ],
+            "global_subject_leakage": rhythm_residual["global_transport_subject_leakage"]["subject_id_accuracy"],
+            "raw_subject_leakage": rhythm_residual["raw_subject_leakage"]["subject_id_accuracy"],
+            "source": (
+                "hsjepa_core/outputs/rhythm_conditioned_residual_listener_core/"
+                "rhythm_conditioned_residual_listener_summary.json"
+            ),
+            "candidate": None,
+        },
+        {
             "case": "routine_break_world_model",
             "layer": "core",
             "question": "보이는 human-life context로 보이지 않는 routine-break/episode-reset representation을 예측하는가",
@@ -712,6 +773,7 @@ def build_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
             "transported-prototype listener readout, learned/invariant/multi-head listener-responsibility pretext, "
             "label-free and learned listener-head routing, "
             "global-transport residual listener routing, "
+            "rhythm-conditioned temporal decoding, "
             "and listener-conditioned route readout with subject-invariant listener/action-health separability."
         ),
         "cases": cases,
@@ -1211,7 +1273,121 @@ but it still does not beat global transported prototype grammar on subject-heldo
 따라서 논문적으로는 이 실험을 "완성된 decoder"가 아니라
 `learned listener routing core evidence with global-transport boundary`로 기록한다.
 
-### 12. Routine-Break World Model
+### 12. Global Transport Residual Listener-Router Core
+
+직전 실험에서 learned listener-head router는 fixed semantic prior와 best single head를 이겼지만,
+subject-heldout global transport는 넘지 못했다. 그래서 질문을 replacement가 아니라 interface로 바꿨다.
+
+```text
+cross-subject transported prototype grammar
+  + semantic listener router
+  + learned listener-head router
+  + learned-minus-semantic residual delta
+  -> residual listener interface
+```
+
+핵심 결과:
+
+```text
+best residual feature set: {by_case["global_transport_residual_listener_router_core"].get("best_residual_feature_set")}
+best residual logloss: {fmt(by_case["global_transport_residual_listener_router_core"].get("best_residual_logloss"), 6)}
+global transport logloss: {fmt(by_case["global_transport_residual_listener_router_core"].get("global_transport_logloss"), 6)}
+learned router alone logloss: {fmt(by_case["global_transport_residual_listener_router_core"].get("learned_alone_logloss"), 6)}
+residual delta vs global: {fmt(by_case["global_transport_residual_listener_router_core"]["value"], 6)}
+residual delta vs learned alone: {fmt(by_case["global_transport_residual_listener_router_core"].get("delta_vs_learned_alone"), 6)}
+row-block delta vs global: {fmt(by_case["global_transport_residual_listener_router_core"].get("row_block_delta_vs_global"), 6)}
+chronological delta vs global: {fmt(by_case["global_transport_residual_listener_router_core"].get("chronological_delta_vs_global"), 6)}
+```
+
+subject leakage도 중요한 증거다.
+
+```text
+best residual leakage: {fmt(by_case["global_transport_residual_listener_router_core"].get("best_residual_leakage"), 6)}
+global transport leakage: {fmt(by_case["global_transport_residual_listener_router_core"].get("global_subject_leakage"), 6)}
+raw lifelog leakage: {fmt(by_case["global_transport_residual_listener_router_core"].get("raw_subject_leakage"), 6)}
+```
+
+살아난 믿음:
+
+```text
+HS-JEPA core는 하나의 monolithic human-state vector가 아니다.
+운반 가능한 human-state grammar를 backbone으로 두고,
+listener-specific residual router가 target별 readout을 조절해야 한다.
+```
+
+하지만 같은 결과가 죽인 믿음도 있다.
+
+```text
+residual listener routing만 키우면 temporal drift까지 해결된다.
+```
+
+chronological delta가 양수이므로 temporal drift/action-health decoder는 별도 인터페이스로 풀어야 한다.
+
+### 13. Rhythm-Conditioned Residual Listener Core
+
+global residual listener router가 chronological에서 독성을 보였기 때문에,
+이번 실험은 visible calendar/rhythm context가 temporal decoder와 residual listener readout을 분리할 수 있는지 검증했다.
+
+```text
+calendar rhythm confidence / entropy / energy
+  -> rhythm stability gate
+  -> stable residual listener channel
+  -> unstable residual listener channel
+  -> frozen subject-heldout / row-block / chronological probes
+```
+
+핵심 결과:
+
+```text
+subject best feature: {by_case["rhythm_conditioned_residual_listener_core"].get("subject_best_rhythm_feature_set")}
+subject delta vs global: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("subject_best_rhythm_delta_vs_global"), 6)}
+subject delta vs plain residual: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("subject_best_rhythm_delta_vs_plain_residual"), 6)}
+row-block best feature: {by_case["rhythm_conditioned_residual_listener_core"].get("row_block_best_rhythm_feature_set")}
+row-block delta vs global: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("row_block_best_rhythm_delta_vs_global"), 6)}
+row-block delta vs plain residual: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("row_block_best_rhythm_delta_vs_plain_residual"), 6)}
+chronological best feature: {by_case["rhythm_conditioned_residual_listener_core"].get("chronological_best_rhythm_feature_set")}
+chronological best logloss: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("chronological_best_rhythm_logloss"), 6)}
+chronological plain residual delta vs global: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("chronological_plain_residual_delta_vs_global"), 6)}
+chronological rhythm delta vs global: {fmt(by_case["rhythm_conditioned_residual_listener_core"]["value"], 6)}
+chronological rhythm delta vs plain residual: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("chronological_best_rhythm_delta_vs_plain_residual"), 6)}
+chronological gated residual delta vs global: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("chronological_best_gated_residual_delta_vs_global"), 6)}
+```
+
+subject leakage:
+
+```text
+rhythm context leakage: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("rhythm_context_subject_leakage"), 6)}
+best gated residual leakage: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("best_gated_residual_subject_leakage"), 6)}
+plain residual leakage: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("plain_residual_subject_leakage"), 6)}
+global transport leakage: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("global_subject_leakage"), 6)}
+raw lifelog leakage: {fmt(by_case["rhythm_conditioned_residual_listener_core"].get("raw_subject_leakage"), 6)}
+```
+
+정확한 해석은 다음이다.
+
+```text
+temporal drift는 rhythm context가 가장 잘 읽는다.
+subject/block readability는 rhythm-gated residual이 더 좋다.
+따라서 HS-JEPA core는 rhythm-conditioned temporal decoder와
+rhythm-gated listener residual interface를 분리해야 한다.
+```
+
+과장하면 안 되는 점도 분명하다.
+
+```text
+gated residual이 chronological을 완전히 해결한 것은 아니다.
+chronological에서 best는 gated residual이 아니라 rhythm_context다.
+```
+
+논문 문장으로는 다음이 가장 안전하다.
+
+```text
+HS-JEPA separates human-state readability into two interfaces:
+a rhythm-conditioned temporal decoder for chronological drift, and a
+rhythm-gated listener residual for subject/block-invariant readout.
+```
+
+### 14. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.
@@ -1226,7 +1402,7 @@ subject-heldout low-trust frozen probe에서 prior 대비 delta는
 `{fmt(by_case["routine_break_world_model"]["value"], 6)}`이다.
 효과 크기는 여전히 작지만, 이전 subject-relative world model보다 더 선명한 core-positive signal이다.
 
-### 13. Sleep-Pressure World Model
+### 15. Sleep-Pressure World Model
 
 수면 label을 직접 target으로 쓰지 않고, night disturbance, physiological load,
 social/cognitive arousal, rest-environment stability, calendar routine pressure를
@@ -1243,7 +1419,7 @@ pretext 예측성은 강하지만 label probe 효과는 작다. 이 결과는 HS
 sleep-pressure representation을 만들 수 있다는 core evidence이면서,
 그 representation을 Q/S label로 번역하려면 listener/action-health adapter가 필요하다는 경계이기도 하다.
 
-### 14. Cohort-Relative World Model
+### 16. Cohort-Relative World Model
 
 routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고,
 오늘의 state를 개인 기준과 peer 기준에서 동시에 해석했다.
@@ -1264,7 +1440,7 @@ observed/full cohort geometry는 subject identity shortcut이 강하다.
 core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
 ```
 
-### 15. Multi-Target Human-State World Model
+### 17. Multi-Target Human-State World Model
 
 routine-break, sleep-pressure, cohort-relative hidden target을 따로 쓰지 않고,
 하나의 route-preserving predicted bundle로 묶었다.
@@ -1295,7 +1471,7 @@ PCA로 하나의 compressed latent로 뭉치면 negative.
 downstream listener가 구분할 수 있도록 route axes를 보존한다.
 ```
 
-### 16. Route-Responsibility Diagnostic
+### 18. Route-Responsibility Diagnostic
 
 multi-target bundle 위에서 다른 route들로 held-out route를 예측하고,
 그 residual energy로 label-free route responsibility를 만들었다.
@@ -1321,7 +1497,7 @@ route responsibility는 label 없이 관측 가능하다.
 이것은 실패라기보다 HS-JEPA architecture boundary다.
 다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
 
-### 17. Listener-Conditioned Route Readout
+### 19. Listener-Conditioned Route Readout
 
 route-preserving multi-target bundle을 만든 뒤, frozen probe에서 target/listener별 route readout을 선택했다.
 이 단계는 label-free core pretext가 아니라 frozen probe diagnostic이다.
@@ -1347,7 +1523,7 @@ HS-JEPA core의 좋은 interface는 하나의 압축 latent도,
 route axes를 보존하고, downstream listener가 target별로 다른 route를 읽게 해야 한다.
 ```
 
-### 18. Subject-Invariant Listener Manifold
+### 20. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subject_invariant_listener_manifold"]["value"], 6)}` 더 크다.
@@ -1355,7 +1531,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `{fmt(by_case["subjec
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 19. Listener Responsibility Field
+### 21. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `{fmt(by_case["listener_responsibility_field"]["value"], 6)}`만큼 앞선다.

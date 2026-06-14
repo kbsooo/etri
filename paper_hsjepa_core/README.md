@@ -65,6 +65,7 @@
 - `paper_hsjepa_core/LEARNED_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
 - `paper_hsjepa_core/INVARIANT_LISTENER_RESPONSIBILITY_PRETEXT_CORE_KO.md`
 - `paper_hsjepa_core/GLOBAL_TRANSPORT_RESIDUAL_LISTENER_ROUTER_CORE_KO.md`
+- `paper_hsjepa_core/RHYTHM_CONDITIONED_RESIDUAL_LISTENER_CORE_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_CERTIFIER_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_CONSISTENCY_TEAM_BRIEF_KO.md`
 - `paper_hsjepa_core/HUMAN_STATE_DRIFT_LINE_CONTROL_AXIS_KO.md`
@@ -305,6 +306,33 @@ a listener-specific residual interface.
 ```text
 Residual listener routing improves subject-invariant readability,
 but it does not solve temporal drift.  Rhythm-conditioned or action-health decoding remains separate.
+```
+
+`RHYTHM_CONDITIONED_RESIDUAL_LISTENER_CORE_KO.md`는 이 경계를 다음 실험으로 찌른다. residual router가 chronological에서 독성을 보인 이유를, 시간 리듬과 listener residual을 하나의 인터페이스에 섞었기 때문이라고 보고 분리한다.
+
+현재 결론:
+
+```text
+chronological에서 plain residual은 global transport보다 +0.001965 나빠진다.
+rhythm_context는 global transport보다 -0.002237 좋고, plain residual보다 -0.004202 좋다.
+subject-heldout에서는 rhythm-gated residual이 plain residual보다 -0.000537 좋다.
+row-block에서도 rhythm 계열이 plain residual보다 약 -0.00054 좋다.
+rhythm_context subject leakage는 0.113333으로 매우 낮다.
+```
+
+논문적으로 남는 문장:
+
+```text
+HS-JEPA separates human-state readability into two interfaces:
+a rhythm-conditioned temporal decoder for chronological drift, and a
+rhythm-gated listener residual for subject/block-invariant readout.
+```
+
+과장하면 안 되는 경계:
+
+```text
+gated residual이 chronological을 완전히 해결한 것은 아니다.
+chronological best는 gated residual이 아니라 rhythm_context다.
 ```
 
 만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.

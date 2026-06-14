@@ -192,6 +192,14 @@ python3 team_hsjepa_end_to_end/global_transport_residual_listener_router_core/ru
 
 이 실험은 cross-subject transported prototype grammar를 backbone으로 두고, fixed semantic router와 learned listener-head router, learned-minus-semantic delta를 residual interface로 붙인다. 현재 결론은 `global transport residual listener-router positive`다. subject-heldout에서 global transport 대비 `-0.000907`, row-block에서 `-0.000428` 좋아지고 subject leakage도 낮아진다. 다만 chronological에서는 `+0.001965` 나빠져 temporal drift decoder는 별도로 풀어야 한다.
 
+residual listener router의 chronological 독성을 rhythm-conditioned temporal decoder로 분리할 수 있는지 검증하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/rhythm_conditioned_residual_listener_core/run_end_to_end.py
+```
+
+이 실험은 calendar-rhythm confidence/entropy/energy로 rhythm context와 rhythm-gated residual channel을 만든다. 현재 결론은 `rhythm_context_temporal_decoder_with_gated_residual_subject_positive`다. chronological에서는 plain residual이 global transport보다 `+0.001965` 나빠졌지만, rhythm context는 global 대비 `-0.002237`, plain residual 대비 `-0.004202` 좋아진다. subject-heldout에서는 rhythm-gated residual이 plain residual 대비 `-0.000537` 좋다. 따라서 HS-JEPA core는 `rhythm-conditioned temporal decoder`와 `rhythm-gated listener residual interface`를 분리해야 한다.
+
 기존 산출물이 없거나 전체 재생성이 필요하면:
 
 ```bash

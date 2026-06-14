@@ -19592,3 +19592,111 @@ transport backbone + listener residual interface + rhythm-conditioned drift/acti
 
 즉 다음 실험은 listener router를 더 키우는 것이 아니라,
 chronological stress에서 독성을 보이는 residual release를 veto하거나 rhythm-conditioned decoder로 분리해야 한다.
+
+## Rhythm-Conditioned Residual Listener Core
+
+### Question
+
+직전 실험의 핵심 경계는 분명했다.
+
+```text
+global transport + residual listener router는 subject-heldout과 row-block에서는 좋아졌지만,
+chronological split에서는 global transport보다 나빠졌다.
+```
+
+따라서 이번 질문은 residual router를 더 키우는 것이 아니라,
+시간 리듬과 listener residual을 분리해야 하는지였다.
+
+```text
+visible calendar/rhythm context가 temporal drift decoder와 subject/block residual listener readout을 분리할 수 있는가?
+```
+
+### Falsification Design
+
+- script: `hsjepa_core/run_rhythm_conditioned_residual_listener_core.py`
+- report: `hsjepa_core/outputs/rhythm_conditioned_residual_listener_core/RHYTHM_CONDITIONED_RESIDUAL_LISTENER_CORE_KO.md`
+- paper report: `paper_hsjepa_core/RHYTHM_CONDITIONED_RESIDUAL_LISTENER_CORE_KO.md`
+- team wrapper: `team_hsjepa_end_to_end/rhythm_conditioned_residual_listener_core/run_end_to_end.py`
+- public LB ledger: not used
+- prior submission probabilities: not used
+- proprietary embedding API: not used
+- label as pretext target: not used
+
+구조:
+
+```text
+calendar rhythm confidence / entropy / energy
+  -> rhythm stability gate
+  -> stable residual listener channel
+  -> unstable residual listener channel
+  -> frozen subject-heldout / row-block / chronological probes
+```
+
+### Result
+
+- verdict: `rhythm_context_temporal_decoder_with_gated_residual_subject_positive`
+- subject-heldout global transport: `0.676724`
+- subject-heldout plain residual: `0.675817`
+- subject-heldout best rhythm/gated residual: `0.675281`
+- subject-heldout delta vs plain residual: `-0.000537`
+- row-block global transport: `0.673331`
+- row-block plain residual: `0.672903`
+- row-block best rhythm context: `0.672363`
+- row-block best gated residual: `0.672421`
+- chronological global transport: `0.671537`
+- chronological plain residual: `0.673502`
+- chronological rhythm context: `0.669300`
+- chronological rhythm delta vs global: `-0.002237`
+- chronological rhythm delta vs plain residual: `-0.004202`
+- chronological best gated residual: `0.671564`
+
+Subject leakage:
+
+```text
+rhythm context: 0.113333
+best rhythm/gated residual: 0.420000
+plain residual: 0.440000
+global transport: 0.542222
+raw lifelog PCA: 0.940000
+```
+
+### Interpretation
+
+살아난 믿음:
+
+```text
+temporal drift는 rhythm context가 가장 잘 읽는다.
+subject/block readability는 rhythm-gated residual이 더 좋다.
+```
+
+죽은 믿음:
+
+```text
+residual listener router를 더 키우면 chronological drift까지 같이 해결된다.
+```
+
+정확한 architecture 결론:
+
+```text
+HS-JEPA는 rhythm-conditioned temporal decoder와
+rhythm-gated listener residual interface를 분리해야 한다.
+```
+
+과장하면 안 되는 점:
+
+```text
+gated residual이 chronological을 완전히 해결한 것은 아니다.
+chronological best는 gated residual이 아니라 rhythm_context다.
+raw lifelog PCA는 row-block/chronological에서 강하지만 subject leakage가 0.94로 높다.
+```
+
+### Next
+
+다음 core/breakthrough 질문은 이 분리를 action-health release gate로 연결하는 것이다.
+
+```text
+transport backbone
+  + listener residual interface
+  + rhythm-conditioned temporal decoder
+  -> action toxicity / safe assignment field
+```

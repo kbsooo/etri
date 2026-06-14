@@ -38,6 +38,7 @@ visible human-life context
 | listener_head_router_pretext | core_boundary | best_router_delta_vs_single_head_logloss | -0.000036 | best_single_future_listener_head | listener_head_router_beats_single_positive |
 | learned_listener_head_router_core | core_boundary | best_learned_router_delta_vs_semantic_prior_logloss | -0.000068 | fixed_semantic_prior_listener_head_router | learned_listener_head_router_beats_semantic_positive |
 | global_transport_residual_listener_router_core | core | best_learned_residual_delta_vs_global_transport_logloss | -0.000907 | global_transported_prototype | global_transport_residual_listener_router_positive |
+| rhythm_conditioned_residual_listener_core | core | chronological_best_rhythm_delta_vs_global_transport_logloss | -0.002237 | global_transported_prototype | rhythm_context_temporal_decoder_with_gated_residual_subject_positive |
 | routine_break_world_model | core | routine_full_delta_vs_prior_logloss | -0.001673 | fold_prior_low_trust_probe | positive_but_small |
 | sleep_pressure_world_model | core | sleep_pressure_full_delta_vs_prior_logloss | -0.000867 | fold_prior_low_trust_probe | positive_but_small |
 | cohort_relative_world_model | core | cohort_relative_predicted_delta_vs_prior_logloss | -0.001381 | fold_prior_low_trust_probe | positive_with_leakage_boundary |
@@ -496,7 +497,121 @@ but it still does not beat global transported prototype grammar on subject-heldo
 따라서 논문적으로는 이 실험을 "완성된 decoder"가 아니라
 `learned listener routing core evidence with global-transport boundary`로 기록한다.
 
-### 12. Routine-Break World Model
+### 12. Global Transport Residual Listener-Router Core
+
+직전 실험에서 learned listener-head router는 fixed semantic prior와 best single head를 이겼지만,
+subject-heldout global transport는 넘지 못했다. 그래서 질문을 replacement가 아니라 interface로 바꿨다.
+
+```text
+cross-subject transported prototype grammar
+  + semantic listener router
+  + learned listener-head router
+  + learned-minus-semantic residual delta
+  -> residual listener interface
+```
+
+핵심 결과:
+
+```text
+best residual feature set: global_plus_semantic_and_learned_router_calibrated10
+best residual logloss: 0.675817
+global transport logloss: 0.676724
+learned router alone logloss: 0.677359
+residual delta vs global: -0.000907
+residual delta vs learned alone: -0.001542
+row-block delta vs global: -0.000428
+chronological delta vs global: 0.001965
+```
+
+subject leakage도 중요한 증거다.
+
+```text
+best residual leakage: 0.440000
+global transport leakage: 0.542222
+raw lifelog leakage: 0.940000
+```
+
+살아난 믿음:
+
+```text
+HS-JEPA core는 하나의 monolithic human-state vector가 아니다.
+운반 가능한 human-state grammar를 backbone으로 두고,
+listener-specific residual router가 target별 readout을 조절해야 한다.
+```
+
+하지만 같은 결과가 죽인 믿음도 있다.
+
+```text
+residual listener routing만 키우면 temporal drift까지 해결된다.
+```
+
+chronological delta가 양수이므로 temporal drift/action-health decoder는 별도 인터페이스로 풀어야 한다.
+
+### 13. Rhythm-Conditioned Residual Listener Core
+
+global residual listener router가 chronological에서 독성을 보였기 때문에,
+이번 실험은 visible calendar/rhythm context가 temporal decoder와 residual listener readout을 분리할 수 있는지 검증했다.
+
+```text
+calendar rhythm confidence / entropy / energy
+  -> rhythm stability gate
+  -> stable residual listener channel
+  -> unstable residual listener channel
+  -> frozen subject-heldout / row-block / chronological probes
+```
+
+핵심 결과:
+
+```text
+subject best feature: global_plus_residual_and_rhythm_gated_residual_calibrated10
+subject delta vs global: -0.001443
+subject delta vs plain residual: -0.000537
+row-block best feature: global_plus_rhythm_context_calibrated10
+row-block delta vs global: -0.000968
+row-block delta vs plain residual: -0.000541
+chronological best feature: rhythm_context_calibrated10
+chronological best logloss: 0.669300
+chronological plain residual delta vs global: 0.001965
+chronological rhythm delta vs global: -0.002237
+chronological rhythm delta vs plain residual: -0.004202
+chronological gated residual delta vs global: 0.000027
+```
+
+subject leakage:
+
+```text
+rhythm context leakage: 0.113333
+best gated residual leakage: 0.420000
+plain residual leakage: 0.440000
+global transport leakage: 0.542222
+raw lifelog leakage: 0.940000
+```
+
+정확한 해석은 다음이다.
+
+```text
+temporal drift는 rhythm context가 가장 잘 읽는다.
+subject/block readability는 rhythm-gated residual이 더 좋다.
+따라서 HS-JEPA core는 rhythm-conditioned temporal decoder와
+rhythm-gated listener residual interface를 분리해야 한다.
+```
+
+과장하면 안 되는 점도 분명하다.
+
+```text
+gated residual이 chronological을 완전히 해결한 것은 아니다.
+chronological에서 best는 gated residual이 아니라 rhythm_context다.
+```
+
+논문 문장으로는 다음이 가장 안전하다.
+
+```text
+HS-JEPA separates human-state readability into two interfaces:
+a rhythm-conditioned temporal decoder for chronological drift, and a
+rhythm-gated listener residual for subject/block-invariant readout.
+```
+
+### 14. Routine-Break World Model
 
 단순 current-state target 대신 subject-relative current state, previous-episode jump,
 rolling personal-baseline residual을 hidden target으로 만들었다.
@@ -511,7 +626,7 @@ subject-heldout low-trust frozen probe에서 prior 대비 delta는
 `-0.001673`이다.
 효과 크기는 여전히 작지만, 이전 subject-relative world model보다 더 선명한 core-positive signal이다.
 
-### 13. Sleep-Pressure World Model
+### 15. Sleep-Pressure World Model
 
 수면 label을 직접 target으로 쓰지 않고, night disturbance, physiological load,
 social/cognitive arousal, rest-environment stability, calendar routine pressure를
@@ -528,7 +643,7 @@ pretext 예측성은 강하지만 label probe 효과는 작다. 이 결과는 HS
 sleep-pressure representation을 만들 수 있다는 core evidence이면서,
 그 representation을 Q/S label로 번역하려면 listener/action-health adapter가 필요하다는 경계이기도 하다.
 
-### 14. Cohort-Relative World Model
+### 16. Cohort-Relative World Model
 
 routine-break와 sleep-pressure 기반 subject fingerprint로 singleton 없는 peer cohort를 만들고,
 오늘의 state를 개인 기준과 peer 기준에서 동시에 해석했다.
@@ -549,7 +664,7 @@ observed/full cohort geometry는 subject identity shortcut이 강하다.
 core evidence는 observed state가 아니라 predicted cohort-relative state에만 둔다.
 ```
 
-### 15. Multi-Target Human-State World Model
+### 17. Multi-Target Human-State World Model
 
 routine-break, sleep-pressure, cohort-relative hidden target을 따로 쓰지 않고,
 하나의 route-preserving predicted bundle로 묶었다.
@@ -580,7 +695,7 @@ PCA로 하나의 compressed latent로 뭉치면 negative.
 downstream listener가 구분할 수 있도록 route axes를 보존한다.
 ```
 
-### 16. Route-Responsibility Diagnostic
+### 18. Route-Responsibility Diagnostic
 
 multi-target bundle 위에서 다른 route들로 held-out route를 예측하고,
 그 residual energy로 label-free route responsibility를 만들었다.
@@ -606,7 +721,7 @@ route responsibility는 label 없이 관측 가능하다.
 이것은 실패라기보다 HS-JEPA architecture boundary다.
 다음 core는 route를 누르는 것이 아니라, listener가 route를 선택적으로 읽는 구조여야 한다.
 
-### 17. Listener-Conditioned Route Readout
+### 19. Listener-Conditioned Route Readout
 
 route-preserving multi-target bundle을 만든 뒤, frozen probe에서 target/listener별 route readout을 선택했다.
 이 단계는 label-free core pretext가 아니라 frozen probe diagnostic이다.
@@ -632,7 +747,7 @@ HS-JEPA core의 좋은 interface는 하나의 압축 latent도,
 route axes를 보존하고, downstream listener가 target별로 다른 route를 읽게 해야 한다.
 ```
 
-### 18. Subject-Invariant Listener Manifold
+### 20. Subject-Invariant Listener Manifold
 
 subject-invariant jury release target은 action geometry만으로도 어느 정도 분리될 수 있지만,
 HS-JEPA listener manifold는 action-only 대비 AP lift가 `0.191742` 더 크다.
@@ -640,7 +755,7 @@ HS-JEPA listener manifold는 action-only 대비 AP lift가 `0.191742` 더 크다
 이 결과는 HS-JEPA core가 단순 action magnitude가 아니라,
 row-target listener가 어떤 hidden state에서 반응해야 하는지를 더 잘 표현한다는 증거다.
 
-### 19. Listener Responsibility Field
+### 21. Listener Responsibility Field
 
 action을 바로 고르지 않고 먼저 `어느 row-target listener가 책임을 가져야 하는가`를 예측하면,
 masked-pretext responsibility가 listener-only보다 AP lift `0.014785`만큼 앞선다.
